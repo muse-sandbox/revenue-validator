@@ -1,0 +1,239 @@
+#
+[macro]
+
+[macro]
+
+Link to OKR
+OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 AD-3272
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+# Research and Context
+
+We want to sell rich ad experience to our advertisers in the MU App. In order to do this, we want to show interstitials from our direct advertisers (Advertisers from the music industry). We're planning to implement them into the MU App
+
+The number of expected impressions for nonpaying users in apps from US, CA, AU and Europe is about ~20,000 per day.
+
+https://redash.ultimate-guitar.com/queries/21605/source#43287
+
+Showing interstitials for this users on each pageview will bring us 110,000 impressions daily
+
+Questions and Answers we want to sent to Google Ad Manager as key-values:
+
+question answer
+
+age 18-24
+
+age 25-34
+
+age 35-44
+
+age 45-54
+
+age 55 and over
+
+age under 18
+
+genre alternative rock
+
+genre art pop
+
+genre blues
+
+genre chamber pop
+
+genre cinematic classical
+
+genre classical
+
+genre comedy
+
+genre country
+
+genre dance-pop
+
+genre darkwave
+
+genre disco
+
+genre electronic
+
+genre electropop
+
+genre experimental
+
+genre folk
+
+genre folk pop
+
+genre global music
+
+genre hard rock
+
+genre hip-hop
+
+genre indie pop
+
+genre jazz
+
+genre metal
+
+genre modern classical
+
+genre neoclassical new age
+
+genre new age
+
+genre other
+
+genre piano rock
+
+genre pop
+
+genre pop rock
+
+genre pop soul
+
+genre r&b, funk & soul
+
+genre reggae & ska
+
+genre religious music
+
+genre rock
+
+genre singer-songwriter
+
+genre soundtrack
+
+genre soundtrack christmas
+
+genre soundtrack game
+
+genre traditional pop
+
+genre vocal jazz
+
+genre world music
+
+goal_1 learn to play for fun
+
+goal_1 master a specific piece
+
+goal_1 prepare for perfomances, recitals or concerts
+
+goal_1 teach music to other
+
+goal_2 discover new sheet music
+
+goal_2 find music tailored to my skill level
+
+goal_2 find quality content
+
+goal_2 find specific recording i''m interested in playing
+
+goal_2 other
+
+instrument accordion
+
+instrument banjo
+
+instrument bassoon
+
+instrument cello
+
+instrument clarinet
+
+instrument contrabass
+
+instrument flute
+
+instrument french horn
+
+instrument guitar
+
+instrument oboe
+
+instrument organ
+
+instrument other brass instruments
+
+instrument other free-reed instruments
+
+instrument other instruments
+
+instrument other strings
+
+instrument other woodwinds
+
+instrument percussion
+
+instrument piano
+
+instrument saxophone
+
+instrument trombone
+
+instrument trumpet
+
+instrument tuba
+
+instrument ukulele
+
+instrument viola
+
+instrument violin
+
+instrument vocals
+
+instruments piano
+
+level beginner
+
+level can read notation
+
+level intermediate
+
+level professional
+
+level virtuoso
+
+Android experiment - https://musescore.com/components/admin/ab/experiment/view?id=6913
+
+iOS experiment - https://musescore.com/components/admin/ab/experiment/view?id=6916
+
+# Release Goal     
+
+Implement the ability to run full-screen app display and video interstitials in the MuseScore app for music-related advertisers, and make it so we can target them by instrument and user type without affecting the product metrics.
+
+# Description of the Solution & Mockups
+
+Targeting Description Key Values
+
+Display Video
+
+Estimate the potential
+
+Implement GAM SDK in the MU App with instrument targeting
+
+Implement and test video Interstitials with Targeting
+
+# Execution
+
+[macro]
+Jira issuekey,summary,issuetype,duedate,assignee,status key,summary,type,due,assignee,status 20 project = AD AND issuekey = AD-3272 OR ("Epic Link" = AD-3272 or parent in (AD-3272)) d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Recorded Metrics After Product Releases

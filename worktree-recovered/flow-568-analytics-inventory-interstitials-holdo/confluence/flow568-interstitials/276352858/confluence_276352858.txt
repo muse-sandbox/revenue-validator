@@ -1,0 +1,235 @@
+[macro]
+INLINE
+
+[macro]
+Red fail
+[/macro]
+
+[/macro]
+
+[macro]
+
+## Исследование и контекст
+
+Как член команды рекламы я бы хотел получить новые плейсменты на мобильном вебе UG с целью увеличить рекламную выручку не оказав негативного влияния на монетизацию через доступы.
+
+В мобвебе UG есть довольно много так называемых "сплэшей" - промежуточных экранов, возникающих между совершением пользователем действия (например, нажатия на кнопку) и выполнением сайтом этого действия. Основная "тематика" сплэшей - это приглашение пользователя перейти в приложение UG.
+
+В проекте [2022-10-17] UG Mobweb: Replace "Open in App" button with sticky 320x50 banner - 2nd iteration (ADS-540) [XXXX-XX-XX] - Teams - Confluence (mu.se)   была выполнена успешная декомпозиция количества событий по группам пользователей в зависимости от их "возраста".
+
+В настоящем проекте я как аналитик команды рекламы хочу предложить идею для монетизации неплатящих пользователей определенного "возраста" на Android и тем самым "развить успех" проекта [2022-10-17] UG Mobweb: Replace "Open in App" button with sticky 320x50 banner - 2nd iteration (ADS-540) [XXXX-XX-XX] - Teams - Confluence (mu.se) .
+
+Упор делается именно на Android поскольку именно на этой платформе высока доля "старых" пользователей в DAU. Что касается iOS то там превалируют "новые" пользователи и влиять на их пользовательский опыт увеличением рекламной нагрузки кажется преждевременным.
+
+ На скриншоте ниже показано распределение количества показов по сплэшам. 
+
+С большим отрывом лидирует BottomScrollSplash - это и есть та самая кнопка "Open In App", которой был посвящен проект 2022-10-17] UG Mobweb: Replace "Open in App" button with sticky 320x50 banner - 2nd iteration (ADS-540) [XXXX-XX-XX] - Teams - Confluence (mu.se) . Далее идет ListSplash и ChorsSplash, причем количество событий быстро убывает.
+
+ListSplash - это сплэш, возникающий в момент нажатия пользователем на странице поиска названия конкретного таба. То есть это сплэш между нажатием на название таба и переходом на таб
+
+ChordsSplash - это сплэш, возникающий при клике пользователем по аккордовой диаграмме на табовой. 
+
+Очевидно что взаимодействие пользователя с ListSplash препятствует бесшовности пользовательского опыта, так как сплэш вклинивается между кликом и открытием страницы. Из этого следует что в случае его неэффективности для "старых" пользователей данный сплэш можно заменить на рекламу без существенного ущерба для пользовательского опыта.
+
+В то же время ChordsSplash возникает в пределах табовой и заместить его без ущерба для пользовательского опыта затруднительно.
+
+[macro]
+Запрос
+
+[macro]
+sql Запрос 365, '365+', days_since_first_appear BETWEEN 180 AND 364, '180-364', days_since_first_appear BETWEEN 90 AND 179, '90-179', days_since_first_appear BETWEEN 30 AND 89, '30-89', days_since_first_appear BETWEEN 7 AND 29, '7-29', days_since_first_appear BETWEEN 2 AND 6, '2-6', days_since_first_appear=1, '1', days_since_first_appear=0, '0','Other') as days_since_first_appear_group FROM (
+
+SELECT * FROM (
+
+SELECT * FROM (
+
+SELECT client_id, date, if(countIf(country IN ('US'))>0, 1,0) as has_usa, arrayReduce('groupUniqArray',groupArrayIf(item_id, event='App Install')) as payment_account_ids, length(payment_account_ids) as l_pai, arrayMin(payment_account_ids) as payment_account_id, groupArray(event) as events, has(events, 'Tab View') as has_tv, has(events, 'Splash View') as has_sv, has(events, 'Install Click') as has_ic, has(events, 'App Install') as has_ai, countEqual(events,'Splash View') as splashes FROM (
+SELECT * FROM (
+SELECT *
+FROM default.ug_rt_events_web
+WHERE date BETWEEN yesterday()-30 AND yesterday()
+AND event IN ('Tab View')
+AND item!='tab pro'
+AND os='android'
+AND rights IN (0,4,5,10,14,15,20,24,25,30,34,35,40,44,45,50,54,55)
+AND platform IN (2)
+AND client_id!=0
+
+UNION ALL
+
+SELECT *
+FROM default.ug_rt_events_web
+WHERE date BETWEEN yesterday()-30 AND yesterday()
+AND event IN ('Splash View', 'Install Click', 'App Install')
+AND value='ListSplash'
+AND os='android'
+AND rights IN (0,4,5,10,14,15,20,24,25,30,34,35,40,44,45,50,54,55)
+AND platform IN (2)
+AND client_id!=0
+) ORDER BY client_id, datetime ASC
+)
+GROUP BY client_id, date
+ORDER BY client_id, date DESC
+--LIMIT 1000
+
+)
+
+LEFT JOIN
+
+(
+SELECT payment_account_id, date, count(*) as purchases
+FROM default.ug_rt_events_app
+WHERE date BETWEEN yesterday()-30 AND yesterday()
+AND event IN ('Purchase Process Finish')
+AND os='android'
+AND rights IN (0,4,5,10,14,15,20,24,25,30,34,35,40,44,45,50,54,55)
+AND platform IN (2)
+AND payment_account_id!=0
+GROUP BY payment_account_id, date
+)
+USING payment_account_id, date
+
+)
+
+LEFT JOIN
+(
+SELECT client_id, date, max(new_user) as is_new
+FROM default.ug_ym_visits
+WHERE date BETWEEN yesterday()-30 AND yesterday()
+AND lower(os) LIKE '%android%'
+AND platform IN (2)
+AND client_id!=0
+GROUP BY client_id, date
+ORDER BY client_id, date
+)
+USING client_id, date
+
+)
+
+LEFT JOIN
+
+(
+SELECT client_id, min(date) as first_appear_date
+FROM default.ug_rt_events_web
+WHERE date >='2020-01-01'
+AND os='android'
+--AND rights IN (0,4,5,10,14,15,20,24,25,30,34,35,40,44,45,50,54,55)
+AND platform IN (2)
+AND client_id!=0
+GROUP BY client_id
+)
+
+USING client_id
+
+) GROUP BY date, days_since_first_appear_group
+ORDER BY date, days_since_first_appear_group]]>
+[/macro]
+
+[/macro]
+
+Рассмотрим среднесуточное распределение покупок со сплэша ListSplash по группам "возраста" пользователей (на основе данных с 20 сентября по 20 октября 2022)
+
+days_since_first_appear_group has_purchases
+
+0 6.32
+
+1 0.25
+
+2-6 0.48
+
+7-29 0.54
+
+30-89 0.9
+
+90-179 0.64
+
+180-364 0.64
+
+365+ 0.67
+
+Other 0
+
+В результате, как аналитик команды рекламы, я хочу предложить замену сплэша ListSplash на Web-Интерстишлы в мобвебе Android для "старых" пользователей, поскольку этот сплэш является для них малоэффективным.
+
+Рассмотрим среднесуточное количество пользователей, видящих сплэш, а также количество показов этих сплэшей (на пользователя может приходиться >1 показа в сутки):
+
+days_since_first_appear_group Splash View Users Splashes Sum Splash Per User
+
+0 3635 11461 3.15
+
+1 254 1013 3.99
+
+2-6 516 2082 4.03
+
+7-29 1271 5060 3.98
+
+30-89 1821 7189 3.95
+
+90-179 1708 6741 3.95
+
+180-364 2482 9689 3.90
+
+365+ 3352 12859 3.84
+
+Other 10 37 3.84
+
+Из таблицы видно что на пользователя в среднем приходится около 4 показов в сутки. 
+
+Разумно предложить такую логику - при первом клике пользователь будет видеть ListSplash, а при последюущих - Web-интерстишл. 
+
+Тогда получим следующее количество потенциальных показов:
+
+days_since_first_appear_group Splash View Users Splash Per User Corrected Splahses Sum Corrected Expected CPM
+Expected Revenue
+
+Expected Revenue Grouped
+
+0 3635 2.15 7826 10 78.26 78.26
+
+1 254 2.99 759 10 7.59 7.59
+
+2-6 516 3.03 1565 10 15.65 15.65
+
+7-29 1271 2.98 3789 10 37.89 37.89
+
+30-89 1821 2.95 5369 10 53.69 271.43
+
+90-179 1708 2.95 5033 10 50.33
+
+180-364 2482 2.90 7207 10 72.07
+
+365+ 3352 2.84 9507 10 95.07
+
+Other 10 2.84 27 10 0.27
+
+Кажется разумным применить нашу логику для "старых" пользователей - начиная с 30 дня (как в проекте 2022-10-17] UG Mobweb: Replace "Open in App" button with sticky 320x50 banner - 2nd iteration (ADS-540) [XXXX-XX-XX] - Teams - Confluence (mu.se) ).
+
+Тогда ожидаемая выручка составит 271$. 
+
+Скорректируем ее с учетом возможных потерь от недополученных доступов. Суммарное количество доступов в день для пользователей с 30 дня составляет ~3. Учтем тот факт что порядка 40% доступов отменяется в течение первой недели. Следовательно, получим 3 * (1 - 0.4) = ~2 оплаты в сутки. При среднем чеке в 15$ это дает выручку 2 * 15 = 30$ в сутки.
+
+Следовательно ожидаемая выручка сверху составит 271 - 30 = 241$ в сутки
+
+## Гипотеза
+
+Замена ListSplash на Web-Интерстишл (начиная со 2го клика по названию таба в данные сутки) в мобвебе UG Android  для неплатящих пользователей начиная с 30 дня с даты их первой фиксации принесет сверху +241$ сверху.
+
+## Планирование А/B-теста
+
+## Ответственный и команда
+
+    
+
+## Макеты
+
+## Реализация
+
+2
+complete
+    Сделать расчет сверху
+
+## Результаты A/B-теста
+
+## Выводы
+
+Получили нет от команды продукта, не делаем.

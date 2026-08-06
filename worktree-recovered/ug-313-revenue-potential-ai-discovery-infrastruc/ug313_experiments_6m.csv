@@ -1,0 +1,104 @@
+exp_id,exp_name,clients,ab_type,variations,success_variation,status,archive,start_date,end_date,duration_days,jira_task,has_confluence_link,confluence_page_id
+6968.0,[UG Monetization] UG iOS: Second Paywall feature flag for iOS,"[""UGT_IOS""]",,2,0,2,1,2026-01-29T00:00:00Z,2026-01-29T00:00:00Z,0.0,UMN-9299,0,
+6980.0,[UG Monetization] UG App: tour install - add new steps (iteration 5),"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-01-21T00:00:00Z,2026-01-30T00:00:00Z,9.0,UMN-10434,1,746551727
+6902.0,"[UG Monetization] UG App: explore, sale - Promo block instead of sale banner","[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-01-27T00:00:00Z,2026-02-02T00:00:00Z,6.0,UMN-9885,1,746543363
+6983.0,[UG Monetization] UG Web: permanent banner – short funnel (iteration 1),"[""UG_WEB""]",,3,0,2,1,2026-01-26T00:00:00Z,2026-02-02T00:00:00Z,7.0,UMN-10526,1,754299186
+6998.0,[UG Monetization] UG Web: Official Tabs on the artist page,"[""UG_WEB""]",,3,0,2,1,2026-01-29T00:00:00Z,2026-02-02T00:00:00Z,4.0,UMN-9536,1,721559684
+7025.0,[UG Monetization] UG Web: landing — change index of local price (relaunch) - 2,"[""UG_WEB""]",,2,0,2,1,2026-02-02T00:00:00Z,2026-02-03T00:00:00Z,1.0,UMN-10416,1,746551149
+6953.0,[UG Monetization] UG MobWeb: Survey for UG mobweb users study,"[""UG_WEB""]",,2,0,2,1,2026-02-02T00:00:00Z,2026-02-05T00:00:00Z,3.0,UMN-10484,1,754293018
+6959.0,[UG Monetization] UG App: tour – feature tour install,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-01-30T00:00:00Z,2026-02-05T00:00:00Z,6.0,UMN-10402,1,746549176
+7001.0,"[UG Monetization] UG Web: the ""emergency help"" funnel - exit-intent offer","[""UG_WEB""]",,2,2,2,0,2026-02-02T00:00:00Z,2026-02-09T00:00:00Z,7.0,UMN-10549,1,746524132
+6932.0,[UG Monetization] UG App: weekly plan as primary offer for young users,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-01-27T00:00:00Z,2026-02-11T00:00:00Z,15.0,UMN-10347,1,746541522
+7034.0,[UG Monetization] UG App: Remove trial switch,"[""UGT_IOS""]",,2,0,2,1,2026-02-12T00:00:00Z,2026-02-17T00:00:00Z,5.0,UMN-10517,1,761951425
+7028.0,[UG Monetization] UG Web: print funnel improvements,"[""UG_WEB""]",,2,2,2,0,2026-02-09T00:00:00Z,2026-02-18T00:00:00Z,9.0,UMN-10646,1,761931427
+7037.0,[UG Monetization] UG Web: landing — change index of local price (relaunch) - 3,"[""UG_WEB""]",,2,2,2,0,2026-02-09T00:00:00Z,2026-02-27T00:00:00Z,18.0,UMN-10416,1,746551149
+7085.0,[UG Monetization] UG App: explore product widget instead of sale banner,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-02-26T00:00:00Z,2026-03-02T00:00:00Z,4.0,UMN-10743,1,761947509
+7043.0,[UG Monetization] UG App: tour – questions after the paywall in tour,"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-02-19T00:00:00Z,2026-03-04T00:00:00Z,13.0,UMN-10601,1,761924814
+7115.0,[UG Monetization] UG iOS: paywall – remove trial activation toggle (3-rd Iteration),"[""UGT_IOS""]",,2,0,2,1,2026-03-04T00:00:00Z,2026-03-05T00:00:00Z,1.0,UMN-10775,1,761951425
+7139.0,[UG Monetization] UG Web: landing – new request handling,"[""UG_WEB""]",,2,0,2,1,2026-03-06T00:00:00Z,2026-03-10T00:00:00Z,4.0,UMN-10884,0,
+7013.0,[UG Monetization] UG App: win-back before subscription ends,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-02-12T00:00:00Z,2026-03-10T00:00:00Z,26.0,UMN-10579,1,754313303
+7019.0,"[UG Monetization] UG Web: the ""emergency help"" funnel - with a warm up","[""UG_WEB""]",,2,0,2,1,2026-03-02T00:00:00Z,2026-03-11T00:00:00Z,9.0,UMN-10614,1,746524132
+7070.0,"[UG Monetization] UG Web: the ""emergency help"" funnel - focus when switching to an offer","[""UG_WEB""]",,2,0,2,1,2026-03-02T00:00:00Z,2026-03-11T00:00:00Z,9.0,UMN-10753,1,746524132
+7100.0,[UG Monetization] UG App: Spotify funnel – value before paywall,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-03-04T00:00:00Z,2026-03-12T00:00:00Z,8.0,UMN-10755,1,761945645
+7118.0,[UG Monetization] UG iOS: paywall – remove trial activation toggle (2 iteration),"[""UG_IOS"", ""UGT_IOS""]",,3,3,2,0,2026-03-04T00:00:00Z,2026-03-13T00:00:00Z,9.0,UMN-10775,1,761951425
+7091.0,[UG Monetization] UG Web: Flo like paywall (iteration 5),"[""UG_WEB""]",,2,0,2,1,2026-03-11T00:00:00Z,2026-03-13T00:00:00Z,2.0,UMN-9338,1,714421628
+7130.0,[UG Monetization] UG App: explore product widget instead of sale banner (2 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-03-11T00:00:00Z,2026-03-16T00:00:00Z,5.0,UMN-10743,1,761947509
+7142.0,[UG Monetization] UG App: Warm-up before 2-nd paywall,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-03-16T00:00:00Z,2026-03-18T00:00:00Z,2.0,UMN-10796,1,767498882
+7160.0,[UG Monetization] Pre-paywall with animation for interstitials,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-03-16T00:00:00Z,2026-03-18T00:00:00Z,2.0,UMN-10952,1,773658792
+7121.0,[UG Monetization] UG Web: landing – updated checkout,"[""UG_WEB""]",,2,2,2,0,2026-03-12T00:00:00Z,2026-03-19T00:00:00Z,7.0,UMN-10573,1,754312866
+7061.0,[UG Monetization] UG App: Upsell PDF,"[""UGT_ANDROID"", ""UGT_IOS""]",,6,0,2,1,2026-03-16T00:00:00Z,2026-03-23T00:00:00Z,7.0,UMN-10670,1,761935968
+7166.0,[UG Monetization] UG App: songbooks - Songbooks Tour Update 2,"[""UGT_ANDROID"", ""UGT_IOS""]",,4,2,2,0,2026-03-20T00:00:00Z,2026-03-24T00:00:00Z,4.0,UMN-10937,1,773658121
+7133.0,[UG Monetization] UG iOS: paywall - remove trial activation toggle (4-th Iteration),"[""UGT_IOS""]",,2,0,2,1,2026-03-20T00:00:00Z,2026-03-26T00:00:00Z,6.0,UMN-10775,1,761951425
+7178.0,[UG Monetization] UG Web: Flo like paywall (iteration 5.2),"[""UG_WEB""]",,2,0,2,1,2026-03-19T00:00:00Z,2026-03-26T00:00:00Z,7.0,UMN-9338,1,714421628
+7187.0,[UG Monetization] Pre-paywall with animation for interstitials (relaunch),"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-03-20T00:00:00Z,2026-03-27T00:00:00Z,7.0,UMN-10952,1,773658792
+7208.0,[UG Monetization] UG App: tour install – pre-paywall with animation,"[""UGT_IOS""]",,3,0,2,1,2026-03-27T00:00:00Z,2026-03-29T00:00:00Z,2.0,UMN-11087,1,777818841
+7202.0,[UG Monetization] UG App: explore product widget instead of sale banner (3 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,5,0,2,1,2026-03-27T00:00:00Z,2026-03-30T00:00:00Z,3.0,UMN-10743,1,761947509
+7181.0,[UG Monetization] UG Web: Print funnel without ambulance,"[""UG_WEB""]",,2,0,2,1,2026-03-19T00:00:00Z,2026-03-31T00:00:00Z,12.0,UMN-11022,1,761931427
+7193.0,[UG Monetization] UG Web: Single purchase: PDF & Print (fake door),"[""UG_WEB""]",,3,0,2,1,2026-03-30T00:00:00Z,2026-04-02T00:00:00Z,3.0,UMN-10922,1,773654657
+7199.0,[UG Monetization] UG Web: sticky legal text,"[""UG_WEB""]",,2,2,2,0,2026-03-31T00:00:00Z,2026-04-07T00:00:00Z,7.0,UMN-11050,1,754312866
+7220.0,[UG Monetization] UG Web: improvements to open official tabs: close part of the content,"[""UG_WEB""]",,2,0,2,1,2026-03-27T00:00:00Z,2026-04-07T00:00:00Z,11.0,UMN-11063,1,777815166
+7235.0,[UG Monetization] UG Web: checkout validation fixes ,"[""UG_WEB""]",,2,0,2,1,2026-04-03T00:00:00Z,2026-04-07T00:00:00Z,4.0,UMN-11198,1,777830480
+6911.0,[UG Monetization] UG App: tour install - discount for young users (2 iteration),"[""UGT_IOS""]",,2,0,2,1,2026-03-27T00:00:00Z,2026-04-09T00:00:00Z,13.0,UMN-10085,1,739174238
+7232.0,[UG Monetization] UG Web: Improvements to open official tabs + interactive tabs: increase Print CTR,"[""UG_WEB""]",,2,0,2,1,2026-04-07T00:00:00Z,2026-04-09T00:00:00Z,2.0,UMN-10956,1,773659304
+7211.0,[UG Monetization] UG Android: Trial To Instant High Prices,"[""UGT_ANDROID""]",,2,0,2,1,2026-03-27T00:00:00Z,2026-04-14T00:00:00Z,18.0,UMN-11109,0,
+7256.0,[UG Monetization] UG App: first session flow update,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-04-10T00:00:00Z,2026-04-14T00:00:00Z,4.0,UMN-11073,1,777817235
+7229.0,[UG Monetization] UG App: explore product widget instead of sale banner (3 iteration - relaunch),"[""UGT_ANDROID"", ""UGT_IOS""]",,5,0,2,1,2026-04-06T00:00:00Z,2026-04-17T00:00:00Z,11.0,UMN-10743,1,761947509
+7265.0,[UG Monetization] UG iOS: tour paywall - tour install with 2 paywalls,"[""UGT_IOS""]",,2,0,2,1,2026-04-10T00:00:00Z,2026-04-17T00:00:00Z,7.0,UMN-11264,1,777838308
+7238.0,[UG Monetization] UG Web: permanent banner – short funnel (iteration 2),"[""UG_WEB""]",,2,0,2,1,2026-04-16T00:00:00Z,2026-04-22T00:00:00Z,6.0,UMN-10521,1,754299186
+7304.0,"[UG Monetization] UG Web: Change the ""emergency help"" funnel - Iteration 5 - decrease display frequency","[""UG_WEB""]",,2,0,2,1,2026-04-22T00:00:00Z,2026-04-29T00:00:00Z,7.0,UMN-11343,1,746524132
+7241.0,[UG Monetization] UG Web: Germany-style cancellation flow for all trial users,"[""UG_WEB""]",,2,2,2,0,2026-04-08T00:00:00Z,2026-04-29T00:00:00Z,21.0,UMN-11130,1,746536690
+7268.0,[UG Monetization] UG Web: paywall – price decrease for pro+,"[""UG_WEB""]",,2,2,2,0,2026-04-09T00:00:00Z,2026-04-29T00:00:00Z,20.0,UMN-11222,1,777835742
+7331.0,[UG Monetization] UG Web - text tabs to playable tabs funnel,"[""UG_WEB""]",,2,0,2,1,2026-04-29T00:00:00Z,2026-05-03T00:00:00Z,4.0,UMN-11151,1,777828601
+7289.0,[UG Monetization] UG App: reduction in advertising volume,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-04-18T00:00:00Z,2026-05-04T00:00:00Z,16.0,UMN-11305,1,777844965
+7316.0,[UG Monetization] UG App: explore product widget instead of sale banner (4 iteration),"[""UGT_IOS""]",,3,0,2,1,2026-04-27T00:00:00Z,2026-05-05T00:00:00Z,8.0,UMN-10743,1,761947509
+6977.0,[UG Monetization] UG Android: ProPlus products on Tour Install (3rd iteration),"[""UGT_ANDROID""]",,2,0,2,1,2026-04-27T00:00:00Z,2026-05-05T00:00:00Z,8.0,UMN-9909,1,731509184
+7394.0,[UG Monetization] UG Web: Fraud protection,"[""UG_WEB""]",,2,2,2,0,2026-04-29T00:00:00Z,2026-05-08T00:00:00Z,9.0,UMN-11505,1,788599262
+7328.0,[UG Monetization] UG Web: Сheckout size optimization,"[""UG_WEB""]",,3,3,2,0,2026-05-04T00:00:00Z,2026-05-11T00:00:00Z,7.0,UMN-11441,1,787253507
+7334.0,[UG Monetization] UG iOS: tour paywall - tour install with 2 paywalls (2nd Iteration),"[""UGT_IOS""]",,2,0,2,1,2026-05-04T00:00:00Z,2026-05-11T00:00:00Z,7.0,UMN-11264,1,777838308
+7355.0,[UG Monetization] UG App: first session flow update (2 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-05-04T00:00:00Z,2026-05-12T00:00:00Z,8.0,UMN-11073,1,777817235
+7361.0,[UG Monetization] UG App: winback banner on explore,"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-05-04T00:00:00Z,2026-05-12T00:00:00Z,8.0,UMN-11425,1,787253942
+7379.0,[UG Monetization] UG App: Upsell – Gear Setup OTP,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-05-12T00:00:00Z,2026-05-14T00:00:00Z,2.0,UMN-11306,1,777842142
+7430.0,[UG Monetization] UG Web: Tour redesign,"[""UG_WEB""]",,2,2,2,0,2026-05-12T00:00:00Z,2026-05-19T00:00:00Z,7.0,UMN-11534,1,788613313
+7382.0,[UG Monetization] UG Web: improvements to open official tabs: close part of the content (Iteration 2),"[""UG_WEB""]",,2,0,2,1,2026-05-14T00:00:00Z,2026-05-21T00:00:00Z,7.0,UMN-11475,1,777815166
+7280.0,[UG Monetization] UG App: tour install - discount for young users (3 iteration),"[""UGT_IOS""]",,2,2,2,0,2026-05-11T00:00:00Z,2026-05-25T00:00:00Z,14.0,UMN-10085,1,739174238
+7433.0,[UG Monetization] UG Web: subscription сancel winback,"[""UG_WEB""]",,2,0,2,1,2026-05-11T00:00:00Z,2026-05-25T00:00:00Z,14.0,UMN-11490,1,788603554
+7454.0,[UG Monetization] UG App: personalized interstitial,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-05-18T00:00:00Z,2026-05-27T00:00:00Z,9.0,UMN-11540,1,788613565
+7460.0,[UG Monetization] UG Web: payment funnel background,"[""UG_WEB""]",,2,2,2,0,2026-05-20T00:00:00Z,2026-05-27T00:00:00Z,7.0,UMN-11587,1,788621432
+7478.0,[UG Monetization] UG iOS: tour paywall - tour install with 2 paywalls (3rd Iteration),"[""UGT_IOS""]",,2,0,2,1,2026-05-28T00:00:00Z,2026-05-29T00:00:00Z,1.0,UMN-11264,1,777838308
+7493.0,[UG Monetization] UG Android: Paywall with three products,"[""UGT_ANDROID""]",,2,0,2,1,2026-05-26T00:00:00Z,2026-05-29T00:00:00Z,3.0,UMN-11671,1,795250657
+7544.0,[UG Monetization] UG Web: package braintree-web with new version (bundle exp),"[""UG_WEB""]",,2,0,2,1,2026-06-03T00:00:00Z,2026-06-04T00:00:00Z,1.0,UMN-11793,0,
+7505.0,[UG Monetization] UG Web: paywall – introductory plan with decreased price,"[""UG_WEB""]",,2,2,2,0,2026-05-26T00:00:00Z,2026-06-05T00:00:00Z,10.0,UMN-11716,1,796428993
+7502.0,[UG Monetization] UG Web: Three-month / Six month plans,"[""UG_WEB""]",,2,0,2,1,2026-05-27T00:00:00Z,2026-06-08T00:00:00Z,12.0,UMN-11215,1,785056492
+7466.0,[UG Monetization] UG App: Tour: Popular Songs in Tour Install,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,2,2,0,2026-05-26T00:00:00Z,2026-06-11T00:00:00Z,16.0,UMN-11610,1,788622256
+7487.0,[UG Monetization] UG App: winback - final interstitial offer,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,2,2,0,2026-05-22T00:00:00Z,2026-06-12T00:00:00Z,21.0,UMN-11515,1,788612067
+7496.0,[UG Monetization] UG iOS: paywall – remove trial activation toggle (5-th Iteration),"[""UGT_IOS""]",,2,0,2,1,2026-06-02T00:00:00Z,2026-06-14T00:00:00Z,12.0,UMN-10775,1,761951425
+7547.0,[UG Monetization] UG App: Upsell – Gear Setup OTP (2 iteration - with reader),"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,1,2026-06-12T00:00:00Z,2026-06-17T00:00:00Z,5.0,UMN-11306,1,777842142
+7523.0,[UG Monetization] UG Web : hidden card details checkout,"[""UG_WEB""]",,2,0,2,1,2026-06-05T00:00:00Z,2026-06-18T00:00:00Z,13.0,UMN-11762,0,
+7559.0,[UG Monetization] UG Web: Personalized tour-to-paywall funnel,"[""UG_WEB""]",,2,0,2,1,2026-06-10T00:00:00Z,2026-06-18T00:00:00Z,8.0,UMN-11651,1,795250445
+7577.0,[UG Monetization] UG App: first session flow update (3 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,1,2026-06-14T00:00:00Z,2026-06-19T00:00:00Z,5.0,UMN-11073,1,777817235
+7022.0,"[UG Monetization] UG Web: the ""emergency help"" funnel - with introductory","[""UG_WEB""]",,2,0,2,1,2026-06-18T00:00:00Z,2026-06-19T00:00:00Z,1.0,UMN-10616,1,746524132
+7535.0,[UG Monetization] UG Web: Double upsell flow ,"[""UG_WEB""]",,2,0,2,1,2026-06-05T00:00:00Z,2026-06-22T00:00:00Z,17.0,UMN-11750,0,
+7475.0,[UG Monetization] UG Web: Songbooks funnel design alignment,"[""UG_WEB""]",,2,0,2,1,2026-05-20T00:00:00Z,2026-06-23T00:00:00Z,34.0,UMN-11625,1,788624524
+7598.0,[UG Monetization] UG Web: permanent banner — two plans: trial & monthly,"[""UG_WEB""]",,2,0,2,1,2026-06-19T00:00:00Z,2026-06-25T00:00:00Z,6.0,UMN-11941,0,
+7610.0,[UG Monetization] UG App: tour - Courses upsell offer instead of install tour for active-Pro users,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,2,2,0,2026-06-19T00:00:00Z,2026-06-29T00:00:00Z,10.0,UMN-11992,0,
+7568.0,"[UG Monetization] UG App: tour, paywall – Propensity-targeted instant vs trial paywall","[""UGT_IOS""]",,2,2,2,0,2026-06-19T00:00:00Z,2026-06-29T00:00:00Z,10.0,UMN-11884,0,
+7472.0,[UG Monetization] UG Web: Courses funnel design alignment,"[""UG_WEB""]",,2,0,2,0,2026-05-20T00:00:00Z,2026-06-29T00:00:00Z,40.0,UMN-11625,1,788624524
+7631.0,[UG Monetization] UG App: reduction in advertising volume (2 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-06-22T00:00:00Z,2026-06-30T00:00:00Z,8.0,UMN-11305,1,777844965
+7634.0,[UG Monetization] UG App: reduction in advertising volume (relaunch),"[""UGT_IOS""]",,2,2,2,0,2026-06-22T00:00:00Z,2026-06-30T00:00:00Z,8.0,UMN-11305,1,777844965
+7637.0,[UG Monetization] UG Web: guitar challenges & roadmaps (fakedoors),"[""UG_WEB""]",,6,0,2,0,2026-06-26T00:00:00Z,2026-06-30T00:00:00Z,4.0,UMN-11894,0,
+7628.0,[UG Monetization] UG Web: Direct payment on paywall,"[""UG_WEB""]",,2,0,2,0,2026-06-25T00:00:00Z,2026-07-02T00:00:00Z,7.0,UMN-11981,0,
+7625.0,[UG Monetization] UG Web: paywall – introductory plan with decreased price - Iteration 2,"[""UG_WEB""]",,2,2,2,0,2026-06-22T00:00:00Z,2026-07-03T00:00:00Z,11.0,UMN-11716,1,796428993
+7640.0,[UG Monetization] UG App: New paywall arch validation,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-07-07T00:00:00Z,2026-07-09T00:00:00Z,2.0,UMN-12061,0,
+7643.0,[UG Monetization] UG WEB: complete registration paywall with trial,"[""UG_WEB""]",,2,0,2,0,2026-07-03T00:00:00Z,2026-07-09T00:00:00Z,6.0,UMN-12089,0,
+7622.0,[UG Monetization] UG App: first session flow update (3 iteration - relaunch),"[""UGT_IOS""]",,3,0,2,0,2026-06-19T00:00:00Z,2026-07-10T00:00:00Z,21.0,UMN-11073,1,777817235
+7607.0,[UG Monetization] UG App: Upsell – Gear Setup OTP (3 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,3,0,2,0,2026-07-09T00:00:00Z,2026-07-13T00:00:00Z,4.0,UMN-11306,1,777842142
+7679.0,[UG Monetization] UG App: learn song in one day,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-07-07T00:00:00Z,2026-07-13T00:00:00Z,6.0,UMN-11854,0,
+7685.0,[UG Monetization] UG Web: Add timer to plan,"[""UG_WEB""]",,2,2,2,0,2026-07-02T00:00:00Z,2026-07-13T00:00:00Z,11.0,UMN-12117,1,805333494
+7718.0,[UG Monetization] UG iOS: paywall — trial-only paywall after checkout cancel,"[""UGT_IOS""]",,2,0,2,0,2026-07-10T00:00:00Z,2026-07-13T00:00:00Z,3.0,UMN-12169,0,
+7694.0,[UG Monetization] UG Web: permanent banner —  two plans: offer & monthly,"[""UG_WEB""]",,2,0,2,0,2026-07-10T00:00:00Z,2026-07-16T00:00:00Z,6.0,UMN-12183,0,
+7745.0,[UG Monetization] UG Web: Ambulance offer show reduction,"[""UG_WEB""]",,2,0,2,0,2026-07-13T00:00:00Z,2026-07-20T00:00:00Z,7.0,UMN-12293,0,
+7604.0,[UG Monetization] UG App: tour install - personalized post-decline offer,"[""UGT_IOS""]",,2,0,2,0,2026-07-02T00:00:00Z,2026-07-21T00:00:00Z,19.0,UMN-11959,0,
+7712.0,[UG Monetization] UG App: interstitials - discounted prices,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-07-13T00:00:00Z,2026-07-21T00:00:00Z,8.0,UMN-12220,0,
+7691.0,[UG Monetization] UG iOS: Winback - Refund Prevention,"[""UGT_IOS""]",,2,0,2,0,2026-07-14T00:00:00Z,2026-07-23T00:00:00Z,9.0,UMN-11295,0,
+7697.0,[UG Monetization] UG App: tour - Local top‑100 for song picks during the tour,"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-07-07T00:00:00Z,2026-07-23T00:00:00Z,16.0,UMN-12193,0,
+7763.0,[UG Monetization] UG App: learn song in one day (2 iteration),"[""UGT_ANDROID"", ""UGT_IOS""]",,2,0,2,0,2026-07-17T00:00:00Z,2026-07-24T00:00:00Z,7.0,UMN-11854,0,

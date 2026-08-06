@@ -1,0 +1,864 @@
+[macro]
+
+Link to OKR
+Copy-paste the link to the necessary OKR from OKR board
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-11436
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+
+ 
+
+[/macro]
+
+[macro]
+
+# Pitch
+
+## Initial Context & Idea
+
+Goal: Improve the checkout design, improve the checkout process → access 
+
+Foundation : Create a compact checkout design so that all payment buttons are always visible, especially on small screens
+
+## Final Context & Idea
+
+We are encountering a situation where the payment buttons on the checkout page do not fit within the viewport. Presumably, this could affect the number of people who use these buttons and, ultimately, the number of transactions a user could potentially make using these payment methods:
+
+## Reach & Impact
+
+AVG Daily Metrics A B diff
+
+## Hypothesis
+
+If we make the checkout page more compact and ensure that all payment buttons are clearly visible, we will increase conversion rates by 3% percent, because the people who use these buttons will be able to use them
+
+## Experiment design
+
+[macro]
+Experiment design
+
+Metrics
+Goal
+
+users tab view→ subscribed, %
+
+Design / each metric
+
+Baseline 0.05%
+
+Lift, % 500.00%
+
+Power 0.8
+
+Alpha 0.05
+
+Sample size (per variation) 1996
+
+Duration (days) 2
+
+Design summary  
+
+Days 7 (seasonality reflection)
+
+[/macro]
+
+# Description of the Solution & Mockups
+
+## Solution
+
+### Solution
+
+for whom : для всех в платежной воронке
+
+where:  all Pro+ funnel checkouts
+
+what :
+
+In the test group, remove the header block
+
+make the heading smaller
+
+reduce the spacing between the blocks
+
+the height of the window decreases by about fifteen percent
+
+In the C test branch, we move the payment buttons above the card details
+
+## Mockups &  Texts
+
+Figma
+
+Screen А В С
+
+ 
+
+## Analytics
+
+Exposure Event: 
+
+Exposure Conditions: 
+
+Event Parameters Description
+
+1
+
+#7328 config
+
+Segment Name Conditions
+
+Total {'pro_rights': 'all', 'platform': 'Desktop'}
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=umn-11436 d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+ 
+
+# Results
+
+#7328  – 
+
+Exposure event: App Experiment Start
+
+## Decision 
+[macro]
+Green SUCCESS
+[/macro]
+
+The compact checkout with alternative payment methods placed above the credit card form delivered the strongest monetization results across the experiment
+
+Winning variation showed the highest uplift in revenue metrics: access conversion, charge conversion, Trial → Charge conversion and ARPU, ARPU increased by +15.3% in variation 3
+
+The main driver of revenue growth was a +28.4% uplift in Trial → Charge conversion, resulting in an estimated +$2.2K revenue uplift per day versus control
+
+Moving alternative payment methods higher significantly changed payment behavior: credit cards share dropped from 68.3% to 55.7%, while PayPal usage increased from 12% to 18.7%
+
+At the same time, there has been an increase in charge, which is particularly noticeable in the case of credit cards
+
+here's an idea: encourage even more users to switch to payment buttons by hiding the credit card form behind the button
+
+Rollout group 3 but monitor Charge → Cancel conversion
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2 variation 3
+
+UG_WEB Design 0 0 0 0
+
+e43f2cd2-17df-76a8-8fee-43db4827a049
+complete
+No visible bugs were found throughout the experiment
+
+6e8979c0-0d6a-6037-3d29-77b3e7ae2449
+complete
+No external effects are visible
+
+Experiment 8 3480 3565 3478
+
+Checks
+
+5836f201-92cc-7ecd-fda7-8f8253240106
+complete
+duration of exp ≥ design
+
+919c12f0-0aab-aba5-259c-eb802d6fa13d
+complete
+A/B balance is maintained
+
+## Forecast (per day)
+
+Variations App Experiment Start Accesses Charges Revenue, $
+
+control 1448 402 254 $14,688
+
+variation 2 1448 406 263 $15,638
+
+diff 0 4 9 $950
+
+variation 3 1448 414 274 $16,929
+
+diff 0 11 20 $2,241
+
+## Significance analysis
+
+Both test groups show an uplift in monetization metrics: access conversion, charge conversion, Trial → Charge and ARPU. For variation 2, none of the differences are statistically significant; for variation 3, the signal is stronger.
+
+ARPU in variation 3 increased by +15.3%, and statistically signifficant, p = 0.024.
+
+The main contributor to the Revenue lift is a +28.4% increase in Trial → Charge (p = 0.008).
+
+However, significant negative effects in variation 3 are observed downstream of the charge:
+
+The 14-day post-charge cancellation rate increased from 10% to 16.8% (+31.7%, p = 0.043);
+
+7-day retention dropped by −7.2% (p = 0.021), and 14-day retention by −6.5% (p = 0.023).
+
+This indicates that the new checkout converts paid subscriptions more effectively, but the resulting subscribers are more likely to cancel after the first charge and show worse retention on the platform.
+
+[macro]
+UG_WEB
+Monetization Stats
+
+[macro]
+SQL true 0, datetime) AS is_auth,
+min(rt.datetime) as exp_start_datetime,
+min(e.datetime_end) as exp_end_datetime
+from default.ug_rt_events_web rt
+left join exp_data e
+on rt.item_id = e.id
+where rt.date between '2026-05-04' and '2026-05-11'
+and rt.event in ('App Experiment Start')
+and has(rt.experiments.id, 7328)
+and rt.item_id = 7328
+and rt.unified_id <> 0
+and rt.platform = 1
+and rt.datetime between e.datetime_start and if(toDate(e.datetime_end) = '1970-01-01', toDateTime('2029-01-01'), e.datetime_end)
+group by 1, 2
+)
+, subscribed as (
+select
+s.subscription_id as subscription_id,
+s.product_code as product_code,
+max(s.trial > 0) as is_trial,
+max(s.unified_id) as unified_id,
+min(s.datetime) as subscribed_dt,
+min(s.date) as subscribed_date
+from default.ug_subscriptions_events s
+inner join exp_users e
+on s.unified_id = e.unified_id
+where s.date between '2026-05-04' and '2026-05-11'
+and s.platform like '%WEB%'
+and s.event = 'Subscribed'
+and s.datetime between e.exp_start_datetime and if(toDate(e.exp_end_datetime) = '1970-01-01', toDateTime('2029-01-01'), e.exp_end_datetime)
+and lower(funnel_source) not like '%email%'
+group by 1, 2
+)
+, charged as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as charged_revenue,
+min(datetime) as charged_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Charged'
+group by 1, 2
+)
+, refunded as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as refunded_revenue,
+min(datetime) as refunded_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Refunded'
+group by 1, 2
+)
+, canceled as (
+select
+subscription_id,
+product_code,
+min(datetime) as canceled_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Canceled'
+group by 1, 2
+)
+, sub as (
+select
+sub.unified_id as unified_id,
+sub.is_trial as is_trial,
+uniqExact(sub.subscription_id || sub.product_code) as accesses,
+uniqExactIf(sub.subscription_id || sub.product_code, sub.subscription_id = ch.subscription_id) as charges,
+sumIf(ch.charged_revenue, sub.subscription_id = ch.subscription_id) as charged_revenue,
+uniqExactIf(sub.subscription_id || sub.product_code, sub.subscription_id = r.subscription_id and sub.subscription_id = ch.subscription_id and dateDiff('day', charged_dt, refunded_dt) between 0 and 14) as refunds,
+sumIf(r.refunded_revenue, sub.subscription_id = r.subscription_id) as refunded_revenue,
+uniqExactIf(sub.subscription_id || sub.product_code, sub.subscription_id = c.subscription_id and sub.subscription_id = ch.subscription_id and dateDiff('day', charged_dt, canceled_dt) between 0 and 14) as cancels
+from subscribed as sub
+left join charged as ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+left join refunded as r
+on sub.subscription_id = r.subscription_id
+and sub.product_code = r.product_code
+left join canceled as c
+on sub.subscription_id = c.subscription_id
+and sub.product_code = c.product_code
+group by 1, 2
+)
+select
+u.variation as variation,
+uniqExact(u.unified_id) as members,
+uniqExactIf(u.unified_id, u.unified_id = sub.unified_id and sub.accesses > 0) as subscribed,
+uniqExactIf(u.unified_id, u.unified_id = sub.unified_id and sub.charged_revenue > 0) as charged,
+sumIf(sub.charged_revenue, u.unified_id = sub.unified_id and sub.charged_revenue > 0) as charged_revenue,
+uniqExactIf(u.unified_id, u.unified_id = sub.unified_id and sub.refunded_revenue > 0) as refunded,
+sumIf(sub.refunded_revenue, u.unified_id = sub.unified_id and sub.refunded_revenue > 0) as refunded_revenue,
+charged_revenue - refunded_revenue as final_revenue,
+uniqExactIf(u.unified_id, u.unified_id = sub.unified_id and sub.cancels > 0) as canceled,
+
+sumIf(sub.accesses, u.unified_id = sub.unified_id and sub.accesses > 0) as accesses,
+sumIf(sub.accesses, u.unified_id = sub.unified_id and sub.accesses > 0 and is_trial > 0) as accesses_trial,
+sumIf(sub.accesses, u.unified_id = sub.unified_id and sub.accesses > 0 and is_trial = 0) as accesses_instant,
+sumIf(sub.charges, u.unified_id = sub.unified_id and sub.charges > 0) as charges,
+sumIf(sub.charges, u.unified_id = sub.unified_id and sub.charges > 0 and is_trial > 0) as charges_trial,
+sumIf(sub.charges, u.unified_id = sub.unified_id and sub.charges > 0 and is_trial = 0) as charges_instant,
+sumIf(sub.refunds, u.unified_id = sub.unified_id and sub.refunds > 0) as refunds,
+sumIf(sub.cancels, u.unified_id = sub.unified_id and sub.cancels > 0) as cancels,
+
+stddevSamp(sub.charged_revenue - sub.refunded_revenue) as arpu_std,
+stddevSampIf(sub.charged_revenue - sub.refunded_revenue, sub.accesses>0) as arppu_std,
+stddevSampIf((sub.charged_revenue - sub.refunded_revenue) / sub.accesses, sub.accesses>0) as aov_std
+from exp_users u
+left join sub sub
+on u.unified_id = sub.unified_id
+group by 1
+order by 1]]>
+[/macro]
+
+Variation Members Subscribers Accesses Instants Trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 3,480 746 967 475 492 135 549 610 $35,299 78 37
+
+variation 2 3,566 788 1,000 490 510 161 579 647 $38,511 91 35
+
+diff, % 2.47% 5.63% 3% 3.16% 3.66% 19% 5.46% 6.07% 9.10% 17% -5.41%
+
+variation 3 3,479 774 994 486 508 179 587 659 $40,673 111 36
+
+diff, % -0.03% 3.75% 2.79% 2.32% 3.25% 33% 6.92% 8.03% 15% 42% -2.70%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $10.14 $57.87 $64.30 21.44% 15.78% 50.88% 27% 13% 6.07%
+
+variation 2 $10.80 $59.52 $66.51 22.10% 16.24% 51.00% 31.57% 14.06% 5.41%
+
+diff, % 6.47% 2.86% 3.45% 3.08% 2.92% 0.24% 15.05% 9.99% -10.81%
+
+p-value 0.323 0.427 0.386 0.502 0.598 0.957 0.152 0.507 0.617
+
+variation 3 $11.69 $61.72 $69.29 22.25% 16.87% 51.11% 35.24% 16.84% 5.46%
+
+diff, % 15.26% 6.66% 7.76% 3.78% 6.95% 0.45% 28.42% 31.73% -9.94%
+
+p-value 0.024 0.066 0.052 0.413 0.216 0.92 0.008 0.043 0.645
+
+ 
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 3355 526 1254 1423
+
+variation 2 3413 500 1232 1414
+
+diff, % 1.7% -4.9% -1.8% -0.63%
+
+variation 3 3357 468 1164 1332
+
+diff, % 0.06% -11% -7.2% -6.4%
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 15.7% 37.4% 42.4%
+
+variation 2 14.6% 36.1% 41.4%
+
+diff, % -6.56% -3.42% -2.32%
+
+p-value 0.24 0.27 0.41
+
+variation 3 13.9% 34.7% 39.7%
+
+diff, % -11.1% -7.23% -6.45%
+
+p-value 0.045 0.021 0.023
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 3480 2283 2278 2238 2154 1883
+
+variation 2 3565 2267 2320 2280 2178 1941
+
+diff, % 2.4% -0.7% 1.8% 1.9% 1.1% 3.1%
+
+variation 3 3478 2224 2220 2209 2096 1837
+
+diff, % -0.057% -2.6% -2.5% -1.3% -2.7% -2.4%
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 65.6% 65.5% 64.3% 61.9% 54.1% 7.26 4.05 3.31 2.87 2.26 1.66
+
+variation 2 63.6% 65.1% 64% 61.1% 54.4% 7.59 4.07 3.3 2.84 2.19 1.58
+
+diff, % -3.07% -0.585% -0.552% -1.3% 0.622% 4.63% 0.415% -0.258% -1.07% -3.19% -4.62%
+
+p-value 0.08 0.74 0.76 0.49 0.78 0.47 0.94 0.96 0.83 0.53 0.40
+
+variation 3 63.9% 63.8% 63.5% 60.3% 52.8% 7.46 3.81 2.99 2.6 2.04 1.5
+
+diff, % -2.53% -2.49% -1.24% -2.64% -2.39% 2.8% -5.92% -9.6% -9.48% -9.67% -9.74%
+
+p-value 0.15 0.15 0.49 0.16 0.28 0.82 0.46 0.09 0.08 0.07 0.08
+
+[/macro]
+
+## Insights
+
+[macro]
+Monetization Metrics by Payment Method
+[macro]
+sql SQL true 0, datetime) AS is_auth,
+min(rt.datetime) as exp_start_datetime,
+min(e.datetime_end) as exp_end_datetime
+from default.ug_rt_events_web rt
+left join exp_data e
+on rt.item_id = e.id
+where rt.date between '2026-05-04' and '2026-05-11'
+and rt.event in ('App Experiment Start')
+and has(rt.experiments.id, 7328)
+and rt.item_id = 7328
+and rt.unified_id <> 0
+and rt.platform = 1
+and rt.datetime between e.datetime_start and if(toDate(e.datetime_end) = '1970-01-01', toDateTime('2029-01-01'), e.datetime_end)
+group by 1, 2
+)
+, subscribed as (
+select
+s.subscription_id as subscription_id,
+s.product_code as product_code,
+e.variation as variation,
+s.payment_method,
+max(s.unified_id) as unified_id,
+min(s.datetime) as subscribed_dt,
+min(s.date) as subscribed_date
+from default.ug_subscriptions_events s
+inner join exp_users e
+on s.unified_id = e.unified_id
+where s.date between '2026-05-04' and '2026-05-11'
+and s.platform like '%WEB%'
+and s.event = 'Subscribed'
+and s.datetime between e.exp_start_datetime and if(toDate(e.exp_end_datetime) = '1970-01-01', toDateTime('2029-01-01'), e.exp_end_datetime)
+and lower(funnel_source) not like '%email%'
+group by 1, 2, 3, 4
+)
+, charged as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as charged_revenue,
+min(datetime) as charged_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Charged'
+group by 1, 2
+)
+, refunded as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as refunded_revenue,
+min(datetime) as refunded_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Refunded'
+group by 1, 2
+)
+, canceled as (
+select
+subscription_id,
+product_code,
+min(datetime) as canceled_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Canceled'
+group by 1, 2
+)
+select
+payment_method,
+sub.variation as variation,
+uniqExact(sub.unified_id||sub.subscription_id) as accesses,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = ch.product_code) as charges,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = ch.product_code and sub.product_code = c.product_code) as cancels,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = r.product_code) as refunds,
+sumIf(ch.charged_revenue, sub.subscription_id = ch.subscription_id) as charged_revenue,
+sumIf(r.refunded_revenue, sub.subscription_id = r.subscription_id) as refunded_revenue,
+charged_revenue - refunded_revenue as final_revenue
+from subscribed as sub
+left join charged as ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+left join refunded as r
+on sub.subscription_id = r.subscription_id
+and sub.product_code = r.product_code
+left join canceled as c
+on sub.subscription_id = c.subscription_id
+and sub.product_code = c.product_code
+group by 1, 2
+order by 1, 2]]>
+[/macro]
+
+Placing alternative payment methods higher on the new checkout caused the share of CreditCard purchases in test group 3 to drop from 68.3% to 55.7%, while the share of other methods increased — most notably PayPal, which grew from 12% to 18.7%.
+
+The increase in cancellation rate for group 3 is observed across nearly all payment methods, except Apple Pay — meaning the effect is not driven by any single payment method.
+
+payment method variation accesses charges cancels refunds final_revenue accesses distribution accesses -> charges charges -> cancels charges -> refunds
+
+Apple Pay
+control 86 60 7 2 $2,971 8.89% 69.77% 11.67% 3.33%
+
+variation 2 81 53 4 0 $2,825 8.10% 65.43% 7.55% 0.00%
+
+diff, % -5.81% -11.67% -42.86% -100.00% -4.89% -8.92% -6.21% -35.31% -100.00%
+
+variation 3 110 68 6 0 $4,025 11.07% 61.82% 8.82% 0.00%
+
+diff, % 27.91% 13.33% -14.29% -100.00% 35.48% 24.43% -11.39% -24.37% -100.00%
+
+CreditCard
+control 660 402 55 24 $24,223 68.25% 60.91% 13.68% 5.97%
+
+variation 2 644 405 50 19 $25,339 64.40% 62.89% 12.35% 4.69%
+
+diff, % -2.42% 0.75% -9.09% -20.83% 4.61% -5.64% 3.25% -9.76% -21.42%
+
+variation 3 554 357 65 21 $22,755 55.73% 64.44% 18.21% 5.88%
+
+diff, % -16.06% -11.19% 18.18% -12.50% -6.06% -18.34% 5.80% 33.08% -1.47%
+
+Google Pay
+control 105 70 7 4 $3,451 10.86% 66.67% 10.00% 5.71%
+
+variation 2 110 68 14 4 $3,630 11.00% 61.82% 20.59% 5.88%
+
+diff, % 4.76% -2.86% 100.00% 0.00% 5.18% 1.30% -7.27% 105.88% 2.94%
+
+variation 3 144 96 15 3 $5,773 14.49% 66.67% 15.63% 3.13%
+
+diff, % 37.14% 37.14% 114.29% -25.00% 67.28% 33.42% 0.00% 56.25% -45.31%
+
+PayPal
+control 116 78 11 7 $4,654 12.00% 67.24% 14.10% 8.97%
+
+variation 2 165 121 26 12 $6,716 16.50% 73.33% 21.49% 9.92%
+
+diff, % 42.24% 55.13% 136.36% 71.43% 44.31% 37.55% 9.06% 52.37% 10.51%
+
+variation 3 186 138 26 12 $8,120 18.71% 74.19% 18.84% 8.70%
+
+diff, % 60.34% 76.92% 136.36% 71.43% 74.47% 55.99% 10.34% 33.60% -3.11%
+
+[/macro]
+
+[macro]
+Revenue Estimation for next year
+[macro]
+sql SQL true 0, datetime) AS is_auth,
+min(rt.datetime) as exp_start_datetime,
+min(e.datetime_end) as exp_end_datetime
+from default.ug_rt_events_web rt
+left join exp_data e
+on rt.item_id = e.id
+where rt.date between '2026-05-04' and '2026-05-11'
+and rt.event in ('App Experiment Start')
+and has(rt.experiments.id, 7328)
+and rt.item_id = 7328
+and rt.unified_id <> 0
+and rt.platform = 1
+and rt.datetime between e.datetime_start and if(toDate(e.datetime_end) = '1970-01-01', toDateTime('2029-01-01'), e.datetime_end)
+group by 1, 2
+)
+, subscribed as (
+select
+s.subscription_id as subscription_id,
+s.product_code as product_code,
+e.variation as variation,
+s.base_price,
+product_id,
+max(s.unified_id) as unified_id,
+min(s.datetime) as subscribed_dt,
+min(s.date) as subscribed_date
+from default.ug_subscriptions_events s
+inner join exp_users e
+on s.unified_id = e.unified_id
+where s.date between '2026-05-04' and '2026-05-11'
+and s.platform like '%WEB%'
+and s.event = 'Subscribed'
+and s.datetime between e.exp_start_datetime and if(toDate(e.exp_end_datetime) = '1970-01-01', toDateTime('2029-01-01'), e.exp_end_datetime)
+and lower(funnel_source) not like '%email%'
+group by 1, 2, 3, 4, 5
+)
+, charged as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as charged_revenue,
+min(datetime) as charged_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Charged'
+group by 1, 2
+)
+, refunded as (
+select
+subscription_id,
+product_code,
+min(case
+when product_id = 'com.ultimateguitar.tabs.one.intro.1year2' then 39.99
+when product_id like '%.intro.%' and billing_cycle = 1 then usd_price * 0.5
+else usd_price
+end) as refunded_revenue,
+min(datetime) as refunded_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Refunded'
+group by 1, 2
+)
+, canceled as (
+select
+subscription_id,
+product_code,
+min(datetime) as canceled_dt
+from default.ug_subscriptions_events
+where date >= '2026-05-04'
+and platform like '%WEB%'
+and event = 'Canceled'
+group by 1, 2
+)
+select
+product_id,
+sub.variation as variation,
+uniqExact(sub.unified_id||sub.subscription_id) as accesses,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = ch.product_code) as charges,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = ch.product_code and sub.product_code = c.product_code) as cancels,
+cancels / charges * 100,
+uniqExactIf(sub.unified_id||sub.subscription_id, sub.product_code = r.product_code) as refunds,
+sumIf(ch.charged_revenue, sub.subscription_id = ch.subscription_id) as charged_revenue,
+sumIf(r.refunded_revenue, sub.subscription_id = r.subscription_id) as refunded_revenue,
+charged_revenue - refunded_revenue as final_revenue
+from subscribed as sub
+left join charged as ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+left join refunded as r
+on sub.subscription_id = r.subscription_id
+and sub.product_code = r.product_code
+left join canceled as c
+on sub.subscription_id = c.subscription_id
+and sub.product_code = c.product_code
+group by 1, 2
+order by 1, 2]]>
+[/macro]
+
+If we estimate the revenue for the next billing cycle (excl. cancels), then for the next year 3-rd variation shows also a growth, but lower than fact revenue
+
+product_id variation accesses charges cancels cancel rate refunds charged revenue refunded_revenue final_revenue aov users left after cancel
+next year revenue estimation
+year is multiplied by 0.55 (avg next year cr)
+month is multiolied by 3 (avg reconversion periods)
+
+book_account|12_month control 20 10 0 0.00% 0 632 0 632 $63.16 10 $347.40
+
+book_account|12_month variation 2 25 12 1 8.33% 1 707 60 647 $53.88 11 $325.96
+
+book_account|12_month variation 3 24 13 2 15.38% 0 751 0 751 $57.74 11 $349.30
+
+book_account|1_month variation 3 4 4 0 0.00% 0 66 0 66 $16.58 4 $265.36
+
+book_edu_account|12_month control 213 63 17 26.98% 10 6,432 1,024 5,408 $85.84 46 $2,171.70
+
+book_edu_account|12_month variation 2 198 67 14 20.90% 7 6,966 691 6,275 $93.65 53 $2,730.01
+
+book_edu_account|12_month variation 3 205 72 19 26.39% 8 7,466 865 6,601 $91.68 53 $2,672.61
+
+edu_account|12_month control 19 13 1 7.69% 1 810 44 766 $58.91 12 $388.82
+
+edu_account|12_month variation 2 20 14 4 28.57% 1 880 60 820 $58.60 10 $322.32
+
+edu_account|12_month variation 3 20 10 1 10.00% 0 574 0 574 $57.40 9 $284.12
+
+edu_account|1_month control 1 1 0 0.00% 0 20 0 20 $19.99 1 $79.96
+
+edu_account|1_month variation 2 1 1 0 0.00% 0 24 0 24 $23.57 1 $94.28
+
+pro_plus_account|12_month control 683 490 47 9.59% 16 29,772 1,399 28,373 $57.90 443 $14,108.37
+
+pro_plus_account|12_month variation 2 722 517 54 10.44% 18 31,618 1,469 30,149 $58.31 463 $14,849.77
+
+pro_plus_account|12_month variation 3 711 530 70 13.21% 22 34,030 1,929 32,101 $60.57 460 $15,323.80
+
+pro_plus_account|1_month control 31 31 5 16.13% 0 816 0 816 $26.33 26 $2,738.72
+
+pro_plus_account|1_month variation 2 34 31 8 25.81% 1 840 26 814 $26.27 23 $2,417.17
+
+pro_plus_account|1_month variation 3 30 24 7 29.17% 0 605 0 605 $25.22 17 $1,714.68
+
+variation fact revenue next year estimation
+fact + estimation
+
+control $35,299 $17,684 $52,984
+
+variation 2 $38,511 $18,465 $56,976
+
+diff, % 9.10% 4.42% 7.54%
+
+variation 3 $40,673 $18,475 $59,148
+
+diff, % 15.22% 4.47% 11.63%
+
+[/macro]
+
+## Next steps
+
+## Post-Rollout Analysis (optional)
+
+[macro]
+Monetization Metrics
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 3,480 746 967 475 492 140 549 615 $35,252 82 42
+
+variation 2 3,566 788 1,000 490 510 165 579 651 $38,430 96 40
+
+diff, % 2.47% 5.63% 3.41% 3.16% 3.66% 17.86% 5.46% 5.85% 9.02% 17.07% -4.76%
+
+variation 3 3,479 774 994 486 508 183 587 663 $39,790 116 49
+
+diff, % -0.03% 3.75% 2.79% 2.32% 3.25% 30.71% 6.92% 7.80% 12.87% 41.46% 16.67%
+
+monetisation stats
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, %
+Charge -> 14d refund, %
+
+control $10.13 $57.32 $64.21 21.44% 15.78% 50.88% 28.46% 13.33% 6.83%
+
+variation 2 $10.78 $59.03 $66.37 22.10% 16.24% 51.00% 32.35% 14.75% 6.14%
+
+diff, % 6.39% 2.99% 3.37% 3.08% 2.92% 0.24% 13.70% 10.60% -10.03%
+
+p-value 0.33 0.41 0.4 0.5 0.6 0.96 0.18 0.47 0.62
+
+variation 3 $11.44 $60.02 $67.79 22.25% 16.87% 51.11% 36.02% 17.50% 7.39%
+
+diff, % 12.91% 4.70% 5.57% 3.78% 6.95% 0.45% 26.60% 31.22% 8.22%
+
+p-value 0.053 0.19 0.15 0.41 0.22 0.92 0.0105 0.0399 0.7
+
+[/macro]
+
+[macro]
+Revenue Estimation for next year
+Revenue Next Year Extimation
+
+by plan and variation
+
+product_id variation accesses charges cancels cancel rate refunds charged_revenue refunded_revenue final_revenue aov users left after cancel next year revenue estimation
+year is multiplied by 0.55 (avg next year cr)
+month is multiolied by 3 (avg reconversion periods)
+
+book_account|12_month control 20 10 2 20.00% 0 $632 $0 $632 $63.16 8 $277.94
+
+book_account|12_month variation 2 25 12 1 8.33% 1 $707 $60 $647 $53.88 11 $325.98
+
+book_account|12_month variation 3 24 13 2 15.38% 0 $751 $0 $751 $57.74 11 $349.32
+
+book_account|1_month variation 3 4 4 2 50.00% 0 $66 $0 $66 $16.42 2 $131.40
+
+book_edu_account|12_month control 213 67 25 37.31% 16 $6,873 $1,649 $5,224 $77.97 42 $1,801.16
+
+book_edu_account|12_month variation 2 198 73 27 36.99% 13 $7,588 $1,282 $6,306 $86.38 46 $2,185.40
+
+book_edu_account|12_month variation 3 205 74 31 41.89% 15 $7,698 $1,570 $6,128 $82.81 43 $1,958.36
+
+edu_account|12_month control 19 13 1 7.69% 1 $810 $44 $766 $58.91 12 $388.83
+
+edu_account|12_month variation 2 20 14 4 28.57% 1 $880 $60 $820 $58.60 10 $322.34
+
+edu_account|12_month variation 3 20 12 2 16.67% 1 $687 $60 $627 $52.28 10 $287.52
+
+edu_account|1_month control 1 1 1 100.00% 0 $20 $0 $20 $19.99 0 $0.00
+
+edu_account|1_month variation 2 1 1 0 0.00% 0 $23 $0 $23 $22.86 1 $91.44
+
+pro_plus_account|12_month control 683 493 65 13.18% 26 $30,089 $2,289 $27,800 $56.39 428 $13,274.89
+
+pro_plus_account|12_month variation 2 722 520 70 13.46% 24 $31,931 $2,103 $29,829 $57.36 450 $14,198.34
+
+pro_plus_account|12_month variation 3 711 536 88 16.42% 33 $34,640 $3,024 $31,616 $58.98 448 $14,534.89
+
+pro_plus_account|1_month control 31 31 16 51.61% 0 $810 $0 $810 $26.15 15 $1,568.94
+
+pro_plus_account|1_month variation 2 34 31 18 58.06% 1 $831 $26 $806 $25.99 13 $1,351.88
+
+pro_plus_account|1_month variation 3 30 24 16 66.67% 0 $603 $0 $603 $25.13 8 $804.24
+
+by variation
+
+variation fact revenue next year estimation
+fact + estimation
+
+control $35,252 $17,312 $52,564
+
+variation 2 $38,430 $18,475 $56,906
+
+diff, % 9.02% 6.72% 8.26%
+
+variation 3 $39,790 $18,066 $57,856
+
+diff, % 12.87% 4.36% 10.07%
+
+[/macro]

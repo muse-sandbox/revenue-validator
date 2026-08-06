@@ -1,0 +1,182 @@
+[macro]
+INLINE
+
+[macro]
+Green success
+[/macro]
+
+[/macro]
+
+[macro]
+
+## Контекст
+
+Как разработчик рекламы, я хочу улучшить пользовательское взаимодействие с приложением. В данный момент у нас загружается табовая, а после с небольшой задержкой отображается интерстишл, что делает процесс потребления контента табовой несколько дёрганым. Я хочу изменить логику показа интерстишла перед показом таба, сделав пользовательский опыт более плавным и приятным.
+
+Пример как сейчас выглядит показ интерстишл:
+
+[macro]
+250
+[/macro]
+
+## Гипотеза
+
+Показ интерстишл до показа табовой улучшит пользовательский опыт так как показ будет происходить плавно и красиво, и не затронет денежные и продуктовые метрики.
+
+## Project Owner and Team Member(s)
+
+   
+
+## Experiments
+
+2570 - https://www.ultimate-guitar.com/components/ab/experiment/view?id=2570
+
+## Execution
+
+Реализация
+
+50
+complete
+Исследовать возможность изменений без нарушения логики текущей реализации
+
+51
+complete
+Завести А/Б тест
+
+52
+complete
+Продумать логику, посмотреть текущую реализацию и сделать изменения
+
+53
+complete
+ android
+
+54
+complete
+ ios
+
+55
+complete
+ Подготовить сборки к тесту 
+
+59
+complete
+Получить апрув изменения от команды Продукта
+
+Релиз
+
+56
+complete
+Релиз AU
+
+57
+complete
+Релиз WW
+
+[macro]
+Jira issuekey,summary,issuetype,duedate,assignee,status key,summary,type,due,assignee,status 20 project = AD AND issuekey = AD-266 OR ("Epic Link" = AD-266 or parent in (AD-266)) d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+## Results
+
+Результаты эксперимента по состоянию на представлены ниже. Анализировали только данные по австралийским билдам - UG_ANDROID, UG_IOS
+
+Product
+
+По рекламным метрикам не заводили KV, поэтому судим об эффекте по косвенным признакам. 
+
+Из динамики выручки и показов никаких эффектов от эксперимента не обнаруживается.
+
+### Product
+
+По основным продуктовым метрикам статзначимых результатов не получили.  Тем не менее, на Android есть признаки снижения большинства рассматриваемых метрик на 1- и 7-дневных бакетах
+
+Platform Period Metric  Control Variation  Test Variation Difference в % p-value
+
+UG_IOS 1d
+bracket retention 1 day
+0.106 0.107 1.15 0.671
+
+Average Tab Views count per user (within the 1 days window) 4.504 4.512 0.17 0.909
+
+Average Unique Tabs viewed count per user (within the 1 days window) 3.074 3.064 -0.32 0.827
+
+Average Sessions per user (within the 1 days window) 1.309 1.309 -0.05 0.918
+
+Average Active Timespent per user (the number of distinct timestamps (truncated to minutes) with events (except advertising events) sent to server; within the 1 days window)
+10.902 10.743 -1.46 0.207
+
+Period Metric  Control Variation  Test Variation Difference в % p-value
+
+7d
+bracket retention 1-7 day
+0.486 0.487 0.19 0.866
+
+Average Tab Views count per user (within the 7 days window) 9.048 9.223 1.93 0.303
+
+Average Unique Tabs viewed count per user (within the 7 days window) 5.982 6.048 1.10 0.554
+
+Average Sessions per user (within the 7 days window) 2.446 2.467 0.85 0.407
+
+Average Active Timespent per user (the number of distinct timestamps (truncated to minutes) with events (except advertising events) sent to server; within the 7 days window) 23.247 23.319 0.31 0.851
+
+Platform Period Metric  Control Variation  Test Variation Difference в % p-value
+
+UG_ANDROID 1d
+bracket retention 1 day
+0.111 0.104 -6.40 0.305
+
+Average Tab Views count per user (within the 1 days window) 3.969 3.799 -4.28 0.269
+
+Average Unique Tabs viewed count per user (within the 1 days window) 2.664 2.546 -4.42 0.247
+
+Average Sessions per user (within the 1 days window) 1.355 1.322 -2.48 0.036
+
+Average Active Timespent per user (the number of distinct timestamps (truncated to minutes) with events (except advertising events) sent to server; within the 1 days window)
+11.242 10.863 -3.37 0.329
+
+Period Metric  Control Variation  Test Variation Difference в % p-value
+
+7d
+bracket retention 1-7 day
+0.452 0.473 4.58 0.146
+
+Average Tab Views count per user (within the 7 days window) 8.260 7.779 -5.82 0.260
+
+Average Unique Tabs viewed count per user (within the 7 days window) 5.427 5.055 -6.86 0.182
+
+Average Sessions per user (within the 7 days window) 2.415 2.358 -2.36 0.377
+
+Average Active Timespent per user (the number of distinct timestamps (truncated to minutes) with events (except advertising events) sent to server; within the 7 days window) 24.636 23.271 -5.54 0.247
+
+### Monetisation
+
+UG_IOS
+
+Variation Users Accesses Conv to Access Charges Conv Access to Charge Revenue, $ ARPU, $ ARPPU, $
+
+1 23,028 595 0.026 359 0.60 9,271.12 0.40 25.82
+
+2 23,046 631 0.027 358 0.57 9,388.97 0.41 26.23
+
+Ratio (Test / Control) 1.00 1.06 1.06 1.00 0.94 1.01 1.01 1.02
+
+Delta (Test - Control) 18 36 0.00 -1 -0.04 117.85 0.00 0.41
+
+С точки зрения монетизации тестовая вариация не хуже контрольной, нет статзначимости
+
+UG_ANDROID
+
+Variation Users Accesses Conv to Access Charges Conv Access to Charge Revenue, $ ARPU, $ ARPPU, $
+
+1 4,002 110 0.027 60 0.55 1,292.58 0.32 21.54
+
+2 4,006 104 0.026 57 0.55 1,258.80 0.31 22.08
+
+Ratio (Test / Control) 1.00 0.95 0.94 0.95 1.00 0.97 0.97 1.03
+
+Delta (Test - Control) 4 -6 0.00 -3 0.00 -33.78 -0.01 0.54
+
+С точки зрения монетизации тестовая вариация не хуже контрольной, нет статзначимости
+
+Раскатили 1-го сентября на мир в связи со страйком Гугла.

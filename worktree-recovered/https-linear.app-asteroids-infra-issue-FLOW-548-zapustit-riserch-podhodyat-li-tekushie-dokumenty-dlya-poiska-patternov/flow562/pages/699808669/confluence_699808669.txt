@@ -1,0 +1,801 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-8823
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Goal: generate additional revenue on sales from interactive tabs
+
+Foundation : to make the design of Guitar Pro and Power tabs similar to each other, it will improve the user experience, and closing the feature will give us new revenue
+
+### Research results
+
+In addition to Official Tabs, we have two types of interactive tabs:
+
+Guitar Pro tabs
+
+Power tabs
+
+Both of these types are now closed by regwall and are not available for use without registration/authorization. At the same time, they have identical page design with the same set of functions, so within the framework of the experiment we can talk about a single interface of a free interactive tab
+
+For unregistered: only the Play button (space key) remains, clicking on it requires registration/authorization. The rest of the functionality is blocked (but the loop works) Click on Play btn For registered: opens up all the functional
+
+Guitar Pro
+
+Power 
+
+#### Usage statistics (tbd )
+
+metric research results
+
+avg dau
+
+2025-06-01 → 2025-06-30
+
+guitar-pro
+
+29783
+
+power tabs
+
+2080
+
+code
+
+avg landings per week
+
+2025-06-02 → 2025-06-29
+
+guitar-pro
+
+2113
+
+power tabs
+
+62
+
+less than 100 clicks per week from  power tabs
+
+guitar pro has 14 times more traffic and 34 times more clicks giving 2.5 better conversion to landing
+
+code
+
+avg subscribers per week
+
+2025-06-02 → 2025-06-29
+
+guitar-pro
+
+31
+
+power tabs
+
+0.5
+
+seems like there is no reason for improving anything from power tabs unless we increase traffic there
+
+code
+
+avg charges / revenue per week from guitar-pro tabs
+
+2025-06-02 → 2025-06-22
+
+charges
+
+20
+
+revenue, $
+
+$1237
+
+we receive only $1k per week from guitar pro tab pages
+
+code
+
+avg accesses per by source from guitar-pro tabs
+
+2025-06-01 → 2025-06-30
+
+accesses per month
+
+38 from official tab sources
+
+23 from comeback offer that is more probably non related to the tab itself
+
+same as for 14 from permanent banner and 14 from pro tab button
+
+only 3 from backing tracks source
+
+code
+
+#### Relatives projects
+
+### A/B test model
+
+unlikely case.
+
+in reality we don't expect any changes in revenue
+
+per week
+
+Metric A B Diff
+
+guitart pro / power tab view 172669 172669
+
+accesses 42 46 4
+
+tab → access, % 0.024% 0.027% 10%
+
+charges 20 22 2
+
+revenue, $ $1327 $1460 $133
+
+arppu, $ $66.35 $66.35 $0.0
+
+arpu $ $0.0077 $0.0085 $0.0008
+
+# Hypothesis
+
+If we make the design of all interactive tabs uniform, we will improve the user experience as well as get an extra X accesses per day due to the paywall closing the functionality of these tabs. 
+
+# Description of the Solution & Mockups
+
+[macro]
+true Iteration 1
+### Solution
+
+#6371
+
+Synchronize leyouttes of all interactive tabs
+
+Lock all functionality except the play button behind a paywall
+
+the list of features is provided in the table below
+
+Add a promo banner leading to the payment funnel
+
+the banner is integrated above the player and remains fixed while scrolling
+
+Remove the link to the official tab above the tab
+
+Remove the banner and download option under the tab
+
+Making instruments open (as in songsterr)
+
+making them open in the official tabs as well
+
+Remove the dependence of playability on registration  
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+For unregistered
+
+For registered
+
+Remove the banner and download option
+
+Use of paid functions
+
+### Analytics
+
+exposure event:  App Experiment Start
+
+Event Parameters Description
+
+1 App Experiment Start item_id – %experiment id%
+send for both variations
+
+send when user opens guitar pro or power tab
+
+Landing Upgrade Open
+
+Landing Sign Up View (all sign ... events)
+
+Landing Plans View
+
+Landing Checkout View
+
+Landing Purchase Click
+
+PURCHASE_SUCCESS
+
+Purchased View
+
+value = "Interactive Tab"
+
+--
+
+from "Unlock all features..." banner
+
+ui = TabUnlock
+
+from paid features buttons on tab
+
+ui – Listen
+
+ui – Print
+
+ui – Zoom
+
+ui – Loop
+
+ui – Speed
+
+ui – Fretboard
+
+ui – Metronome
+
+from features in misc
+
+ui – MiscPitch
+
+ui – MiscTranspose
+
+ui – MiscAutoscroll
+
+ui – MiscCountin
+
+ui – MiscNoteDuration
+
+ui – MiscLeftHanded
+
+ui – MiscNotation
+
+ui – MiscFretboard
+
+from features in instruments
+
+ui – InstrumentsSolo
+
+ui – InstrumentsMute
+
+ui – InstrumentsVolume
+
+ui – InstrumentsLeft
+
+ui – InstrumentsRight
+
+existing events for Funnel steps
+
+banner + buttons
+
+*Listen Backing Track – ui = Listen
+
+misc
+
+instruments
+
+#6371 config  
+
+segment name conditions
+
+Total {'platform': 'Desktop', 'pro_rights': 'Free'}
+
+Interactive Tabs Funnel {'funnel': "members > event=' Landing Upgrade Open ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' Landing Plans View ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' Landing Checkout View ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' PURCHASE_SUCCESS ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% '"}
+
+[/macro]
+
+[macro]
+true Iteration 2
+### Solution
+
+#6398
+
+In the test we return the download button, but with a link
+
+Also return the link to corrections with a link
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+Tabs
+
+Add download option in the test
+
+### Analytics
+
+exposure event:  App Experiment Start
+
+Event Parameters Description
+
+1 App Experiment Start item_id – %experiment id%
+send for both variations
+
+send when user opens guitar pro or power tab
+
+Landing Upgrade Open
+
+Landing Sign Up View (all sign ... events)
+
+Landing Plans View
+
+Landing Checkout View
+
+Landing Purchase Click
+
+PURCHASE_SUCCESS
+
+Purchased View
+
+value = "Interactive Tab"
+
+--
+
+from "Unlock all features..." banner
+
+ui = TabUnlock
+
+from paid features buttons on tab
+
+ui – Listen
+
+ui – Print
+
+ui – Zoom
+
+ui – Loop
+
+ui – Speed
+
+ui – Fretboard
+
+ui – Metronome
+
+from features in misc
+
+ui – MiscPitch
+
+ui – MiscTranspose
+
+ui – MiscAutoscroll
+
+ui – MiscCountin
+
+ui – MiscNoteDuration
+
+ui – MiscLeftHanded
+
+ui – MiscNotation
+
+ui – MiscFretboard
+
+from features in instruments
+
+ui – InstrumentsSolo
+
+ui – InstrumentsMute
+
+ui – InstrumentsVolume
+
+ui – InstrumentsLeft
+
+ui – InstrumentsRight
+
+existing events for Funnel steps
+
+banner + buttons
+
+*Listen Backing Track – ui = Listen
+
+misc
+
+instruments
+
+#6398 config  
+
+segment name conditions
+
+Total {'platform': 'Desktop', 'pro_rights': 'Free'}
+
+Interactive Tabs Funnel {'funnel': "members > event=' Landing Upgrade Open ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' Landing Plans View ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' Landing Checkout View ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% ' > event=' PURCHASE_SUCCESS ' and url like ' https://tabs.ultimate-guitar.com/tab/%-guitar-pro-% '"}
+
+[/macro]
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 "Epic Link"=umn-8823 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+Iteration #1 - #6371
+#6371  – 
+
+Exposure event:  App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UG_WEB Design 0 0 0
+
+350cc7b0-1d69-9517-fb7e-d1c281920474
+complete
+No visible bugs were found throughout the experiment
+
+d3dffc8f-4f32-34f1-c052-fbd9495026df
+complete
+No external effects are visible
+
+Experiment 3 17914 17579
+
+Checks
+
+a1238aa7-1e0a-e34e-5004-474e0f3f9aab
+complete
+duration of exp ≥ design
+
+103e90c2-f61f-5951-459c-0126f6d3e3f6
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+[UG_WEB / Total / Variation 2]
+
+ARPU: +448%, revenue per user strongly up after paywall and promo banner.
+
+ARPPU: +79%, higher spend among paying users.
+
+Access CR, %: +292%, more users accessing interactive tabs after removing registration dependence and opening instruments.
+
+Charge CR, %: +206%, more charges per member driven by the paywall + banner funnel.
+
+Charge -> 14d refund, %: (0% -> 22.2%), sharp spike in refunds post‑charge.
+
+Tab view 60s, %: +1.9%, slight lift in short viewing.
+
+Tab view 300s–600s, %: -3.7% to -4.0%, lower long‑form engagement likely due to fixed banner and feature locking.
+
+Tab view per user: +14.4%, more total tab views per user.
+
+Tab view 60s per user: +7.0%, more short views per user.
+
+Conclusion 
+[macro]
+Green Success
+[/macro]
+
+Hiding the free functionality behind the paywall got a tangible new ~30 accesses per day
+
+Overall, the new layout doesn't sag on the rest of the metrics
+
+The paywall + fixed promo banner significantly improved monetization (ARPU, ARPPU, access and charge conversion), consistent with opening instruments and removing registration dependence
+
+Long‑duration tab engagement (300s–600s) dropped, likely because locking most functionality behind a paywall and keeping a fixed banner above the player disrupts deep usage. Retention was unchanged
+
+Roll outed test variation #2 
+
+At the same time, due to hiding the download button tab received a lot of negative feedback and appeal to support
+
+Next steps
+
+in next iteration we returned download button
+
+## Forecast (per day)
+
+Variations
+App Experiment Start
+
+Accesses
+
+Charges
+
+Revenue, $
+
+control 12147 11 5 $228
+
+variation 2 12147 43 18 $1252
+
+diff 0 32 13 $1024
+
+## Significance analysis
+
+[macro]
+UG_WEB
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 17914 13 17 7 10 1 8 8 $337 2 0
+
+variation 2 17579 50 63 17 46 10 24 27 $1811 10 6
+
+diff, % -1.9% 280% 270% 140% 360% 900% 200% 240% 440% 400%
+
+   
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 17913 2599 6233 7475
+
+variation 2 17577 2643 6220 7431
+
+diff, % -1.9% 1.7% -0.21% -0.59%
+
+   
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 17914 10901 10039 9491 8743 7593
+
+variation 2 17579 10903 9785 9136 8262 7154
+
+diff, % -1.9% 0.018% -2.5% -3.7% -5.5% -5.8%
+
+   
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.0188 $42.2 $42.2 0.0726% 0.0447% 58.8% 10% 25% 0%
+
+variation 2 $0.103 $67.1 $75.5 0.284% 0.137% 73% 21.7% 37% 22.2%
+
+diff, % 448% 59.2% 79.1% 292% 206% 24.1% 117% 48.1%
+
+pvalue 0.000 0.06 0.015 0.00 0.004 0.28 0.30 0.50 0.005
+
+cumulatives
+
+   
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 14.5% 34.8% 41.7%
+
+variation 2 15% 35.4% 42.3%
+
+diff, % 3.64% 1.7% 1.31%
+
+pvalue 0.16 0.24 0.30
+
+cumulatives
+
+   
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 60.9% 56% 53% 48.8% 42.4% 4.16 2.21 1.81 1.57 1.29 0.996
+
+variation 2 62% 55.7% 52% 47% 40.7% 4.76 2.37 1.88 1.61 1.3 0.996
+
+diff, % 1.92% -0.673% -1.91% -3.7% -3.99% 14.4% 7.05% 3.9% 2.39% 0.968% -0.0526%
+
+pvalue 0.023 0.47 0.06 0.001 0.001 0.00 0.004 0.09 0.30 0.68 0.98
+
+cumulatives
+
+   
+
+Interactive Tabs Funnel
+
+variation members Landing Upgrade Open members -> Landing Upgrade Open, % Landing Plans View Landing Upgrade Open -> Landing Plans View, % Landing Checkout View Landing Plans View -> Landing Checkout View, % PURCHASE_SUCCESS Landing Checkout View -> PURCHASE_SUCCESS, % members -> PURCHASE_SUCCESS, %
+
+control 17914 7 0.04% 107 1,528.57% 16 14.95% 0 0.00% 0.00%
+
+variation 2 17579 14570 82.88% 1651 11.33% 294 17.81% 17 5.78% 0.10%
+
+[/macro]
+
+[/macro]
+
+[macro]
+true Iteration #2 - #6398
+#6398  – 
+
+Exposure event:  App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UG_WEB Design 0 0 0
+
+6887db43-e8f4-3b1f-a8b6-99da1c97648d
+complete
+No visible bugs were found throughout the experiment
+
+858f2381-42f8-9e55-988e-1523d5ed91ca
+complete
+No external effects are visible
+
+Experiment 4 22722 22825
+
+Checks
+
+dd165f10-92ba-94fb-a160-a680805b8139
+complete
+duration of exp ≥ design
+
+9caf99f6-de89-8bb4-b01b-33d4238e2307
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+Monetization — [UG_WEB / Total / Variation 2] access cr, %: -46.1%, conversion to access fell
+
+Monetization — [UG_WEB / Total / Variation 2] charge -> 14d refund, %: +800.0%, refund rate spiked (on a likely low base)
+
+Tab View — [UG_WEB / Total / Variation 2] tab view 120s–600s, %: +2.1% to +2.7%, higher share of long views
+
+Tab View — [UG_WEB / Total / Variation 2] tab view per user: -5.5%, fewer tab views per user
+
+Conclusion
+[macro]
+Red FAIL
+[/macro]
+
+Lost all the gain from the first iteration
+
+Reinstating the Download button and the Corrections link appears to siphon attention away from the monetization path: access conversion dropped sharply and the 14‑day refund rate increased, while retention did not change
+
+The Interactive Tabs funnel supports this diagnosis: the “Upgrade Open → Plans View” step fell from ~10% to ~4–5% and members→purchase roughly halved, consistent with users diverting to the new links
+
+Although the share of longer views rose modestly, these engagement gains do not offset the monetization and refund risks
+
+Roll outed anyway due to multiple users requests about tabs downloading
+
+## Forecast (per day)
+
+Variations
+App Experiment Start
+
+Accesses
+
+Charges
+
+Revenue, $
+
+control 14728 60 29 $2002
+
+variation 2 14728 32 16 $1279
+
+diff 0 -28 -13 -$723
+
+## Significance analysis
+
+[macro]
+UG_WEB
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 22722 61 93 23 70 22 35 45 $3089 7 1
+
+variation 2 22825 33 50 15 35 11 22 25 $1982 9 5
+
+diff, % 0.45% -46% -46% -35% -50% -50% -37% -44% -36% 29% 400%
+
+   
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 22720 3323 7417 8813
+
+variation 2 22824 3251 7524 8947
+
+diff, % 0.46% -2.2% 1.4% 1.5%
+
+   
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 22722 13135 11835 11108 10180 8857
+
+variation 2 22825 13329 12144 11457 10504 9133
+
+diff, % 0.45% 1.5% 2.6% 3.1% 3.2% 3.1%
+
+   
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.136 $68.7 $88.3 0.268% 0.154% 75.3% 31.4% 15.6% 2.22%
+
+variation 2 $0.0868 $79.3 $90.1 0.145% 0.0964% 70% 31.4% 36% 20%
+
+diff, % -36.1% 15.5% 2.07% -46.1% -37.4% -7% 0% 131% 800%
+
+pvalue 0.07
+
+0.004 0.08 0.50 1.00 0.06 0.032
+
+cumulatives
+
+   
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 14.6% 32.6% 38.8%
+
+variation 2 14.2% 33% 39.2%
+
+diff, % -2.61% 0.98% 1.06%
+
+pvalue 0.25 0.47 0.37
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 57.8% 52.1% 48.9% 44.8% 39% 4.54 2.3 1.85 1.6 1.31 1
+
+variation 2 58.4% 53.2% 50.2% 46% 40% 4.29 2.25 1.84 1.6 1.29 0.994
+
+diff, % 1.02% 2.15% 2.68% 2.72% 2.65% -5.51% -1.84% -0.551% -0.263% -0.871% -0.927%
+
+pvalue 0.20 0.017 0.005 0.009 0.024 0.019 0.42 0.81 0.91 0.70 0.69
+
+cumulatives
+
+   
+
+Interactive Tabs Funnel
+
+variation members Landing Upgrade Open members -> Landing Upgrade Open, % Landing Plans View Landing Upgrade Open -> Landing Plans View, % Landing Checkout View Landing Plans View -> Landing Checkout View, % PURCHASE_SUCCESS Landing Checkout View -> PURCHASE_SUCCESS, % members -> PURCHASE_SUCCESS, %
+
+control 22722 18687 82.24% 1810 9.69% 324 17.90% 26 8.02% 0.11%
+
+variation 2 22825 18785 82.30% 824 4.39% 134 16.26% 12 8.96% 0.05%
+
+[/macro]
+
+[/macro]
+
+## Post-rollout analysis (optional)
+
+[Describe how metrics looks like after rollout, if necessary

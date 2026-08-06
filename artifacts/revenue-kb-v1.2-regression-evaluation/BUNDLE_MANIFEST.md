@@ -1,0 +1,21 @@
+# BUNDLE MANIFEST — revenue-kb-v1.2-regression-evaluation (FLOW-593 Phase C)
+
+Frozen: 2026-08-05 17:59:15Z (UTC). SHA-256 всех файлов бандла (кроме самого манифеста).
+
+```
+25dc909fbad03d6083527c9d5ceaa5a66041b63fe39fc66acb7a231a08d9c985  adversarial_verification.md
+ece76d623338cd93e0344937fce6cf45fd02804ce7b4580f76eb017f63db1827  arm_mapping_unsealed.md
+b69cae9737b7faeeff8be0dba6cd7ed78705bc6f55a308e1c0b78dfbe1a3401f  blind_scorecards_freeze.txt
+dad7af7b83e266f4e76cedd91fc00f7177a9b0f7bbbe2d8d84ac0a8a30c4144d  errors_and_limitations.md
+b66740aacc8d08c714415de2676c357f85423a595f69697c6240306bcefa1b27  final_verdict.md
+b63264bdf32cedf2f2ca8d06b52a48a70cf53a80f7a6d1b7228b76266eb4456b  judge_instructions.md
+c6ff00b1f9f028942902fbe50b234ba05b8e074da2986dc3a31b0cc692d75d85  judge_read_order.md
+a253fa2b18c7a04e148b74b725427e3559daf34a4eac06e9000d7d63455dd9ea  judges/RH-01.md
+10ce390fcfb6048ab41bc55f0cafb75b157fbb4bab7784625efa4614fe1a0046  judges/RH-02.md
+c87d685b095d903468ad1b015561db1467acaf8f8438dbdf903cce9dd8a1c943  judges/RH-03.md
+ac26e8d20cc45361d93d9c2979fdce22326c190fd7e194d95017932ee3cde599  judges/RH-04.md
+b72bcf0c57aca1700bd71deaa7a6a6d99dd33d8dc18e3322c52676886d215bd3  judges/RH-05.md
+76629b9f4be748ee88a95c9cee9f1dc4a1c1c1c298fc31a02932d8f71737acd3  judges/RH-06.md
+4454824b8fb181c66f67124339feb392d1c3fb055b6b1c30237510eb91bb4d79  l3_and_rh05_audit.md
+e411de96f6b924ba33192b72901b4887a367518f756ea4a585b09c2b11854b99  metrics.md
+```

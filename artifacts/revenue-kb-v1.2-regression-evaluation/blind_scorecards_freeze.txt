@@ -1,0 +1,9 @@
+a253fa2b18c7a04e148b74b725427e3559daf34a4eac06e9000d7d63455dd9ea  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-01.md
+10ce390fcfb6048ab41bc55f0cafb75b157fbb4bab7784625efa4614fe1a0046  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-02.md
+c87d685b095d903468ad1b015561db1467acaf8f8438dbdf903cce9dd8a1c943  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-03.md
+ac26e8d20cc45361d93d9c2979fdce22326c190fd7e194d95017932ee3cde599  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-04.md
+b72bcf0c57aca1700bd71deaa7a6a6d99dd33d8dc18e3322c52676886d215bd3  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-05.md
+76629b9f4be748ee88a95c9cee9f1dc4a1c1c1c298fc31a02932d8f71737acd3  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judges/RH-06.md
+b63264bdf32cedf2f2ca8d06b52a48a70cf53a80f7a6d1b7228b76266eb4456b  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judge_instructions.md
+c6ff00b1f9f028942902fbe50b234ba05b8e074da2986dc3a31b0cc692d75d85  /Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-evaluation/judge_read_order.md
+frozen at: 2026-08-05T17:37:22Z

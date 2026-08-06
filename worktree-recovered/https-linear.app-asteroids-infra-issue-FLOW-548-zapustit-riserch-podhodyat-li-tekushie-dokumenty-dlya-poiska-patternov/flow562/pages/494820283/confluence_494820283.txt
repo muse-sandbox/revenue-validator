@@ -1,0 +1,920 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-6024
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Project goal : by adapting the tour to the segmented audience, we aim to increase revenue
+
+Foundation : split the tour into two segments: learners and players. For the former, provide the full version of the tour with all educational screens. For the latter, show a shorter version of the tour, excluding all questions about development, tips, etc.
+
+### Research results
+
+— previous approach to audience segmentation in the tour
+
+— the previous experiment involved determining the distribution of the main segments:
+
+Start learning guitar from scratch
+
+Play my favorite songs
+
+Other experiments:
+
+[2024-04-23] UG App: tour branch for those learning guitar from scratch — team brainstorming on personalizing the tour for those who are just starting to learn guitar
+
+— the first experiment is about goal-setting in the tour. Based on it and its results, we will gather the current version
+
+Refs
+
+Guitar coach MS
+
+### A/B test model
+
+iOS
+Android
+
+Metric A B diff A B diff
+
+Tour Start 14663 14663 0 14928 14928 0
+
+Tour Install Accesses 847 932 85 319 351 32
+
+Tour → Access 0.058 0.064 10% 0.021 0.024 10%
+
+Charges 325 358 33 121 133 12
+
+Revenue, $ $17136 $18850 $1714 $6168 $6785 $617
+
+ARPPU, $ $53 $53 $0 $51 $51 $0
+
+ARPU, $ $1.169 $1.286 $0.117
+10% $0.413 $0.454 $0.041
+10%
+
+# Hypothesis
+
+If we segment the audience in the tour and show a shortened version to those who don't want to learn, we will increase conversion by 10%, because we will show each audience only the questions relevant to them.
+
+# A/B test plan
+
+iOS Android
+
+Base value of the metric (conversion to access) 0.058 0.021
+
+Lift, % 10% 10%
+
+Minimal detectable effect 0.0243 0.0144
+
+Probability of true-positive (power) 0.8 0.8
+
+Probability of false-positive (p-value) 0.05 0.05
+
+Sample size (for all the variations) 58652 149280
+
+How many days it'll take to conduct the test 4 10
+
+# Description of the Solution & Mockups
+
+[macro]
+Iteration 1
+## Iteration 1
+
+### Solution
+
+A
+
+Add a screen with a segmentation question about learners and players to all variations, including the control version
+
+apart from this new screen, the control version remains unchanged
+
+the control version does not change regardless of the chosen answer on the first segmentation screen
+
+B
+
+In the test version, depending on the answer on the first screen, we create two branches
+
+B for players
+
+When selecting "Play my favorite songs" or " Something else " direct the user to the branch with the shortened tour, removing all questions about development, skills, and singing
+
+B for players
+
+If the answer "Start learning from scratch" is selected, direct the user to the full tour, similar to the current one
+
+In this branch, remove the screen with the level question (assuming all are beginners)
+
+On the instrument selection screen, change the heading to “ Which instrument do you want to play? ”
+
+### Mockups & Texts
+
+figma
+
+A
+
+B (for players)
+
+B (for learners)
+
+[/macro]
+
+[macro]
+Iteration 2
+## Iteration 2
+
+### Solution
+
+Based on the previous iteration where we saw a 4.5% decrease in the iOS conversion rate, with no positive impact on other metrics like tour success rate and retention rate, we can conclude that there are screens among those removed that were actually boosting conversions. So, in the next iterations, we want to figure out which specific screens are increasing conversions and which ones don't affect them at all.
+
+B - In the test version, depending on the answer on the first screen, we create two branches
+
+B for learners - no changes
+
+If the answer "Start learning from scratch" is selected, direct the user to the full tour
+
+B for players
+
+When selecting ‘Play my favorite songs’ or ‘Something else,’ direct the user to the branch with the shortened tour, removing screens with the following questions:
+
+How would you prefer to sing your favorite song? + "sounds good" hook screen after
+
+How often do you sing? + "our users improve singing skills" hook screen after
+
+### Mockups & Texts
+
+figma
+
+A
+
+Start learning from scratch
+
+Play my favorite songs
+
+Something else
+
+A
+
+Start learning from scratch
+
+B
+
+Play my favorite songs
+
+Something else
+
+-
+
+-
+
+-
+
+-
+
+B
+
+Start learning from scratch
+
+-
+
+[/macro]
+
+[macro]
+true Iteration 3
+## Iteration 3
+
+### Solution
+
+In the last iteration, we didn't see any changes in the "playing" path after we dropped four "sing" screens. So, this time we'll try the same changes for the "learning" path and update the "playing" path by removing some more screens.
+
+B - In the test version, depending on the answer on the first screen, we create two branches
+
+B for learners - no changes
+
+When selecting "Start learning from scratch" direct the user to the branch with the shortened tour, removing screens with the following questions:
+
+How would you prefer to sing your favorite song? + "sounds good" hook screen after
+
+How often do you sing? + "our users improve singing skills" hook screen after
+
+B for players
+
+When selecting ‘Play my favorite songs’ or ‘Something else,’ direct the user to the branch with the shortened tour, removing screens with the following questions:
+
+What's your preferred learning style?
+
+Do you have a favorite song that you like to sing to your friends?
+
+### Mockups & Texts
+
+figma
+
+A
+
+Start learning from scratch
+
+Play my favorite songs
+
+Something else
+
+- - - -
+
+A
+
+Start learning from scratch
+
+-
+
+B
+
+Play my favorite songs
+
+Something else
+
+-
+
+-
+
+-
+
+-
+
+-
+
+-
+
+B
+
+Start learning from scratch
+
+-
+
+-
+
+-
+
+-
+
+-
+
+[/macro]
+
+### Analytics
+
+Exposure event: Tour Start
+
+Event Parameters Description
+
+1
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=umn-6024 order by key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+Iteration #1
+#4917     -
+
+Results
+
+significantly lower conversion to access in tour for both platform
+
+Conclusion
+
+most downgrade from "Play favorite songs" section
+
+Next steps
+
+relaunched with shorter tour for "Play my favorite songs" answer
+
+Forecast (per   day)
+
+iOS
+
+Android
+
+Variations
+Metrics
+
+Metrics
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+control 15402 1477 655 $28709
+13427 579 242 $9480
+
+variation 2 15402 1431 622 $27564
+13427 527 219 $8602
+
+diff
+-46 -33 -$1145
+
+-52 -23 -$878
+
+[macro]
+iOS
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 39926 3777 3828 922 2878 748 1675 1697 $74420
+
+variation 2 40316 3700 3747 904 2822 703 1602 1627 $72150
+
+Product stats
+
+members retention 1d retention 7d
+
+control 39926 6927 12182
+
+variation 2 40316 7024 12386
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $1.86 $43.85 $44.43 9.46% 4.20% 25.99% 1.014 24.34%
+
+variation 2 $1.79 $44.35 $45.04 9.18% 3.97% 24.91% 1.013 25.45%
+
+diff, % -3.99% 1.12% 1.37% -2.99% -5.28% -4.15% -0.08% 4.55%
+
+pvalue 0.29 0.57 0.50 0.17 0.11 0.35 0.79 0.46
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $1.43 $63.63 $63.63 6.09% 2.24% 25.62% 28.72%
+
+variation 2 $1.38 $65.09 $65.16 5.72% 2.11% 25.98% 30.83%
+
+diff, % -3.45% 2.29% 2.41% -5.94% -5.73% 1.41% 7.37%
+
+pvalue 0.46 0.03 0.03 0.03 0.21 0.79 0.33
+
+Product metrics
+
+ret1d, % retention 7d
+
+control 17.35% 30.51%
+
+variation 2 17.42% 30.72%
+
+diff, % 0.42% 0.69%
+
+pvalue 0.79 0.52
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 7002 5630 80.41% 1236 21.95% 600 48.54% 10.66% 8.57% 5313 75.88%
+
+Learn to play from scratch 2 7092 5933 83.66% 1322 22.28% 639 48.34% 10.77% 9.01% 5561 78.41%
+
+Play favorite songs 1 19695 17395 88.32% 2934 16.87% 1371 46.73% 7.88% 6.96% 16627 84.42%
+
+Play favorite songs 2 19941 17563 88.07% 2724 15.51% 1254 46.04% 7.14% 6.29% 16859 84.54%
+
+Something else 1 4510 3847 85.30% 508 13.21% 202 39.76% 5.25% 4.48% 3698 82.00%
+
+Something else 2 4545 3916 86.16% 522 13.33% 214 41.00% 5.46% 4.71% 3784 83.26%
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 34416 1438 1483 342 1135 251 609 621 $24299
+
+variation 2 34181 1299 1342 326 1012 212 542 558 $21898
+
+Product stats
+
+members retention 1d retention 7d
+
+control 34416 4762 8913
+
+variation 2 34181 4580 8698
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $0.71 $39.13 $39.90 4.18% 1.77% 22.11% 1.031 21.10%
+
+variation 2 $0.64 $39.24 $40.40 3.80% 1.59% 20.95% 1.033 18.10%
+
+diff, % -9.26% 0.29% 1.26% -9.05% -10.39% -5.27% 0.18% -14.20%
+
+pvalue 0.14 0.92 0.70 0.01 0.061 0.51 0.82 0.19
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.49 $51.04 $51.04 2.54% 0.96% 24.50% 19.64%
+
+variation 2 $0.44 $51.91 $51.91 2.22% 0.85% 25.24% 21.72%
+
+diff, % -10.27% 1.72% 1.72% -12.78% -11.78% 3.02% 10.63%
+
+pvalue 0.20 0.56 0.56 0.005 0.12 0.75 0.52
+
+Product metrics
+
+retention 1d retention 7d
+
+control 13.84% 25.90%
+
+variation 2 13.40% 25.45%
+
+diff, % -3.16% -1.74%
+
+pvalue 0.10 0.18
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 5644 4735 83.89% 1103 23.29% 196 17.77% 4.14% 3.47% 4149 73.51%
+
+Learn to play from scratch 2 5389 4670 86.66% 1134 24.28% 205 18.08% 4.39% 3.80% 4065 75.43%
+
+Play favorite songs 1 12042 11061 91.85% 1983 17.93% 402 20.27% 3.63% 3.34% 9865 81.92%
+
+Play favorite songs 2 11978 11334 94.62% 1908 16.83% 351 18.40% 3.10% 2.93% 10108 84.39%
+
+Something else 1 3264 2873 88.02% 469 16.32% 72 15.35% 2.51% 2.21% 2577 78.95%
+
+Something else 2 3281 2997 91.34% 489 16.32% 49 10.02% 1.63% 1.49% 2649 80.74%
+
+[/macro]
+
+[/macro]
+
+[macro]
+Iteration #2
+#5058     -
+
+Results
+
+no significant changes
+
+neither in overall
+
+nor in general goal segments
+
+Conclusion
+
+bettet than iteration #1 with 13% drop in Android access rate
+
+Next steps
+
+took second variation with fever screen for players in variation #3
+
+Forecast (per   day)
+
+iOS
+
+Android
+
+Variations
+Metrics
+
+Metrics
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+control 14110 1346 573 $23089
+16756 705 279 $11366
+
+variation 2 14110 1329 591 $23587
+16756 698 273 $11010
+
+diff
+-17 18 $498
+
+-7 -6 -$356
+
+[macro]
+iOS
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 66988 6329 6389 1387 4971 1301 2706 2718 $109,614
+
+variation 2 67259 6261 6334 1480 4818 1300 2799 2817 $112,434
+
+Product stats
+
+members retention 1d retention 7d
+
+control 66988 11669 19514
+
+variation 2 67259 11686 19528
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $1.64 $40.33 $40.51 9.45% 4.04% 26.17% 1.009 24.61%
+
+variation 2 $1.67 $39.91 $40.17 9.31% 4.16% 26.98% 1.012 25.95%
+
+diff, % 2.16% -1.03% -0.84% -1.47% 3.02% 3.10% 0.22% 5.43%
+
+pvalue 0.46 0.42 0.52 0.38 0.26 0.36 0.29 0.25
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $1.28 $52.47 $52.47 6.48% 2.43% 26.55% 26.83%
+
+variation 2 $1.28 $52.31 $52.31 6.22% 2.46% 27.30% 28.09%
+
+diff, % 0.69% -0.31% -0.31% -4.05% 1.00% 2.80% 4.70%
+
+pvalue 0.85 0.74 0.74 0.05 0.77 0.48 0.42
+
+Product metrics
+
+ret1d, % retention 7d
+
+control 17.42% 29.13%
+
+variation 2 17.37% 29.03%
+
+diff, % -0.26%
+-0.33%
+
+pvalue 0.83 0.70
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 8830 7662 86.77% 1735 22.64% 920 53.03% 12.01% 10.42% 7221 81.78%
+
+Learn to play from scratch 2 8817 7307 82.87% 1618 22.14% 844 52.16% 11.55% 9.57% 6931 78.61%
+
+Play favorite songs 1 24650 21843 88.61% 3647 16.70% 1767 48.45% 8.09% 7.17% 21000 85.19%
+
+Play favorite songs 2 24905 21910 87.97% 3582 16.35% 1665 46.48% 7.60% 6.69% 21037 84.47%
+
+Something else 1 5646 4829 85.53% 623 12.90% 246 39.49% 5.09% 4.36% 4693 83.12%
+
+Something else 2 5851 4975 85.03% 631 12.68% 256 40.57% 5.15% 4.38% 4810 82.21%
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 47483 1945 1997 409 1582 337 773 790 $32,208
+
+variation 2 47346 1926 1973 403 1563 330 755 771 $31,110
+
+Product stats
+
+members retention 1d retention 7d
+
+control 47483 6336 10532
+
+variation 2 47346 6446 10762
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $0.68 $40.77 $41.67 4.10% 1.63% 21.30% 1.027 19.62%
+
+variation 2 $0.66 $40.35 $41.21 4.07% 1.59% 21.11% 1.024 20.62%
+
+diff, % -3.13% -1.03% -1.11% -0.69% -2.05% -0.89% -0.23% 5.11%
+
+pvalue 0.57 0.68 0.66 0.83 0.68 0.90 0.68 0.62
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.47 $51.41 $51.41 2.61% 0.92% 22.90% 21.56%
+
+variation 2 $0.45 $50.26 $50.26 2.51% 0.90% 22.92% 21.18%
+
+diff, % -4.42% -2.23% -2.23% -3.84% -2.24% 0.10% -1.78%
+
+pvalue 0.53 0.40 0.40 0.33 0.74 0.99 0.89
+
+Product metrics
+
+retention 1d retention 7d
+
+control 13.34% 22.18%
+
+variation 2 13.61% 22.73%
+
+diff, % 2.03%
+2.48%
+
+pvalue 0.22 0.04
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 6465 5708 88.29% 1376 24.11% 241 17.51% 4.22% 3.73% 5129 79.33%
+
+Learn to play from scratch 2 6595 5742 87.07% 1329 23.15% 234 17.61% 4.08% 3.55% 5182 78.57%
+
+Play favorite songs 1 13635 12509 91.74% 2299 18.38% 413 17.96% 3.30% 3.03% 11451 83.98%
+
+Play favorite songs 2 13606 12632 92.84% 2251 17.82% 440 19.55% 3.48% 3.23% 11586 85.15%
+
+Something else 1 3570 3059 85.69% 519 16.97% 62 11.95% 2.03% 1.74% 2812 78.77%
+
+Something else 2 3576 3144 87.92% 490 15.59% 68 13.88% 2.16% 1.90% 2906 81.26%
+
+[/macro]
+
+[/macro]
+
+[macro]
+true Iteration #3
+#5097     -
+
+Results
+
+no significant changes
+
+cancellations after charge increased by 8% on iOS and decreased by 15% on Android
+
+Conclusion 
+[macro]
+Green success
+[/macro]
+
+We didn't see any significant growth in metrics, but there was no decline either
+
+At the same time, we made the tour shorter, which slightly increased the passability in test variations
+
+In addition, a shorter tour is less tiring for the user, which will affect their experience with the app (reducing negative reviews in stores)
+
+We consider the experiment successful, we are rolling out a test variation
+
+Next steps
+
+Continue worsening ab-tests (taking into account the updated branding)
+
+Forecast (per   day)
+
+iOS
+
+Android
+
+Variations
+Metrics
+
+Metrics
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+Tour Start
+
+Accesses
+
+Charges
+
+Revenue
+
+control 14110 1259 552 $21471
+16756 748 297 $12301
+
+variation 2 14110 1295 563 $21824
+16756 726 300 $12021
+
+diff
+36 11 $353
+
+-22 3 -$280
+
+[macro]
+iOS
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 93419 8240 8335 1935 6362 1683 3612 3654 $142152
+
+variation 2 93355 8447 8565 1937 6586 1742 3675 3722 $144392
+
+Product stats
+
+members retention 1d retention 7d
+
+control 93419 15378 27711
+
+variation 2 93355 15411 27627
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $1.52 $38.90 $39.36 8.82% 3.87% 26.45% 1.012 23.48%
+
+variation 2 $1.55 $38.79 $39.29 9.05% 3.94% 26.45% 1.014 25.47%
+
+diff, % 1.65% -0.28% -0.17 2.58% 1.81% -0.01% 0.24% 8.47%
+
+pvalue 0.51 0.80 0.88 0.08 0.43 1 0.22 0.047
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $1.137 $50.65 $50.67 5.87% 2.24% 26.99% 25.75%
+
+variation 2 $1.142 $50.61 $50.69 5.99% 2.25% 26.59% 27.10%
+
+diff, % 0.48% -0.07% 0.02% 2.06% 0.45% -1.48% 5.24%
+
+pvalue 0.88 0.94 0.98 0.27 0.88 0.66 0.32
+
+Product metrics
+
+ret1d, % retention 7d
+
+control 16.46% 29.66%
+
+variation 2 16.51% 29.59%
+
+diff, % 0.28%
+-0.23%
+
+pvalue 0.786 0.742
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 15684 13501 86.08% 2954 21.88% 1511 51.15% 11.19% 9.63% 12788 81.54%
+
+Learn to play from scratch 2 16001 13778 86.11% 3023 21.94% 1634 54.05% 11.86% 10.21% 13027 81.41%
+
+Play favorite songs 1 43664 38413 87.97% 6230 16.22% 3001 48.17% 7.81% 6.87% 36942 84.61%
+
+Play favorite songs 2 43428 38421 88.47% 6018 15.66% 2981 49.53% 7.76% 6.86% 36962 85.11%
+
+Something else 1 9872 8393 85.02% 1026 12.22% 416 40.55% 4.96% 4.21% 8163 82.69%
+
+Something else 2 9854 8459 85.84% 1075 12.71% 434 40.37% 5.13% 4.40% 8221 83.43%
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 86092 3734 3843 833 2992 634 1491 1528 $63202
+
+variation 2 86021 3599 3725 846 2869 631 1502 1541 $61712
+
+Product stats
+
+members retention 1d retention 7d
+
+control 86092 11917 22333
+
+variation 2 86022 11798 22309
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $0.73 $41.36 $42.39 4.34% 1.73% 21.19% 1.029 19.31%
+
+variation 2 $0.72 $40.05 $41.09 4.18% 1.75% 21.99% 1.035 16.29%
+
+diff, % -2.28% -3.18% -3.07% -3.54% 0.82% 3.79% 0.57% -15.63%
+
+pvalue 0.56 0.07 0.07 0.12 0.82 0.45 0.21 0.03
+
+cumulatives
+
+Monetization metrics – Tour only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.489 $53.44 $53.44 2.64% 0.92% 23.21% 20.94%
+
+variation 2 $0.478 $52.01 $52.01 2.50% 0.92% 24.39% 18.61%
+
+diff, % -2.33% -2.66% -2.66% -5.25% 0.34% 5.09% -11.13%
+
+pvalue 0.66 0.12 0.12 0.069 0.95 0.39 0.24
+
+Product metrics
+
+retention 1d retention 7d
+
+control 13.84% 25.94%
+
+variation 2 13.72% 25.93%
+
+diff, % -0.92% -0.03%
+
+pvalue 0.444 0.974
+
+General Goals funnel
+
+general_answer variation Tour Start Banner Tour View Tour Start -> Paywall Banner Purchase Click BPaywall -> Click Purchase Process Finish Click -> Purchase Paywall -> Purchase Tour Start -> Purchase Tour End Tour Start -> End
+
+Learn to play from scratch 1 14794 13156 88.93% 3038 23.09% 598 19.68% 4.55% 4.04% 11995 81.08%
+
+Learn to play from scratch 2 14771 13279 89.90% 2928 22.05% 558 19.06% 4.20% 3.78% 12010 81.31%
+
+Play favorite songs 1 31768 29643 93.31% 5162 17.41% 1102 21.35% 3.72% 3.47% 27491 86.54%
+
+Play favorite songs 2 32046 30111 93.96% 5112 16.98% 993 19.42% 3.30% 3.10% 27881 87.00%
+
+Something else 1 8789 7758 88.27% 1293 16.67% 173 13.38% 2.23% 1.97% 7212 82.06%
+
+Something else 2 8676 7741 89.22% 1290 16.66% 160 12.40% 2.07% 1.84% 7197 82.95%
+
+[/macro]
+
+[/macro]

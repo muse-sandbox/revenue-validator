@@ -1,0 +1,28 @@
+# BUNDLE MANIFEST — Interstitials Corpus Prep (FLOW-568)
+
+Сгенерировано: 2026-08-04. SHA-256 всех файлов пакета (кроме самого манифеста).
+
+```
+fc585579947437eb4083cba15e14c50ea2f0434fd3d42f874866cd9eff687492  corpus_eligibility.md
+00e26748fce2e668b689242f213f8438e879e2b3584fe0e46da7ebea6b594cd6  EXCLUSION_MANIFEST.md
+a4a4f4f260c577ac67fec3139d41593cba99a1e8f41ebbed496015bd4c4e4758  ground-truth-sealed/GT-IH-01.md
+12b7c06e77b42d9977d607780384708d654a8d408a40fb2e10de05c536dd2985  ground-truth-sealed/GT-IH-02.md
+021e83db63b2f2f9d5662961dcfced33abe4e17de4b15292eaf5e994348643e8  ground-truth-sealed/GT-IH-03.md
+36e41bb17b950fd9260ade4928c461ddd7f7d870b560685edd74cb1490b90735  ground-truth-sealed/GT-IH-04.md
+d7c322237db14229611e5c982c9acb72b44482c3d9a6770c23e3e775972002ec  ground-truth-sealed/MAPPING.md
+38c58a2a761823105f21493e6518f98e89cfa1d8e2a48585beab43d19f3b6169  holdout-blind/IH-01.md
+179cd5ad284ae6c59a4beeb04837c972f86a9bddeceaea359b0a7e9fae573664  holdout-blind/IH-02.md
+9381137e3faee6547f15ead3dd609b9749bcb9800e2556c632d2fad2fbfefd6c  holdout-blind/IH-03.md
+c7d5494b93cf703a482ab99780b176b1ee93c44efee988b3da2953441f6bc996  holdout-blind/IH-04.md
+f1fa855edba3ec6c53e671fa65a496d2a63f523d3cf518a2c712910dffec13c6  knowledge-sources/KS-01_swap-into-landing.md
+6e2b15b9d019437affc8ba0da1dcb2670adfe52ae0d6eecc44c86b339c2efb69  knowledge-sources/KS-02_offer-instead-of-ad-interstitials-iter1-2.md
+76f0e39eae6ff394863978529f1eb2c32553421a96b42bc832fa60a629e5f179  knowledge-sources/KS-03_paywall-after-ad-interstitial.md
+217737c4a41074a0fbefa5876bef212cdd15b5d4994511392c2b41b5f8fdfc56  knowledge-sources/KS-04_monetization-video-instead-of-ad-interstitials.md
+28f2fbfd53a2cb2b656703b848698d9975d4bcf3292c79b2ff9b4b8ea0826f73  knowledge-sources/KS-05_winback-interstitials-former-subscribers.md
+c8131e75cfebc6e3db395efddac9e650efbbeb74f68ac3bf5bdcd41aac25b710  knowledge-sources/KS-06_offer-instead-of-ad-interstitials-iter3plus.md
+f6128c27728ffffed188829b3f9e62a95afacb5db5ecc0f3ae716e90a84c8e0f  LEAKAGE_CHECK.md
+fc47199353fabfca88d69a35e4e16b2a51e31e66c69099ad45cfa517e8b50248  README.md
+dddb259e245dcde8887a36ce79f62dedf8287bd26ee5b6c3bd852f6e62aea9ff  safe_inventory.md
+2b6cd160cfce118aa0e756e015bbca90d9af47b4020fcd0a3b717c617d2ecc6c  split_manifest.json
+91b67b7177d015cb3e3023f12eeff78b49888a91b579405184c498a805461069  split_manifest.md
+```

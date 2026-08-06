@@ -1,0 +1,57 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L1",
+      "computed_level": "L1",
+      "index": 1,
+      "source_id": "T1-04"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L1",
+      "computed_level": "L1",
+      "index": 2,
+      "source_id": "T1-02"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L1",
+      "computed_level": "L1",
+      "index": 3,
+      "source_id": "T1-03"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L1",
+      "computed_level": "L1",
+      "index": 4,
+      "source_id": "T1-01"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 5,
+      "source_id": "T1-07"
+    }
+  ],
+  "errors": [],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2-regression-run/arm-b/RH-02.md",
+    "kb": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2/knowledge_base.md",
+    "patterns": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.2/pattern_cards.md"
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "known_source_ids_count": 32,
+  "mode": "kb-arm",
+  "verdict": "PASS"
+}

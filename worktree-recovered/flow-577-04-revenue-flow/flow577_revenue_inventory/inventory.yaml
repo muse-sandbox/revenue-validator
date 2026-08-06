@@ -1,0 +1,944 @@
+# FLOW-577 — Inventory исторических revenue-экспериментов, размеченных по модели
+# релевантности FLOW-574 (блоки A/B/C) и словарю flow_stage из FLOW-576 (S0–S9).
+#
+# corpus_type — стратегия отбора относительно якоря (семейство Interstitials, FLOW-568):
+#   type1 = та же поверхность и механизм (interstitial-слой UG App)
+#   type2 = тот же этап user flow — exposure монетизационной поверхности (ядро S3–S4;
+#           граничные кейсы: T2-05 — триггер на S8, показ на S3; T2-07 — S1–S3
+#           feature-gate), но другая поверхность
+#   type3 = та же денежная метрика (ARPU / trial→charge / access CR), другой flow или механизм
+#
+# source_confidence:
+#   verified-card      — данные из проверенных карточек FLOW-568/571 (KS-*/GT-IH-*),
+#                        построенных по snapshot'ам Confluence-страниц; факты сверены.
+#   mirror-annotation  — данные из локального зеркала базы гипотез (context/hypotheses/),
+#                        аннотация страницы; для переноса продуктового вывода требуется
+#                        выборочная сверка со страницей (validity-поля тогда «не проверено»).
+#
+# validity.result_class: significant-positive | significant-negative | powered-null |
+#                        inconclusive | mixed
+#   `mixed` — расширение словаря FLOW-574 (в модели V0 его нет): разные исходы по
+#   платформам/рукам, расшифровка в ci/notes. Предлагаемое правило гейтирования для
+#   модели V0.1: hard filter §4.6 применяется к той платформе/руке, чей вывод
+#   переносится (например, And-ветка T1-04 — significant-positive, iOS-ветка — нет).
+# ВАЖНО (гейт §4.6): для source_confidence: mirror-annotation значение result_class —
+#   ПРЕДВАРИТЕЛЬНОЕ (выведено из аннотации зеркала, часто без p-values; поле ci
+#   говорит, извлечены ли они). Такой кейс проходит hard filter модели только после
+#   сверки со страницей Confluence (A.page). До сверки — использовать как L3-материал.
+# Поля с "не проверено" / "не документировано" — честные пробелы, не пропуски разметки.
+
+meta:
+  version: 1
+  date: 2026-08-04
+  task: FLOW-577
+  relevance_model: FLOW-574 (комментарий в Linear, V0)
+  flow_map: FLOW-576 (Revenue User Flow V0, S0–S9)
+  anchor:
+    description: >
+      Якорь для типологии — семейство «UG App monetization interstitials»
+      (каноническая DOCS-страница 777830942): собственный offer-слой App,
+      показываемый вместо рекламной паузы в табах; flow_stage S3–S4; сегменты
+      free / ex-paid; механизмы — содержимое/оффер/частота слоя.
+  units: денежные величины — net revenue, если в источнике не оговорено иное
+  excluded:
+    - id: "761947509"
+      title: "Explore product widget instead of sale banner (7085/7130/7229)"
+      reason: >
+        Исход не восстанавливается из зеркала базы гипотез (аннотация без
+        результата и решения); включать без сверки со страницей нельзя.
+
+experiments:
+
+  # ======================== TYPE 1 — та же поверхность и механизм ========================
+
+  - key: T1-01
+    corpus_type: type1
+    title: "UG iOS: Interstitial – Swap into Landing"
+    A:
+      exp_ids: ["4845"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=459868984"
+      jira: UMN-5306
+      dates: "2024-04-24..2024-08-10 (run 2024-07-15..2024-07-20)"
+      iteration_of: null   # первый эксперимент линии "replace ad interstitials"
+      validity:
+        srm_ok: "да (3 283 / 3 250)"
+        maturity_ok: "не документировано"
+        result_class: inconclusive
+        ci: "все монетизационные diffs незначимы (ARPU −10.5%, p=0.67); охват микроскопический"
+      plan_fact:
+        plan: "+10% Interstitial→Access и ARPU iOS (~+$666/день по модели)"
+        fact: "≈0: 4 access из нового источника за весь эксперимент; forecast −$19/день"
+      decision: killed
+    B:
+      flow_stage: "S3–S4"
+      segment: "free (без подписки и триала), iOS, весь трафик"
+      trigger_eligibility: "no-fill исход рекламного аукциона на входе в таб; лендинг 1 раз/день; слот: ≤5 показов/день, гэп 180с"
+      surface: "interstitial slot (скролл-лендинг вместо HL-рекламы)"
+      mechanism: "new-surface (замена рекламы продажным лендингом)"
+      offer: "стандартная Pro-подписка (без спец. SKU)"
+      behavior: "показ преимуществ подписки вместо пустого no-fill → больше trial starts"
+      metric: "Interstitial → Access % (primary); ARPU"
+      money_chain: "exposure → paywall → trial → charge; D0–D14; net"
+      guardrails: "retention 1/7d"
+    C:
+      outcome: "Ничего не изменилось: слишком малый охват (только no-fill, 1/день); 6% доступов интерстишл-когорты из нового источника."
+      lesson: "Reach — связывающее ограничение: заполнение только no-fill-остатков не двигает ни одну метрику; идея «замещать показы активно» стала основой следующих проектов."
+      transfer_bounds: "Только конфигурация «пассивное заполнение no-fill 1/день, iOS 2024»; не говорит о потенциале слоя при активном замещении."
+      fact_vs_interpretation: "Факт: нулевой охват и незначимые diffs. Интерпретация автора: формат лендинга переиспользуем в будущих пейволлах."
+    source_confidence: verified-card
+    source: "KS-01 (FLOW-568 knowledge-sources)"
+
+  - key: T1-02
+    corpus_type: type1
+    title: "UG App: paywall – offer instead of ad interstitials (iter 1–2)"
+    A:
+      exp_ids: ["6002", "6128", "6191"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=682704865"
+      jira: UMN-8263
+      dates: "2025-04-11..2025-07-10"
+      iteration_of: "T1-01 (линия replace-ads)"
+      validity:
+        srm_ok: "да (iter2: 260 468 / 259 687 iOS; 156 391 / 157 021 And)"
+        maturity_ok: "trial→charge читаемо; отдельного pending-гейта на странице нет"
+        result_class: mixed  # iOS iter2 significant-positive (ARPU +7.5%, p=0.029); And n.s.
+        ci: "iOS iter2 ARPU +7.5% (p=0.029); And +4.94% (p=0.36)"
+      plan_fact:
+        plan: "+71% revenue по модели (iOS)"
+        fact: "iter1 +24%/+13% ARPU — артефакт (ex-premium в сегменте, ~37% выручки); iter2 после чистки +7.5%/+5%; каннибализация 34% iOS / 63% And"
+      decision: killed   # сознательно не раскатан: «avoid the novelty effect trap», линия продолжена в KS-04/KS-06
+    B:
+      flow_stage: "S3–S4"
+      segment: "free (iter1 с багом: + ex-premium; iter2: ex-premium исключены), iOS+Android"
+      trigger_eligibility: "ad-fail/zero-state на табе, поиске, версиях; слот-капы 5/день, 180с"
+      surface: "interstitial slot + ad-banner места (tab/search/versions)"
+      mechanism: "new-surface + offer-structure (Pro+ $39.99/год с 14-дневным триалом вместо рекламы)"
+      offer: "Pro+ 1y $39.99, extended 14d trial (ugt.plus.1year7 / tabs.plus.1year5)"
+      behavior: "продажный экран вместо нулевой рекламы → больше trial starts"
+      metric: "Interstitial → Access % (primary); ARPU"
+      money_chain: "exposure → paywall → trial → charge; D0–D14; net"
+      guardrails: "retention 1/7d, 14d cancel, каннибализация прочих источников"
+    C:
+      outcome: "ARPU-рост реален, но 2–3× меньше после чистки сегмента; сильная каннибализация; trial→charge интерстишлов ниже среднего (−13% iOS / −45% And)."
+      lesson: "Ex-subscribers — сильнейшие респондеры (до 13× CR) — это открытие породило winback-линию; первый показ делает 60–87% работы; щедрый триал тянет низкокачественные триалы."
+      transfer_bounds: "Free-аудитория App; вывод о ex-sub — только как направление (найден через баг сегментации); величины не переносятся."
+      fact_vs_interpretation: "Факты: значимые лифты и каннибализация измерены. Интерпретация: «novelty trap» как причина отказа от роллаута — суждение команды, не измерено."
+    source_confidence: verified-card
+    source: "KS-02"
+
+  - key: T1-03
+    corpus_type: type1
+    title: "UG iOS: paywall – paywall after ad interstitial"
+    A:
+      exp_ids: ["6335"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=707134897"
+      jira: UMN-8971
+      dates: "2025-07-07..2025-08-12 (run 7 дней)"
+      iteration_of: null   # sibling линии replace-ads
+      validity:
+        srm_ok: "да (35 411 / 34 913)"
+        maturity_ok: "не документировано"
+        result_class: powered-null   # с оговоркой: design-единица (интерстишл-аудитория) ≠ активированные члены
+        ci: "Total ARPU +10.4% (p=0.19); разница по цели ≈0"
+      plan_fact:
+        plan: "+10% Interstitial→Access"
+        fact: "≈0; конверсия нового сценария 0.07%; 96% отваливаются на первом pre-paywall; 3% подписок из нового источника при каннибализации tab-источников"
+      decision: killed
+    B:
+      flow_stage: "S3–S4 (после S1-триггера «успешный показ рекламы»)"
+      segment: "free incl. ex-premium, iOS"
+      trigger_eligibility: "каждый успешный показ рекламного интерстишла"
+      surface: "post-ad цепочка: pre-paywall → compare table → стандартный pro-paywall"
+      mechanism: "new-surface + funnel-структура (удлинённая воронка после рекламы)"
+      offer: "Pro+ 1y $39.99 (instant + trial), $9.99/мес instant"
+      behavior: "коммуникация ad-free experience после рекламы → рост конверсии в access"
+      metric: "Interstitial → Access %"
+      money_chain: "exposure → paywall → trial/instant → charge; D0–D14; net"
+      guardrails: "retention, tab views"
+    C:
+      outcome: "Провал: длинная воронка после рекламы не работает; drop-off 96% на первом же скипаемом pre-paywall."
+      lesson: "«Longer funnel with pre-paywall works worse than just banner»; post-ad контекст — раздражённый: пользователь после рекламы массово закрывает продажный экран."
+      transfer_bounds: "iOS, post-ad-контекст; не говорит о pre-paywall в нейтральном контексте (ср. GT-IH-01, где скретч-купон растил конверсию)."
+      fact_vs_interpretation: "Факт: воронка и drop-off измерены. Интерпретация: «раздражённый контекст» — правдоподобное объяснение, не изолировано экспериментально."
+    source_confidence: verified-card
+    source: "KS-03"
+
+  - key: T1-04
+    corpus_type: type1
+    title: "UG App: paywall – monetization video instead of ad interstitials"
+    A:
+      exp_ids: ["6359", "6416", "6428"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=707139549"
+      jira: UMN-8994
+      dates: "2025-07-09..2025-08-11"
+      iteration_of: "нет (другой формат той же линии); lineage: проект-преемник T1-02 (replace-ads)"
+      validity:
+        srm_ok: "да"
+        maturity_ok: "cohort-follow-up по cancels/refunds оставлен как next step"
+        result_class: mixed   # Android significant-positive (+17–19% ARPU); iOS null/negative сегментно
+        ci: "And ARPU +17–19% значимо в обеих итерациях; iOS iter2 +2.66% (p=0.43)"
+      plan_fact:
+        plan: "ARPU +23% iOS / +13% And"
+        fact: "And +17–19% (раскатано); iOS — незначимо, в сегменте без интерстишл-доступов iter1 −24.7% (каннибализация)"
+      decision: rolled-out   # только Android var2; iOS не раскатан
+    B:
+      flow_stage: "S3–S4"
+      segment: "free + ex-paid (все без Pro-прав), iOS+Android"
+      trigger_eligibility: "iter1: admob_fail; iter2: первый таб дня (замещение) + ad-fail; ≤5/день, гэп 30с"
+      surface: "interstitial slot (видео-креатив с кнопкой Try for Free)"
+      mechanism: "new-surface + creative (видео вместо статичного баннера/рекламы)"
+      offer: "стандартный pro-paywall по клику"
+      behavior: "видео-демо ценности продукта → клик в пейволл → trial"
+      metric: "ARPU (goal)"
+      money_chain: "exposure → click → paywall → trial → charge; D0–D14; net"
+      guardrails: "retention 1/7/14d, ad-revenue"
+    C:
+      outcome: "Видео работает там, где замещает «ничто» (And без рекламных интерстишлов — чистый инкремент); на iOS конкурирует с реальной ad-выручкой и другими пейволлами."
+      lesson: "Ценность из охвата, не из per-impression конверсии (клик 0.5–1% от просмотров); retention-цена появляется при замещении гарантированного дневного показа, а не при заполнении фейлов; креатив решает (chords-вариант строго хуже)."
+      transfer_bounds: "Android-вывод не переносится на iOS (там есть ad-выручка и конкуренция источников); величины зависят от наличия ad-инвентаря."
+      fact_vs_interpretation: "Факты: значимые лифты And, значимая каннибализация iOS iter1. Интерпретация: причина retention-цены (замещение гарантированного показа) — вывод из сравнения итераций."
+    source_confidence: verified-card
+    source: "KS-04"
+
+  - key: T1-05
+    corpus_type: type1
+    title: "UG App: winback – interstitials for former subscribers"
+    A:
+      exp_ids: ["6461", "6644"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=714409638"
+      jira: UMN-9259
+      dates: "2025-08-01..2025-10-17"
+      iteration_of: "нет (не повтор идеи); lineage: идея порождена (seeded-by) открытием ex-sub аппетита через баг сегментации в T1-02"
+      validity:
+        srm_ok: "да (21 932 / 22 121)"
+        maturity_ok: "14d cancel читаем; долгосрочное качество выручки — открытый вопрос"
+        result_class: significant-positive
+        ci: "iOS ARPU +42.8%; access/charge CR +170.9%/+37.8%"
+      plan_fact:
+        plan: "ARPU iOS +6% (модель +$0.042), And +14%"
+        fact: "iOS ARPU +42.8% — план перевыполнен на порядок; ранние отмены +69–118%"
+      decision: rolled-out   # green «can roll out»; ждали фикса unified_id; relaunch 6644
+    B:
+      flow_stage: "S3–S4 (для сегмента ex-paid)"
+      segment: "ex-paid (были права, нет активной подписки), только iOS (Android лишь в дизайн-модели), органика+paid"
+      trigger_eligibility: "первый таб дня / ad-fail (механика KS-04); показ 1/день"
+      surface: "interstitial slot (winback-сплэш с re-trial оффером)"
+      mechanism: "offer-structure (повторный 14d trial для ex-subscribers) + new-surface"
+      offer: "Pro re-trial 14d"
+      behavior: "адресный повторный триал в естественный момент (ad-слот) → возврат в подписку"
+      metric: "ex subscriber → access %; ARPU"
+      money_chain: "exposure → paywall → re-trial → charge; D0–D14+; net"
+      guardrails: "retention, 14d cancel, ad-revenue (−$47/день против +$1 014/день продукта)"
+    C:
+      outcome: "Крупная значимая победа на ex-paid: эффект целиком сконцентрирован в видевших интерстишл; каннибализации почти нет."
+      lesson: "Продуктизация случайного открытия работает; in-app интерстишл решает проблему доставки, убившую push-winback (99.74% охвата vs 50–72% у пушей); re-trial тянет low-intent (cancel 33.8% в 14d)."
+      transfer_bounds: "Только ex-paid; на free re-trial-вывод не переносится; долгосрочное качество выручки не подтверждено."
+      fact_vs_interpretation: "Факты: лифты и рост отмен измерены. Интерпретация: «context and reach beat raw generosity» — синтез с прошлыми push-кейсами."
+    source_confidence: verified-card
+    source: "KS-05"
+
+  - key: T1-06
+    corpus_type: type1
+    title: "UG App: paywall – offer instead of ad interstitials (iter 3+)"
+    A:
+      exp_ids: ["6491", "6626", "6716", "6896"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=714432870"
+      jira: "UMN-9389 (iter2 analytics UMN-10264)"
+      dates: "2025-08-20..2026-03-13"
+      iteration_of: "T1-02 (та же проектная линия) + механика из T1-04"
+      validity:
+        srm_ok: "да"
+        maturity_ok: "next-year recurrence intro-когорты — открытый построллаутный вопрос"
+        result_class: mixed   # iter1 (14d trial) fail; iter2 (intro −50%) significant-positive
+        ci: "iter2: ARPU +11.5% iOS / +25% And; And 14d cancels −26.6%"
+      plan_fact:
+        plan: "ARPU +23.15% iOS / +12.89% And (дизайн унаследован от T1-04)"
+        fact: "iter1: ARPU +9.71% iOS (p=0.06) при коллапсе trial→paid −36..−54% — fail; iter2 (intro): +11.5%/+25% — можно раскатывать"
+      decision: rolled-out   # iter2 «can roll out on both platforms» с построллаутным контролем
+    B:
+      flow_stage: "S3–S4"
+      segment: "free, iOS+Android"
+      trigger_eligibility: "1 раз/день на первом табе (замещение рекламы) + ad-fail; close через 5с"
+      surface: "interstitial slot (pre-paywall → paywall) + баннеры в zero-ad states"
+      mechanism: "offer-structure — ключевая ось: 14d trial (iter1) vs intro −50% первый год (iter2)"
+      offer: "iter1: Pro+ 14d trial; iter2: Pro+ $39.99/год с −50% на первый год"
+      behavior: "ежедневный собственный оффер вместо рекламы → конверсия в подписку"
+      metric: "ARPU (goal)"
+      money_chain: "exposure → paywall → trial/intro-instant → charge; D0–D14 + next-year renewal; net"
+      guardrails: "retention 7/14d, 14d cancel, ad-revenue, trial→paid качество"
+    C:
+      outcome: "Тип оффера — решающий рычаг на той же поверхности: триал раздувает trial starts и рушит качество; intro-цена переворачивает паттерн (+32–62% instant, cancels вниз)."
+      lesson: "Intro-прайсинг меняет AOV/ARPPU (−9..−14%) на объём и качество конверсии; каннибализация остаётся на iOS (~30% брутто-выигрыша), And почти чистый; конверсия слоя резко затухает с повторными показами (1.58% → 0.41% к 4-му)."
+      transfer_bounds: "Intro-вывод — free-сегмент («не работает на ex-subscribers»); риск next-year recurrence не закрыт; величины платформо-специфичны."
+      fact_vs_interpretation: "Факты: значимые сдвиги структуры конверсии. Интерпретация: связка «5с close delay → dilution качества» — implicated, не изолирована."
+    source_confidence: verified-card
+    source: "KS-06"
+
+  - key: T1-07
+    corpus_type: type1
+    title: "UG App: paywall – pre-paywall with animation for interstitials (скретч-купон)"
+    A:
+      exp_ids: ["7160", "7187"]
+      page: "https://alice.mu.se/spaces/CRO/pages/773658792"
+      jira: UMN-10952
+      dates: "2026-03-09..2026-07-01 (run 8 дней)"
+      iteration_of: null
+      validity:
+        srm_ok: "да (баланс в норме)"
+        maturity_ok: "pending-trial maturity не документирован"
+        result_class: mixed   # iOS var2 significant-positive (ARPU +26.5%, p=0.011); And n.s.; var3 And retention значимо хуже
+        ci: "iOS var2 ARPU +26.5% (p=0.011); And var3 ret1d −9.15% (p=0.012)"
+      plan_fact:
+        plan: "design sample/duration «not calculated»"
+        fact: "iOS var2 +26.5% ARPU значимо; интерстишл-сегмент +72.7%/+166% (var2/var3); но abs-инкремент мал (forecast iOS var2 +$474/день)"
+      decision: killed   # «revenue too low»; var2 аномалия конверсии требует relaunch
+    B:
+      flow_stage: "S3–S4"
+      segment: "free новые (прошедшие tour install в эксперименте), iOS+Android"
+      trigger_eligibility: "первый вход в таб; показ 1 раз"
+      surface: "interstitial slot (геймифицированный скретч-купон; var3 — нескипаемый)"
+      mechanism: "copy/design (геймификация) + frequency/timing (skip vs no-skip)"
+      offer: "стандартные текущие офферы за купоном"
+      behavior: "интерактивное «стирание» купона → вовлечение → paywall"
+      metric: "ARPU; interstitial→access CR"
+      money_chain: "exposure → coupon interaction → paywall → trial/charge; D0–D14; net"
+      guardrails: "retention 1/7/14d (And var3 — значимое ухудшение)"
+    C:
+      outcome: "Геймификация растит конверсию слоя на обеих платформах; нескипаемость (var3) даёт ×8 вовлечение в воронку и +150–160% выручки слоя, но значимо бьёт retention And."
+      lesson: "Monetization/retention trade-off нескипаемости; повторные сплэши почти ничего не добавляют; значимый относительный лифт ≠ достаточный абсолютный инкремент."
+      transfer_bounds: "Новые пользователи post-tour; не переносится на зрелую аудиторию без проверки; var2-аномалия (−75–77% interstitial→banner) не объяснена."
+      fact_vs_interpretation: "Факты: все перечисленные лифты/падения с p-values. Интерпретация: причина var2-аномалии неизвестна (открытый вопрос страницы)."
+    source_confidence: verified-card
+    source: "GT-IH-01 (unblinded FLOW-571)"
+
+  - key: T1-08
+    corpus_type: type1
+    title: "UG App: winback – final interstitial offer ($19.99)"
+    A:
+      exp_ids: ["7487"]
+      page: "https://alice.mu.se/spaces/CRO/pages/788612067"
+      jira: UMN-11515
+      dates: "2026-05-04..2026-07-30 (run 2026-05-22..06-12, ~21 день)"
+      iteration_of: "T1-05 (развитие winback-линии)"
+      validity:
+        srm_ok: "да (9 933/9 753 iOS; 3 566/3 602 And)"
+        maturity_ok: "триалы дозрели (pending=0); churn/refund 14d — preliminary (pending>5% в контроле)"
+        result_class: significant-positive   # на целевом winback-сегменте; Total n.s. после дозревания
+        ci: "iOS Winbacks ARPU +241% (p=0.000), buyers +365.6%; Total ARPU +9.3% (p=0.40)"
+      plan_fact:
+        plan: "формального дизайна нет (design values = 0)"
+        fact: "сегментная победа подтверждена; Total-лифт потерял значимость после дозревания контрольных триалов; forecast +$151/день iOS, +$107/день And"
+      decision: rolled-out   # green: And 100%; iOS с наблюдением diffuse dilution
+    B:
+      flow_stage: "S3–S4 (после исчерпания winback-окна)"
+      segment: "ex-paid, исчерпавшие winback-окно; iOS+Android (v7.3.9+)"
+      trigger_eligibility: "1 раз, только после просмотра winback-интерстишла и не раньше следующего дня"
+      surface: "interstitial slot (финальный «последний шанс» оффер)"
+      mechanism: "offer-structure + price (deep-discount instant $19.99 вместо триала)"
+      offer: "Pro+ instant $19.99 (промокод)"
+      behavior: "глубокая скидка на мёртвом сегменте → немедленная оплата вместо триала"
+      metric: "members → buyers %; ARPU (winback-сегмент)"
+      money_chain: "exposure → instant charge (без trial-звена); D0; net"
+      guardrails: "retention (flat), full-price dilution (iOS −$702 non-winback), churn/refund 14d"
+    C:
+      outcome: "«Оживляет мёртвый сегмент»: нулевая конверсия исчерпанного winback превращается в значимые покупки; выигрыш на оплате, не на подписках (final = 100% instant)."
+      lesson: "Deep-discount instant меняет trials на немедленный платёж (EV-положительно на high-intent сегменте); sequencing защищает стандартный winback структурно; зрелость меняет выводы — Total-лифт исчез после дозревания контроля."
+      transfer_bounds: "Только ex-paid high-intent; на free перенос запрещён; iOS diffuse dilution ограничивает чистый инкремент."
+      fact_vs_interpretation: "На странице явная разметка confirmatory/exploratory: механизм и cannibalization-split — confirmatory; «куда ушли iOS non-winback покупки» — exploratory."
+    source_confidence: verified-card
+    source: "GT-IH-02 (unblinded FLOW-571)"
+
+  - key: T1-09
+    corpus_type: type1
+    title: "UG App: personalized interstitial"
+    A:
+      exp_ids: ["7454"]
+      page: "https://alice.mu.se/spaces/CRO/pages/788613565"
+      jira: UMN-11540
+      dates: "2026-05-05..2026-06-18 (run 10 дней)"
+      iteration_of: null
+      validity:
+        srm_ok: "да (Δ 0.57% And)"
+        maturity_ok: "pending-trial maturity не документирован"
+        result_class: inconclusive   # underpowered null на And; iOS нечитаем (delivery failure)
+        ci: "And: все монетизационные p ≥ 0.32; интерстишл-конверсий всего ~70–165 на руку"
+      plan_fact:
+        plan: "рост конверсии слоя за счёт песенной персонализации"
+        fact: "≈0: паузы→paywall чуть больше, paywall→click ×0.5 (7.25%→3.90%); iOS фактически не запустился (реальный объём только 3 дня)"
+      decision: killed   # «do not roll out as-is; iterate» — персонализировать оффер, не обёртку
+    B:
+      flow_stage: "S3–S4"
+      segment: "free + ex-paid (winback-ветка), iOS+Android; iOS нечитаем"
+      trigger_eligibility: "первый показ дня; персонализированный интерстишл приоритетен, показывается 1 раз"
+      surface: "interstitial slot (песенный креатив «Play %SONG% like %AUTHOR%»)"
+      mechanism: "copy/design — персонализация сообщения (обёртки), оффер не менялся"
+      offer: "те же коммерческие офферы (free: 80% off Pro+; ex-paid: +14d Pro+)"
+      behavior: "личная зацепка (текущая песня) → любопытство → paywall → покупка"
+      metric: "конверсия слоя; ARPU"
+      money_chain: "exposure → paywall → trial/instant → charge; D0–D14; net"
+      guardrails: "retention (flat), churn/refund (в шуме)"
+    C:
+      outcome: "Персонализация только сообщения не растит покупательский интент: «wins curiosity but loses intent»; видимый winback-лифт ×4.6 оказался артефактом атрибуции."
+      lesson: "«Personalize the offer, not only the message around the offer»; конверсия слоя front-loaded (показ №1 = 50–60% конверсий); ex-paid конвертит ~20× лучше free per member."
+      transfer_bounds: "Message-only персонализация; не опровергает offer-персонализацию; iOS-чтение невозможно."
+      fact_vs_interpretation: "Факт: плоская конверсия и артефакт атрибуции доказаны. Интерпретация: «expectation mismatch на generic paywall» — объяснение команды."
+    source_confidence: verified-card
+    source: "GT-IH-03 (unblinded FLOW-571)"
+
+  - key: T1-10
+    corpus_type: type1
+    title: "UG App: interstitial – discounted prices ($29.99 instant)"
+    A:
+      exp_ids: ["7712"]
+      page: "https://alice.mu.se/spaces/CRO/pages/811868738"
+      jira: UMN-12220
+      dates: "2026-07-03..; run 2026-07-13..07-21 (9 из 15/20 дизайн-дней)"
+      iteration_of: "next steps T1-06 (UMN-9389) и T1-05/T1-08 линии («drop the trial, promote direct purchase»)"
+      validity:
+        srm_ok: "да (<1% дисбаланс)"
+        maturity_ok: "НЕТ: pending 14d charges 59–79% по веткам; churn/refund неинтерпретируемы; winback-поверхность нечитаема"
+        result_class: inconclusive   # доставлено ~половина дизайна, 2 из 3 рук; поверхностный эффект p=0.22
+        ci: "iOS surface net revenue +58.14% (финальное trial-free чтение; p=0.22 — по surface ARPU); And −5.06%"
+      plan_fact:
+        plan: "Total ARPU +60.67% iOS / +67.03% And (по дизайну; базлайн взят от surface-метрики)"
+        fact: "Total флэт-негатив (−5.4% iOS, p=0.61) — метрика структурно не могла увидеть эффект; на затронутой поверхности iOS +58% при плоском объёме, And — wash из-за эластичности"
+      decision: inconclusive-stopped   # «do not roll out this iteration… keep the concept alive for iOS, hold and re-run, do not discard»
+    B:
+      flow_stage: "S3–S4"
+      segment: "free новые (tour install в эксперименте), iOS+Android"
+      trigger_eligibility: "замена 14Free и winback интерстишлов на дисконтный"
+      surface: "interstitial slot (оба сценария слоя)"
+      mechanism: "price + offer-structure (instant $29.99 без триала и intro)"
+      offer: "Pro+ instant $29.99, no trial"
+      behavior: "убрать trial-ступень → немедленный платёж по сниженной цене"
+      metric: "Total ARPU (goal — ошибочно выбран); surface ARPU/net revenue (фактически информативная)"
+      money_chain: "exposure → instant charge (без trial-звена); D0; net"
+      guardrails: "retention (flat), churn/refund 14d (не дозрели), другие пейволлы (recovery нет)"
+    C:
+      outcome: "На изменённой поверхности iOS оффер сработал (+58% net при плоском объёме, финальное чтение); And — ценовая эластичность съела выигрыш; Total-метрика утопила эффект в 83–88% нетронутой выручки."
+      lesson: "Surface-scoped treatment надо мерить на затронутой поверхности (главный урок страницы); платформы отличаются эластичностью, не исполнением; недоставка дизайна (9 из 15/20 дней, 2 из 3 рук) оставляет большие эффекты неразрешёнными."
+      transfer_bounds: "Новые free-пользователи post-tour; winback-поверхность — undecided; And-вывод — про $29.99 шаг, не про instant-механику вообще."
+      fact_vs_interpretation: "На странице явная разметка: surface-revenue/механизм/дилюция/зрелость/доставка — confirmatory; recovery на других пейволлах — exploratory."
+    source_confidence: verified-card
+    source: "GT-IH-04 (unblinded FLOW-571)"
+
+  # ============== TYPE 2 — тот же этап flow (S3–S4 exposure), другая поверхность ==============
+
+  - key: T2-01
+    corpus_type: type2
+    title: "UG App: sale – turning off banner and splash for the Free Offer"
+    A:
+      exp_ids: ["6293"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=699819052"
+      jira: UMN-8876
+      dates: "2025-06-27.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-negative   # для варианта C (обе поверхности off)
+        ci: "не извлечён (аннотация без p-values)"
+      plan_fact:
+        plan: "выключение sale-поверхностей уронит ARPU не более чем на 3% (конверсии перераспределятся)"
+        fact: "C (баннер+сплэш off): ARPU −12% iOS / −26% And — порог провален; B (только сплэш off): −1.2% iOS / −6% And"
+      decision: killed   # removal не раскатан: «keep banner, manage splash frequency strategically»
+    B:
+      flow_stage: "S3–S4"
+      segment: "free, iOS+Android"
+      trigger_eligibility: "сезонный sale-сценарий (баннер Explore + сплэш)"
+      surface: "sale banner (Explore) + sale splash — НЕ interstitial"
+      mechanism: "gating/frequency — выключение поверхностей (negative test ценности)"
+      offer: "сезонный Free Offer (скидочный)"
+      behavior: "проверка: конвертят ли ещё sale-поверхности или конверсия перераспределится"
+      metric: "ARPU"
+      guardrails: "перераспределение конверсий в другие источники"
+      money_chain: "exposure → paywall → charge; D0–D14; net"
+    C:
+      outcome: "Sale-механики сохраняют измеримый вклад; полное выключение вредно; сплэш — слабее баннера."
+      lesson: "Negative/holdout-тест поверхности — дешёвый способ измерить её инкрементальность; конверсия НЕ перераспределяется полностью при выключении поверхности."
+      transfer_bounds: "Сезонные sale-поверхности App; не переносится на несезонные слои без проверки."
+      fact_vs_interpretation: "Факт (по аннотации): величины падения по рукам. Интерпретация: «manage splash frequency strategically» — рекомендация автора."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 699819052)"
+
+  - key: T2-02
+    corpus_type: type2
+    title: "UG App – Halloween sale with emotional design"
+    A:
+      exp_ids: ["6701"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=731485619"
+      jira: UMN-9762
+      dates: "2025-10-08.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "финальный анализ после ранней раскатки — чтение затруднено"
+        result_class: inconclusive   # раскатали рано; финально — незначимо + каннибализация
+        ci: "не извлечён"
+      plan_fact:
+        plan: "ARPU +7% от эмоционального дизайна сезонного сценария"
+        fact: "финально значимых различий нет; обнаружена каннибализация"
+      decision: rolled-out   # раскатан ДО финального анализа — процессный анти-паттерн
+    B:
+      flow_stage: "S3–S4"
+      segment: "free (без Pro/Pro+), App"
+      trigger_eligibility: "сезонное окно (Halloween)"
+      surface: "sale splash + Explore banner + анимация на входе в paywall"
+      mechanism: "copy/design (эмоциональный дизайн, звук, хэптика)"
+      offer: "сезонная скидка"
+      behavior: "эмоциональная подача оффера → выше воспринимаемая ценность → конверсия"
+      metric: "CR from DAU to Charge"
+      guardrails: "каннибализация других источников"
+      money_chain: "exposure → paywall → charge; D0–D14; net"
+    C:
+      outcome: "Значимого эффекта нет; вывод команды — механика уместна для больших разовых событий, не для постоянной интеграции."
+      lesson: "Ранняя раскатка по промежуточным результатам лишает финального чтения (перекликается с уроком зрелости GT-IH-02); эмоциональный дизайн сам по себе не двигает деньги."
+      transfer_bounds: "Сезонные события; вывод про «big events» — интерпретация, не измерение."
+      fact_vs_interpretation: "Факт: незначимость финальных метрик (по аннотации). Интерпретация: пригодность для Black Friday/NY — экстраполяция автора."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 731485619)"
+
+  - key: T2-03
+    corpus_type: type2
+    title: "UG App – XMAS and New Year sales with animation"
+    A:
+      exp_ids: ["6878"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=746536863"
+      jira: UMN-10299
+      dates: "2025-12-09.."
+      iteration_of: "T2-02 (Halloween)"
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: inconclusive
+        ci: "не извлечён; «no statistically significant differences in overall metrics»"
+      plan_fact:
+        plan: "не зафиксирован в зеркале (поле hypothesis пустое)"
+        fact: "var2 (только анимация) раскатан («better revenue/subscribers»); значимых различий в общих метриках нет; прямой вывод о v3 (анимация + Pro+ $24.99) в аннотации не сформулирован"
+      decision: rolled-out
+    B:
+      flow_stage: "S3–S4"
+      segment: "free, App"
+      trigger_eligibility: "сезонное окно (XMAS/NY)"
+      surface: "sale splash + анимация на входе в paywall"
+      mechanism: "copy/design (v2) vs copy/design + price (v3, Pro+ $24.99)"
+      offer: "сезонная скидка; v3 с повышением цены Pro+"
+      behavior: "праздничная анимация → эмоция → конверсия"
+      metric: "CR from DAU to Charge"
+      guardrails: "платформенные различия эффекта"
+      money_chain: "exposure → paywall → charge; D0–D14; net"
+    C:
+      outcome: "Повтор вывода Halloween: значимых различий нет; праздничный эффект платформо-зависим."
+      lesson: "Итерация той же механики на другом событии не изменила вывод — сезонная анимация не money-двигатель."
+      transfer_bounds: "Сезонные окна; v3-вывод смешивает дизайн и цену (два механизма в одной руке)."
+      fact_vs_interpretation: "Факт: раскатка var2 при незначимых метриках. Интерпретация: «suitable for major one-time events» — повтор суждения из T2-02."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 746536863)"
+
+  - key: T2-04
+    corpus_type: type2
+    title: "UG App: explore, sale – Promo block instead of sale banner"
+    A:
+      exp_ids: ["6902"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=746543363"
+      jira: UMN-9885
+      dates: "2025-12-16.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-negative   # And var3 access CR −13% (p=0.023)
+        ci: "And var3 access CR −13% (p=0.023)"
+      plan_fact:
+        plan: "ARPU +65% от персонализации и вариативности офферов в карусели"
+        fact: "аплифта нет; CTR +35–47% (motion) без конверсии; покупки Spotify/Sale/Courses упали"
+      decision: killed
+    B:
+      flow_stage: "S3–S4"
+      segment: "free, iOS+Android"
+      trigger_eligibility: "Explore-экран; карусель с/без автоскролла (8с)"
+      surface: "Explore promo-карусель вместо статичного sale-баннера"
+      mechanism: "new-surface + personalization (вариативный контент карточек)"
+      offer: "sales, Spotify, courses, tuner — микс"
+      behavior: "вариативность и персонализация офферов → больше релевантных кликов → конверсия"
+      metric: "access CR, ARPU"
+      guardrails: "покупки отдельных продуктов из карусели"
+      money_chain: "exposure → click → paywall/store → charge; D0–D14; net"
+    C:
+      outcome: "«Attention inflation, not intent»: движение и вариативность растят клики, но не покупки; концентрированный статичный оффер работал лучше карусели."
+      lesson: "CTR — ложный прокси интента (то же, что paywall→click провал в GT-IH-03); распыление офферов размывает конверсию каждого."
+      transfer_bounds: "Explore-поверхность App; не опровергает персонализацию оффера (тут менялся контент витрины, не условия оффера)."
+      fact_vs_interpretation: "Факт: значимое падение And var3, рост CTR. Интерпретация: «attention inflation» — формулировка автора страницы."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 746543363)"
+
+  - key: T2-05
+    corpus_type: type2
+    title: "UG App: winback right after cancel for all users"
+    A:
+      exp_ids: ["6404", "6863"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=707149083"
+      jira: UMN-9107
+      dates: "2025-07-17.. (3 итерации)"
+      iteration_of: "линия «churn – winback right after cancel» (2024–2025, push-версии)"
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "refunds отслеживались построллаутно"
+        result_class: significant-positive   # iter2 iOS (по аннотации; p-values не извлечены)
+        ci: "не извлечён"
+      plan_fact:
+        plan: "удержать ~9% (iOS) / ~20% (And) отменивших"
+        fact: "iter2 iOS: ARPU +49.3%, access CR +50.9%, charge CR +67.3%; trial share −30.1% (сдвиг в прямую покупку); AOV −11.4%; R7/R14 +2%/+1.4%"
+      decision: rolled-out   # iOS-вариация; тестируют меньшие скидки, следят за refunds
+    B:
+      flow_stage: "S8 → S3 (триггер на этапе cancel, показ сплэша немедленно)"
+      segment: "canceling (trial или подписка, момент отключения автопродления), iOS+Android"
+      trigger_eligibility: "сразу после отмены автопродления; баннер на Explore 24ч после закрытия сплэша"
+      surface: "splash + Explore banner — НЕ interstitial"
+      mechanism: "offer-structure + timing (моментальный оффер в точке отмены)"
+      offer: "скидочный план / promo offer (по итерациям)"
+      behavior: "поймать пользователя в момент решения об уходе → выгодная альтернатива → возврат"
+      metric: "trial→charge %, access CR, charge CR, ARPU"
+      guardrails: "refunds, R7/R14"
+      money_chain: "cancel-event → offer → charge; D0; net"
+    C:
+      outcome: "Сильный адресный эффект на отменившей когорте iOS; раскатано."
+      lesson: "Timing-рычаг: оффер в момент cancel-решения конвертит (ср. sequencing-урок GT-IH-02 — там оффер после исчерпания окна, тут в момент отмены); скидка сдвигает структуру с trial на прямой платёж."
+      transfer_bounds: "Cancel-момент; величины iOS-специфичны; And-эффект в аннотации не зафиксирован."
+      fact_vs_interpretation: "Факт (по аннотации): лифты iter2 iOS. Интерпретация: «timely offer advantageous» — гипотеза-механизм, прямо не изолирована."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 707149083)"
+
+  - key: T2-06
+    corpus_type: type2
+    title: "UG App – Anniversary upgrade splash for Pro subscribers"
+    A:
+      exp_ids: ["6515"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=714438038"
+      jira: UMN-9460
+      dates: "2025-08-26.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-positive   # с багом таргетинга — величины завышены/загрязнены
+        ci: "не извлечён"
+      plan_fact:
+        plan: "ARPU premium-DAU +70–90% без вреда retention"
+        fact: "громадные лифты (iOS ARPU +3914%, And +1000%; CR +3000%/+800%) — НО баг таргетинга включил trial-пользователей, которых надо исключать"
+      decision: rolled-out   # рекомендация: rollout с фиксом (убрать trials из anniversary-воронки)
+    B:
+      flow_stage: "S3–S4 (для сегмента paying — upsell-этап)"
+      segment: "paying (Pro без Courses/Sing), вехи 30/90/180/365 дней подписки"
+      trigger_eligibility: "юбилейная дата подписки; приоритет над Sale Offer"
+      surface: "personalized anniversary splash — НЕ interstitial"
+      mechanism: "offer-structure + personalization (бандл Pro+Courses со скидкой к вехе)"
+      offer: "Pro+Courses bundle, скидка"
+      behavior: "поводная персональная веха → апгрейд бандлом"
+      metric: "anniversary members → upsell %"
+      guardrails: "retention, UX платящих"
+      money_chain: "exposure → upsell charge; D0; net; сегмент paying (upsell, не acquisition)"
+    C:
+      outcome: "Механика работает (масштаб лифтов, вероятно, завышен багом); раскатка с фиксом таргетинга."
+      lesson: "Upsell-сплэш на paying по «поводу» конвертит; величины из прогона с багом сегментации непереносимы (тот же класс артефакта, что iter1 T1-02)."
+      transfer_bounds: "Paying-сегмент; величины до фикса бага — недостоверны; на free/ex-paid не переносится."
+      fact_vs_interpretation: "Факт: наличие эффекта и бага. Интерпретация/осторожность: реальный размер эффекта неизвестен до чистого прогона."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 714438038)"
+
+  - key: T2-07
+    corpus_type: type2
+    title: "UG App – Feature preview paywall (10-second demo)"
+    A:
+      exp_ids: ["6806"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=739174418"
+      jira: UMN-10095
+      dates: "2025-11-20.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-negative
+        ci: "не извлечён; access CR −36% iOS / −28% And (по аннотации)"
+      plan_fact:
+        plan: "рост trial start rate без падения R7 (hands-on снизит психологический трение)"
+        fact: "access CR −36% iOS / −28% And; потери по всей воронке (banner view, click, purchase)"
+      decision: killed
+    B:
+      flow_stage: "S1–S3 (feature-gate: между действием и пейволлом вставлено демо)"
+      segment: "free + ex-paid, App"
+      trigger_eligibility: "тап по закрытой фиче (autoscroll, smartscroll, transpose, simplify, official tab)"
+      surface: "feature paywall с 10с-превью и таймером — НЕ interstitial"
+      mechanism: "timing/friction (отложенный пейволл после пробы фичи)"
+      offer: "стандартные планы"
+      behavior: "дать попробовать → выше воспринимаемая ценность → больше trial starts"
+      metric: "feature → access %"
+      guardrails: "R7, глубина навигации (official tab gating)"
+      money_chain: "feature-intent → delayed paywall → trial → charge; D0–D14; net"
+    C:
+      outcome: "Значимо хуже: демо-пауза добавила трение в момент готовности платить и сломала навигацию по official tabs."
+      lesson: "Пойманный интент нельзя откладывать: вставка шага между желанием фичи и пейволлом теряет конверсию (согласуется с KS-03: лишний шаг воронки = мультипликативный drop-off)."
+      transfer_bounds: "Feature-gate контекст; не опровергает демо-контент в нейтральном контексте (превью до интента)."
+      fact_vs_interpretation: "Факт: падения конверсии. Интерпретация:«психологическое трение» vs «поломка навигации» — двойное объяснение, вклад каждого не изолирован."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 739174418)"
+
+  # ============ TYPE 3 — та же метрика, другой flow или механизм ============
+
+  - key: T3-01
+    corpus_type: type3
+    title: "UG App: paywall – increasing prices for 'whales' (device-tier pricing)"
+    A:
+      exp_ids: ["6026", "6260"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=682712790"
+      jira: UMN-8347
+      dates: "2025-04-22.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: inconclusive   # iter2 «no significant ARPU changes»; мощность/доезд до дизайна из зеркала не восстановимы — powered-null нельзя утверждать до сверки со страницей
+        ci: "не извлечён; ARPPU +7% при charge CR −11% → нет чистого эффекта"
+      plan_fact:
+        plan: "выше цены для mid-high device tier → рост ARPU (выше конверсия и LTV-потенциал)"
+        fact: "iter1: паттерн на флагманах 2024; iter2: значимых изменений ARPU нет — «price increase too high»"
+      decision: killed
+    B:
+      flow_stage: "S6 (условия покупки), сегментация на S2"
+      segment: "free с mid-high девайсами (по storage), iOS+Android"
+      trigger_eligibility: "device-tier определяет ценовую вариацию (A–E)"
+      surface: "стандартные пейволлы App"
+      mechanism: "price (персонализированное повышение по девайсу)"
+      offer: "те же планы по повышенным ценам"
+      behavior: "платёжеспособные (по прокси девайса) стерпят цену выше → ARPU растёт"
+      metric: "ARPU, trial→charge"
+      guardrails: "charge CR (упал −11% — компенсировал ARPPU)"
+      money_chain: "paywall → trial/charge по изменённой цене; D0–D14; net"
+    C:
+      outcome: "Ценовая эластичность съедает повышение: ARPPU-выигрыш компенсируется падением конверсии — нулевой чистый эффект."
+      lesson: "Тот же паттерн эластичности, что And-ветка GT-IH-04 (с обратным знаком цены): изменение цены двигает структуру, не сумму; прокси платёжеспособности (девайс) недостаточен для успешной ценовой дискриминации."
+      transfer_bounds: "App-пейволлы, повышение цены; не переносится на понижение (см. T3-02 — там позитив) и на web."
+      fact_vs_interpretation: "Факт: отсутствие чистого эффекта iter2. Интерпретация: «price increase too high» — вывод автора; форма кривой эластичности не измерена."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 682712790)"
+
+  - key: T3-02
+    corpus_type: type3
+    title: "UG Web: paywall – price decrease for Pro+"
+    A:
+      exp_ids: []   # AB id в зеркале не зафиксирован (web-эксперимент; см. страницу)
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=777835742"
+      jira: UMN-11222
+      dates: "2026-04-03.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "3-летний горизонт — модельная экстраполяция, не наблюдение"
+        result_class: significant-positive   # по аннотации; p-values не извлечены
+        ci: "не извлечён"
+      plan_fact:
+        plan: "+$1K/день выручки от снижения входных цен Pro+ (больше accesses и upsells)"
+        fact: "+3.2% выручки сразу, +6.74% на 3-летнем горизонте (кумулятивный retention-эффект); драйверы: instant-планы +130–160%, бандлы +38%, курсы +27%; comeback offer −20% (компенсировано)"
+      decision: rolled-out
+    B:
+      flow_stage: "S5–S6 (paywall и checkout web-воронки)"
+      segment: "new + unconverted, Web/Desktop"
+      trigger_eligibility: "web-пейволлы и чекаут; не-Pro+ продукты и апсейлы не тронуты"
+      surface: "web paywall + checkout"
+      mechanism: "price (снижение входных цен: monthly $39.99→$24.99, trial $99.99→$39.99)"
+      offer: "Pro+ планы по сниженным ценам"
+      behavior: "ниже входной барьер → больше покупателей и апсейлов"
+      metric: "revenue, accesses (та же денежная цепочка, что у якоря — но web-flow)"
+      guardrails: "comeback offer CR (−20%), качество новой аудитории"
+      money_chain: "paywall → checkout → charge (+upsell-цепочка); D0..3y модель; net"
+    C:
+      outcome: "Снижение цены сработало через объём и апсейлы; долгосрочный эффект — модельный."
+      lesson: "Обратная сторона T3-01/GT-IH-04: на web-воронке снижение цены даёт чистый плюс за счёт объёма; апсейл-цепочка усиливает эффект entry-цены."
+      transfer_bounds: "Web-воронка; 3-летняя цифра — прогноз, не факт; на App-цены напрямую не переносится (другая эластичность, см. GT-IH-04)."
+      fact_vs_interpretation: "Факт: немедленные лифты. Интерпретация/модель: +6.74% на 3 года — экстраполяция ретеншна; в аннотации помечено как расчёт."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 777835742)"
+
+  - key: T3-03
+    corpus_type: type3
+    title: "UG Web — Three-month / Six-month plans"
+    A:
+      exp_ids: []   # AB id в зеркале не зафиксирован
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=785056492"
+      jira: UMN-11210
+      dates: "2026-04-15.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-negative   # var C: subscribers −11.1% (p=0.028), buyers −11.9% (p=0.038)
+        ci: "var C subscribers −11.1% (p=0.028); var B тренды негативны без значимости"
+      plan_fact:
+        plan: "conversion to payment +10–14% без падения retention (ниже входной барьер)"
+        fact: "var C — значимый вред; var B — ARPU −7.1%, revenue $26 472 vs $28 987; планы стали субститутами, не дополнением"
+      decision: killed
+    B:
+      flow_stage: "S5–S6 (состав планов основной web-воронки)"
+      segment: "web-воронка подписки, Web/Desktop"
+      trigger_eligibility: "основная подписочная воронка"
+      surface: "web paywall (plans-config)"
+      mechanism: "offer-structure (добавление коротких планов $19.99/3мес, $24.99/6мес с intro-ценой)"
+      offer: "3м/6м планы с intro-прайсингом"
+      behavior: "ниже финансовый порог входа → больше первых платежей"
+      metric: "conversion to payment, ARPU"
+      guardrails: "retention, структура выручки (годовые instant)"
+      money_chain: "paywall → checkout → charge (короткий цикл продления); D0 + renewal; net"
+    C:
+      outcome: "Короткие планы каннибализировали годовые instant-подписки: значимый вред в var C."
+      lesson: "Новый оффер в меню — субститут, а не дополнение (ср. T3-04: и удаление, и добавление планов ломает баланс меню); trial-механика позитивна, но не компенсирует потерю годовой выручки."
+      transfer_bounds: "Web-меню планов; не переносится на App-пейволлы и на intro-скидку год-плана (T1-06 iter2 — там позитив)."
+      fact_vs_interpretation: "Факт: значимый вред var C. Интерпретация: «substitutes not additions» — механизм, выведенный из структуры сдвига."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 785056492)"
+
+  - key: T3-04
+    corpus_type: type3
+    title: "UG Web: permanent banner — two plans: trial & monthly"
+    A:
+      exp_ids: ["7598"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=805316848"
+      jira: UMN-11941
+      dates: "2026-06-11.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-negative   # по аннотации (величины крупные); p-values не извлечены
+        ci: "не извлечён"
+      plan_fact:
+        plan: "+$500/день net revenue: 2 плана вместо 3 снизят decision friction, скидка уедет в exit-intent"
+        fact: "ARPU −10.4%, ARPPU −4.2%, trial→charge −9.2%; на permanent banner paywall→subscribed −40% отн. (17.35%→10.42%), net revenue −31%"
+      decision: killed
+    B:
+      flow_stage: "S5–S6 (состав планов пейволла)"
+      segment: "web permanent banner воронка"
+      trigger_eligibility: "permanent banner paywall"
+      surface: "web permanent banner paywall + exit-intent"
+      mechanism: "offer-structure (сокращение меню 3→2 плана; перенос скидки в exit-intent)"
+      offer: "annual trial + monthly; сезонная скидка $24.99 в exit-intent"
+      behavior: "меньше выбора → меньше сомнений → выше конверсия"
+      metric: "net revenue, ARPU"
+      guardrails: "trial starts"
+      money_chain: "paywall → checkout → charge; D0–D14; net"
+    C:
+      outcome: "Гипотеза «fewer plans = higher conversion» опровергнута: 2-плановое меню конвертит хуже; удалённый instant-план работал якорем/альтернативой."
+      lesson: "Зеркальный урок к T3-03: менять состав меню опасно в обе стороны; скидочный план в меню — не только канал продаж, но и якорь для остальных."
+      transfer_bounds: "Web permanent banner; не переносится на другие пейволлы без учёта роли якорного плана."
+      fact_vs_interpretation: "Факт: крупные падения. Интерпретация: якорная роль удалённого плана — объяснение автора (правдоподобное, не изолированное)."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 805316848)"
+
+  - key: T3-05
+    corpus_type: type3
+    title: "UG WEB: paywall – 'Flo' like paywall (6 итераций, intro offers)"
+    A:
+      exp_ids: ["6464", "6482", "6743", "6860", "6875", "7091", "7178"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=714421628"
+      jira: UMN-9338
+      dates: "2025-08-11.. (серия итераций)"
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "intro-подписки: контроль wrongful charges (2%) построллаутно"
+        result_class: mixed   # финальная итерация significant-positive; iter 7178/6860 — негатив/null
+        ci: "не извлечён"
+      plan_fact:
+        plan: "gift-экран/intro-оффер после старта триала поднимет trial→charge без вреда апсейлам"
+        fact: "финал (6875, intro на всех воронках): ARPU +12–19%, trial→charge +28–36%, 14d cancel −20%; отвергнуты: paid trial $0.99 (−6% ARPU), 3 плана без тогглов (null, choice overload)"
+      decision: rolled-out   # с монитором: 2% intro-офферов ошибочно чарджились как week
+    B:
+      flow_stage: "S5–S6 (web-пейволл и оффер-цепочка после старта триала)"
+      segment: "web-воронки Pro, Web"
+      trigger_eligibility: "все Pro-пейволлы web; intro-оффер после trial-старта"
+      surface: "web paywall (Flo-стиль), gift-экран"
+      mechanism: "offer-structure (intro instant offer $64.99→$99.99 механика; paid trial; состав планов)"
+      offer: "intro-планы; paid trial $0.99 (отвергнут)"
+      behavior: "момент после решения о триале → апгрейд в годовой instant со скидкой"
+      metric: "trial→charge %, ARPU (та же метрика, что у якорных interstitial-кейсов)"
+      guardrails: "upsells, 14d cancel, wrongful charges"
+      money_chain: "trial start → instant switch/intro → charge; D0–D14 + renewal; net"
+    C:
+      outcome: "Intro-оффер — устойчивый выигрыш на web; paid trial и «3 плана» — нет."
+      lesson: "Cross-flow подтверждение вывода T1-06 iter2 и T3-06: intro/instant структура оффера бьёт триальную по качеству конверсии; choice overload повторяет урок T3-04."
+      transfer_bounds: "Web-воронки; величины по итерациям различны; intro-качество зависит от контроля ошибочных чарджей."
+      fact_vs_interpretation: "Факт: лифты финальной итерации. Интерпретация: «choice overload suspected» — помечено в источнике как подозрение."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 714421628)"
+
+  - key: T3-06
+    corpus_type: type3
+    title: "UG iOS: trial to Instant on internal paywalls"
+    A:
+      exp_ids: ["6326"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=699819693"
+      jira: UMN-8866
+      dates: "2025-06-30.."
+      iteration_of: "перенос механики trial→instant с post-tour на все PRO-пейволлы"
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "долгосрочный renewal/LTV — предмет построллаутного мониторинга"
+        result_class: significant-positive   # по аннотации; p-values не извлечены
+        ci: "не извлечён"
+      plan_fact:
+        plan: "+$500/день выручки (механика доказана ранними экспериментами)"
+        fact: "charge CR +16.4–21.4%; AOV/ARPPU −9.8–13.2%; trial→charge −39.4–39.8%; ранние отмены −42.2–46.1%; subscriber→buyer +11.9–15.7%"
+      decision: rolled-out
+    B:
+      flow_stage: "S6 (структура оффера в момент покупки)"
+      segment: "free на внутренних PRO-пейволлах (не courses/songbooks), iOS"
+      trigger_eligibility: "все PRO feature-пейволлы"
+      surface: "внутренние App-пейволлы"
+      mechanism: "offer-structure (trial→instant: −40% к цене, $24.99 annual, немедленный чардж вместо триала)"
+      offer: "Pro instant $24.99/год"
+      behavior: "заменить отложенный триал немедленной скидочной покупкой → меньше отвала на конверсии триала"
+      metric: "ARPU; charge CR"
+      guardrails: "AOV/ARPPU, отмены, долгосрочный renewal"
+      money_chain: "paywall → instant charge (минуя trial-звено); D0; net"
+    C:
+      outcome: "Instant-структура заменяет трение trial-конверсии немедленным платежом: больше покупателей, ниже чек, меньше ранних отмен."
+      lesson: "Прямой аналог механизма GT-IH-04/T1-08 в другом flow: «drop the trial, promote direct purchase» работает на внутренних пейволлах iOS; цена риска — LTV дискаунт-когорты."
+      transfer_bounds: "iOS внутренние пейволлы; Android-эластичность иная (GT-IH-04); величина скидки — параметр, не константа."
+      fact_vs_interpretation: "Факт: сдвиг структуры конверсии. Интерпретация: долгосрочная EV положительна — при условии renewal, который ещё мониторится."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 699819693)"
+
+  - key: T3-07
+    corpus_type: type3
+    title: "UG Web — checkout size optimization"
+    A:
+      exp_ids: ["7328"]
+      page: "https://alice.mu.se/pages/viewpage.action?pageId=787253507"
+      jira: UMN-11436
+      dates: "2026-04-20.."
+      iteration_of: null
+      validity:
+        srm_ok: "не проверено (зеркало)"
+        maturity_ok: "не проверено (зеркало)"
+        result_class: significant-positive   # по аннотации; p-values не извлечены
+        ci: "не извлечён"
+      plan_fact:
+        plan: "+3% конверсии от компактного чекаута и видимости платёжных кнопок"
+        fact: "var3: ARPU +15.3%, trial→charge +28.4% (+$2.2K/день), charge CR +15.1%; сдвиг платёжного поведения: карта 68.3%→55.7%, PayPal 12%→18.7%"
+      decision: rolled-out
+    B:
+      flow_stage: "S5 (checkout)"
+      segment: "web checkout, Web"
+      trigger_eligibility: "страница чекаута"
+      surface: "web checkout форма"
+      mechanism: "checkout-UX (компактный дизайн; альтернативные платёжные кнопки выше формы карты)"
+      offer: "без изменения офферов"
+      behavior: "видимость привычного способа оплаты → меньше отвала на вводе карты"
+      metric: "conversion rate, ARPU (та же денежная метрика при чисто UX-механизме)"
+      guardrails: "структура платёжных методов"
+      money_chain: "checkout → charge; D0; net"
+    C:
+      outcome: "UX-механизм дал больше плана в 5 раз: доступность alt-payments сняла трение ввода карты."
+      lesson: "Деньги двигаются и без изменения оффера — на звене checkout; сдвиг структуры платёжных методов — индикатор механизма (не просто «компактность»)."
+      transfer_bounds: "Web checkout; на App неприменимо напрямую (нативные стор-диалоги); эффект зависит от доли пользователей alt-payments."
+      fact_vs_interpretation: "Факт: лифты и сдвиг метода оплаты. Интерпретация: атрибуция эффекта видимости кнопок (а не компактности) — вывод из сравнения вариаций."
+    source_confidence: mirror-annotation
+    source: "context/hypotheses (id 787253507)"

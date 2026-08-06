@@ -1,0 +1,5 @@
+experiment_id,client,segment,variation_pair,final_dt,"control arpu, $","test arpu, $","arpu lift, %","ci low, %","ci high, %",pvalue
+4803.0,UG_WEB,Total,1 vs 2,2024-07-08,1.462,1.4176,-303.17,-16.35,7.48,0.466
+7268.0,UG_WEB,Total,1 vs 2,2026-04-29,1.2055,1.2607,458.44,-3.84,14.89,0.2474
+7502.0,UG_WEB,Total,1 vs 2,2026-06-08,1.5295,1.3907,-907.44,-31.36,3.6,0.1197
+7502.0,UG_WEB,Total,1 vs 3,2026-06-08,1.5295,1.3419,-1226.66,-38.72,1.19,0.0654

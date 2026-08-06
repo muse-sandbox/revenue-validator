@@ -1,0 +1,2007 @@
+<p>
+<br />
+</p>
+<ac:structured-macro ac:name="details" ac:schema-version="1" ac:macro-id="d2d75310-30dd-4418-b8d5-97624852a722">
+<ac:rich-text-body>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th>Link to OKR</th>
+<td>
+<p>
+<br />
+</p>
+</td>
+</tr>
+<tr>
+<th>Status</th>
+<td>
+<div class="content-wrapper">
+<p class="p1">
+<ac:structured-macro ac:name="jira" ac:schema-version="1" ac:macro-id="4983600e-aa4c-4502-acc7-353a39c1fc0f">
+<ac:parameter ac:name="server">Jira</ac:parameter>
+<ac:parameter ac:name="columnIds">issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution</ac:parameter>
+<ac:parameter ac:name="columns">key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution</ac:parameter>
+<ac:parameter ac:name="serverId">d1985a03-3c98-365b-8107-f4cdc34a26f1</ac:parameter>
+<ac:parameter ac:name="key">UMN-12380</ac:parameter>
+</ac:structured-macro>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<th>DRI / Project owner</th>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:link>
+<ri:user ri:userkey="308924de99aa6c1f019a81a6ac900010" />
+</ac:link> </p>
+</div>
+</td>
+</tr>
+<tr>
+<th>
+<div class="content-wrapper">
+<p>Team</p>
+</div>
+</th>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:link>
+<ri:user ri:userkey="308924de8130e6fa0186bb80ba73006d" />
+</ac:link> <ac:link>
+<ri:user ri:userkey="308924de90068a4e0190255702be00a4" />
+</ac:link> </p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</ac:rich-text-body>
+</ac:structured-macro>
+<p>
+<ac:structured-macro ac:name="toc" ac:schema-version="1" ac:macro-id="5614d8d2-d0ff-4a5f-b90f-38432e58c650" />
+</p>
+<h1>Pitch</h1>
+<h2>Context &amp; Idea</h2>
+<p>
+<strong>Goal.</strong> Удержать рост конверсии предыдущего экспериимента по первой сессии, не уронив ретеншн.  </p>
+<p>
+<strong>Foundation.</strong> The relaunched guided first-song flow increased total ARPU by sending more users into the Official Tabs purchase funnel. The gain was volume-driven: trial-to-charge and AOV did not improve, while D1 retention and tab-view engagement declined in Variation 2.</p>
+<p>
+<strong>Idea.</strong> Reuse iteration 3 variation B, after showing an official tab add the feature demonstration screens with a setup path and then show Paywall 2. </p>
+<h3>Questions &amp; Answers</h3>
+<ul>
+<li data-uuid="ee21a1a8-67ac-4f88-a760-46d9a18e0396">
+<strong>How many capabilities we should show ? </strong>One compact setup surface shown as a continuation of the setup: Simplify + Transpose for Chords users, none for Tabs users (their demand sits in locked playback and is addressed on the paywall). See What I checked, items 4–6.</li>
+<li>
+<p>
+<strong>Which capabilities enter the setup path?</strong> Answered by the feature-demand research (What I checked, items 4–6): the setup branches by chosen format — Chords users get one compact Simplify + Transpose screen; Tabs users get no paid-catalog setup step and go to a paywall that leads with playback value (Smartscroll / Autoscroll). Selection criterion stays: the setting must produce value in the free session, not advertise a paid feature.</p>
+</li>
+<li>
+<p>
+<strong>Do we need a third arm (variation B as is) for a direct mechanism comparison?</strong> Open design question.</p>
+</li>
+<li>
+<p>
+<strong>Retention guardrail threshold.</strong> Blocking; requires the acceptable Retention 14d decrease to be fixed (Decision needed, item 2).</p>
+</li>
+</ul>
+<h2>Confidence research</h2>
+<p>Prior evidence: the #7622 first-session research below. Statistical robustness of the prior evidence:</p>
+<ul>
+<li>
+<p>The Retention 14d decline is significant on the full bucketed cohort: iOS B −1.60 pp (p = 0.004), Android B −2.26 pp (p = 7·10⁻⁵), Android C −2.39 pp (p = 2.4·10⁻⁵). In the dominant segment — users who reached the paywall without purchasing (81% of the cohort) — the decline is −1.79 pp (p = 0.0037).</p>
+</li>
+<li>
+<p>The ARPU lift is reproduced in two independent mature readings: +22.8% (p = 0.011) and +24.2% (p = 0.001). It comes from conversion (members → subscribers +13.1%), not from the average check (AOV +3.1%, not significant).</p>
+</li>
+<li>
+<p>Randomization at the exposure boundary is clean: no sample ratio mismatch was detected.</p>
+</li>
+<li>
+<p>Composition decomposition: variation B brings +0.75 pp more early subscribers, and they retain better than average, so the composition shift masks the harm (its contribution is −0.23 pp); the mix-adjusted decline is −1.82 pp, larger than the raw one.</p>
+</li>
+</ul>
+<h2>What I checked</h2>
+<p>I run a research based on <a href="https://alice.mu.se/spaces/CRO/pages/777817235/2026-03-21+UG+App+First+session+flow+update+2026-XX-XX#expand-7256">First session 3rd iteration</a> to check what happened with users retention and does current idea could fix that. </p>
+<p>
+<strong>1. Does the decline persist after data validation?</strong>
+</p>
+<p>I checked data maturity, randomization, cohort definitions, and user composition. After switching to the full bucketed cohort, the difference on retention persisted: −1.60 pp on iOS and −2.26 pp on Android. The earlier conclusion that &quot;there is no effect on Android&quot; turned out to be a consequence of a biased cohort. The change in user composition does not explain the observed difference and, per the decomposition, partially masks it.</p>
+<p>
+<strong>2. Do the data support the awareness-gap hypothesis?</strong>
+</p>
+<p>Variation C gave the user more information and choice but did not improve retention relative to B. Other available signals also do not show that additional demonstration of capabilities increases conversion. Therefore the original hypothesis has not been confirmed so far.</p>
+<p>
+<strong>3. In which segment is the difference concentrated?</strong>
+</p>
+<p>The ARPU growth is driven primarily by higher conversion, not by the average check. Within the first three days, about 7% of B users subscribed — they retain better than average. Among the 81% who reached the paywall but did not purchase, Retention 14d is 1.79 pp lower than the equivalent control segment. Among the remaining 12% who did not reach the paywall, no statistically distinguishable difference was found.</p>
+<p>The segments are defined by behavior after entering the experiment: the result shows where the difference is concentrated, but does not prove that the paywall caused it.</p>
+<p>
+<strong>4. Is the retention harm uniform across user levels? (exp 7622, tour-level split)</strong>
+</p>
+<p>User level is a pre-treatment covariate, so between-arm comparisons within a level are clean.</p>
+<ul>
+<li>
+<p>On iOS the entire retention damage is concentrated in Intermediate: Retention 14d −4.9 pp (p &lt; 0.001) with zero purchase gain. This is the only result that survives correction for multiplicity (24 comparisons); the other segment-level signals are directional.</p>
+</li>
+<li>
+<p>The purchase lift is concentrated in Beginner: day-0 purchases +1.62 pp (5.43% → 7.05%, p = 0.001). The chooser (variation C) returns Beginner retention to the control level (+2.08 pp, p = 0.034).</p>
+</li>
+<li>
+<p>On Android both Beginner (−3.15 pp, p = 0.001) and Intermediate (−3.49 pp, p = 0.016) lose retention and the chooser helps neither — an additional argument for an iOS-only launch.</p>
+</li>
+<li>
+<p>Consequence: we keep a single flow and use level only as an analytical slice in the readout; the primary decision is made on overall iOS ARPU and Retention 14d.</p>
+</li>
+</ul>
+<p>
+<strong>5. Where does the day-0 funnel lose users?</strong>
+</p>
+<ul>
+<li>
+<p>The format-choice step costs about 1% of users at every level. One more screen shown as a continuation of the setup is cheap, which supports collapsing the feature demonstration into the setup path instead of adding standalone demo screens.</p>
+</li>
+<li>
+<p>The largest drop is Paywall 2 → 60 seconds with the tab: 34–40% of users never get there. The post-dismiss chooser significantly improves this transition (Beginner 61.5% → 65.8%, Intermediate 65.7% → 72.8%), so after a paywall dismiss we keep the chooser and add no repeated pressure.</p>
+</li>
+</ul>
+<p>
+<strong>6. Which locked features do users actually touch, by chosen format?</strong>
+</p>
+<p>Day-0 taps on locked Pro features (a tap fires a Paywall View with that feature’s value), split by the answer to “How do you want to play?”. About 78% of users choose Chords and 22% choose Tabs; the ranges cover variations B and C.</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th>Feature</th>
+<th>Tabs users</th>
+<th>Chords users</th>
+</tr>
+<tr>
+<td>Smartscroll</td>
+<td>27–30%</td>
+<td>35–40%</td>
+</tr>
+<tr>
+<td>Autoscroll</td>
+<td>21–22%</td>
+<td>15–16%</td>
+</tr>
+<tr>
+<td>Simplify</td>
+<td>10%</td>
+<td>15–17%</td>
+</tr>
+<tr>
+<td>Transpose</td>
+<td>8–9%</td>
+<td>14–16%</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>
+<p>For Tabs users demand sits in locked playback: Smartscroll + Autoscroll account for ≈40% of touches, and Autoscroll is the only feature where Tabs users lead Chords users (+6 pp). Simplify and Transpose serve Chords users.</p>
+</li>
+<li>
+<p>Consequence for the flow: the setup branches by format. Chords users get one compact Simplify / Transpose setup screen; for Tabs users no paid-catalog setting has meaningful demand, so their branch goes straight to a paywall that leads with playback value.</p>
+</li>
+<li>
+<p>Secondary slice by level: Simplify is a beginner feature (14.5% Beginner → 10.9% Intermediate → 5.2% Advanced); Transpose peaks at Intermediate (16.8%) and, per the format split, belongs to Chords users adjusting the key for singing. Smartscroll demand is highest among Beginner (33.3%).</p>
+</li>
+<li>
+<p>Caveat: the touch proxy sees only locked Pro features; demand for free tools (tempo, loop) is invisible to it.</p>
+</li>
+</ul>
+<p>
+<br />
+</p>
+<h2>Reach &amp; Impact</h2>
+<h3>Reach</h3>
+<p>
+<strong>Audience.</strong> New users in their first session on iOS (UGT_IOS), free users. The flow change applies inside the onboarding tour after the official tab is shown, so the split point is the same as in exp #7622 (first session, iteration 3 relaunch); the exposure event there is <code>Tour Post Decline Gift Offer Close</code> (admin <code>experiment_event_start</code>, confirmed on the iteration-3 design page).</p>
+<p>
+<strong>Current daily audience</strong> (avg over the last 7 closed days, 2026-07-16 → 2026-07-22, <code>default.ug_installs</code>):</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th style="text-align: left;">Metric (avg / day)</th>
+<th style="text-align: left;">Value</th>
+</tr>
+<tr>
+<td>First sessions on UGT_IOS (Tour Start), users</td>
+<td>≈ 15,400</td>
+</tr>
+<tr>
+<td>— organic / referral / paid</td>
+<td>8,550 / 4,500 / 2,320</td>
+</tr>
+<tr>
+<td>— fresh new installs (rest are reinstalls)</td>
+<td>≈ 11,100</td>
+</tr>
+<tr>
+<td>Exposure-point reach at full rollout (free users firing the exposure event; exp 7622 audience reconstruction, validated 1:1 vs the bucketed cohort)</td>
+<td>≈ 7,700</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Measured reach in exp #7622</strong> (2026-06-19 → 2026-07-10, iOS ≥ 7.3.15, 3 variations, activation = <code>Tour Post Decline Gift Offer Close</code>):</p>
+<ul>
+<li>bucketed cohort over the 22-day run: ≈ 73.5k users, ≈ 24.5k per variation;</li>
+<li>plateau (Jun 30 – Jul 5): ≈ 5,000 activated users / day in total across variations (≈ 1,680 / day per variation) at the experiment traffic share;</li>
+<li>the first ~10 days show a version-adoption ramp (≈ 2,400–2,800 / day): a new experiment gated to a fresh app version will repeat this ramp;</li>
+<li>at full rollout the same audience yields ≈ 7,700 free iOS users / day — about half of all daily first sessions pass the exposure point with free rights.</li>
+</ul>
+<p>
+<strong>Is the audience sufficient?</strong> Yes. Exp #7622 accumulated ≈ 73.5k bucketed users (≈ 24.5k per variation) in 22 days and detected ARPU +17.25% (p = 0.002; mature readings +22.8%, p = 0.011 and +24.2%, p = 0.001) and Retention 14d −1.60 pp (p = 0.004). The binding metric for this iteration is the Retention 14d guardrail (pp-level effects), which this very allocation already resolved; ARPU-level effects need less sample.</p>
+<p>
+<strong>Largest possible segment.</strong> Keep eligibility maximal: all new first sessions on UGT_IOS (organic + referral + paid, including reinstalls), the standard Total segment (pro_rights: free), as many free slots as slot coordination allows. Do not gate by country or user level — user level stays an analytical slice in the readout (see What I checked, item 4).</p>
+<p>
+<em>Sources: daily first sessions — <code>default.ug_installs</code>; activation — exp 7622 exposure events in <code>default.ug_rt_events_app</code> (queried 2026-07-23); full-rollout reach — exp 7622 design page, Forecast (per day).</em>
+</p>
+<h3>Impact</h3>
+<p>
+<strong>Target metrics.</strong> Goal — <code>Total ARPU / exposed, $</code> (14d): hold the variation-B level from exp #7622. Guardrail — <code>Retention 14d, %</code> (binding; the acceptable decrease threshold is pending in the decision protocol, see Decision needed). Proxies — <code>members → subscribers, %</code> and <code>members → buyers, %</code>.</p>
+<p>
+<strong>Current values</strong> (exp #7622 iteration 3, iOS, exposed cohort; snapshot 2026-07-10, ≈ 24.5k users per variation):</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th style="text-align: left;">Metric</th>
+<th style="text-align: left;">Control (A)</th>
+<th style="text-align: left;">Variation B</th>
+<th style="text-align: left;">diff</th>
+</tr>
+<tr>
+<td>ARPU, $</td>
+<td>$0.66</td>
+<td>$0.77</td>
+<td>17.25% (p = 0.002); mature readings 22.8% / 24.2%</td>
+</tr>
+<tr>
+<td>members → subscribers, %</td>
+<td>6.49%</td>
+<td>7.34%</td>
+<td>13.11% (p &lt; 0.001)</td>
+</tr>
+<tr>
+<td>members → buyers, %</td>
+<td>3.66%</td>
+<td>4.17%</td>
+<td>13.87% (p = 0.004)</td>
+</tr>
+<tr>
+<td>AOV, $</td>
+<td>$17.76</td>
+<td>$18.32</td>
+<td>3.14% (not significant)</td>
+</tr>
+<tr>
+<td>Retention 14d, %</td>
+<td>37.58%</td>
+<td>35.74%</td>
+<td>−1.84 pp (p &lt; 0.001); −1.60 pp on the full bucketed cohort</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Room for change.</strong> The B lift is volume-driven (conversion, not the average check): members → subscribers is ≈ 7%, nowhere near a ceiling, so holding the conversion gain is realistic; the metric with the real risk is the retention guardrail.</p>
+<p>
+<strong>A/B model = forecast</strong> (iOS, per day at 100% rollout, 7,699 exposed users / day, from the iteration-3 Forecast):</p>
+<ul>
+<li>control flow: ≈ $5,080 / day (7,699 × $0.66);</li>
+<li>new variation at B-level monetization: ≈ $5,960 / day (+17.25%, preliminary snapshot) up to ≈ $6,240 / day (+22.8%, mature reading);</li>
+<li>incremental: ≈ +$880…+$1,160 / day (≈ +$0.32–0.42M / year) — conditional on ARPU holding at the B level while the setup path restores retention.</li>
+</ul>
+<p>
+<strong>Rationale.</strong> The test reuses the variation-B funnel (official tab → Paywall 2) and only replaces the passive demonstration with a setup path, so the conversion mechanism is preserved; the day-0 funnel research shows one extra setup-style screen costs ≈ 1% of users per step (What I checked, item 5), which the personalized paywall is expected to offset. The demo screens target the retention harm concentrated in paywall non-purchasers (−1.79 pp, 81% of the cohort) and Intermediate users (What I checked, items 3–4). Main risk: the setup step dampens paywall pressure and ARPU regresses toward control — hence the goal is holding the B level, not a further lift.</p>
+<p>No additional traffic is expected from the change (first-session flow only, no acquisition effect).</p>
+<h2>Hypothesis</h2>
+<p>If we replace the variation B guided demonstration with a setup path of capabilities on Official Tabs followed by a paywall personalized by the selected settings, for new users in their first session on iOS, we expect ARPU to stay at least at the variation B level and Retention 14d not to fall below control by more than the threshold from the decision protocol, because the user reaches the paywall after receiving value and with a personal context (mechanism — product assumption, untested).</p>
+<p>
+<strong>Expected lifts vs control (A), iOS, exposed cohort — from the exp #7622 variation-B results the test must hold:</strong>
+</p>
+<ul>
+<li>
+<code>Total ARPU / exposed, $</code>: <strong>+20% vs control</strong> (hold the B level: +17.25% preliminary, +22.8% / +24.2% mature readings; $0.66 → ≈ $0.79) — the goal metric;</li>
+<li>
+<code>members → subscribers, %</code>: <strong>+13% vs control</strong> (6.49% → ≈ 7.3%, the B level) — the conversion engine of the ARPU lift;</li>
+<li>
+<code>members → buyers, %</code>: <strong>+14% vs control</strong> (3.66% → ≈ 4.2%, the B level);</li>
+<li>
+<code>AOV, $</code>: <strong>flat</strong> (the prior lift was volume-driven; no check growth is claimed);</li>
+<li>
+<code>Retention 14d, %</code>: <strong>above variation B, within the decision-protocol threshold of control</strong> — B lost −1.60 pp (p = 0.004) vs control 37.58%; the setup path must recover most of that. The exact acceptable decrease is pending in the decision protocol (Decision needed, item 2); until fixed we treat −0.5 pp as the working upper bound of an acceptable loss.</li>
+</ul>
+<h2>Experiment design</h2>
+<p>
+<strong>Variations</strong>
+</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th>Variation</th>
+<th>First-session flow after the exposure point</th>
+<th>Split</th>
+</tr>
+<tr>
+<td>
+<strong>A — control</strong>
+</td>
+<td>Current production first session (exp #7622 control experience): no guided first-song flow.</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>
+<strong>B — setup path</strong>
+</td>
+<td>Exp #7622 variation-B guided flow with the passive demonstration replaced by the feature micro-demo: Chords → official tab → demo steps (Backing track, Strumming, Simplify, Play) → Paywall 2; Tabs → official tab → Paywall 2. A full skip reproduces the variation-B experience.</td>
+<td>50%</td>
+</tr>
+</tbody>
+</table>
+<ac:structured-macro ac:name="ui-expand" ac:schema-version="1" ac:macro-id="8fa4c3d6-6862-4de4-b6c1-2d0e2dee6d7d">
+<ac:parameter ac:name="expanded">true</ac:parameter>
+<ac:parameter ac:name="title">Iteration #1</ac:parameter>
+<ac:rich-text-body>
+<p>
+<strong>Sized 2026-07-31 on the measured exp #7622 final reading</strong> (UGT_IOS, segment Total, result dt 2026-07-10 — the same calculator pipeline the readout will use; inputs and derivations: <a href="https://redash.ultimate-guitar.com/queries/28667">design calc</a>). α 0.05 two-sided, power 0.8, 2 variations (A control + B setup path) 50/50, no multiplicity correction. Goal and proxy lifts are the Hypothesis targets (hold the variation-B level). The ARPU sizing uses the measured user-level SD $4.21, derived from the stored CI of the exp #7622 ARPU diff (SE $0.0380, members 24,685 / 24,316). Baselines are the sloperator reading; the Impact section quotes $0.66 / 37.58% from the research bucketed-cohort definitions — the sizing is insensitive to that difference.</p>
+<p>
+<strong>The guardrail is the binding metric.</strong> It is sized to detect a −1.0 pp Retention 14d drop (lift -2.37%) — between the working acceptable bound (−0.5 pp) and the measured B-level harm (−2.11 pp on this metric definition). Certifying −0.5 pp non-inferiority directly would take ≈152,849 users per variation — infeasible. At the binding sample the design also detects an ARPU lift of 12.6% (the goal needs 20%) and sees the full B-level retention harm with power ≈ 1.</p>
+<p>
+<strong>Duration is the calendar run</strong> = enrollment + 14 (the 14-day ARPU / retention windows must close) + 2 settle. Enrollment is read off the measured exp #7622 accrual at the exposure event <code>Tour Post Decline Gift Offer Close</code> (version-adoption ramp ≈ 2.4k/day on days 1–10, plateau ≈ 5.0k/day, at the exp #7622 slot share; a new version-gated experiment repeats this ramp). Binding enrollment is 23 days for 76,293 bucketed users — the measured 22-day curve reached 73,525, the small tail is extrapolated at the plateau rate. Adding a third variation (B as is, for a direct mechanism comparison) at an equal split pushes binding enrollment to ≈31 days (calendar ≈47) — decide per the open design question before slot booking.</p>
+<table class="wrapped">
+<thead>
+<tr>
+<th class="highlight-#eae6ff confluenceTd" colspan="5" data-highlight-colour="#eae6ff" style="text-align: center;">
+<p>
+<strong>UGT_IOS</strong>
+</p>
+</th>
+</tr>
+<tr>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" rowspan="2" style="text-align: left;">
+<p>
+<strong>Metrics</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Goal</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Proxy</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Proxy</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Guardrail</strong>
+</p>
+</th>
+</tr>
+<tr>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Total ARPU / exposed, $</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>members → subscribers, %</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>members → buyers, %</strong>
+</p>
+</th>
+<th class="highlight-#eae6ff confluenceTd" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Retention 14d, %</strong>
+</p>
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Design / each metric</strong>
+</p>
+</td>
+<td style="text-align: right;font-style: italic;">
+<p>
+<a href="https://redash.ultimate-guitar.com/queries/28667">design calc</a>
+</p>
+</td>
+<td style="text-align: right;font-style: italic;">
+<p>
+<a href="https://redash.ultimate-guitar.com/queries/28667">design calc</a>
+</p>
+</td>
+<td style="text-align: right;font-style: italic;">
+<p>
+<a href="https://redash.ultimate-guitar.com/queries/28667">design calc</a>
+</p>
+</td>
+<td style="text-align: right;font-style: italic;">
+<p>
+<a href="https://redash.ultimate-guitar.com/queries/28667">design calc</a>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Baseline</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>$0.68</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>6.49%</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>3.76%</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>42.14%</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Lift, %</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>20.00%</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>13.00%</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>14.00%</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>-2.37 (detect.)</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>MDE</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.032</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.033</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.027</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.020</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Power</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.80</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.80</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.80</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.80</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Alpha</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.05</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.05</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.05</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>0.05</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Sample size (per variation)</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>15,041</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>14,167</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>21,880</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>38,147</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Duration (days)</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>28</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>28</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>31</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>39</em>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" colspan="5" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Design summary</strong>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Sample</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<strong>
+<em>38,147</em>
+</strong>
+</p>
+</td>
+</tr>
+<tr>
+<td bgcolor="#eae6ff" class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: left;">
+<p>
+<strong>Days</strong>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<em>—</em>
+</p>
+</td>
+<td style="text-align: right;">
+<p>
+<strong>
+<em>39</em>
+</strong>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h1>
+<span>Description of the Solution &amp; Mockups</span>
+</h1>
+<h2>Solution</h2>
+<p>
+<strong>Flow Version B</strong>
+</p>
+<ul>
+<li data-uuid="eed41ce4-b191-4e25-a634-e653290acb07">Paywall 1</li>
+<li data-uuid="168fa1cc-cad7-4d4f-a4f9-0d634caaf411">Tour Post Decline Gift Offer Close</li>
+<li data-uuid="152cca93-ec00-460b-9c30-dcccd2aa42d3">Pick your first song</li>
+<li data-uuid="4d56697e-b2c3-4c77-abbe-60f8c6c04610">How do you want to play?</li>
+<li data-uuid="d838982c-b8f3-4848-951a-fcee959dbc29">Tabs → Paywall 2</li>
+<li data-uuid="7cf28f7a-082a-4c06-9248-20e3af14b0c2">Chords ↓</li>
+<li data-uuid="e59d63bc-9cae-43a1-a2ef-b9765cc47104">Loader</li>
+<li data-uuid="73a9113a-6c37-4218-93c6-06571c9b1bfd">Official Tab for 2 sec (as is — same as when a free user opens an official tab and then sees the paywall)</li>
+<li data-uuid="4c31f0fb-9978-44ad-ac3f-3799d0626093">Tap Backing track to hear the music — if available</li>
+<li data-uuid="10d51622-d5ec-430f-b52b-d9529e2614cb">Add the rhythm — if available</li>
+<li data-uuid="fffd6e5d-140e-4433-bfcd-2aa9eedd90ec">Follow the arrows</li>
+<li data-uuid="5a61d847-4802-49d9-a3ec-d3598377b62b">Tap Simplify for easier chords — if available</li>
+<li data-uuid="d29f3dfe-66f4-4bfc-b3d9-ef1e81fd929c">Tap Play to start</li>
+<li data-uuid="840b93a8-b7d3-45ec-90b5-fc5e86a05c42">Paywall 2</li>
+<li data-uuid="bc5afb02-a1f7-43db-afd5-f44957104261">[end of exp; if the user dismisses the paywall → move to Explore]</li>
+</ul>
+<p>The flow exists only for users who choose Chords. Users who choose Tabs get the tab, then the paywall — nothing else. Users who choose Chords get the tab, the demo, and only then the paywall.</p>
+<p>The path is linear; there is no way back. Every screen has two exits: tap the feature button or tap Continue (the ✕ on the tooltip switches the screen to the Continue state). Details below.</p>
+<p>There is no exit from the flow that bypasses the paywall: a full skip reproduces the variation-B experience (tab → Paywall 2); the exit to Explore is the paywall dismiss.</p>
+<p>
+<strong>How the screens work:</strong>
+</p>
+<p>- Tab screen. While a step overlay is active, the entire tab UI is disabled except the controls in focus. Taps on disabled elements do nothing.<br />- Close ✕ on the tooltip: switches the screen to the state with the Continue button, without any action on the page<br />- Backing track: after the download finishes, the button state and the tooltip are updated and the Continue button is shown.<br />- Simplify: the button and the block of chords that change are highlighted simultaneously. The user can toggle Simplify on/off multiple times before tapping Continue; everything else stays disabled.<br />- Play (final demo step): the tab plays for 8 seconds; Pause or any other tap ends the demonstration early and opens the paywall. Tap attempts on disabled elements during Play are collected in analytics.<br />- Fail-forward. Any component failure auto-completes or skips its screen.<br />- If a feature is unavailable for the song, the step is skipped. For example, Simplify is unavailable for ~27% of songs.<br />- Paid features are unlocked for the demo session. All other features remain unavailable.</p>
+<p>
+<br />
+</p>
+<h2>Mockups &amp; <span style="color:var(--ds-text,#172b4d);">Texts</span>
+</h2>
+<p>
+<span style="color:var(--ds-text,#172b4d);">
+<a href="https://www.figma.com/design/Uw40WaAnC3Y95zEmGnri2P/App--exps?node-id=2836-56562">FIGMA</a>
+</span>
+</p>
+<table class="wrapped relative-table" style="width: 348.514%;">
+<colgroup>
+<col style="width: 1.14714%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49173%;" />
+<col style="width: 5.49339%;" />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<div class="content-wrapper">
+<p>
+<em>А</em>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_017.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_019.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<br />
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td>
+<div class="content-wrapper">
+<p>
+<em>В</em>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_017.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_019.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_020.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_021.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_022.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_023.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_024.jpg" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_025.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_026.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_027.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_028.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_029.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_031.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_032.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_033.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_034.png" />
+</ac:image>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<ac:image ac:width="200">
+<ri:attachment ri:filename="screen_035.png" />
+</ac:image>
+</p>
+</div>
+</td>
+</tr>
+<tr>
+<td>comments</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Paywall 1 — as is.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Gift offer — as is. Closing it is the exposure point (Tour Post Decline Gift Offer Close, same as exp #7622).</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Pick your first song — as is (iteration-3 flow).</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Search — as is.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Search results — as is.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Format branch: Tabs → Paywall 2 right away, no demo. Chords → loader and the demo flow. The path is linear; there is no way back.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Loader — as is.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Showing the tab for 1–2 sec (as is — same as a free user opening an official tab), then the first tooltip. </span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Backing track — skipped if unavailable for the song. Exits: tap the button / Continue. User tapped Backing track →</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>→ the backing track downloads; after the download the button state and the tooltip are updated and the Continue button is shown; Continue leads to the next step. Any component failure auto-completes the step (fail-forward).</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Add the rhythm (Strumming) — skipped if unavailable. Same exits: tap / Continue.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Strumming pattern opens; Continue → next step.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Simplify — paid feature unlocked for the demo; skipped if unavailable for the song (~27% of songs). The button and the block of chords that change are highlighted simultaneously.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Simplified state: show only the chords that changed, on the first screen without scrolling; there is also a Show all button — we can show the expanded state right away. The user can toggle Simplify on/off multiple times before Continue; everything else stays disabled.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Tap Play to start.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Play started: plays for 8 sec, everything else is disabled. Pause or any other tap ends the demonstration early and opens the paywall; tap attempts on disabled elements are tracked.</span>
+</p>
+</div>
+</td>
+<td>
+<div class="content-wrapper">
+<p>
+<span>Paywall 2 — end of exp; dismiss → Explore. No exit from the flow bypasses the paywall: a full skip reproduces the variation-B experience (tab → Paywall 2).</span>
+</p>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Analytics</h2>
+<ac:structured-macro ac:name="ui-expand" ac:schema-version="1" ac:macro-id="6e07a072-1d14-4d09-9c0a-2b29480ef5fd">
+<ac:parameter ac:name="expanded">true</ac:parameter>
+<ac:parameter ac:name="title">Iteration #1</ac:parameter>
+<ac:rich-text-body>
+<p>
+<strong>Activation Event:</strong> <code>App Experiment Start</code>
+</p>
+<p>
+<strong>Activation Conditions:</strong> iOS (<code>UGT_IOS</code>) users who have never subscribed, are trial-eligible, and did not skip the tour.</p>
+<table class="wrapped">
+<tbody>
+<tr>
+<th>#</th>
+<th>event</th>
+<th>Parameters</th>
+<th>Comments</th>
+</tr>
+<tr>
+<td>1</td>
+<td>
+<code>App Experiment Start</code>
+</td>
+<td>
+<code>item_id</code>: &lt;experiment id&gt;</td>
+<td>Activation event. Fire once per eligible user in every variation including control, from the same code path, when the user leaves the post-decline second-paywall funnel without a subscription (closes the gift-offer view / cancels the paywall). Set the admin <code>experiment_event_start</code> to this event.</td>
+</tr>
+<tr>
+<td>2</td>
+<td>
+<code>Tab Official Open</code>
+</td>
+<td>
+<code>params.key</code>: ['has_backing_track', 'has_strumming', 'has_simplify']; <code>params.value</code>: [0/1, 0/1, 0/1]; <code>params.str_value</code>: ['0/1', '0/1', '0/1']</td>
+<td>Existing event, new params. Fires in every variation. Each flag = 1 when the opened tab supports that feature, else 0.</td>
+</tr>
+<tr>
+<td>3</td>
+<td>
+<code>Tab Official Post Decline Demo Step View</code>
+</td>
+<td>
+<code>value</code>: 'backing_track' / '<span>backing_track_ready</span>' / 'strumming' / 'arrows' / 'simplify' / '<span>simplified_chords</span>' / 'play'; <code>content_id</code>: official tab id</td>
+<td>New. Fires in the test variation when a demo step overlay is shown, Chords branch only. A step skipped because the feature is unavailable does not fire it.</td>
+</tr>
+<tr>
+<td>4</td>
+<td>
+<code>Tab Official Post Decline Demo Step Success</code>
+</td>
+<td>
+<code>value</code>: same step name as row 3; <code>params.key</code>: ['exit_reason', 'dwell_ms', 'fallback']; <code>params.value</code>: [0, &lt;ms&gt;, 0]; <code>params.str_value</code>: ['feature_tap' / 'continue' / 'tooltip_close' / 'play_interrupt', '&lt;ms&gt;', 'none' / 'unavailable' / 'error']</td>
+<td>New. Fires when the user leaves a demo step. <code>exit_reason</code>: which exit was used; 'play_interrupt' — the user tapped Pause or any other element during the 8-sec Play, the demonstration ended early and the paywall opened. <code>dwell_ms</code>: time on the step. <code>fallback</code>: the fail-forward path that auto-completed the step — send 'error' when a component failed, including a failed backing-track download.</td>
+</tr>
+<tr>
+<td>5</td>
+<td>
+<code>Tab Official Backing Track Click</code>, <code>Tab Strumming Play Click</code>, <code>Tab Simplify Click</code>
+</td>
+<td>
+<code>params.key</code>: ['from_tour']; <code>params.value</code>: [0/1]; <code>params.str_value</code>: ['0/1']</td>
+<td>Existing events, new param. Send <code>from_tour</code> = 1 when the interaction happens inside the tour demo, else 0. <code>from_tour</code> is not implemented on any app event today.</td>
+</tr>
+<tr>
+<td>6</td>
+<td>
+<code>Paywall View</code>, <code>Banner Upgrade View</code>, <code>Banner Purchase Click</code>, <code>Purchase Process Start</code>, <code>Purchase Process Started</code>, <code>Purchase Process Finish</code>, <code>Purchase Process Failed</code>, <code>Purchase Process Canceled</code>
+</td>
+<td>
+<code>value</code>: 'Official Tabs Post Decline'; <code>content_id</code>: official tab id; <code>params.key</code>: ['demo_unlock']; <code>params.value</code>: [0/1]; <code>params.str_value</code>: ['0/1']</td>
+<td>Existing funnel, new value and param. Send the new <code>value</code> for paywalls opened from this flow. <code>demo_unlock</code> = 1 while the demo's temporary feature unlock is active. Implement that unlock client-side only — it must not write to the user's <code>rights</code>.</td>
+</tr>
+<tr>
+<td>7</td>
+<td>
+<code>Tab Official Post Decline Demo Disabled Tap</code>
+</td>
+<td>
+<code>value</code>: name of the tapped disabled control; <code>content_id</code>: official tab id</td>
+<td>New. Fires on a tap attempt on a disabled element during the 8-sec Play. The same tap ends the demonstration and opens the paywall (row 4, <code>exit_reason</code> = 'play_interrupt').</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Readout slice:</strong> separately flag users who rush through the tour — define a fast-clicker segment from <code>dwell_ms</code> on the demo steps (e.g. every step below a threshold) and report their funnel and retention as a dedicated slice.</p>
+<p>
+<strong>Reused unchanged:</strong> <code>Tour What To Play View</code> / <code>Success</code> / <code>Recommendations View</code> / <code>Search Success</code>, <code>Tour How To Play View</code> / <code>Success</code> (<code>value</code> = 'Chords' / 'Tabs'), <code>Tab View</code>, <code>Tab View 60s</code>, <code>Tab Official Chords Click</code>, <code>Tab Official Pro Click</code>, <code>Tour Post Decline Gift View</code> / <code>Gift Offer View</code> / <code>Gift Open Click</code> / <code>Gift Offer Close</code>.</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h2>QA</h2>
+<ul>
+<li>
+<p>Verify the scenario where none of the tutorial features are available for the song (no backing track, no strumming, no Simplify): the demo must be fully skipped and reproduce the variation-B experience (tab → Paywall 2), with no broken overlays or dead ends.</p>
+</li>
+</ul>
+<p>
+<br />
+</p>
+<h1>Execution</h1>
+<p>
+<ac:structured-macro ac:name="jira" ac:schema-version="1" ac:macro-id="591df2bc-3d75-403d-bad3-337658d3919b">
+<ac:parameter ac:name="server">Jira</ac:parameter>
+<ac:parameter ac:name="columnIds">issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution</ac:parameter>
+<ac:parameter ac:name="columns">key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution</ac:parameter>
+<ac:parameter ac:name="maximumIssues">20</ac:parameter>
+<ac:parameter ac:name="jqlQuery">&quot;Epic Link&quot; = UMN-12380 </ac:parameter>
+<ac:parameter ac:name="serverId">d1985a03-3c98-365b-8107-f4cdc34a26f1</ac:parameter>
+</ac:structured-macro>
+</p>
+<h1>Results</h1>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="88233c13-e02b-4b2e-8304-8f1abf120226">
+<ac:rich-text-body>
+<p>This section should cover three key points:</p>
+<ul>
+<li>Decision</li>
+<li>
+<p>Insights / Learnings</p>
+</li>
+<li>Next steps</li>
+</ul>
+<p>These items are detailed in the subsections below, just proceed with filling them out.</p>
+<p>
+<strong>Delete this info block after you fill in the page.</strong>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h2>
+<span>Decision</span>
+</h2>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="9ded94d0-6069-43ea-b4f8-b89203064eee">
+<ac:rich-text-body>
+<p>Answer the following:</p>
+<ul>
+<li>
+<p>Outcome =<strong> </strong>did we reject the null hypothesis or not?</p>
+</li>
+<li>
+<p>Will we roll out the change? And if yes, to everyone or only specific segments? Why?</p>
+</li>
+<li>
+<p>Is there a measurable improvement? Is it statistically significant?</p>
+</li>
+</ul>
+<p>
+<em>Example</em>
+</p>
+<ul>
+<li>
+<p>
+<em>The null hypothesis was<strong> </strong>not rejected, planned improvements were not achieved. DAU increased by<strong> </strong>20%, but the change was not statistically significant.</em>
+</p>
+</li>
+<li>
+<p>
+<em>Decision: We will not roll out the current solution.</em>
+</p>
+</li>
+</ul>
+<p>
+<em>
+<strong>Forecast</strong> </em>
+</p>
+<p>
+<em>This continues the forecast model from the Pitch section, showing expected post-rollout results within a realistic range:</em>
+</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th>
+<em>Metric (on average per day)</em>
+</th>
+<th style="text-align: center;">
+<em>DAU</em>
+</th>
+<th style="text-align: center;">
+<em>ARPU</em>
+</th>
+<th style="text-align: center;">
+<em>Revenue</em>
+</th>
+</tr>
+<tr>
+<td>
+<em>Before changes</em>
+</td>
+<td style="text-align: right;">
+<em>1000</em>
+</td>
+<td style="text-align: right;">
+<em>$0.5</em>
+</td>
+<td style="text-align: right;">
+<em>$500</em>
+</td>
+</tr>
+<tr>
+<td>
+<em>After rollout (based on experiment results)</em>
+</td>
+<td style="text-align: right;">
+<em>1200</em>
+</td>
+<td style="text-align: right;">
+<em>$0.5</em>
+</td>
+<td style="text-align: right;">
+<em>$600</em>
+</td>
+</tr>
+<tr>
+<td>
+<br />
+</td>
+<td style="text-align: right;">
+<em>+200 (150 - 250)</em>
+</td>
+<td style="text-align: right;">
+<br />
+</td>
+<td style="text-align: right;">
+<em>+$100</em>
+</td>
+</tr>
+</tbody>
+</table>
+<p>
+<strong>Delete this info block after you fill in the page.</strong>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h3>Forecast</h3>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<th style="text-align: center;">Metric (on average per day)</th>
+<th style="text-align: center;">DAU</th>
+<th style="text-align: center;">ARPU</th>
+<th style="text-align: center;">Revenue</th>
+</tr>
+<tr>
+<td>Before changes (model)</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+</tr>
+<tr>
+<td>After rollout (based on experiment results)</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+</tr>
+<tr>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+</tr>
+<tr>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+</tr>
+<tr>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+<td>
+<br />
+</td>
+</tr>
+</tbody>
+</table>
+<h2>Insights</h2>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="56b8f79b-04c8-4e9b-8256-3d2c7ee6263a">
+<ac:rich-text-body>
+<p>Answer the following:</p>
+<ul>
+<li>
+<p>What did we learn from the launch?</p>
+<ul>
+<li>
+<p>With a detailed explanation of the results.</p>
+</li>
+<li>
+<p>Did our assumptions work as expected? To what extent? Why or why not?</p>
+</li>
+<li>
+<p>Where did the results deviate from the initial model?</p>
+</li>
+<li>
+<p>How did different segments behave?</p>
+</li>
+</ul>
+</li>
+<li>Use a breakdown format, not just tables.</li>
+<li>
+<em>Example: Metric increased by 10%, but we expected +20% → why → reach was 50% lower than planned → why? → caused by lower banner CTR → why? → caused by piano users not clicking a banner with a guitarist → why? → possibly because they thought the offer was only for guitar players.</em>
+</li>
+<li>Think of this section as LLM-friendly context, insights should be clear enough to be processed and summarized automatically if needed</li>
+</ul>
+<p>
+<em>Example</em>
+</p>
+<p>
+<em>
+<strong>Learnings</strong>
+</em>
+</p>
+<ul>
+<li>
+<p>
+<em>Without instrument-specific personalization of banner visuals, CTR drops by 30% compared to personalized banners.</em>
+</p>
+</li>
+<li>
+<em>etc</em>
+</li>
+</ul>
+<p>
+<em>
+<strong>Research</strong>
+</em>
+</p>
+<p>
+<em>Why did we get only +20% DAU instead of the expected +50%?</em>
+</p>
+<ul>
+<li>
+<p>
+<em>CTR for piano players was below expectations → caused by mismatch between creative (guitar imagery) and user's instrument preference. +supporting materials:</em>
+</p>
+</li>
+</ul>
+<ul>
+<li style="list-style-type: none;">
+<ul>
+<li>
+<p>
+<em>Conversion funnels</em>
+</p>
+</li>
+<li>
+<p>
+<em>CTR breakdown by segment</em>
+</p>
+</li>
+<li>
+<p>
+<em>Visual comparison of creatives used</em>
+</p>
+</li>
+<li>
+<em>etc</em>
+</li>
+</ul>
+</li>
+</ul>
+<p>
+<strong>Delete this info block after you fill in the page.</strong>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:name="ui-expand" ac:schema-version="1" ac:macro-id="3eb05071-f8a1-41a8-adb4-9646af2bb490">
+<ac:parameter ac:name="title">Significance analysis</ac:parameter>
+<ac:rich-text-body>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="e0076da1-63cb-4db7-b974-e333cbbb2e87">
+<ac:rich-text-body>
+<p>
+<span>Results for Goal and Guardrail metrics. Answer to questions: did we achieve the planned changes or not</span>
+</p>
+<p>
+<span>
+<strong>Delete this info block after you fill in the page.</strong>
+</span>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<table class="relative-table wrapped" style="width: 70.9022%;">
+<colgroup>
+<col style="width: 24.6657%;" />
+<col style="width: 15.2034%;" />
+<col style="width: 12.7581%;" />
+<col style="width: 12.2265%;" />
+<col style="width: 13.0771%;" />
+<col style="width: 11.057%;" />
+<col style="width: 11.057%;" />
+</colgroup>
+<tbody>
+<tr>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" title="Background color : Light purple 35%">
+<br />
+</th>
+<th class="highlight-#eae6ff" colspan="6" data-highlight-colour="#eae6ff" title="Background color : Light purple 35%">
+<p style="text-align: center;" title="">Metrics</p>
+</th>
+</tr>
+<tr>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" title="Background color : Light purple 35%">
+<p title="">Variations</p>
+</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">
+<p title="">[Target Metric]</p>
+</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">Retention 7d</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">ARPU</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">
+<strong>% Users with 3+ tabs/scores weekly</strong>
+</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">Bounce Rate*</th>
+<th class="highlight-#eae6ff" data-highlight-colour="#eae6ff" style="text-align: center;" title="Background color : Light purple 35%">Pageview per session*</th>
+</tr>
+<tr>
+<td>A</td>
+<td>
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td>
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+</tr>
+<tr>
+<td>B</td>
+<td>
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td>
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[value]</ac:placeholder>
+</td>
+</tr>
+<tr>
+<td>
+<p>[add variation or delete row]</p>
+</td>
+<td>
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+</tr>
+<tr>
+<td class="highlight-#eae6ff" colspan="7" data-highlight-colour="#eae6ff" title="Background color : Light purple 35%">
+<strong title="">% diff</strong>
+</td>
+</tr>
+<tr>
+<td>
+<p>p-values (A vs B):</p>
+<p>
+<strong>overall</strong>
+</p>
+</td>
+<td class="highlight-#e3fcef" data-highlight-colour="#e3fcef">[value significant increase]</td>
+<td class="highlight-#ffebe6" data-highlight-colour="#ffebe6" style="text-align: center;">[value significant drop]</td>
+<td class="highlight-#f4f5f7" data-highlight-colour="#f4f5f7" style="text-align: center;">[value insignificant change]</td>
+<td class="highlight-#f4f5f7" data-highlight-colour="#f4f5f7" style="text-align: center;">[value insignificant change]</td>
+<td class="highlight-#f4f5f7" data-highlight-colour="#f4f5f7" style="text-align: center;">[value insignificant change]</td>
+<td class="highlight-#f4f5f7" data-highlight-colour="#f4f5f7" style="text-align: center;">[value insignificant change]</td>
+</tr>
+<tr>
+<td>
+<strong>daily</strong>
+</td>
+<td>
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td>
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+</tr>
+<tr>
+<td>
+<strong>cumulative</strong>
+</td>
+<td>
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td>
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[insert chart here]</ac:placeholder>
+</td>
+</tr>
+<tr>
+<td>
+<p>[add comparison or delete rows]</p>
+<p>
+<strong>overall</strong>
+</p>
+</td>
+<td>
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+</tr>
+<tr>
+<td>
+<strong>daily</strong>
+</td>
+<td>
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+</tr>
+<tr>
+<td>
+<strong>cumulative</strong>
+</td>
+<td>
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+<td style="text-align: center;">
+<br />
+</td>
+</tr>
+<tr>
+<td class="highlight-#eae6ff" colspan="7" data-highlight-colour="#eae6ff" title="Background color : Light purple 35%">
+<strong title="">Analysis and considerations</strong>
+</td>
+</tr>
+<tr>
+<td>
+<br />
+</td>
+<td>
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+<td style="text-align: center;">
+<ac:placeholder>[description]</ac:placeholder>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="auto-cursor-target">
+<a href="http://link">link to calculations / scripts</a>
+</p>
+<p class="auto-cursor-target">
+<strong>Note: add variations / copy p-values section for each comparison in case multiple variations</strong>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<ac:structured-macro ac:name="ui-expand" ac:schema-version="1" ac:macro-id="e575cbeb-8aa2-42dc-a6b7-ba4e1de3b6b7">
+<ac:parameter ac:name="title">Research</ac:parameter>
+<ac:rich-text-body>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="b016c6c8-354d-456c-bbcd-085569c87f92">
+<ac:rich-text-body>
+<p>Additional research, analyzing metric differences in the experiment relative to the initial model, looking for explanations of why we got such results.</p>
+<p>
+<span>
+<em>Example</em>
+</span>
+</p>
+<p>
+<span>
+<em>Why we </em>
+</span>
+<em>didn't achive 10% growth to access as we assimpshed in model?</em>
+</p>
+<p>
+<em>Conclusion - because of CTR for new banner is lower than we expected (only 1% agains 5% from the model)</em>
+</p>
+<p>
+<em>Evidence</em>
+</p>
+<table class="wrapped">
+<colgroup>
+<col />
+<col />
+<col />
+<col />
+</colgroup>
+<tbody>
+<tr>
+<td>
+<br />
+</td>
+<td>
+<em>Banner View</em>
+</td>
+<td>
+<em>Banner Click</em>
+</td>
+<td>
+<em>CTR</em>
+</td>
+</tr>
+<tr>
+<td>
+<em>A</em>
+</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">5</td>
+<td style="text-align: right;">0.5%</td>
+</tr>
+<tr>
+<td>
+<em>B</em>
+</td>
+<td style="text-align: right;">1,000</td>
+<td style="text-align: right;">10</td>
+<td style="text-align: right;">1%</td>
+</tr>
+</tbody>
+</table>
+<p>
+<span>
+<strong>Delete this info block after you fill in the page.</strong>
+</span>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<p class="auto-cursor-target">
+<br />
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h2>Next steps</h2>
+<ac:structured-macro ac:name="info" ac:schema-version="1" ac:macro-id="e4ca6624-4019-4f25-b75e-aa71b7a0bb96">
+<ac:rich-text-body>
+<p>Define what will be done next based on the results and insights.</p>
+<ul>
+<li>
+<p>Will we run additional iterations?</p>
+</li>
+<li>
+<p>Which new hypotheses emerged?</p>
+</li>
+<li>
+<p>What changes will we make before the next test?</p>
+</li>
+</ul>
+<p>
+<em>
+<strong>Delete this info block after you fill in the page.</strong>
+</em>
+</p>
+</ac:rich-text-body>
+</ac:structured-macro>
+<h2>Post-Rollout Analysis (optional)</h2>
+<p>Not applicable. The experiment has not been launched and the change has not been rolled out.</p>
+<p>
+<br />
+</p>

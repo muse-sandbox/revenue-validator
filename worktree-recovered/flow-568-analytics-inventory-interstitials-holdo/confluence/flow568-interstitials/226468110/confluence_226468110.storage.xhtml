@@ -1,0 +1,39 @@
+<p class="auto-cursor-target"><br /></p><ac:structured-macro ac:name="excerpt" ac:schema-version="1" ac:macro-id="717278dc-718b-49c8-a7cd-dfd39bc2850f"><ac:parameter ac:name="atlassian-macro-output-type">INLINE</ac:parameter><ac:rich-text-body><p><ac:structured-macro ac:name="status" ac:schema-version="1" ac:macro-id="32b5be17-21c2-4523-a2ab-85d9ebde5c81"><ac:parameter ac:name="colour">Green</ac:parameter><ac:parameter ac:name="title">success</ac:parameter><ac:parameter ac:name="" /></ac:structured-macro></p></ac:rich-text-body></ac:structured-macro><p><br /></p><p><ac:structured-macro ac:name="toc" ac:schema-version="1" ac:macro-id="5614d8d2-d0ff-4a5f-b90f-38432e58c650" /></p><h2>Исследование и контекст</h2><p>Как член команды рекламы, я хочу, чтобы у наших пользователей приложений MS всегда была возможность закрыть интерстишл и они не расстраивались и не писали нам гневные отзывы в сторах.</p><p>Получили вот такой отзыв, проблема как была у нас в приложении UG, надо фиксить. </p><p><ac:image ac:height="150"><ri:attachment ri:filename="image (22).png" /></ac:image></p><p>Делаем по аналогии с этим проектом <ac:link><ri:page ri:content-title="[2020-01-23] InApp. Наш крестик на Interstitials в iOS [2020-02-11]" /></ac:link></p><h2>Цель релиза</h2><p>Сделать так, чтобы после 7 секунд после показа интерстишла появлялся наш крестик, чтобы пользователи всегда могли закрыть интерстишл.</p><h2>Ответственный и команда</h2><p><strong><ac:link><ri:user ri:userkey="08730d2a55a7e89d01570f40d61c0004" /></ac:link> </strong></p><p><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> </p><h2>Описание решения для релиза и макеты</h2><p>Делаем на обеих платформах, крестик будет находиться справа сверху и выглядеть вот так:</p><p><ac:image ac:thumbnail="true" ac:alt="image2020-1-25_12-14-24.png" ac:height="250"><ri:url ri:value="https://alice.mu.se/download/attachments/151487722/image2020-1-25_12-14-24.png?version=1&amp;modificationDate=1579947265000&amp;api=v2" /></ac:image></p><p><br /></p><p>Тайминг в 7 секунд выбран т.к. наиболее распространённое время анскиппабл интерстишла - 5 секунд и это поможет минимизировать кол-во ситуаций, когда у нас появляется 2 крестика (наш и гугловский).</p><h2>План реализации релиза</h2><ol><li>Реализация на Android<ac:task-list>
+<ac:task>
+<ac:task-id>103</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><span style="letter-spacing: 0.0px;"><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2021-09-21" /> Реализовать кастомный крестик</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>104</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="08730d2a55a7e89d01570f40d61c0004" /></ac:link><span style="letter-spacing: 0.0px;"> <time datetime="2021-09-21" /> Протестировать крестик</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>105</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link><span style="letter-spacing: 0.0px;"> <time datetime="2021-09-22" /> Зарелизить изменения</span></ac:task-body>
+</ac:task>
+</ac:task-list></li><li>Реализация на iOS<ac:task-list>
+<ac:task>
+<ac:task-id>106</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link><span style="letter-spacing: 0.0px;"> <time datetime="2021-09-29" /> Реализовать кастомный крестик</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>107</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="08730d2a55a7e89d01570f40d61c0004" /></ac:link><span style="letter-spacing: 0.0px;"> <time datetime="2021-09-29" /> Протестировать крестик</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>108</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link><span style="letter-spacing: 0.0px;"> <time datetime="2021-09-30" /> Зарелизить <span>изменения</span></span></ac:task-body>
+</ac:task>
+</ac:task-list></li><li><span style="letter-spacing: 0.0px;">Подведение итогов</span><ac:task-list>
+<ac:task>
+<ac:task-id>109</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><span style="letter-spacing: 0.0px;"><ac:link><ri:user ri:userkey="08730d2a55a7e89d01570f40d61c0004" /></ac:link> <time datetime="2021-10-01" /> Записать итоги и дальнейшие шаги</span></ac:task-body>
+</ac:task>
+</ac:task-list></li></ol><h2>Метрики после внедрения продуктового релиза</h2><table><colgroup><col /><col /><col /></colgroup><tbody><tr><th>Date</th><th>Total clicks</th><th>Total CTR</th></tr><tr><td>9/1/2021</td><td>122</td><td>1.55%</td></tr><tr><td>9/2/2021</td><td>122</td><td>1.56%</td></tr><tr><td>9/3/2021</td><td>131</td><td>1.63%</td></tr><tr><td>9/4/2021</td><td>136</td><td>1.53%</td></tr><tr><td>9/5/2021</td><td>122</td><td>1.50%</td></tr><tr><td>9/6/2021</td><td>129</td><td>1.59%</td></tr><tr><td>9/7/2021</td><td>109</td><td>1.35%</td></tr><tr><td>9/8/2021</td><td>122</td><td>1.51%</td></tr><tr><td>9/9/2021</td><td>137</td><td>1.68%</td></tr><tr><td>9/10/2021</td><td>120</td><td>1.42%</td></tr><tr><td>9/11/2021</td><td>117</td><td>1.26%</td></tr><tr><td>9/12/2021</td><td>128</td><td>1.48%</td></tr><tr><td>9/13/2021</td><td>129</td><td>1.55%</td></tr><tr><td>9/14/2021</td><td>121</td><td>1.42%</td></tr><tr><td>9/15/2021</td><td>132</td><td>1.51%</td></tr><tr><td>9/16/2021</td><td>113</td><td>1.30%</td></tr><tr><td>9/17/2021</td><td>123</td><td>1.31%</td></tr><tr><td>9/18/2021</td><td>149</td><td>1.56%</td></tr><tr><td>9/19/2021</td><td>108</td><td>1.19%</td></tr><tr><td>9/20/2021</td><td>125</td><td>1.44%</td></tr><tr><td>9/21/2021</td><td>101</td><td>1.18%</td></tr><tr><td>9/22/2021</td><td>114</td><td>1.33%</td></tr><tr><td>9/23/2021</td><td>117</td><td>1.38%</td></tr><tr><td>9/24/2021</td><td>111</td><td>1.26%</td></tr><tr><td>9/25/2021</td><td>136</td><td>1.43%</td></tr><tr><td>9/26/2021</td><td>137</td><td>1.54%</td></tr><tr><td>9/27/2021</td><td>108</td><td>1.23%</td></tr><tr><td>9/28/2021</td><td>102</td><td>1.17%</td></tr><tr><td>9/29/2021</td><td>113</td><td>1.41%</td></tr><tr><td>9/30/2021</td><td>102</td><td>1.15%</td></tr></tbody></table><p>Добавили кастомный крестик на Андроид. CTR не просел.</p><p><br /></p>

@@ -1,0 +1,188 @@
+--- 459896785 | 2024-06-02 | ['Web'] | ['landing', 'paywall', 'pricing'] | ['price'] | done
+    UG Web: landing — change index of local price
+    OUTCOME: Both iterations showed significant drops: 20-30% decrease in conversion to access, up to 40% decrease in final ARPU. Variation 2 worse in iteration 2 (-30.75% accesses, -41.41% revenue). Rolled back to control.
+
+--- 459896101 | 2024-06-04 | ['App-iOS', 'App-Android'] | ['onboarding'] | ['activation', 'value-delivery'] | inconclusive
+    UG App - feature checklist for trial onboarding
+    OUTCOME: No significant changes. Only 12% of target users interacted with checklist. iOS refunds more affected than cancellations. Closed as failed with new iteration planned.
+
+--- 494820283 | 2024-06-09 | ['App'] | ['tour', 'onboarding', 'first-session'] | ['conversion', 'funnel-restructure'] | rolled-out
+    UG App: tour – split the tour for learners and players
+    OUTCOME: No significant growth but no decline. Tour became shorter, slightly increased passability, less tiring for users. Rolling out test variation as successful.
+
+--- 494801796 | 2024-06-17 | ['Web'] | ['banner'] | ['conversion', 'ux-friction-reduction'] | done
+    UG Web: permanent banner - Update Permanent Banner text and CTA for different segments
+    OUTCOME: 26% significant ARPU loss for variation 3, 14% non-significant for variation 2. 17% increase in banner->click for var 2. No significant banner conversion changes. No rollout. Different text doesn't affect subscription conversion from banner.
+
+--- 494801436 | 2024-06-17 | ['Web'] | ['songbooks', 'pricing'] | ['price'] | inconclusive
+    UG Web: songbooks – UG Books price increase to MU level
+    OUTCOME: Variation B: 34.53% ARPU increase (p=0.089, not significant). Only 17 days run (design: 30). Dynamic shows trend toward significance. Decided to rollout more expensive variation despite not reaching significance.
+
+--- 494803932 | 2024-06-19 | ['Web'] | ['paywall', 'landing'] | ['conversion', 'ux-friction-reduction'] | inconclusive
+    UG Web: landing — new CTA on the paywall
+    OUTCOME: No significant changes, trend rather positive. Change in funnel from plans to checkout likely due to CTA text. Users may perceive Get Special Offer as final step and fear it more than Continue.
+
+--- 494829160 | 2024-07-17 | ['Web'] | ['onboarding', 'landing', 'splash'] | ['retention', 'value-delivery'] | inconclusive
+    UG WEB: landing — onboarding after access
+    OUTCOME: Lost many upsell subscriptions. Didn't affect trial conversions or cancellations. Reduced paid user churn but cause was random. Closed as fail. Prospects for expansion after upsell experiments.
+
+--- 522524447 | 2024-07-24 | ['Web'] | ['checkout', 'pricing', 'deep-link'] | ['acquisition', 'new-offer'] | rolled-out
+    UG WEB: promocodes — affiliate promo codes for GuitarCenter.com
+    OUTCOME: Promo code activation section created for GuitarCenter affiliate users. Users directed to ultimateguitar.com/guitarcenter to redeem codes.
+
+--- 522531558 | 2024-08-05 | ['Web'] | ['banner', 'splash', 'offboarding'] | ['churn-reduction', 'retention'] | done
+    UG WEB: revenue retention — non-removable subscription expiration banner
+    OUTCOME: 8% conversion to resubscribe but only 30% actually charged on billing (transaction declines). Split routine issue (4% multi-variation). Low sample size (<1k in 1+ month). Can't rollout.
+
+--- 522533150 | 2024-08-07 | ['All'] | ['splash', 'banner', 'pricing'] | ['monetization-new-surface', 'new-offer'] | rolled-out
+    UG App, Web: Back to School 2024
+    OUTCOME: Rolling out new Back to School visuals (variation C) to align with new brand guidelines.
+
+--- 522535375 | 2024-08-09 | ['App'] | ['onboarding', 'splash', 'banner'] | ['retention', 'value-delivery'] | inconclusive
+    UG App: churn prevention – subscription benefits highlight
+    OUTCOME: Re-launch: No changes in ARPU or trial conversion. Feature highlighting didn't affect trial conversions. Closed as failed but consider knowledge for future combined experiments.
+
+--- 522537317 | 2024-08-12 | ['App-iOS', 'App-Android'] | ['paywall', 'splash'] | ['churn-reduction'] | done
+    You will lose this feature soon popup for expiring subscriptions
+    OUTCOME: No statistically significant effects on iOS or Android. 8% iOS and 12% Android conversion in reactivation. Non-significant negative trends on Android engagement. Do not roll out.
+
+--- 551496203 | 2024-09-10 | ['App-iOS', 'App-Android'] | ['tour-paywall', 'explore', 'banner'] | ['acquisition', 'conversion'] | done
+    Tour Update always on Explorer screen as CTA
+    OUTCOME: No significant changes in monetization metrics. Only 0.05% conversion rate from tour update banner to access on both platforms. Worsened Android retention. No need to rollout. Banner has very low click rate.
+
+--- 551501758 | 2024-09-17 | ['Web', 'App'] | ['email', 'upsell'] | ['churn-reduction', 'retention', 'value-delivery'] | done
+    Monthly Official Tabs digest email to paid users
+    OUTCOME: Good open/click metrics. Insignificant negative impact on retention. Newsletter redistributes cancellations over time (cancellations occur sooner but would happen anyway). Next iteration: test email series on new subscriptions.
+
+--- 551503463 | 2024-09-18 | ['App-iOS', 'App-Android'] | ['registration'] | ['other'] | done
+    Registration wall marketing consent opt-in for GDPR
+    OUTCOME: Iteration 1: 30% opt-out (vs 5% expected). Iteration 2: 22-25% opt-out. Iteration 3: 14% opt-out but far from 5% target. Variation C with retry screen performed better. Closed as failed but learnings captured.
+
+--- 551505371 | 2024-09-20 | ['Web'] | ['banner', 'upsell', 'cross-sell'] | ['offer-sequence', 'upsell'] | rolled-out
+    Songbook upsell permanent banner with limited-time 24h offer
+    OUTCOME: Increased ARPU by 32%. Worsen cancellations/refunds rate but insignificant. Rolled out test variation as is. Future: try upselling bundles and save payment details for all checkouts.
+
+--- 551510231 | 2024-09-25 | ['App-iOS', 'App-Android'] | ['paywall'] | ['conversion', 'offer-sequence'] | done
+    Paywall universal check of intro offer availability
+    OUTCOME: Iteration 1: Lost 3.5% iOS and 8.5% Android accesses. No overall revenue change. Losses from users with expired pro/expired trial. Trial refusal caused main Android losses. Cannot rollout current iteration.
+
+--- 551514048 | 2024-09-30 | ['Web'] | ['upsell', 'cross-sell', 'checkout'] | ['cross-sell', 'offer-sequence', 'upsell'] | rolled-out
+    Cross-sell/upsell bundle of Courses + Songbooks on Web
+    OUTCOME: Iteration 1: Achieved 46% ARPU increase (vs 43% target), 35% more cancellations, 57% more refunds but still profitable. Rolled out. Iterations 2-4: Decreasing returns, refunds/retention issues. Closed but iteration 1 remains live.
+
+--- 551516467 | 2024-10-03 | ['App-iOS', 'App-Android'] | ['paywall'] | ['conversion', 'personalization'] | rolled-out
+    Paywall reviews replacement with personalization and alternatives
+    OUTCOME: Iterations 1-2: No improvements. Iteration 3: Increased conversion in tour 13% iOS, 9% banner-to-click. Rolled out paywall without reviews. Iteration 4+: Additional tests with social proof and ratings.
+
+--- 579965404 | 2024-10-08 | ['App-iOS', 'App-Android'] | ['tour', 'onboarding'] | ['activation', 'ux-friction-reduction'] | done
+    Tour skip button for reinstalling/returning users
+    OUTCOME: No significant changes or improvement. 40% of returning users use skip feature on both platforms. Maintained overall revenue. Considering rollout for brand perception to reduce negative reviews.
+
+--- 579968809 | 2024-10-14 | ['App-iOS', 'App-Android'] | ['tab-page', 'upsell'] | ['monetization-new-surface', 'upsell'] | rolled-out
+    Additional sales through profile section with subscription plans display
+    OUTCOME: Iteration 1: ARPU increased 37% iOS/34% Android with 4x reach. Rolled out. Works well for former subscribers. Iterations 2-3 showed worsened/insignificant metrics. Profile redesign later affected relevance.
+
+--- 579970694 | 2024-10-15 | ['Web', 'Desktop'] | ['tour', 'banner', 'modal'] | ['acquisition', 'conversion'] | done
+    Tour update on desktop web for app practice mode feature
+    OUTCOME: Iteration 1: No effect, <1% button click rate from tab page. Iteration 2: No significant changes, <1% purchase click. Trial-charge conversion decreased 42%. Closing series as failed.
+
+--- 579980035 | 2024-10-28 | ['App-iOS', 'App-Android'] | ['banner', 'first-session'] | ['activation', 'offer-sequence'] | rolled-out
+    UG App – trial subscription banner on Explore
+    OUTCOME: Iteration 1 stopped after two days and rolled out with fixes in next iteration. Multiple iterations tested with song personalization; final outcome showed ~8% increase in tour trials on iOS but retention decreased on Android. Some variations stopped early due to App Store rejection.
+
+--- 579990965 | 2024-11-11 | ['Web', 'MobWeb'] | ['paywall', 'checkout'] | ['conversion', 'offer-sequence'] | rolled-out
+    UG WEB: crm - Flo paywall for CRM funnel
+    OUTCOME: Variation 3 showed 22-52% increase in landing to checkout conversion; rolled out variation 3 across all funnels on mobile web.
+
+--- 608175859 | 2024-11-14 | ['Web'] | ['checkout', 'payment'] | ['conversion', 'ux-friction-reduction'] | rolled-out
+    UG WEB: checkout – one-click purchase for all checkouts
+    OUTCOME: Increased access conversion for users who have already bought anything; no increase in refunds and cancellations rate; rolled out test variation for all users as a success.
+
+--- 614112185 | 2024-11-28 | ['App-iOS', 'App-Android'] | ['banner', 'winback', 'splash'] | ['churn-reduction', 'conversion'] | inconclusive
+    UG App: winback – non-removable subscription expiration trial banner
+    OUTCOME: Conversion rate for offer with paywall is 1% or lower on iOS and 2-6% on Android; does not get desired absolute values for additional revenue; banner performs 5x better on iOS (CTR 30%) vs 7-8% on Android.
+
+--- 614119648 | 2024-12-06 | ['App-iOS', 'App-Android'] | ['paywall', 'tour-paywall'] | ['conversion', 'personalization'] | done
+    UG App: pre-paywall – adding reviews
+    OUTCOME: Iteration 1: +8% in tour access (insignificant); Iteration 2: no improvements; Iteration 3 (Android): +16% access, +10% total (non-sig); later iterations worsened results; project closed after multiple iterations did not achieve target.
+
+--- 614121936 | 2024-12-09 | ['App-iOS', 'App-Android'] | ['banner', 'tab-page'] | ['activation', 'conversion'] | done
+    UG App: Tab - Entry point for Game on Chords versions
+    OUTCOME: No significant changes in revenue or revenue per user; insignificant CTR to Games purchase_click; 6.5% of chord users reach paywall; did not have expected significant effect; closed as failed.
+
+--- 614121296 | 2024-12-09 | ['App-iOS', 'App-Android'] | ['paywall'] | ['conversion', 'ux-friction-reduction'] | inconclusive
+    UG App: feature paywall – replacement for reviews
+    OUTCOME: No changes in monetization/product metrics; no cannibalization; reviews do not add value and do not influence user purchases; reviews not required here; space can be used for personalization.
+
+--- 670205164 | 2025-01-29 | ['Web'] | ['print'] | ['conversion', 'funnel-shortening'] | done
+    UG Web: short PDF download funnel
+    OUTCOME: Iteration 1: no increase in print funnel; variation 3 showed +26 accesses but no ARPU impact. Iteration 2: -68% ARPU in variation, significantly lost in Export2pdfDownload funnel from second step; did not coincide with first iteration; closed as fail.
+
+--- 682706644 | 2025-04-11 | ['Web'] | ['print'] | ['conversion', 'funnel-restructure', 'funnel-shortening'] | rolled-out
+    UG Web: print funnel for the new tab page
+    OUTCOME: Iteration 1-2: tested customization page and shorter funnel; Iteration 3: rolled out with constructor moved before preview page; multiple variations tested for optimal balance.
+
+--- 699804101 | 2025-06-16 | ['Web'] | ['checkout', 'payment'] | ['activation', 'conversion'] | rolled-out
+    UG Web: Apple Pay for Chrome checkout
+    OUTCOME: Apple-eligible segment: +246% ARPU, +219-249% payment conversion rates. Total traffic: +3.26% AOV. No retention/tab-view harm. Rolled out Apple Pay for Chrome on macOS across all eligible checkouts.
+
+--- 699808669 | 2025-06-19 | ['Web'] | ['tab-page', 'banner'] | ['conversion', 'monetization-new-surface'] | rolled-out
+    UG Web: tabs – unified preview mode for all Interactive tabs
+    OUTCOME: Iteration 1: +448% ARPU, +292% access CR, +206% charge CR; rolled out. Iteration 2: returned download button; -46.1% access CR, refund spike; rolled out anyway due to user requests.
+
+--- 699819693 | 2025-06-30 | ['App-iOS'] | ['paywall', 'instant-offer'] | ['conversion', 'offer-sequence'] | rolled-out
+    UG iOS: trial to Instant on internal paywalls
+    OUTCOME: Charge CR: +16.4-21.4%; AOV/ARPPU: -9.8-13.2%; trial→charge: -39.4-39.8%; early cancellations: -42.2-46.1%; subscriber→buyer: +11.9-15.7%; rolled out with monitoring of long-term renewal/LTV.
+
+--- 699821637 | 2025-07-01 | ['Web'] | ['registration', 'splash', 'paywall'] | ['activation', 'conversion'] | rolled-out
+    UG Web: Complete registration offer
+    OUTCOME: ARPU: +42%; access CR: +38.69%; charge CR: +48.28%; ARPPU (non-splash): +14.32%; no cancellation/retention harm; rolled out variation 2.
+
+--- 707153996 | 2025-07-22 | ['Web'] | ['paywall', 'checkout', 'print'] | ['conversion', 'monetization-new-surface'] | done
+    UG Web: paywall – paid trial on print funnel
+    OUTCOME: Iteration 1 (print only): limited sample. Iteration 2 (all funnels): trial share -26-42%, conversion from paid trial +slightly higher, no significant ARPU growth; did not achieve target; do not roll out.
+
+--- 721552057 | 2025-08-28 | ['Web'] | ['upsell'] | ['churn-reduction', 'refund-reduction'] | rolled-out
+    UG Web: upsell cancellation clarity
+    OUTCOME: Did not change upsell cancellations (non-sig -2%); transactions after cancellation -50%; refunds after transaction -46%; effect too small (~$100/day loss); rolled out anyway.
+
+--- 731503006 | 2025-10-27 | ['Web', 'MobWeb'] | ['splash', 'fakedoor', 'microtransactions'] | ['monetization-new-surface'] | done
+    UG MobWeb: fakedoor test with microtransactions
+    OUTCOME: FAILED. Result 0.13% vs 1.5% target. New mechanism cannibalised 45.25% of clicks on Install and 54.40% of total app installs, which is statistically significant for both metrics. Coefficients in model were much higher than actual values.
+
+--- 746551149 | 2025-12-23 | ['Web', 'Desktop'] | ['pricing', 'plans-config', 'checkout'] | ['price'] | done
+    UG Web: landing — change index of local price (relaunch)
+    OUTCOME: Do not roll. Iteration 3 showed ARPU decline (~15%) on web despite reduction in post-charge cancellations. New plans segment shows no significant uplift. Old plans still had decrease in conversion and ARPU even though they shouldn't. Local price alignment not justified by results.
+
+--- 754312866 | 2026-01-26 | ['Web', 'Desktop'] | ['checkout', 'payment'] | ['ux-friction-reduction'] | rolled-out
+    UG Web: landing – updated checkout
+    OUTCOME: No significant deterioration in core monetization metrics; uplift observed but not statistically significant. Checkout fully complies with updated UG guidelines. Improved code architecture enables faster future experiment setup. Rolled out without negative impact. Next step: reduce validation errors.
+
+--- 761931427 | 2026-01-30 | ['Web', 'Desktop'] | ['paywall', 'print'] | ['offer-sequence'] | done
+    UG Web: print funnel improvements
+    OUTCOME: Iteration 1 FAILED: no stat sig difference. Iteration 2: Removing ambulance reduces conversion but due to higher ARPPU overall revenue becomes higher (+$443/day). Malfunctioning upsell detected. Recommend using ambulance selectively for low-intent users rather than removing entirely.
+
+--- 761935968 | 2026-02-03 | ['App-iOS', 'App-Android'] | ['upsell', 'splash', 'instant-offer'] | ['monetization-new-surface'] | done
+    UG App – Upsell PDF
+    OUTCOME: Do not roll out. All 5 themes exceeded 1.5% PAR threshold, but current placement cannibalizes subscription conversion for overlapping themes. Gear Setup (D) shows highest PAR (~4.3%) with zero subscription cannibalization and is recommended as first real OTP product, but placement must change to avoid subscription impact.
+
+--- 773653380 | 2026-03-06 | ['All'] | ['email'] | ['offer-sequence', 'price'] | done
+    UG CRM. Annual access for just $24.99 for all US users
+    OUTCOME: +46.9% accesses (115→169), +36.6% revenue ($3,096.81→$4,231.28), +69.9% click-to-access conversion (3.03%→5.15%). Core email metrics (OR, CTR) showed no meaningful difference, but downstream business metrics significantly better in variant B, indicating higher conversion intent. Next: test in other markets for validation.
+
+--- 773660759 | 2026-03-06 | ['All'] | ['email'] | ['offer-sequence'] | inconclusive
+    UG CRM. Easter promo vs Regular Spring Promo
+    OUTCOME: Hypothesis not confirmed. Easter campaign showed minimal uplift: revenue +0.71%, open rate flat. CTR increased +8.98% but conversion decreased -11.4%. Second instance this month of same pattern: CTR improvement not matched by landing conversion. Indicates specialized campaigns require aligned landing experience and offer; improvements in communication insufficient alone.
+
+--- 773657689 | 2026-03-06 | ['All'] | ['email'] | ['offer-sequence'] | inconclusive
+    UG CRM. March 2026 promo campaign (design A/B test)
+    OUTCOME: Hypothesis not confirmed. Easter campaign showed no significant uplift in revenue or open rate. CTR improved +8% but landing page conversion decreased -11.4%. Indicates improvements in communication not supported by landing experience. Pattern suggests need to optimize entire funnel end-to-end, including landing pages alongside specialized campaigns.
+
+--- 777835742 | 2026-04-03 | ['Web', 'Desktop'] | ['paywall', 'pricing'] | ['price'] | rolled-out
+    UG Web: paywall – price decrease for pro+
+    OUTCOME: Revenue up 3.2% immediately, 6.74% over 3-year horizon due to cumulative retention effect. Main drivers: Instant plans (+130–160%), upsells (bundles +38%, courses +27%). Comeback offer conversion -20% noted but offset. Engagement metrics confirm new audience adoption. Experiment considered success and rolled out.
+
+--- 785056492 | 2026-04-15 | ['Web', 'Desktop'] | ['paywall', 'plans-config'] | ['offer-sequence'] | done
+    UG Web — Three-month / Six month plans
+    OUTCOME: Do not roll out. Var C (6-month plan) shows statistically significant harm: subscribers −11.1% (p=0.028), buyers −11.9% (p=0.038). Var B (3-month plan) shows negative trends: ARPU −7.1%, CR to buyers −9%, revenue $26,472 vs $28,987 control without significance. Trial mechanics positive but offset loss of instant annual subscription revenue; plans acted as substitutes not additions.
+

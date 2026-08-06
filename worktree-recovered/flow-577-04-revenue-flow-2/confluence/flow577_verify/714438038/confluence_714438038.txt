@@ -1,0 +1,774 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-9460
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+### Goal
+
+Offer long-term Pro users a special anniversary upgrade deal (Pro + Courses at a discount) to increase monetization. The goal is to boost ARPU among active Pro subscribers by leveraging a personalized upgrade offer.
+
+### Foundation
+
+Current state: Pro subscribers only see standard upsell offers for additional subscriptions (e.g., Courses / Sing).
+
+Problem: Long-term Pro subscribers do not receive personalized, milestone-based offers, which reduces upsell efficiency.
+
+Proposed change: Introduce Anniversary splash screens shown at specific Pro subscription milestones (30, 90, 180, 365 days).
+
+### Research results
+
+Previous internal experiment: Anniversary splash for free-tier users boosted conversion rates, proving the format resonates.
+
+External references: Subscription-based apps widely use milestone-based offers with success (Headspace, Flo).
+
+### A/B test model
+
+code
+
+  iOS
+
+Android
+
+  A B diff A B diff
+
+users with anniversary 16210 16210
+5131 5131
+
+courses upsells 9 81 72 6 26 20
+
+members → access, % 0.056% 0.5% 900% 0.12% 0.5% 300%
+
+charges 9 81 72 4 26 22
+
+revenue, $ $271 $1701 $1430 $115 $650 $535
+
+ARPPU, $ $30 $21
+$29 $25
+
+ARPU, $ $0.017 $0.105 $0.088 $0.022 $0.127 $0.105
+
+# Hypothesis
+
+If we display an Anniversary splash to Pro subscribers at 30/90/180/365 days after subscription start , we expect ARPU from premium (Pro) DAU to increase by 70–90% without negatively affecting retention or user experience. This is because milestone-triggered, personalized offers have historically performed better than generic ones.
+
+## Experiment design template
+
+#6515 Audience [describe the audience in details, how we pick users]
+
+Metrics
+Goal
+
+anniversary members → upsell, %
+
+Platform UGT_IOS UGT_ANDROID
+
+Sensitivity analysis /
+
+preliminary calculations
+
+Design / each metric [link to calculation]
+
+Baseline 0.056% 0.12%
+
+Lift, %  900%  300%
+
+MDE 0.084 0.070
+
+Power 0.8 0.8
+
+Alpha 0.05 0.05
+
+Sample size (per variation) 16210 10262
+
+Duration (days) 1 2
+
+Seasonality reflected took 1 week in calculations
+
+Design summary  
+
+Sample 16210 10262
+
+Days 1 2
+
+# Description of the Solution & Mockups
+
+### Solution
+
+Introduce a personalized Anniversary splash triggered at specific subscription milestones (30, 90, 180, 365 days).
+
+Anniversary splash has higher priority over regular Sale Offer splashes.
+
+Audience: All active Pro subscribers without Courses or Sing subscriptions, excluding Pro LT users .
+
+users wth active pro trial shouldn't view anniversary gift
+
+Platform Product
+
+iOS
+UG Courses (MSG) — $29.99/year
+com.ultimateguitar.ugt.edu.instant.1year4
+
+Android
+UG Courses — $29.99/year
+com.ultimateguitar.tabs.edu.instant.1year
+
+### Mockups & Texts
+
+FIGMA
+
+Screen А В
+
+Pre-Splash —
+
+Copywrites (ICU):
+
+{days, plural, one {day} other {days}}
+
+Congratulations! You've been with us for {days,plural,one{# day} other{# days}} now 🏆
+
+Thank you for continuing to play with UG! Here’s a gift!
+
+Open now
+
+Splash —
+
+Copywrites (ICU):
+
+Claim your gift before it's gone
+
+UG Courses
+
+25% off forever
+
+Once you close your one-time offer, it's gone! Only $2.5/month. Cancel anytime.
+
+Continue
+
+### Analytics
+
+Event Parameters Description
+
+1 App Experiment Start
+item_id – %experiment id%
+
+params.key – ['anniversary day']
+
+params.value – [%n of days%]
+
+params.value – ['%n of days'%]
+
+send when user with active pro subscribers without courses/sing enters app first time after 30, 90, 180 or 365 days
+
+add params key 'anniversary day' with value/str_value = number of displayed days
+
+for example, for 30 days anniversary
+
+params.key – ['anniversary day']
+
+params.value – [30]
+
+params.value – ['30']
+
+2 Anniversary Gift View
+params.key – ['anniversary day']
+
+params.value – [%n of days%]
+
+params.value – ['%n of days'%]
+
+send in test variation when user sees N days splash. must be the same trigger as App Experiment Start
+
+3 Splash View
+value = "Anniversary Upgrade Splash"
+
+params.key – [..., 'anniversary day']
+
+params.value – [...,%n of days%]
+
+params.value – [...,'%n of days'%]
+
+existing event
+
+send in test variation when users sees splash with new params
+
+4 Paywall View
+value = "Anniversary Upgrade Splash"
+
+params.key – [..., 'anniversary day']
+
+params.value – [...,%n of days%]
+
+params.value – [...,'%n of days'%]
+
+existing event
+
+add new params
+
+5
+Banner Upgrade View
+
+Banner Purchase Click
+
+Purchase Process Start
+
+Purchase Process Failed
+
+Purchase Process Canceled
+
+Purchase Process Finish
+
+value = "Anniversary Upgrade Splash"
+
+params.key – [..., 'anniversary day']
+
+params.value – [...,%n of days%]
+
+params.value – [...,'%n of days'%]
+
+existing events
+
+add new params
+
+#old6515 config  
+
+segment name conditions
+
+Total {'pro_rights': 'finite subscription', 'platform': 'Mobile'}
+
+Active Trials (for bug test) {'pro_rights': 'trial', 'platform': 'Mobile'}
+
+New subscribers {'exposure_event': 'Purchased'}
+
+Anniversary Gift funnel {'funnel': "members > event = 'Anniversary Gift View' > event = 'Splash View' and value = 'Anniversary Upgrade Splash' > event = 'Banner Upgrade View' and value = 'Anniversary Upgrade Splash' > event = 'Banner Purchase Click' and value = 'Anniversary Upgrade Splash' > event='Purchase Process Finish' and value = 'Anniversary Upgrade Splash'"}
+
+#6515 config  
+
+segment name conditions
+
+Total {'pro_rights': 'finite subscription', 'platform': 'Mobile'}
+
+New subscribers {'exposure_event': 'Purchased'}
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=UMN-9460 order by key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+true Iteration #1 - #6515
+#6515  – 
+
+Exposure event:  App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UGT_IOS Design 1 8105 8105
+
+4460d8d4-b574-82c0-c6b0-353a3762f474
+complete
+No visible bugs were found throughout the experiment
+
+e774e443-7803-62bc-e5e1-04049974465c
+complete
+No external effects are visible
+
+Experiment 5 21454 20610
+
+Checks
+
+c9eaec85-94b3-95d0-cba4-c2ff6c34a982
+complete
+duration of exp ≥ design
+
+538786aa-4222-f8bd-4829-032bd42542e8
+complete
+A/B balance is maintained
+
+UGT_ANDROID Design 2 5131 5131
+
+0774f1ee-daa6-79c3-6bb4-9ce737b9c6bf
+complete
+No visible bugs were found throughout the experiment
+
+563ea6e3-94c5-dcf4-c33f-21e0c966cc1c
+complete
+No external effects are visible
+
+Experiment 5 17626 17828
+
+Checks
+
+2492c216-d66e-11ff-bf45-75cf01b1ea77
+complete
+duration of exp ≥ design
+
+128fcba9-1fb9-7c66-566a-4de31dfc1e27
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+[UGT_IOS / Total / variation 2]
+
+ARPU: +3914.1% (growth)
+
+access cr, %: +3000+% (growth)
+
+charge cr, %: +3000+% (growth)
+
+[UGT_IOS / Active Trials (for bug test) / variation 2]
+
+ARPU: +600% (growth)
+
+AOV & ARPPU: +100% (growth)
+
+[UGT_ANDROID / Total / variation 2]
+
+ARPU: +1000% (growth)
+
+access cr, %: +800% (growth)
+
+charge cr, %: +1300% (growth)
+
+subscription -> charge, %: +60% (growth)
+
+[UGT_ANDROID / Active Trials (for bug test) / variation 2]
+
+ARPU: +800% (growth)
+
+access cr, %: +200% (growth)
+
+charge cr, %: +800% (growth)
+
+subscription -> charge, %: +300% (growth)
+
+Conclusion
+
+The personalized Anniversary splash (given higher priority over Sale Offer) drove very large monetization lifts across iOS and Android without measurable impact on retention or tab-view engagement.
+
+This suggests the higher-priority splash successfully converted eligible Pro subscribers.
+
+However, the Active Trials cohort (which should be excluded per design) shows significant exposure effects
+
+This points to a targeting/eligibility bug (Anniversary gift funnel launches right after trial)
+
+but overall it had no affect on monetization
+
+only 6 subscriptions from iOS and 26 on Android
+
+Recommendation: roll out with fix: remove users with trials from anniversary funnel
+
+Next steps
+
+fix bug with trials: because anniversary calculates through expiration date which is in 7-14 days for trials
+
+## Forecast (per day)
+
+UGT_ANDROID
+
+UGT_IOS
+
+Variations
+App Experiment Start
+
+Accesses
+
+upsell conversion
+
+Charges
+
+Revenue, $
+
+App Experiment Start
+
+Accesses
+
+upsell conversion
+
+Charges
+
+Revenue, $
+
+control 7669 22 0.29% (default) 13 $343 10983 10 0.091% 9 $192
+
+variation 2 7669 191 2.49% 188 $4747 10983 376 3.42% 375 $7745
+
+diff 0 169 750% 175 $4404 0 366 3500% 366 $7553
+
+## Significance analysis
+
+[macro]
+UGT_IOS
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 21454 21 21 16 2 3 0 19 19 $376 3 1
+
+variation 2 20610 706 707 702 3 2 1 704 705 $14533 120 20
+
+diff, % -3.9% 3300% 3300% 4300% 50% -33%
+3600% 3600% 3800% 3900% 1900%
+
+Active Trials (for bug test)
+
+control 617 3 3 2 1 0 0 2 2 $21 0 0
+
+variation 2 612 8 8 7 1 0 0 7 7 $146 2 0
+
+diff, % -0.81% 170% 170% 250% 0%
+
+250% 250% 590%
+
+New subscribers
+
+control 4131 129 141 52 86 3 14 67 69 $1632 12 2
+
+variation 2 4710 134 149 75 67 7 14 94 96 $2393 16 4
+
+diff, % 14% 3.9% 5.7% 44% -22% 130% 0% 40% 39% 47% 33% 100%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 21450 7817 17100 19033
+
+variation 2 20609 7452 16380 18298
+
+diff, % -3.9% -4.7% -4.2% -3.9%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 21454 18879 17587 16319 12895 6774
+
+variation 2 20610 18246 16990 15683 12339 6533
+
+diff, % -3.9% -3.4% -3.4% -3.9% -4.3% -3.6%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.0176 $19.8 $19.8 0.0979% 0.0886% 9.52% 0% 15.8% 5.26%
+
+variation 2 $0.705 $20.6 $20.6 3.43% 3.42% 0.424% 33.3% 17% 2.84%
+
+diff, % 3910% 3.93% 4.07% 3400% 3760% -95.5% Infinity% 7.8% -46.1%
+
+pvalue 0.00 0.66 0.65 0.00 0.00 0.16 0.22 0.88 0.64
+
+cumulatives
+
+Active Trials (for bug test)
+
+control $0.0347 $10.7 $10.7 0.486% 0.324% 33.3% 0% 0% 0%
+
+variation 2 $0.24 $21 $21 1.31% 1.14% 12.5% 0% 28.6% 0%
+
+diff, % 591% 95.9% 95.9% 169% 253% -62.5% NaN% Infinity% NaN%
+
+pvalue 0.027 0.010 0.010 0.13 0.09 0.48 nan 0.09 nan
+
+cumulatives
+
+New subscribers
+
+control $0.395 $23.7 $24.4 3.12% 1.62% 61% 16.3% 17.4% 2.9%
+
+variation 2 $0.508 $24.9 $25.5 2.85% 2% 45% 20.9% 16.7% 4.17%
+
+diff, % 28.6% 5.39% 4.52% -8.89% 23.1% -26.3% 28.4% -4.17% 43.7%
+
+pvalue 0.13 0.53 0.60 0.44 0.19 0.006 0.47 0.90 0.66
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 36.4% 79.7% 88.7%
+
+variation 2 36.2% 79.5% 88.8%
+
+diff, % -0.779% -0.302% 0.0614%
+
+pvalue 0.54 0.54 0.86
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 88% 82% 76.1% 60.1% 31.6% 11.9 5.95 4.58 3.5 1.69 0.568
+
+variation 2 88.5% 82.4% 76.1% 59.9% 31.7% 11.8 5.9 4.54 3.45 1.67 0.559
+
+diff, % 0.605% 0.562% 0.0382% -0.393% 0.392% -0.391% -0.904% -1.07% -1.36% -1.57% -1.59%
+
+pvalue 0.09 0.22 0.94 0.62 0.79 0.78 0.51 0.46 0.37 0.31 0.43
+
+cumulatives
+
+Anniversary Gift funnel
+
+variation members gift view members -> gift, % banner view gift -> banner, % purchase click banner -> click, % access click -> access, % members -> access, %
+
+1 21460 0
+0
+0
+0
+
+2 20616 20615 100% 19688 95.5% 5193 26.38% 688 13.25% 3.34%
+
+active trials
+
+1 617 0
+0
+0
+0
+
+2 612 612 100% 582 95.1% 109 18.73% 6 5.50% 0.98%
+
+[/macro]
+
+[macro]
+UGT_ANDROID
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 17626 48 51 26 25 0 5 31 31 $790 2 1
+
+variation 2 17828 445 446 435 10 1 3 439 439 $11037 35 11
+
+diff, % 1.1% 830% 770% 1600% -60%
+-40% 1300% 1300% 1300% 1600% 1000%
+
+Active Trials (for bug test)
+
+control 589 15 18 3 15 0 1 4 4 $93 1 0
+
+variation 2 543 38 39 32 6 1 1 34 34 $793 6 2
+
+diff, % -7.8% 150% 120% 970% -60%
+0% 750% 750% 750% 500%
+
+New subscribers
+
+control 1331 266 282 148 132 2 14 162 163 $5351 26 4
+
+variation 2 1670 314 334 196 137 1 19 213 216 $7361 33 5
+
+diff, % 25% 18% 18% 32% 3.8% -50% 36% 31% 33% 38% 27% 25%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 17625 5603 13204 15134
+
+variation 2 17827 5789 13422 15351
+
+diff, % 1.1% 3.3% 1.7% 1.4%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 17626 15525 14525 13589 11229 6560
+
+variation 2 17828 15659 14698 13794 11403 6631
+
+diff, % 1.1% 0.86% 1.2% 1.5% 1.5% 1.1%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.0448 $25.5 $25.5 0.272% 0.176% 49% 20% 6.45% 3.23%
+
+variation 2 $0.619 $25.1 $25.1 2.5% 2.46% 2.24% 30% 7.97% 2.51%
+
+diff, % 1280% -1.36% -1.36% 817% 1300% -95.4% 50% 23.6% -22.3%
+
+pvalue 0.00 0.90 0.90 0.00 0.00 0.00 0.55 0.74 0.83
+
+cumulatives
+
+Active Trials (for bug test)
+
+control $0.159 $23.4 $23.4 2.55% 0.679% 83.3% 6.67% 25% 0%
+
+variation 2 $1.46 $23.3 $23.3 7% 6.26% 15.4% 16.7% 17.6% 5.88%
+
+diff, % 821% -0.106% -0.106% 175% 822% -81.5% 150% -29.4% Infinity%
+
+pvalue 0.00 1.00 1.00 0.000 0.00 0.00 0.55 0.75 0.14
+
+cumulatives
+
+New subscribers
+
+control $4.02 $32.8 $33 20% 12.2% 46.8% 10.6% 16% 2.45%
+
+variation 2 $4.41 $34.1 $34.6 18.8% 12.8% 41% 13.9% 15.3% 2.31%
+
+diff, % 9.64% 3.81% 4.62% -5.92% 4.79% -12.4% 30.8% -4.22% -5.67%
+
+pvalue 0.37 0.46 0.37 0.42 0.63 0.15 0.41 0.86 0.93
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 31.8% 74.9% 85.9%
+
+variation 2 32.5% 75.3% 86.1%
+
+diff, % 2.15% 0.499% 0.284%
+
+pvalue 0.17 0.42 0.51
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 88.1% 82.4% 77.1% 63.7% 37.2% 13.5 7.07 5.58 4.35 2.2 0.777
+
+variation 2 87.8% 82.4% 77.4% 64% 37.2% 13.6 7.14 5.66 4.41 2.23 0.78
+
+diff, % -0.28% 0.0445% 0.358% 0.399% -0.063% 0.0906% 0.901% 1.48% 1.26% 0.941% 0.463%
+
+pvalue 0.48 0.93 0.53 0.62 0.96 0.95 0.57 0.38 0.47 0.60 0.83
+
+cumulatives
+
+Anniversary Gift funnel
+
+variation members gift view members -> gift, % banner view gift -> banner, % purchase click banner -> click, % access click -> access, % members -> access, %
+
+1 17639 9 0.05% 6 66.67% 1 16.67% 0
+
+2 17829 17798 99.8% 12317 69.20% 4006 32.52% 411 10.26% 2.31%
+
+active trials
+
+1 591 2 0.34% 2 100% 0
+0
+
+2 543 541 99.6% 437 80.78% 176 40.27% 26 14.77% 4.79%
+
+[/macro]
+
+[/macro]
+
+## Post-rollout analysis (optional)
+
+code
+
+metric research conclusion
+
+iOS Android
+
+Anniversary users by day
+
+iOS
+
+~2k users with anniversary splash per day
+
+Android
+
+~800 users per day
+
+almost zero users with year anniversary due to known bug
+
+Anniversary users plan vs fact
+
+on both platforms total number of users who saw anniversary splash is close to the plan (amount of users who actually should saw the splash)
+
+but in fact those are different splashes and different users: more users see 30/90/180 than have to. and as mentioned above, almost none of them see 365d spalsh
+
+duplicated anniversary splashes in different dates
+
+amount of repeated splashed
+
+iOS:  
+
+30 days – 10%
+
+90 days – 12%
+
+180 days – 14%
+
+Android
+
+30 days – 8%
+
+90 days – 10%
+
+180 days – 11%
+
+code
+
+Anniversary splash → banner, %
+
+had a problem with showing splash in December
+
+current splash → banner conversion rate is 90% iOS and 67% Android (almost the same for all anniversary days)
+
+Anniversary splash → access, %
+
+conversion from splash to access is slowly decreasing over time
+
+current state (late December, January)
+
+iOS: 2.2%
+
+Android: 1.7%
+
+difference between anniversary days is minimal
+
+Anniversary splash revenue + ARPU, $
+
+current revenue per day
+
+iOS: $1100
+
+Android: $300
+
+current ARPU
+
+iOS: $1.2
+
+Android: $1.05

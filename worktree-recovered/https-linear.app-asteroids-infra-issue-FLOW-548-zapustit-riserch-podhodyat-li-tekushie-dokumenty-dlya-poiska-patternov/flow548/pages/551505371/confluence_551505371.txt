@@ -1,0 +1,336 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-6629
+[/macro]
+
+DRI / Project owner
+
+Team
+ 
+
+[macro]
+
+[/macro]
+
+# Research and Context
+
+Goal: Increase revenue through upgrades and cross-selling of related products
+
+Foundation : Retarget the audience that missed the initial upsell with a limited-time offer
+
+### Research results
+
+Related projects
+
+### A/B test model
+
+Metric A B diff
+
+PURCHASE_SUCCESS_PRO 235 235
+
+Book Accesses 49 59 10
+
+Charges 21 25 4
+
+Pro purchase → Access 21% 25% 20%
+
+Revenue, $ $1274 $1529 $255
+
+ARPU, $ $5.42 $6.51 $1.09
+
+ARPPU, $ $59 $59 $0
+
+# Hypothesis
+
+If we target the audience that didn't opt for the songbook upsell initially with a follow-up offer, we can gain an additional 10 songbook accesses per day (increase by 20%)
+
+# A/B test plan
+
+A → B
+
+Base value of the metric (access, %) 21%
+
+Lift, % 20%
+
+Minimal detectable effect 0.1015
+
+Probability of true-positive (power) 0.8
+
+Probability of false-positive (p-value) 0.05
+
+Sample size (for all the variations) 3290
+
+How many days it'll take to conduct the test 14
+
+# Description of the Solution & Mockups
+
+Solution
+
+Adding to upsell flow the option for one-click purchase (essentially skipping the checkout step)
+
+When clicking on the CTA in the modal, display the paywall without requiring payment details (one-click purchase checkout)
+
+On it, we display the offer details and payment information
+
+By default, the payment method is set to the card used for the recent PRO purchase
+
+If desired, you can add a new card or edit the current one
+
+For PRO users who declined the upsell, we replace the current banner leading to the Songbooks section with a banner featuring a 24-hour timer to emphasize the limited-time offer
+
+the banner will be non-closable
+
+after 24 hours, we revert to the regular banner leading to the Songbooks section
+
+When the banner is clicked, a modal window with the offer appears, explaining the details of the offer, price, and benefits
+
+When the CTA button in the modal window is clicked, it redirects to the one-click purchase checkout
+
+After purchasing PRO, we initiate a one-click checkout purchase for Songbooks
+
+After the trial ends or is cancelled — we return the old flow, without the possibility of purchasing in one click
+
+At the same time, there is no possibility to take a repeat trial, only instant plans
+
+Mokups
+
+Figma
+
+Screen A B
+
+Upsell modal
+
+Checkout
+
+One-click purchase
+
+Edit/New card
+
+Permanent banner before first 24h
+
+Permanent banner after first 24h
+
+Warm-up
+
+Checkout
+
+One-click purchase
+
+### Analytics
+
+Start event: PURCHASE_SUCCESS_PRO  
+
+Event
+
+Parameters
+
+Description
+
+Permanent Banner View
+
+existing event. check if it sends in both variation with correct 'type' = 'Books' in params
+
+sale_title   param values:
+
+check if it is correctly filled for both variations when there is no offer
+
+and add a new one 'Limited-time offer' for a first 24h offer
+
+Permanent Banner Click
+
+existing event. check if it sends in both variation with correct 'type' = 'Books' in params
+
+sale_title   param values:
+
+check if it is correctly filled for both variations when there is no offer
+
+and add a new one 'Limited-time offer' for a first 24h offer
+
+Landing Books Precheckout View value – PermanentBanner
+send from new screen in test variation
+
+Landing Checkout View value – Books Upsell
+existing event. send also if user opens on a new one-click purchase checkout screen
+
+value – songbook source (depends on the checkout source)
+Books Upsell / Permanent Banner Songbooks / ...
+
+Landing Purchase Click value – Books Upsell
+existing event. send also if user clicks 'start 7-day rial now' button on a new one-click purchase checkout screen
+
+value – songbook source (depends on the checkout source)
+Books Upsell / Permanent Banner Songbooks / ...
+
+Landing Purchase Edit Card Click value – Books Upsell
+send in test variation n a new checkout screen if usr clicks 'edit' button
+
+value – songbook source (depends on the checkout source)
+Books Upsell / Permanent Banner Songbooks / ...
+
+Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status,project,customfield_10100 type,summary,assignee,Start date,due,status,project,Epic Link 20 "Epic Link"=umn-6629 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+## Design vs Reality check
+
+Duration (days) Sample size Other
+
+A B
+
+Design 14 1645 1645
+
+915
+complete
+No visible bugs were found throughout the experiment
+
+916
+complete
+No external effects are visible
+
+Experiment 7 1005 990
+
+Checks
+
+917
+incomplete
+duration of exp  >= design
+
+918
+complete
+A/B balance is maintained
+
+#5313   -
+
+Results
+
+increased arpu by 32%
+
+worsen cancellations and refunds rates
+
+but insignificant due to small amount on both variations
+
+somehow dropped 1d retention rate by 12%
+
+Solution 
+[macro]
+Green Success
+[/macro]
+
+Achieved the metrics outlined in the hypothesis
+
+Despite the increased number of refunds, we still remain profitable
+
+Rollouted test variation as is
+
+In future approaches, we’ll try upselling bundles and transition to saving payment details for all checkouts
+
+Exposure event:   PURCHASE_SUCCESS_PRO
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+Variations
+Metrics
+
+PURCHASE_SUCCESS_PRO
+
+Access
+
+Charge
+
+Revenue
+
+control 303 52 30 $1809
+
+variation 2 303 80 39 $2385
+
+diff
+28 9 $576
+
+[/macro]
+
+[macro]
+Significance analysis
+Monetization stats
+
+  members (pro subscribers) subscribers accesses instants trials charged trials buyers charges revenue 14d churns 14d refunds 14d pro churns
+
+control 1005 171 174 3 171 92 100 101 $6001 20 8 70
+
+variation 2 990 252 263 2 261 120 125 129 $7793 33 15 78
+
+Product stats
+
+members sessions retention 1d retention 7d members with long tab
+
+control 1005 2309 436 652 787
+
+variation 2 990 2240 378 610 771
+
+Monetization metrics
+
+  arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, % charge -> 14d refund, % members → 14 pro cancellation, %
+
+control $5.97 $59.42 $60.01 17.015% 9.95% 53.80% 19.80% 7.92% 6.97%
+
+variation 2 $7.87 $60.41 $62.35 25.45% 12.63% 45.98% 25.58% 11.63% 7.88%
+
+diff, % 31.82% 1.67% 3.88% 49.60% 26.89% -14.54% 29.19% 47% 13%
+
+pvalue 0.02 0.41 0.22 0 0.06 0.11 0.30 0.34 0.44
+
+cumulative
+
+Bank process status
+
+  pro accesses book upsells book declines book declines, % insufficient funds declines insufficient funds declines, % fraud suspected declines fraud suspected declines, % do not retry (hard) declines do not retry (hard) declines, % other declines other declines, %
+
+control 996 150 27 18% 12 8% 3 2% 2 1.3% 12 8%
+
+variation 2 999 238 62 26% 30 12.6% 10 4.2% 8 3.36% 15 6.3%
+
+diff
+
+45%
+58%
+110%
+152%
+-21%
+
+pvalue
+
+0.057
+0.14
+0.2
+0.18
+0.53
+
+Product metrics
+
+retention 1d, % retention 7d, % members with Long Tab, % Pageview per session
+
+control 43.38% 64.88% 78.31% 10.195
+
+variation 2 38.18% 61.62% 77.88% 10.187
+
+diff, % -11.99% -5.02% -0.55% -0.081%
+
+pvalue 0.018 0.13 0.82 0.99
+
+cumulative
+
+[/macro]
+
+## Post-rollout analysis (optional)
+
+[Describe how metrics looks like after rollout, if necessary

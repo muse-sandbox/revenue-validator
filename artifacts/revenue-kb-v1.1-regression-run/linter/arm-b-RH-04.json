@@ -1,0 +1,34 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 1,
+      "source_id": "T1-07"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 2,
+      "source_id": "T1-09"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 3,
+      "source_id": "T2-01"
+    }
+  ],
+  "errors": [],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.1-regression-run/arm-b/RH-04.md",
+    "kb": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.1/knowledge_base.md",
+    "patterns": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.1/pattern_cards.md"
+  },
+  "known_source_ids_count": 32,
+  "mode": "kb-arm",
+  "verdict": "PASS"
+}

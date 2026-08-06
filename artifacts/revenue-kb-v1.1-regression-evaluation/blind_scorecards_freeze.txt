@@ -1,0 +1,3 @@
+sha256 ac80e218d8bcfe4ad10fd15fd1d01a47827c590284f1bd8c85915801cce8d343  blind_pairwise_scorecards.md
+frozen_at 2026-08-05T08:35:24.392686+00:00
+frozen BEFORE: C6 adversarial verification, arm_mapping unseal, ground truth read

@@ -1,0 +1,823 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-10095
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+# Research and Context
+
+Goal: Increase  conversion to subscription and trial uptake  in the UG app by letting users briefly experience selected premium features (e.g.  Autoscroll, Smartscroll ) before showing the paywall. We are doing this now because we see that  direct, upfront paywalls  on feature tap block users from understanding the value of these features, which likely suppresses both perceived value and willingness to start a trial/subscribe.
+
+Foundation : Right now, when a user taps a premium feature, we  immediately show a paywall , and the feature is available only after purchase or trial start. With the change, the user will be able to  use the premium feature for about 10 seconds  after tapping it, and only then see the paywall. The problem today is that we  ask for payment before demonstrating value , so users cannot try the feature, undervalue the subscription, and are less likely to convert.
+
+### Research results
+
+When to Use Interactive Demos vs. Free Trial or Freemium Plans
+
+Many free users don't even start the trial: they are hindered by a “fatal” step (fear of forgetting to cancel, possibly needing an account/card, psychological barrier). But the demo allows them to see the feature without any barriers — more people will see the value and then agree to a trial or purchase.
+
+We removed the free trial and conversions went up — here’s how
+
+Reddit: removed the trial period, left 3–5 feature activations — conversion increased, free users were more active in switching to paid plans
+
+How Interactive Demos Increase Demo Requests?
+
+SmartCue: Demo interaction before purchase/trial shortens the cycle and increases the chance of conversion, especially among “lazy” users.
+
+The Ultimate Guide to Using ‘Request a Demo’ to Boost Conversion Rates
+
+A brief complimentary experience (even 5–10 seconds) increases engagement and conversion in later stages because it breaks down mistrust without requiring a long-term commitment.
+
+### A/B test model
+
+  iOS
+Android
+
+Metric A B diff A B diff
+
+Pro feature click 29459 29459
+16374 16374
+
+Accesses 1035 1139 104 337 371
+
+feature → access, % 3.51% 3.87% 10% 2.06% 2.27% 10%
+
+Charges 635 699 64 144 158 14
+
+Revenue, $ $15655 $17221 $1566 $4020 $4422 $402
+
+ARPPU, $ $25 $25 $0 $28 $28 $0
+
+ARPU $0.53 $0.58 $0.05 $0.25 $0.27 $0.02
+
+# Hypothesis
+
+If we implement a 10-second premium feature demo for free users (and ex-subscibers) when they tap a locked feature, we expect the trial start rate to increase by at least ХХ% without drop in 7-day retention because the instant hands-on experience will lower psychological friction and better showcase feature value. The significance level is set at 95%.
+
+## Experiment design template
+
+#6806 Audience free users who tries to use pro features from the list
+
+Platform UGT_IOS UGT_ANDROID
+
+Metrics
+Goal
+
+feature → access, %
+
+Sensitivity analysis /
+
+preliminary calculations
+
+Design / each metric [link to calculation]
+
+Baseline 3.51% 2.06%
+
+Lift, % 10% 10%
+
+MDE 0.019 0.014
+
+Power 0.8 0.8
+
+Alpha 0.05 0.05
+
+Sample size (per variation) 117836 163740
+
+Duration (days) 4 10
+
+Seasonality reflected took 1 week in calculations
+
+Design summary  
+
+Sample 117836 163740
+
+Days 4 10
+
+# Description of the Solution & Mockups
+
+[macro]
+1 iteration
+### Solution
+
+#6806
+
+Only free users participate in the experiment (no subscription and never had one).
+
+Participants can use the following features:
+
+autoscroll
+
+smartscroll
+
+transpose
+
+simplify
+
+official tab
+
+After using one of the functions from the list above, a 10-second countdown begins. After this time, a paywall widget appears , displaying information about the function used and a call to purchase a subscription.
+
+The project allows the user to access the official tab.
+
+In this case, the paywall should be displayed to the user after 10 seconds of being on the official tab
+
+Or when clicking any button on the official tab
+
+We do not allow the user to use the functionality of the official tab or navigate from it to deeper screens (comments, artist, etc.).
+
+If the user activates several functions within these 10 seconds, we display the paywall from the first timer that triggered, but the use of the other functions is also terminated.
+
+### Mockups & Texts
+
+Screen А В
+
+Tab screen
+
+Widget paywall for smart scroll
+-
+
+Widget paywall for autoscroll
+-
+
+Widget paywall for transpose
+-
+
+Widget paywall for simplify
+-
+
+Official Tab
+
+Widget paywall for official tab
+-
+
+### Analytics
+
+start event - App Experiment Start
+
+Event Parameters Description
+
+1 App Experiment Start item_id – %experiment id%
+send in both variations
+
+send when user clicks on on of the key experiment features:
+
+autoscroll
+
+smartscroll
+
+transpose
+
+simplify
+
+or opens an official tab
+
+in control variation this causes default banner, in test – new behaviour
+
+2 Feature Preview Timer
+value – %funnel source%
+
+params.key – ['status']
+
+params.value – [0]
+
+params.str_value – ['start'] / ['end']
+
+send with feature funnel source in value (same as on Banner Upgrade View)
+
+when user in test variation first clicks on feature from the list and timer started send this event with params.str_value = [' start ']
+
+when 10s countdown is finished, send this event with params.str_value = [' end ']
+
+do not send when there is no timer anymore (when banner is shown instantly)
+
+#old 6806 config  
+
+segment name conditions
+
+Total {'pro_rights': 'Free', 'platform': 'Mobile'}
+
+Preview funnel {'funnel': "members > event='Feature Preview Timer' and params.str_value[indexOf(params.key, 'status')]='start' > event='Feature Preview Timer' and params.str_value[indexOf(params.key, 'status')]='end' > event = 'Banner Upgrade View' > event = 'Banner Purchase Click' > event = 'Purchase Process Finish'"}
+
+#6806 config  
+
+segment name conditions
+
+Total {'pro_rights': 'Free', 'platform': 'Mobile', 'custom_where': "user_attr.str_value[indexOf(user_attr.key, 'level')] = 'Absolute beginner'"}
+
+Preview funnel {'funnel': "members > event='Feature Preview Timer' and params.str_value[indexOf(params.key, 'status')]='start' > event='Feature Preview Timer' and params.str_value[indexOf(params.key, 'status')]='end' > event = 'Banner Upgrade View' > event = 'Banner Purchase Click' > event = 'Purchase Process Finish'"}
+
+[/macro]
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=UMN-10095 order by key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+Iteration#1 - #6806 -- beginners only
+#6806  – 
+
+Exposure event: App Experiment Start
+
+[macro]
+Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UGT_IOS Design 4 58918 58918
+
+1
+complete
+No visible bugs were found throughout the experiment
+
+2
+complete
+No external effects are visible
+
+Experiment 4 1799 1706
+
+Checks
+
+3
+complete
+duration of exp ≥ design
+
+4
+complete
+A/B balance is maintained
+
+UGT_ANDROID Design 10 81870 81870
+
+5
+complete
+No visible bugs were found throughout the experiment
+
+6
+complete
+No external effects are visible
+
+Experiment 4 2525 2609
+
+Checks
+
+7
+incomplete
+duration of exp ≥ design
+
+8
+complete
+A/B balance is maintained
+
+[/macro]
+
+  Decision
+
+Results
+
+[UGT_IOS / Total / variation 2]
+
+access cr: -42.1%, access conversion dropped
+
+## Forecast (per day)
+
+UGT_ANDROID
+
+UGT_IOS
+
+Variations
+App Experiment Start
+
+Accesses
+
+Charges
+
+Revenue, $
+
+App Experiment Start
+
+Accesses
+
+Charges
+
+Revenue, $
+
+control 1285 29 6 $168 877 71 34 $585
+
+variation 2 1285 20 6 $163 877 42 24 $487
+
+diff 0 -9 0 -$5 0 -29 -10 -$98
+
+## Significance analysis
+
+[macro]
+UGT_IOS
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 1799 133 146 51 93 2 18 69 71 $1199 26 4
+
+variation 2 1706 73 83 37 46 0 11 47 48 $946 15 1
+
+diff, % -5.2% -45% -43% -27% -51% -100% -39% -32% -32% -21% -42% -75%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 1799 313 703 838
+
+variation 2 1706 286 664 787
+
+diff, % -5.2% -8.6% -5.5% -6.1%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 1799 1149 989 845 647 357
+
+variation 2 1706 1119 940 804 584 326
+
+diff, % -5.2% -2.6% -5% -4.9% -9.7% -8.7%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.667 $16.9 $17.4 7.39% 3.84% 63.7% 19.4% 36.6% 5.63%
+
+variation 2 $0.555 $19.7 $20.1 4.28% 2.75% 55.4% 23.9% 31.2% 2.08%
+
+diff, % -16.8% 16.7% 15.9% -42.1% -28.2% -13% 23.6% -14.7% -63%
+
+pvalue 0.36 0.10 0.11 0.00 0.07 0.22 0.54 0.54 0.30
+
+cumulatives
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 17.4% 39.1% 46.6%
+
+variation 2 16.8% 38.9% 46.1%
+
+diff, % -3.65% -0.399% -0.966%
+
+pvalue 0.62 0.92 0.79
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 63.9% 55% 47% 36% 19.8% 12.5 2.42 1.69 1.25 0.779 0.325
+
+variation 2 65.6% 55.1% 47.1% 34.2% 19.1% 12.3 2.49 1.71 1.27 0.765 0.316
+
+diff, % 2.7% 0.227% 0.335% -4.82% -3.71% -2.15% 2.79% 1.08% 2.07% -1.84% -2.67%
+
+pvalue 0.29 0.94 0.93 0.28 0.58 0.66 0.68 0.87 0.78 0.81 0.76
+
+cumulatives
+
+Preview funnel
+
+variation members Feature Preview Timer members -> Feature Preview Timer, % Feature Preview Timer / 2 Feature Preview Timer -> Feature Preview Timer / 2, % Banner Upgrade View Feature Preview Timer / 2 -> Banner Upgrade View, % Banner Purchase Click Banner Upgrade View -> Banner Purchase Click, % Purchase Process Finish Banner Purchase Click -> Purchase Process Finish, % members -> Purchase Process Finish, %
+
+control 1799 0 0.00% 0 — 1792
+357 19.92% 132 36.97% 7.34%
+
+variation 2 1706 1698 99.53% 1654 97.41% 1545 93.41% 257 16.63% 71 27.63% 4.16%
+
+[/macro]
+
+[macro]
+UGT_ANDROID
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 2525 55 57 6 49 1 5 12 12 $331 1 1
+
+variation 2 2609 41 41 9 32 0 5 14 14 $332 3 0
+
+diff, % 3.3% -25% -28% 50% -35% -100% 0% 17% 17% 0.5% 200% -100%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 2525 473 1083 1234
+
+variation 2 2609 471 1121 1308
+
+diff, % 3.3% -0.42% 3.5% 6%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 2525 1456 1172 956 664 326
+
+variation 2 2609 1541 1211 993 680 303
+
+diff, % 3.3% 5.8% 3.3% 3.9% 2.4% -7.1%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.131 $27.6 $27.6 2.18% 0.475% 86% 10.2% 8.33% 8.33%
+
+variation 2 $0.128 $23.8 $23.8 1.57% 0.537% 78% 15.6% 21.4% 0%
+
+diff, % -2.74% -13.9% -13.9% -27.9% 12.9% -9.21% 53.1% 157% -100%
+
+pvalue 0.95 0.49 0.49 0.11 0.76 0.32 0.48 0.33 0.30
+
+cumulatives
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 18.7% 42.9% 48.9%
+
+variation 2 18.1% 43% 50.1%
+
+diff, % -3.63% 0.176% 2.58%
+
+pvalue 0.53 0.96 0.37
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 57.7% 46.4% 37.9% 26.3% 12.9% 10.9 2.23 1.49 1.07 0.561 0.206
+
+variation 2 59.1% 46.4% 38.1% 26.1% 11.6% 10.1 2.22 1.49 1.06 0.538 0.184
+
+diff, % 2.43% 0.000883% 0.526% -0.888% -10% -7.75% -0.49% -0.116% -0.956% -4.11% -10.3%
+
+pvalue 0.31 1.00 0.88 0.85 0.16 0.07 0.94 0.99 0.88 0.56 0.25
+
+cumulatives
+
+Preview funnel
+
+variation members Feature Preview Timer members -> Feature Preview Timer, % Feature Preview Timer / 2 Feature Preview Timer -> Feature Preview Timer / 2, % Banner Upgrade View Feature Preview Timer / 2 -> Banner Upgrade View, % Banner Purchase Click Banner Upgrade View -> Banner Purchase Click, % Purchase Process Finish Banner Purchase Click -> Purchase Process Finish, % members -> Purchase Process Finish, %
+
+control 2525 0 0.00% 0 — 2504
+449 17.93% 54 12.03% 2.14%
+
+variation 2 2609 2583 99.00% 2432 94.15% 2177 89.51% 431 19.80% 40 9.28% 1.53%
+
+[/macro]
+
+[/macro]
+
+[macro]
+true Iteration #1 - #6806
+#6806  – 
+
+Exposure event:  App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UGT_IOS Design 4 58918 58918
+
+cfa6977f-697c-a996-5e08-73388782d619
+complete
+No visible bugs were found throughout the experiment
+
+02aa8570-51c2-a271-d7b6-076548bd9c97
+complete
+No external effects are visible
+
+Experiment 4 4617 4596
+
+Checks
+
+513652d9-4ece-d1f9-876c-85a1ca95a2fa
+complete
+duration of exp ≥ design
+
+6a9966c4-5fd2-2166-7b6b-5289eef171c9
+complete
+A/B balance is maintained
+
+UGT_ANDROID Design 10 81870 81870
+
+083512de-98b6-a708-b365-ce1517898a90
+complete
+No visible bugs were found throughout the experiment
+
+4082f9a8-a885-e6bf-56ed-3a8ca0ebafb0
+complete
+No external effects are visible
+
+Experiment 4 6915 7049
+
+Checks
+
+44983076-a517-e853-850e-08e57790195a
+incomplete
+duration of exp ≥ design
+
+87b2dd59-4f1b-7948-3687-4369fecd1634
+complete
+A/B balance is maintained
+
+## Decision
+[macro]
+Red FAIL
+[/macro]
+
+Results
+
+[UGT_IOS / Total / variation 2]
+
+access cr, %: -36.04%, decreased top-of-funnel conversion
+
+charge cr, %: -26.38%, fewer users reach charge
+
+AOV & ARPPU: +14% to +18%, increased spend among payers
+
+tab view per user: -5.84%, decreased usage
+
+[UGT_ANDROID / Total / variation 2]
+
+access cr, %: -28.47%, decreased top-of-funnel conversion
+
+subscriber -> buyer % and subscription -> charge %: +42%–43%, improved downstream conversion among payers
+
+tab view 60s, %: +4.29%, more users pass 60s viewing threshold
+
+Conclusion
+
+Do not roll out.
+
+The 10-second post-action paywall for free users (and strict Official Tab gating) significantly suppresses access conversion on both iOS (-36%) and Android (-28%).
+
+On iOS this also translates into a lower charge conversion (-26%).
+
+Engagement signals are mixed (Android +4% in 60s view rate vs. iOS -6% tab views per user), consistent with added friction shortly after feature use and blocked navigation on the Official Tab.
+
+funnel losses
+
+conversion to banner: -10% iOS and -18% Android
+
+conversion from banner click → purchase: -22% iOS and -26% Android
+
+Next steps
+
+[macro]
+Forecast (per day)
+
+UGT_IOS
+
+UGT_ANDROID
+
+Variations
+Banner Upgrade View
+(Autoscroll, Transpose, Simplify, Smartscroll, Official)
+
+Accesses
+
+Charges
+
+Revenue, $
+
+Banner Upgrade View
+(Autoscroll, Transpose, Simplify, Smartscroll, Official)
+
+Accesses
+
+Charges
+
+Revenue, $
+
+control 32203 2155 1032 $18323 17545 370 114 $2593
+
+variation 2 32203 1415 785 $15912 17545 266 117 $2633
+
+diff
+-740 -247 -$2411
+-104 3 $40
+
+[/macro]
+
+## Significance analysis
+
+[macro]
+UGT_IOS
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 4617 278 309 111 191 7 34 146 148 $2627 44 6
+
+variation 2 4596 177 202 80 117 5 27 107 112 $2271 31 4
+
+diff, % -0.45% -36% -35% -28% -39% -29% -21% -27% -24% -14% -30% -33%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 4617 846 1956 2271
+
+variation 2 4596 825 1975 2285
+
+diff, % -0.45% -2.5% 0.97% 0.62%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 4617 3197 2776 2435 1868 1000
+
+variation 2 4596 3218 2764 2414 1815 962
+
+diff, % -0.45% 0.66% -0.43% -0.86% -2.8% -3.8%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.569 $17.8 $18 6.02% 3.16% 61.8% 17.8% 29.7% 4.05%
+
+variation 2 $0.494 $20.3 $21.2 3.85% 2.33% 57.9% 23.1% 27.7% 3.57%
+
+diff, % -13.2% 14.2% 17.9% -36% -26.4% -6.3% 29.6% -6.9% -11.9%
+
+pvalue 0.30 0.037 0.009 0.00 0.014 0.38 0.27 0.72 0.84
+
+cumulatives
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 18.3% 42.4% 49.2%
+
+variation 2 18% 43% 49.7%
+
+diff, % -2.04% 1.43% 1.08%
+
+pvalue 0.64 0.56 0.61
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 69.2% 60.1% 52.7% 40.5% 21.7% 13.2 2.89 2.02 1.5 0.88 0.34
+
+variation 2 70% 60.1% 52.5% 39.5% 20.9% 12.4 2.85 1.98 1.48 0.866 0.335
+
+diff, % 1.12% 0.0227% -0.409% -2.39% -3.36% -5.84% -1.56% -1.94% -1.3% -1.62% -1.4%
+
+pvalue 0.42 0.99 0.84 0.34 0.39 0.048 0.69 0.62 0.75 0.70 0.79
+
+cumulatives
+
+Preview funnel
+
+variation members Feature Preview Timer start members -> Feature Preview Timer start, % Feature Preview Timer end Feature Preview Timer -> Feature Preview Timer end, % Banner Upgrade View members → banner, % Feature Preview Timer end -> Banner Upgrade View, % Banner Purchase Click Banner Upgrade View -> Banner Purchase Click, % Purchase Process Finish Banner Purchase Click -> Purchase Process Finish, % members -> Purchase Process Finish, %
+
+control 4617 0 0.00% 0 — 4602 99.68%
+770 16.73% 276 35.84% 5.98%
+
+variation 2 4596 4574 99.52% 4481 97.97% 4121 89.66% 91.97% 618 15.00% 172 27.83% 3.74%
+
+[/macro]
+
+[macro]
+UGT_ANDROID
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 6915 144 146 31 111 3 11 45 45 $1022 5 1
+
+variation 2 7049 105 107 35 72 0 12 47 47 $1058 5 1
+
+diff, % 1.9% -27% -27% 13% -35% -100% 9.1% 4.4% 4.4% 3.5% 0% 0%
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 6915 1425 3325 3753
+
+variation 2 7049 1470 3439 3897
+
+diff, % 1.9% 3.2% 3.4% 3.8%
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 6915 4265 3586 3063 2134 978
+
+variation 2 7049 4534 3746 3138 2131 936
+
+diff, % 1.9% 6.3% 4.5% 2.4% -0.14% -4.3%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.148 $22.7 $22.7 2.08% 0.651% 76% 9.91% 11.1% 2.22%
+
+variation 2 $0.15 $22.5 $22.5 1.49% 0.667% 67.3% 16.7% 10.6% 2.13%
+
+diff, % 1.55% -0.885% -0.885% -28.5% 2.46% -11.5% 68.2% -4.26% -4.26%
+
+pvalue 0.95 0.94 0.94 0.008 0.91 0.13 0.20 0.94 0.98
+
+cumulatives
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 20.6% 48.1% 54.3%
+
+variation 2 20.9% 48.8% 55.3%
+
+diff, % 1.2% 1.46% 1.86%
+
+pvalue 0.72 0.41 0.23
+
+cumulatives
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 61.7% 51.9% 44.3% 30.9% 14.1% 11.2 2.59 1.76 1.26 0.637 0.212
+
+variation 2 64.3% 53.1% 44.5% 30.2% 13.3% 11 2.71 1.85 1.3 0.636 0.197
+
+diff, % 4.29% 2.48% 0.501% -2.04% -6.11% -1.35% 4.56% 4.78% 3.34% -0.14% -6.86%
+
+pvalue 0.001 0.13 0.79 0.42 0.14 0.58 0.17 0.16 0.34 0.97 0.18
+
+cumulatives
+
+Preview funnel
+
+variation members Feature Preview Timer start members -> Feature Preview Timer start, % Feature Preview Timer end Feature Preview Timer -> Feature Preview Timer end, % Banner Upgrade View members → banner Feature Preview Timer end -> Banner Upgrade View, % Banner Purchase Click Banner Upgrade View -> Banner Purchase Click, % Purchase Process Finish Banner Purchase Click -> Purchase Process Finish, % members -> Purchase Process Finish, %
+
+control 6915 0 0.00% 0 — 6872 99.38%
+1014 14.76% 142 14.00% 2.05%
+
+variation 2 7049 6990 99.16% 6648 95.11% 5761 81.73% 86.66% 911 15.81% 95 10.43% 1.35%
+
+[/macro]
+
+[/macro]
+
+## Post-Rollout Analysis (optional)
+
+[macro]
+Example
+Use this section if results need to be revisited after the initial decision.
+Examples include:
+
+Adding actual reconversion data for subscriptions with atypical billing cycles.
+
+Evaluating long-term cohort survival or retention trends.
+
+Validating delayed impact metrics that were not available during the initial analysis.
+
+Delete this info block after you fill in the page.
+
+[/macro]

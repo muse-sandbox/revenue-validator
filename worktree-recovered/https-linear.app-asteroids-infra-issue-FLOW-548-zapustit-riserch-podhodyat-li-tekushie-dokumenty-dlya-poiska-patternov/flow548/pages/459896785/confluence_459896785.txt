@@ -1,0 +1,424 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-5705
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+   
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Project goal : to increase final revenue by increasing local prices and make them equal to usd price
+
+Foundation : changing local price may lead to decreasing amount of users, but increasing final revenue
+
+### Research results
+
+avg per day local currency price to usd landing share, % paywall share, % landing → paywall accesses paywall → access charges revenue share, %
+
+usd 99.99 1 $99.99 11429 37.56% 2872 39.58% 25.13% 209 7.27% 122 $7,830 58.93%
+
+aud 124.99 1.503986 $83.11 1719 5.65% 449 6.19% 26.12% 21 4.78% 13 $686 5.16%
+
+brl 299.99 5.2889 $56.72 635 2.09% 160 2.20% 25.20% 4 2.48% 2 $60 0.45%
+
+cad 124.99 1.367755 $91.38 2041 6.71% 486 6.70% 23.81% 24 4.92% 16 $869 6.54%
+
+chf 99.99 0.8899 $112.36 306 1.01% 68 0.94% 22.22% 3 4.97% 3 $166 1.25%
+
+czk 1499 22.7117 $66.00 275 0.90% 63 0.87% 22.91% 2 3.64% 1 $52 0.39%
+
+eur 99.99 0.919165 $108.78 8788 28.88% 1942 26.76% 22.10% 65 3.35% 40 $2,535 19.08%
+
+gbp 99.99 0.78305 $127.69 2651 8.71% 615 8.47% 23.20% 24 3.91% 11 $756 5.69%
+
+jpy 6980 154.857 $45.07 310 1.02% 73 1.01% 23.55% 2 2.74% 1 $39 0.29%
+
+krw 84000 1374.36 $61.12 182 0.60% 49 0.68% 26.92% 3 5.47% 1 $45 0.34%
+
+mxn 897.99 17.8472 $50.32 424 1.39% 120 1.65% 28.30% 4 3.56% 2 $81 0.61%
+
+nzd 124.99 1.619005 $77.20 363 1.19% 93 1.28% 25.62% 4 3.76% 2 $92 0.69%
+
+pln 192.99 3.96015 $48.73 496 1.63% 119 1.64% 23.99% 5 4.01% 3 $63 0.47%
+
+rub 2499 88.815 $28.14 809 2.66% 148 2.04% 18.29% 1 0.99% 1 $13 0.10%
+
+[macro]
+sql query true
+[/macro]
+
+[macro]
+sql query true '' and product_id <> ''
+group by
+subscription_id,
+product_id
+having
+toDate(sub_dt) between toDate('2024-06-05') - interval 38 day and toDate('2024-06-05') - interval 8 day
+and
+(toDate(ch_dt) >= toDate('2024-06-05') - interval 30 day or toDateTime(ch_dt) = toDateTime(0))
+)
+
+select
+currency,
+avg(accesses) as accesses,
+avg(charges) as charges,
+avg(revenue) as revenue
+from (
+select
+toDate(sub_dt) as date,
+currency,
+uniqExact((subscription_id, product_id)) as accesses,
+uniqExactIf((subscription_id, product_id), toDateTime(ch_dt) > toDateTime(0)) as charges,
+sum(revenue) as revenue
+from
+raw
+group by
+date,
+currency
+)
+group by
+currency]]>
+[/macro]
+
+### A/B test model
+
+TBD
+
+Metric A B diff
+
+Landing Plans View, tot 7846 7846 0
+
+Landing Plans View, except USD , EUR , CHF , GBP 1531 1531 0
+
+Charges, tot 159 159 0
+
+Charges, except USD , EUR , CHF , GBP 28 28 0
+
+Revenue, tot, $ $11648 $11963 $315
+
+Revenue, except USD , EUR , CHF , GBP, $ $1750 $2065 $315
+
+ARPU, tot, $ $1.49 $1.53 3% tot
+
+ARPU, except USD , EUR , CHF , GBP , $ $1.14 $1.35 18%
+
+# Hypothesis
+
+Increase local prices and make them equal to USD price in local price and check how it affect final revenue and amount of users.  Launch experiment only in locations where price will be changed.
+
+# A/B test plan
+
+Base value of the metric: APRU except USD , EUR , CHF , GBP $1.14
+
+Lift, % 10%
+
+Minimal detectable effect 0.0214
+
+Probability of true-positive (power) 0.8
+
+Probability of false-positive (p-value) 0.05
+
+Sample size (for all the variations) 68895
+
+How many days it'll take to conduct the test 45
+
+# Description of the Solution & Mockups
+
+### Solution
+
+In the test variations, we offer increased price everywhere except USD , EUR , CHF , GBP
+
+B: increased price - we’re aligning all local prices to USD.
+
+Adjust the discount amount everywhere it appears
+
+We've decided to create a new list of plan IDs for a new "tier" because we need options to separate plans with different local prices. So, we'll be rolling out new plan IDs and plan codes for all countries, regardless of the fact that prices will only change for some merchants.
+
+#### Plans
+
+currency 12 month - trial double_welcome_bonus - instant welcome_bonus  - instant 1 month ambulance_too_expensive_offer
+
+annual annual annual monthly annual
+
+A B A B A B A B A B
+
+usd 99.99 99.99 64.99 64.99 74.99 74.99 24.99 24.99 49.99 49.99
+
+aud 124.99 149.99 98.99 99.99 113.99 113.99 30.99 37.99 61.99 74.99
+
+brl 299.99 529.99 202.99 339.99 249.99 399.99 74.99 129.99 167.99 264.99
+
+cad 124.99 134.99 98.99 99.99 113.99 113.99 30.99 34.99 61.99 69.99
+
+chf 99.99 99.99 64.99 64.99 74.99 74.99 24.99 24.99 49.99 49.99
+
+czk 1499 2199 959 1449 1119 1699 369 569.99 749 1149
+
+eur 99.99 99.99 64.99 64.99 74.99 74.99 24.99 24.99 49.99 49.99
+
+gbp 99.99 99.99 64.99 64.99 74.99 74.99 24.99 24.99 49.99 49.99
+
+jpy 6980 15500 4580 9980 5280 11580 1780 3880 3480 7800
+
+krw 84000 137000 55000 90000 63000 103000 21000 34000 42000 69000
+
+mxn 897.99 1799 595.99 1149 672.99 1339 222.99 444.99 447.99 889.99
+
+nzd 124.99 159.99 98.99 104.99 113.99 119.99 30.99 39.99 61.99 79.99
+
+pln 192.99 394.99 124.99 254.99 137.99 299.99 47.99 99.99 94.99 199.99
+
+rub 2499 8899 1599 5799 1899 6659 599 2199 1199 4499
+
+new plan_id
+
+currency 12 month - trial double_welcome_bonus - instant welcome_bonus  - instant 1 month ambulance_too_expensive_offer
+
+usd
+pro_plus_account-month-12-9999-usd-loc_eq_usd
+
+pro_plus_account-month-12-6499-usd-loc_eq_usd
+
+pro_plus_account-month-12-7499-usd-loc_eq_usd
+
+pro_plus_account-month-12-2499-usd-loc_eq_usd
+
+pro_plus_account-month-12-4999-usd-loc_eq_usd
+
+aud
+pro_plus_account-month-12-14999-aud-loc_eq_usd
+
+pro_plus_account-month-12-9999-aud-loc_eq_usd
+
+pro_plus_account-month-12-11399-aud-loc_eq_usd
+
+pro_plus_account-month-12-3799-aud-loc_eq_usd
+
+pro_plus_account-month-12-7499-aud-loc_eq_usd
+
+brl
+pro_plus_account-month-12-52999-brl-loc_eq_usd
+
+pro_plus_account-month-12-33999-brl-loc_eq_usd
+
+pro_plus_account-month-12-39999-brl-loc_eq_usd
+
+pro_plus_account-month-12-12999-brl-loc_eq_usd
+
+pro_plus_account-month-12-26499-brl-loc_eq_usd
+
+cad
+pro_plus_account-month-12-13499-cad-loc_eq_usd
+
+pro_plus_account-month-12-9999-cad-loc_eq_usd
+
+pro_plus_account-month-12-11399-cad-loc_eq_usd
+
+pro_plus_account-month-12-3499-cad-loc_eq_usd
+
+pro_plus_account-month-12-6999-cad-loc_eq_usd
+
+chf
+pro_plus_account-month-12-9999-chf-loc_eq_usd
+
+pro_plus_account-month-12-6499-chf-loc_eq_usd
+
+pro_plus_account-month-12-7499-chf-loc_eq_usd
+
+pro_plus_account-month-12-2499-chf-loc_eq_usd
+
+pro_plus_account-month-12-4999-chf-loc_eq_usd
+
+czk
+pro_plus_account-month-12-219900-czk-loc_eq_usd
+
+pro_plus_account-month-12-144900-czk-loc_eq_usd
+
+pro_plus_account-month-12-169900-czk-loc_eq_usd
+
+pro_plus_account-month-12-56999-czk-loc_eq_usd
+
+pro_plus_account-month-12-114900-czk-loc_eq_usd
+
+eur
+pro_plus_account-month-12-9999-eur-loc_eq_usd
+
+pro_plus_account-month-12-6499-eur-loc_eq_usd
+
+pro_plus_account-month-12-7499-eur-loc_eq_usd
+
+pro_plus_account-month-12-2499-eur-loc_eq_usd
+
+pro_plus_account-month-12-4999-eur-loc_eq_usd
+
+gbp
+pro_plus_account-month-12-9999-gbp-loc_eq_usd
+
+pro_plus_account-month-12-6499-gbp-loc_eq_usd
+
+pro_plus_account-month-12-7499-gbp-loc_eq_usd
+
+pro_plus_account-month-12-2499-gbp-loc_eq_usd
+
+pro_plus_account-month-12-4999-gbp-loc_eq_usd
+
+jpy
+pro_plus_account-month-12-1550000-jpy-loc_eq_usd
+
+pro_plus_account-month-12-998000-jpy-loc_eq_usd
+
+pro_plus_account-month-12-1158000-jpy-loc_eq_usd
+
+pro_plus_account-month-12-388000-jpy-loc_eq_usd
+
+pro_plus_account-month-12-780000-jpy-loc_eq_usd
+
+krw
+pro_plus_account-month-12-13700000-krw-loc_eq_usd
+
+pro_plus_account-month-12-9000000-krw-loc_eq_usd
+
+pro_plus_account-month-12-10300000-krw-loc_eq_usd
+
+pro_plus_account-month-12-3400000-krw-loc_eq_usd
+
+pro_plus_account-month-12-6900000-krw-loc_eq_usd
+
+mxn
+pro_plus_account-month-12-179900-mxn-loc_eq_usd
+
+pro_plus_account-month-12-114900-mxn-loc_eq_usd
+
+pro_plus_account-month-12-133900-mxn-loc_eq_usd
+
+pro_plus_account-month-12-44499-mxn-loc_eq_usd
+
+pro_plus_account-month-12-88999-mxn-loc_eq_usd
+
+nzd
+pro_plus_account-month-12-15999-nzd-loc_eq_usd
+
+pro_plus_account-month-12-10499-nzd-loc_eq_usd
+
+pro_plus_account-month-12-11999-nzd-loc_eq_usd
+
+pro_plus_account-month-12-3999-nzd-loc_eq_usd
+
+pro_plus_account-month-12-7999-nzd-loc_eq_usd
+
+pln
+pro_plus_account-month-12-39499-pln-loc_eq_usd
+
+pro_plus_account-month-12-25499-pln-loc_eq_usd
+
+pro_plus_account-month-12-29999-pln-loc_eq_usd
+
+pro_plus_account-month-12-9999-pln-loc_eq_usd
+
+pro_plus_account-month-12-19999-pln-loc_eq_usd
+
+rub
+pro_plus_account-month-12-889900-rub-loc_eq_usd
+
+pro_plus_account-month-12-579900-rub-loc_eq_usd
+
+pro_plus_account-month-12-665900-rub-loc_eq_usd
+
+pro_plus_account-month-12-219900-rub-loc_eq_usd
+
+pro_plus_account-month-12-449900-rub-loc_eq_usd
+
+### Mockups & Texts
+
+Screen А В
+
+### Analytics
+
+Exposure event: App Experiment Start
+
+Event Parameters Description
+
+1 App Experiment Start
+
+item_id = %experiment id%
+
+send on plans page along with Landing Plans View event but only for countries with one of the currencies above (aud, brl, cad, chf, czk, jpy, krw, mxn, nzd, pln, rub)
+
+2
+Landing Plans View
+
+Landing Checkout View
+
+Landing Purchase Click
+
+PURCHASE_SUCCESS
+
+Purchased View
+
+params.key = ['currency']
+
+params.value = [0]
+
+params.str_value = ['rub']
+
+existing events
+
+add new parameter in params with currency code
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 "Epic Link"=umn-5705 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results 
+[macro]
+Red FAIL
+[/macro]
+
+In both iterations, we saw a 20-30% drop in conversion to access and up to a 40% decrease in the final ARPU.
+
+Iteration 1 (# 4743)
+
+variation members accesess_uniq accesess_cnt conv1 accesess_instant_cnt accesess_trial_cnt charged_trial_cnt conv2 charged_cnt conv_to_charge final_revenue arppu arpu
+
+1 13060 98 111 0.85% 36 75 21 28.00% 53 0.406% $3,862 $72.88 $0.296
+
+2 12921 86 89 0.69% 27 62 21 33.87% 48 0.371% $3,166 $65.95 $0.245
+
+diff
+
+-18.96%
+
+20.97%
+-8.46%
+-9.50% -17.16%
+
+Iteration 2 (# 4755)
+
+variation members accesess_uniq accesess_cnt conv1 accesess_instant_cnt accesess_trial_cnt charged_trial_cnt conv2 charged_cnt conv_to_charge final_revenue arppu arpu
+
+1 13057 107 126 0.96% 43 83 27 32.53% 66 0.505% $4,541 $68.80 $0.348
+
+2 13018 71 87 0.67% 23 64 18 28.13% 37 0.284% $2,652 $71.68 $0.204
+
+diff
+
+-30.75%
+
+-13.54%
+-43.77%
+4.19% -41.41%

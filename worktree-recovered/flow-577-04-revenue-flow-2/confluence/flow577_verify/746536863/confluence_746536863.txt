@@ -1,0 +1,1066 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-10299
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+
+[/macro]
+
+[macro]
+
+# Pitch
+
+## Context & Idea
+
+Goal
+
+We want to improve our offering scenarios before the start of the sales season and enhance conversion and revenue
+
+Foundation
+
+We launched a similar animation for Halloween. We want to try a version with more expensive plans
+
+### Questions & Answers
+
+-
+
+## Confidence research
+
+## Reach & Impact
+
+Metrics IOS ANDROID Total Diff
+
+A B diff A B diff
+
+DAU
+138,669 138,669 0.00% 68,560 68,560 0.00%
+
+Subscribed 1,833 2,016 +10.00% 735 809 +10.00%
+
+CR from DAU to Subscribe 1.32% 1.45% +10.00% 1.07% 1.18% +10.00%
+
+Charged 1,006 1,106 +10.00% 357 393 +10.00%
+
+CR from DAU to Charge 0.73% 0.80% +10.00% 0.52% 0.57% +10.00%
+
+Revenue $32,359 $34,522 +$2,164 $11,709 $12,367 +$657 6.40% ( $2,821)
+
+ARPPU $32.17 $31.21 -3.01% $32.78 $31.47 -3.99%
+
+ARPU $0.233 $0.249 +7% $0.171 $0.180 +5%  
+
+## Hypothesis
+
+If we implement [specific change] for [specific audience] in [specific scenarios], we expect [specific metric] to increase by [specific amount] without drop in [specific metirc] because [specific reason]. 
+
+## Experiment design
+
+[macro]
+Experiment design
+
+Audience
+free users (organic + referral) with free rights (free, no trial, no subscription)
+
+Platform IOS ANDROID
+[add more metrics
+
+or delete this column]
+
+North Star Metrics
+CR from DAU to Charge  
+
+Design / each metric
+
+Baseline 0.73% 0.52%  
+
+Lift, % 10%  10%  
+
+Expected Value 0.80% 0.57%  
+
+Power 0.8 0.8  
+
+Alpha 0.05 0.05  
+
+Sample size (per variation) 216,622 304,757  
+
+Duration (days) 3 9
+
+Seasonality reflected took 1 week in calculations (+7 days trial) took 1 week in calculations (+7 days trial)
+
+Days [value]
+
+[/macro]
+
+# Description of the Solution & Mockups
+
+## XMAS
+
+### Solution
+
+Launch for Free users (without Pro/Pro+) and for WW Apps and only for smartphones (platform = 2)
+
+For variation A keep it as is
+
+For variation B 
+
+Change the Explore banner visual
+
+Add micro-animations to the paywal. Animation: 
+
+Show a thematic animation before displaying the splash screen. In the control version, the splash is simply displayed upon entry, while in the test version, an animation is shown first, which then transitions to the splash screen.
+
+Plans, prices, splash, and paywall display rules remain unchanged
+
+For variation C
+
+Same as fo B, but change the price for offer: for all users Pro+ offer will be $24.99 (not $19.99 or introdactory $19.99)
+
+WW iOS:  com.ultimateguitar.ugt.plus.1year3
+
+WW Android: com.ultimateguitar.tabs.plus.inst.1year5
+
+### Mockups & Texts
+
+Screen А В C Comments
+
+Banner in Explore screen
+
+change banner
+
+Splash Open -
+
+animation
+
+[macro]
+150
+[/macro]
+
+Splash
+
+B: annual plan to $19.99 (or intro $19.99 → $39.99 for new users)
+
+С: annual plan to $24.99 (for all)
+
+## NY
+
+### Solution
+
+Launch for Free users (without Pro/Pro+)
+
+For variation A keep it as is
+
+For variation B 
+
+Change the Explore banner visual
+
+Add micro-animations to the paywal. Animation: TBD
+
+Show a thematic animation before displaying the splash screen. In the control version, the splash is simply displayed upon entry, while in the test version, an animation is shown first, which then transitions to the splash screen.
+
+Plans, prices, splash, and paywall display rules remain unchanged
+
+### Mockups & Texts
+
+Screen А В Comments
+
+Banner in Explore screen TBD
+
+Splash Open -
+
+animation
+
+[macro]
+150
+[/macro]
+
+Splash TBD
+
+microanimation:
+
+TBD
+
+## Analytics
+
+Exposure Event: Explore Open
+
+Event Parameters Description
+
+1
+
+2
+
+# 6878 config
+
+Segment Name Conditions
+
+Total {'pro_rights': 'free', 'platform': 'Mobile'}
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=umn-10299 order by key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+ 
+
+# Results
+
+## Decision 
+[macro]
+Green SUCCESS
+[/macro]
+
+Roll out Variant 2 for both platforms because it shows better results in revenue and subscriber numbers
+
+Across both platforms, no statistically significant differences were observed in overall monetization metrics. However, when analyzing the experimental funnel separately (Christmas splashes), the following conclusions can be drawn:
+
+iOS platform : The Christmas splash delivered a strong uplift. For Banner Splash, Variant 2 performed best, while for Automatic Splash, Variant 3 showed the strongest results.
+
+Android platform : Variant 2 consistently improves the entire funnel and monetization. Variant 3 reduces Splash Click conversion and weakens the top of the funnel, despite higher revenue.
+
+When evaluating the impact of the Christmas Splash on non-Christmas purchases, no statistically significant differences were observed between the control group and the variant groups on either the iOS or Android platforms. This indicates that the experiment does not have a measurable impact on core (non-Christmas) purchases and does not introduce any negative side effects outside of the Christmas splash scenarios.
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2 variation 3
+
+UGT_IOS Design 9 304757 304757 304757
+
+0429dbc0-481a-da12-9afa-a77fd0436559
+complete
+No visible bugs were found throughout the experiment
+
+5b0d879f-ae75-e1d6-ee5c-1e5e7ea47548
+complete
+No external effects are visible
+
+Experiment 10 139025 138088 139952
+
+Checks
+
+dd0d0491-c192-02cf-fc22-171517627e65
+complete
+duration of exp ≥ design
+
+9c1998fe-7992-978c-2934-089e72c83afb
+complete
+A/B balance is maintained
+
+UGT_ANDROID Design 3 216622 216622 216622
+
+b53f941e-5643-47bb-f725-1ed9bc3bbe51
+complete
+No visible bugs were found throughout the experiment
+
+05de7486-6f0c-050d-c3d4-02c3fb0e5089
+complete
+No external effects are visible
+
+Experiment 10 71693 70575 70769
+
+Checks
+
+e53c9031-5653-e626-08ef-6a457e1958da
+complete
+duration of exp ≥ design
+
+cdc4bc87-2ab6-d32e-e69e-86fc71c060b8
+complete
+A/B balance is maintained
+
+## Forecast (per day)
+
+Variations
+UGT_IOS
+
+UGT_ANDROID
+
+Explore Open CR to Access Access CR to Charge Charges ARPU Revenue, $ Explore Open CR to Access Accesses CR to Charge Charges ARPU Revenue, $
+
+control 167610 2.16% 3,620 1.18% 1,978 $0.254 $42,573 88538 1.65% 1,461 0.749% 663 $0.194 $17,176
+
+variation 2 167610 2.21% 3,704 1.25% 2,095 $0.273 $45,758 88538 1.70% 1,505 0.793% 702 $0.200 $17,708
+
+diff 0 2.31% 84 5.93% 117 7.48% $3,185 0 3.03% 44 5.87% 39 3.09% $532
+
+variation 3 167610 2.12% 3,553 1.17% 1,961 $0.259 $43,411 88538 1.69% 1,496 0.783% 693 $0.212 $18,770
+
+diff 0 -1.85% -67 -0.85% -17 1.97% $838 0 2.42% 35 4.54% 30 9.28% $1,594
+
+## Significance analysis
+
+[macro]
+#6878
+#6878  – 
+
+Exposure event: Explore Open
+
+[macro]
+UGT_IOS
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 139025 3004 3229 1217 1650 312 287 1646 1674 $35246 421 88
+
+variation 2 138088 3058 3281 1295 1656 299 301 1728 1757 $37753 400 68
+
+diff, % -0.67% 1.8% 1.6% 6.4% 0.36% -4.2% 4.9% 5% 5% 7.1% -5% -23%
+
+variation 3 139952 2972 3164 1206 1622 301 277 1631 1657 $36301 422 90
+
+diff, % 0.67% -1.1% -2% -0.9% -1.7% -3.5% -3.5% -0.91% -1% 3% 0.24% 2.3%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.254 $21.1 $21.4 2.16% 1.18% 51.1% 17.4% 25.1% 5.26%
+
+variation 2 $0.273 $21.5 $21.8 2.21% 1.25% 50.5% 18.2% 22.8% 3.87%
+
+diff, % 7.84% 2.05% 2.03% 2.49% 5.69% -1.23% 4.5% -9.48% -26.4%
+
+pvalue 0.06 0.31 0.31 0.33 0.11 0.61 0.56 0.10 0.05
+
+variation 3 $0.259 $21.9 $22.3 2.12% 1.17% 51.3% 17.1% 25.5% 5.43%
+
+diff, % 2.31% 4.05% 3.94% -1.72% -1.57% 0.323% -1.82% 1.27% 3.32%
+
+pvalue 0.57 0.05 0.06 0.50 0.65 0.90 0.81 0.83 0.82
+
+cumulatives
+
+   
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 138940 33154 80963 86837
+
+variation 2 138005 32837 80594 86450
+
+diff, % -0.67% -0.96% -0.46% -0.45%
+
+variation 3 139873 33123 81731 87686
+
+diff, % 0.67% -0.094% 0.95% 0.98%
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 23.9% 58.3% 62.5%
+
+variation 2 23.8% 58.4% 62.6%
+
+diff, % -0.285% 0.219% 0.229%
+
+pvalue 0.67 0.50 0.44
+
+variation 3 23.7% 58.4% 62.7%
+
+diff, % -0.76% 0.275% 0.304%
+
+pvalue 0.26 0.39 0.30
+
+cumulatives
+
+   
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 139021 112962 100894 89619 64982 28147
+
+variation 2 138090 111948 100023 88563 64095 27641
+
+diff, % -0.67% -0.9% -0.86% -1.2% -1.4% -1.8%
+
+variation 3 139953 113651 101575 89949 65317 28393
+
+diff, % 0.67% 0.61% 0.67% 0.37% 0.52% 0.87%
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 81.3% 72.6% 64.5% 46.7% 20.2% 12.7 4.64 3.25 2.3 1.08 0.314
+
+variation 2 81.1% 72.4% 64.1% 46.4% 20% 12.5 4.61 3.22 2.28 1.07 0.308
+
+diff, % -0.23% -0.195% -0.512% -0.7% -1.14% -0.965% -0.747% -0.758% -0.778% -1.25% -1.83%
+
+pvalue 0.21 0.40 0.07 0.08 0.13 0.09 0.23 0.22 0.22 0.07 0.06
+
+variation 3 81.2% 72.6% 64.3% 46.7% 20.3% 12.5 4.62 3.23 2.29 1.07 0.31
+
+diff, % -0.0601% 0.00453% -0.3% -0.154% 0.202% -1.06% -0.554% -0.457% -0.463% -0.845% -1.23%
+
+pvalue 0.74 0.98 0.29 0.70 0.79 0.06 0.37 0.46 0.47 0.22 0.21
+
+cumulatives
+
+[/macro]
+
+[macro]
+UGT_ANDROID
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Ex trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 71693 1180 1248 418 810 18 109 537 544 $13877 70 12
+
+variation 2 70575 1203 1272 421 826 25 129 560 573 $14148 79 16
+
+diff, % -1.6% 1.9% 1.9% 0.72% 2% 39% 18% 4.3% 5.3% 2% 13% 33%
+
+variation 3 70769 1194 1261 425 808 25 124 554 572 $14990 87 16
+
+diff, % -1.3% 1.2% 1% 1.7% -0.25% 39% 14% 3.2% 5.1% 8% 24% 33%
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $0.194 $25.5 $25.8 1.65% 0.749% 64.9% 13.5% 12.9% 2.21%
+
+variation 2 $0.2 $24.7 $25.3 1.7% 0.793% 64.9% 15.6% 13.8% 2.79%
+
+diff, % 3.57% -3.21% -2.23% 3.56% 5.94% 0.0512% 16.1% 7.15% 26.6%
+
+pvalue 0.61 0.36 0.52 0.39 0.34 0.99 0.21 0.65 0.53
+
+variation 3 $0.212 $26.2 $27.1 1.69% 0.783% 64.1% 15.3% 15.2% 2.8%
+
+diff, % 9.43% 2.73% 4.7% 2.51% 4.51% -1.28% 14% 18.2% 26.8%
+
+pvalue 0.19 0.47 0.21 0.54 0.46 0.66 0.28 0.26 0.53
+
+cumulatives
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 71691 15661 39796 43346
+
+variation 2 70575 15372 39369 42704
+
+diff, % -1.6% -1.8% -1.1% -1.5%
+
+variation 3 70765 15395 39128 42458
+
+diff, % -1.3% -1.7% -1.7% -2%
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 21.8% 55.5% 60.5%
+
+variation 2 21.8% 55.8% 60.5%
+
+diff, % -0.293% 0.491% 0.0768%
+
+pvalue 0.77 0.30 0.86
+
+variation 3 21.8% 55.3% 60%
+
+diff, % -0.412% -0.392% -0.767%
+
+pvalue 0.68 0.41 0.07
+
+cumulatives
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 71693 49866 43523 38190 26909 11403
+
+variation 2 70575 49246 42902 37547 26504 11071
+
+diff, % -1.6% -1.2% -1.4% -1.7% -1.5% -2.9%
+
+variation 3 70767 49014 42684 37257 26252 10940
+
+diff, % -1.3% -1.7% -1.9% -2.4% -2.4% -4.1%
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 69.6% 60.7% 53.3% 37.5% 15.9% 13.6 4.17 2.92 2.04 0.907 0.251
+
+variation 2 69.8% 60.8% 53.2% 37.6% 15.7% 13.7 4.2 2.93 2.06 0.907 0.246
+
+diff, % 0.321% 0.135% -0.126% 0.0552% -1.37% 0.706% 0.683% 0.592% 0.858% -0.0606% -2.2%
+
+pvalue 0.36 0.75 0.80 0.94 0.26 0.39 0.50 0.57 0.43 0.96 0.18
+
+variation 3 69.3% 60.3% 52.6% 37.1% 15.5% 13.7 4.15 2.89 2.02 0.898 0.245
+
+diff, % -0.422% -0.644% -1.17% -1.16% -2.8% 0.0535% -0.684% -0.933% -0.756% -0.978% -2.31%
+
+pvalue 0.23 0.13 0.019 0.09 0.021 0.95 0.50 0.38 0.49 0.41 0.16
+
+cumulatives
+
+[/macro]
+
+[/macro]
+
+## Insights
+
+Emotional design and thematic animation have a positive impact on sales funnel metrics. This effect persists even when the offer price is increased. As a result, we have seen a 30-40% growth in ARPU for the scenario.
+
+[macro]
+Research
+How did the changes affect the experiment funnel (Christmas Funnel)?
+
+[macro]
+SQL
+[macro]
+sql 0
+and rt.platform = 2
+and rt.datetime between e.datetime_start and e.datetime_end
+group by 1, 2, 3
+)
+, sub as (
+select distinct
+unified_id,
+subscription_id,
+product_code,
+funnel_source
+from default.ug_subscriptions_events s
+inner join free_dau d
+on s.unified_id = d.unified_id
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Subscribed'
+and funnel_source like '%Splash%'
+and funnel_source like '%Christmas%'
+and s.datetime between d.exp_start_datetime and d.exp_end_datetime
+)
+, ch as (
+select distinct
+subscription_id,
+product_code,
+if(platform like '%IOS', if(product_id like '%.intro.%' and billing_cycle = 1, usd_price * 0.5, usd_price) * 0.7, if(product_id like '%.intro.%' and billing_cycle = 1, usd_price * 0.5, usd_price) * 0.85) as revenue
+from default.ug_subscriptions_events
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Charged'
+)
+, subscribed_charged as (
+select
+sub.unified_id as unified_id,
+uniqExact(sub.unified_id) as is_subscribed,
+uniqExactIf(sub.unified_id, sub.subscription_id = ch.subscription_id) as is_charged,
+sumIf(ch.revenue, sub.subscription_id = ch.subscription_id) as revenue
+from sub
+left join ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+group by 1
+)
+, user_actions as (
+select
+rt.unified_id as unified_id,
+uniqExactIf(1, event = 'Splash View') as is_splash_view,
+uniqExactIf(1, event = 'Animation View End') as is_animation_view_end,
+uniqExactIf(1, event = 'Banner Purchase Click') as is_splash_click,
+uniqExactIf(1, event = 'Purchase Process Finish') as is_splash_purchase_finish
+from default.ug_rt_events_app rt
+inner join free_dau d
+on rt.unified_id = d.unified_id
+where date >= '2025-12-13'
+and event in ('Splash View', 'Banner Purchase Click', 'Purchase Process Finish', 'Animation View End')
+and value like '%Splash%'
+and value like '%Christmas%'
+and source in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and rt.datetime between d.exp_start_datetime and d.exp_end_datetime
+group by 1
+)
+select
+d.platform_name as platform_name,
+d.variation as group_name,
+uniqExact(d.unified_id) as free_users,
+uniqExactIf(d.unified_id, a.is_splash_view = 1) as splash_view,
+(splash_view / free_users) * 100 as "free users -> splash view, %",
+uniqExactIf(d.unified_id, a.is_animation_view_end = 1) as animation_view_end,
+(animation_view_end / splash_view) * 100 as "splash view -> animation view end, %",
+uniqExactIf(d.unified_id, a.is_splash_click = 1) as splash_click,
+(splash_click / splash_view) * 100 as "splash view -> splash click, %",
+-- uniqExactIf(d.unified_id, a.is_splash_purchase_finish = 1) as dau_splash_purchase_finish,
+uniqExactIf(d.unified_id, s.is_subscribed = 1) as subscribed,
+(subscribed / free_users) * 100 as "free users -> subscribed, %",
+uniqExactIf(d.unified_id, s.is_charged = 1) as charged,
+(charged / subscribed) * 100 as "subscribed -> charged, %",
+sum(s.revenue) as revenue,
+stddevSamp(coalesce(s.revenue)) as arpu_std,
+stddevSampIf(s.revenue, s.revenue >0) as arppu_std,
+revenue / charged as arppu
+from free_dau d
+left join user_actions a
+on d.unified_id = a.unified_id
+left join subscribed_charged s
+on d.unified_id = s.unified_id
+group by 1, 2
+order by 1, 2]]>
+[/macro]
+
+[/macro]
+
+[macro]
+IOS
+
+Metric Name control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 139,341 138,406 -0.67% 140,254 0.66%
+
+Splash View 13,860 14,034 1.26% 14,133 1.97%
+
+Members -> Splash View, % 9.95% 10.14% 1.94% 10.08% 1.31%
+
+Animation View End 0 13,202  - 13,243  -
+
+Splash View -> Animation View End% 0.00% 94.07%  - 93.70%  -
+
+Splash Click 411 563 36.98% 488 18.73%
+
+Splash View -> Splash Click, % 2.97% 4.01% 35.28% 3.45% 16.44%
+
+Subscribed 245 334 36.33% 272 11.02%
+
+Splash View -> Subscribed 1.77% 2.38% 34.64% 1.92% 8.88%
+
+Revenue $3,564 $4,866 36.52% $4,897 37.40%
+
+ARPU (of Splash View) $0.26 $0.35 34.83% $0.35 34.75%
+
+ARPPU $14.55 $14.57 0.14% $18.00 23.76%
+
+[/macro]
+
+[macro]
+ANDROID
+
+Metric Name control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 71,838 70,722 -1.55% 70,930 -1.26%
+
+Splash View 6,320 6,376 0.89% 6,258 -0.98%
+
+Members -> Splash View, % 8.80% 9.02% 2.48% 8.82% 0.29%
+
+Animation View End 0 5,952  - 5,829  -
+
+Splash View -> Animation View End% 0.00% 93.35%  - 93.14%  -
+
+Splash Click 252 308 22.22% 242 -3.97%
+
+Splash View -> Splash Click, % 3.99% 4.83% 21.15% 3.87% -3.02%
+
+Subscribed 120 172 43.33% 125 4.17%
+
+Splash View -> Subscribed 1.90% 2.70% 42.07% 2.00% 5.20%
+
+Revenue $2,136 $3,000 40.47% $2,522 18.09%
+
+ARPU (of Splash View) $0.34 $0.47 39.24% $0.40 19.26%
+
+ARPPU $17.80 $17.44 -2.00% $20.18 13.37%
+
+[/macro]
+
+Conclusion:
+
+For the iOS platform , both test groups demonstrated stronger performance for the Christmas splash screens, with uplift observed across the entire funnel—from Splash View through conversion to access and revenue.
+
+For the Android platform , Variant 2 shows better performance across the entire funnel. However, for Variant 3, the Splash Click conversion is 3% lower compared to the control group, while conversion to access and revenue are higher.
+
+What sales sources are driving growth: the banner or the automatic splash?
+
+[macro]
+SQL
+[macro]
+sql 0
+and rt.platform = 2
+and rt.datetime between e.datetime_start and e.datetime_end
+group by 1, 2, 3
+)
+, sub as (
+select distinct
+unified_id,
+subscription_id,
+product_code,
+funnel_source
+from default.ug_subscriptions_events s
+inner join free_dau d
+on s.unified_id = d.unified_id
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Subscribed'
+and funnel_source like '%Splash%'
+and funnel_source like '%Christmas%'
+and s.datetime between d.exp_start_datetime and d.exp_end_datetime
+)
+, ch as (
+select distinct
+subscription_id,
+product_code,
+if(platform like '%IOS', if(product_id like '%.intro.%' and billing_cycle = 1, usd_price * 0.5, usd_price) * 0.7, if(product_id like '%.intro.%' and billing_cycle = 1, usd_price * 0.5, usd_price) * 0.85) as revenue
+from default.ug_subscriptions_events
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Charged'
+)
+, subscribed_charged as (
+select
+sub.unified_id as unified_id,
+uniqExactIf(sub.unified_id, funnel_source like '%Floating%') as is_banner_subscribed,
+uniqExactIf(sub.unified_id, sub.subscription_id = ch.subscription_id and funnel_source like '%Floating%') as is_banner_charged,
+sumIf(ch.revenue, sub.subscription_id = ch.subscription_id and funnel_source like '%Floating%') as banner_revenue,
+uniqExactIf(sub.unified_id, funnel_source not like '%Floating%') as is_automatic_subscribed,
+uniqExactIf(sub.unified_id, sub.subscription_id = ch.subscription_id and funnel_source not like '%Floating%') as is_automatic_charged,
+sumIf(ch.revenue, sub.subscription_id = ch.subscription_id and funnel_source not like '%Floating%') as automatic_revenue
+from sub
+left join ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+group by 1
+)
+, user_actions as (
+select
+rt.unified_id as unified_id,
+uniqExactIf(1, event = 'Splash View' and value like '%Floating%') as is_banner_splash_view,
+uniqExactIf(1, event = 'Banner Purchase Click' and value like '%Floating%') as is_banner_splash_click,
+uniqExactIf(1, event = 'Purchase Process Finish' and value like '%Floating%') as is_banner_splash_purchase_finish,
+uniqExactIf(1, event = 'Splash View' and value not like '%Floating%') as is_automatic_splash_view,
+uniqExactIf(1, event = 'Banner Purchase Click' and value not like '%Floating%') as is_automatic_splash_click,
+uniqExactIf(1, event = 'Purchase Process Finish' and value not like '%Floating%') as is_automatic_splash_purchase_finish
+from default.ug_rt_events_app rt
+inner join free_dau d
+on rt.unified_id = d.unified_id
+where date >= '2025-12-13'
+and event in ('Splash View', 'Banner Purchase Click', 'Purchase Process Finish', 'Animation View End')
+and value like '%Splash%'
+and value like '%Christmas%'
+and source in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and rt.datetime between d.exp_start_datetime and d.exp_end_datetime
+group by 1
+)
+select
+d.platform_name as platform_name,
+d.variation as group_name,
+uniqExact(d.unified_id) as free_users,
+uniqExactIf(d.unified_id, a.is_banner_splash_view = 1) as banner_splash_view,
+uniqExactIf(d.unified_id, a.is_automatic_splash_view = 1) as automatic_splash_view,
+
+uniqExactIf(d.unified_id, a.is_banner_splash_click = 1) as banner_splash_click,
+uniqExactIf(d.unified_id, a.is_automatic_splash_click = 1) as automatic_splash_click,
+
+uniqExactIf(d.unified_id, s.is_banner_subscribed = 1) as banner_subscribed,
+uniqExactIf(d.unified_id, s.is_automatic_subscribed = 1) as automatic_subscribed,
+
+uniqExactIf(d.unified_id, s.is_banner_charged = 1) as banner_charged,
+uniqExactIf(d.unified_id, s.is_automatic_charged = 1) as automatic_charged,
+
+sum(s.banner_revenue) as banner_revenue,
+sum(s.automatic_revenue) as automatic_revenue
+from free_dau d
+left join user_actions a
+on d.unified_id = a.unified_id
+left join subscribed_charged s
+on d.unified_id = s.unified_id
+group by 1, 2
+order by 1, 2]]>
+[/macro]
+
+[/macro]
+
+[macro]
+IOS
+
+Metric Name Banner Splash
+Automatic Splash
+
+control variant 2 variant 2 vs control variant 3 variant 3 vs control control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 139,341 138,406 -0.67% 140,254 0.66% 139,341 138,406 -0.67% 140,254 0.66%
+
+Splash View 1,627 1,916 17.76% 1,887 15.98% 12,423 12,336 -0.70% 12,467 0.35%
+
+Members -> Splash View, % 1.17% 1.38% 18.56% 1.35% 15.23% 8.92% 8.91% -0.03% 8.89% -0.30%
+
+Splash Click 348 481 38.22% 398 14.37% 66 86 30.30% 98 48.48%
+
+Splash View -> Splash Click, % 21.39% 25.10% 17.37% 21.09% -1.39% 0.53% 0.70% 31.22% 0.79% 47.96%
+
+Subscribed 228 301 32.02% 243 6.58% 17 33 94.12% 29 70.59%
+
+Splash View -> Subscribed 14.01% 15.71% 12.10% 12.88% -8.11% 0.14% 0.27% 95.49% 0.23% 69.99%
+
+Revenue $3,326 $4,406 32.47% $4,390 31.97% $238 $460 93.17% $507 113.31%
+
+ARPU (of Splash View) $2.04 $2.30 12.49% $2.33 13.79% $0.019 $0.037 94.53% $0.041 112.56%
+
+ARPPU $14.59 $14.64 0.34% $18.06 23.82% $13.99 $13.92 -0.49% $17.50 25.05%
+
+[/macro]
+
+[macro]
+ANDROID
+
+Metric Name Banner Splash
+Automatic Splash
+
+control variant 2 variant 2 vs control variant 3 variant 3 vs control control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 71,838 70,722 -1.55% 70,930 -1.26% 71,838 70,722 -1.55% 70,930 -1.26%
+
+Splash View 941 1,075 14.24% 1,091 15.94% 5,481 5,423 -1.06% 5,288 -3.52%
+
+Members -> Splash View, % 1.31% 1.52% 16.04% 1.54% 17.42% 7.63% 7.67% 0.50% 7.46% -2.29%
+
+Splash Click 212 261 23.11% 206 -2.83% 47 49 4.26% 40 -14.89%
+
+Splash View -> Splash Click, % 22.53% 24.28% 7.77% 18.88% -16.19% 0.86% 0.90% 5.37% 0.76% -11.79%
+
+Subscribed 114 152 33.33% 115 0.88% 7 20 185.71% 10 42.86%
+
+Splash View -> Subscribed 12.11% 14.14% 16.71% 10.54% -12.99% 0.13% 0.37% 188.77% 0.19% 48.07%
+
+Revenue $1,987 $2,644 33.08% $2,304 15.96% $149 $356 138.94% $219 46.58%
+
+ARPU (of Splash View) $2.11 $2.46 16.49% $2.11 0.01% $0.027 $0.066 141.50% $0.041 51.93%
+
+ARPPU $17.43 $17.39 -0.19% $20.03 14.95% $21.31 $17.82 -16.37% $21.87 2.61%
+
+[/macro]
+
+Conclusion:
+
+iOS platform: The Christmas splash delivered a strong uplift.
+For Banner Splash, Variant 2 performed best, while for Automatic Splash, Variant 3 showed the strongest results with the highest revenue and ARPU growth.
+
+Android platform: Variant 2 consistently improves the entire funnel and monetization.
+Variant 3 reduces Splash Click conversion and weakens the top of the funnel, despite higher revenue.
+
+Did we cannibalise non-sale sources?
+
+[macro]
+SQL
+[macro]
+sql 0
+and rt.platform = 2
+and rt.datetime between e.datetime_start and e.datetime_end
+group by 1, 2, 3
+)
+, funnel_events as (
+select distinct
+unified_id,
+max(if(event = 'Paywall View' and value like '%Splash%' and value like '%Christmas%', 1, 0)) as paywall_view_christmas,
+max(if(event = 'Banner Purchase Click' and value like '%Splash%' and value like '%Christmas%', 1, 0)) as banner_click_christmas,
+max(if(event = 'Purchase Process Finish' and value like '%Splash%' and value like '%Christmas%', 1, 0)) as purchase_finish_christmas,
+max(if(event = 'Paywall View' and not(value like '%Splash%' and value like '%Christmas%'), 1, 0)) as paywall_view_other,
+max(if(event = 'Banner Purchase Click' and not(value like '%Splash%' and value like '%Christmas%'), 1, 0)) as banner_click_other,
+max(if(event = 'Purchase Process Finish' and not(value like '%Splash%' and value like '%Christmas%'), 1, 0)) as purchase_finish_other
+from default.ug_rt_events_app s
+inner join free_dau d
+on s.unified_id = d.unified_id
+where date between '2025-12-13' and '2025-12-22'
+and event in (
+'Paywall View',
+'Banner Purchase Click',
+'Purchase Process Finish'
+)
+and source in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and s.datetime between d.exp_start_datetime and d.exp_end_datetime
+group by 1
+)
+, sub as (
+select distinct
+unified_id,
+subscription_id,
+product_code,
+if(funnel_source like '%Splash%' and funnel_source like '%Christmas%', 'Christmas', 'Other') as source_group,
+min(datetime) as sub_datetime
+from default.ug_subscriptions_events s
+inner join free_dau d
+on s.unified_id = d.unified_id
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Subscribed'
+and s.datetime between d.exp_start_datetime and d.exp_end_datetime
+group by 1, 2, 3, 4
+)
+, ch as (
+select distinct
+subscription_id,
+product_code,
+multiIf(product_id in ('com.ultimateguitar.ugt.plus.1year5','com.ultimateguitar.tabs.plus.inst.1yr_of') and billing_cycle = 1 and event = 'Charged', usd_price*0.8,
+product_id in ('com.ultimateguitar.ugt.plus.inst.1year6','com.ultimateguitar.tabs.plus.inst.1yr3mo') and billing_cycle = 1 and event = 'Charged', usd_price*0.25,
+product_id = 'com.ultimateguitar.tabs.plus.1year7', usd_price*0.5,
+product_id like '%.intro.%' and product_id <> 'com.ultimateguitar.tabs.one.intro.1year2' and billing_cycle = 1 and event = 'Charged', usd_price*0.5,
+product_id = 'com.ultimateguitar.tabs.one.intro.1year2' and billing_cycle = 1 and event = 'Charged', 39.99,
+usd_price) as price,
+if(platform like '%IOS', price * 0.7, price * 0.85) as revenue,
+min(datetime) as ch_datetime
+from default.ug_subscriptions_events
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Charged'
+group by 1, 2, 3, 4
+)
+, c as (
+select distinct
+subscription_id,
+product_code,
+min(datetime) as cancel_datetime
+from default.ug_subscriptions_events
+where date >= '2025-12-13'
+and platform in ('UGT_IOS', 'UG_IOS', 'UGT_ANDROID', 'UG_ANDROID')
+and event = 'Canceled'
+group by 1, 2
+)
+, subscribed_charged as (
+select
+sub.unified_id as unified_id,
+uniqExactIf(sub.unified_id, sub.source_group = 'Christmas') as is_subscribed_christmas,
+uniqExactIf(sub.unified_id, sub.source_group = 'Christmas' and sub.subscription_id = ch.subscription_id) as is_charged_christmas,
+uniqExactIf(sub.unified_id, sub.source_group = 'Christmas' and sub.subscription_id = c.subscription_id and ch.revenue = 0) as is_canceled_before_charge_christmas,
+sumIf(ch.revenue, sub.source_group = 'Christmas' and sub.subscription_id = ch.subscription_id) as revenue_christmas,
+uniqExactIf(sub.subscription_id || sub.product_code, sub.source_group = 'Christmas') as accesses_christmas,
+
+uniqExactIf(sub.unified_id, sub.source_group = 'Other') as is_subscribed_other,
+uniqExactIf(sub.unified_id, sub.source_group = 'Other' and sub.subscription_id = ch.subscription_id) as is_charged_other,
+uniqExactIf(sub.unified_id, sub.source_group = 'Other' and sub.subscription_id = c.subscription_id and ch.revenue = 0) as is_canceled_before_charge_other,
+sumIf(ch.revenue, sub.source_group = 'Other' and sub.subscription_id = ch.subscription_id) as revenue_other,
+uniqExactIf(sub.subscription_id || sub.product_code, sub.source_group = 'Other') as accesses_other
+from sub
+left join ch
+on sub.subscription_id = ch.subscription_id
+and sub.product_code = ch.product_code
+left join c
+on sub.subscription_id = c.subscription_id
+and sub.product_code = c.product_code
+group by 1
+)
+select
+d.platform_name as platform_name,
+d.variation as group_name,
+uniqExact(d.unified_id) as free_users,
+uniqExactIf(d.unified_id, paywall_view_christmas = 1) as christmas_paywall_view,
+uniqExactIf(d.unified_id, banner_click_christmas = 1) as christmas_paywall_click,
+uniqExactIf(d.unified_id, s.is_subscribed_christmas = 1) as christmas_subscribed,
+uniqExactIf(d.unified_id, s.is_charged_christmas = 1) as christmas_charged,
+uniqExactIf(d.unified_id, s.is_canceled_before_charge_christmas = 1) as christmas_canceled_before_charge,
+sumIf(s.revenue_christmas, s.is_charged_christmas = 1) as christmas_charged_revenue,
+christmas_subscribed - christmas_charged - christmas_canceled_before_charge as christmas_not_canceled_not_charged,
+
+uniqExactIf(d.unified_id, paywall_view_other = 1) as other_paywall_view,
+uniqExactIf(d.unified_id, banner_click_other = 1) as other_paywall_click,
+uniqExactIf(d.unified_id, s.is_subscribed_other = 1) as other_subscribed,
+uniqExactIf(d.unified_id, s.is_charged_other = 1) as other_charged,
+uniqExactIf(d.unified_id, s.is_canceled_before_charge_other = 1) as other_canceled_before_charge,
+sumIf(s.revenue_other, s.is_charged_other = 1) as other_charged_revenue,
+other_subscribed - other_charged - other_canceled_before_charge as other_not_canceled_not_charged
+from free_dau d
+left join funnel_events f
+on d.unified_id = f.unified_id
+left join subscribed_charged s
+on d.unified_id = s.unified_id
+group by 1, 2
+order by 1, 2]]>
+[/macro]
+
+[/macro]
+
+[macro]
+IOS
+
+Metric Name Other
+
+control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 139,341 138,406 -0.67% 140,254 0.66%
+
+paywall view 67,059 66,449 -0.91% 67,047 -0.02%
+
+paywall click 11,777 11,701 -0.65% 11,750 -0.23%
+
+subscribed 2,707 2,675 -1.18% 2,660 -1.74%
+
+charged 1,500 1,480 -1.33% 1,451 -3.27%
+
+cancel before charge 888 887 -0.11% 874 -1.58%
+
+cr to paywall view 48.13% 48.01% -0.24% 47.80% -0.67%
+
+from paywall click to paywall view 17.56% 17.61% 0.27% 17.53% -0.21%
+
+from paywall view to subscribe 4.04% 4.03% -0.27% 3.97% -1.72%
+
+from subscribe to charge 55.41% 55.33% -0.15% 54.55% -1.56%
+
+from subscribe to cancel before charge 32.80% 33.16% 1.08% 32.86% 0.16%
+
+[/macro]
+
+[macro]
+ANDROID
+
+Metric Name Other
+
+control variant 2 variant 2 vs control variant 3 variant 3 vs control
+
+Members 71,838 70,722 -1.55% 70,930 -1.26%
+
+paywall view 40,695 39,989 -1.73% 40,095 -1.47%
+
+paywall click 6,660 6,525 -2.03% 6,684 0.36%
+
+subscribed 1,000 994 -0.60% 1,030 3.00%
+
+charged 393 371 -5.60% 415 5.60%
+
+cancel before charge 306 340 11.11% 308 0.65%
+
+cr to paywall view 56.65% 56.54% -0.19% 56.53% -0.21%
+
+from paywall click to paywall view 16.37% 16.32% -0.30% 16.67% 1.86%
+
+from paywall view to subscribe 2.46% 2.49% 1.15% 2.57% 4.54%
+
+from subscribe to charge 39.30% 37.32% -5.03% 40.29% 2.52%
+
+from subscribe to cancel before charge 30.60% 34.21% 11.78% 29.90% -2.28%
+
+[/macro]
+
+ Conclusion:
+
+No statistically significant differences were observed between the control group and variant groups on iOS and Android platforms. All changes across the paywall funnel and monetization metrics are small and statistically non-significant. This indicates that the experiment does not have a measurable impact on core (non-Christmas) purchases and introduces no negative side effects outside of the Christmas splash scenarios.
+
+[/macro]
+
+## Next steps
+
+We'll continue to prepare special visuals and animations for big sales (like New Year, Black Friday, etc) and make it different compared to "permanent" seasonal sales 
+
+We can separate big thematic sales and permanent offers not only visually, but also by using less cheap offers for permanent sales and making them more dynamic/personal (and manage this through CRM). First of all, don't sell it at the minimum price permanently.

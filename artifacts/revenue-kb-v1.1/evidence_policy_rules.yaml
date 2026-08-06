@@ -1,0 +1,198 @@
+# Evidence Policy V1 — machine-readable rules for Revenue Validator V1
+# FLOW-580, frozen 2026-08-05. Human summary: evidence_policy.md (same dir).
+# Governs analog cards emitted per revenue-kb-v1/knowledge_base.md §2.4.
+# Sources: FLOW-574 relevance model; FLOW-578 KB V1 retrieval contract;
+# FLOW-579 blind A/B verdict (formal NO on gate §6 condition 5) and error systematics.
+
+policy:
+  id: revenue-evidence-policy
+  version: "1.0"
+  frozen: "2026-08-05"
+  applies_to: validator_v1
+  upstream:
+    relevance_model: FLOW-574
+    knowledge_base: revenue-kb-v1 (FLOW-578)
+    ab_test: FLOW-579
+
+axes:
+  - flow_stage
+  - segment
+  - trigger_eligibility
+  - surface
+  - mechanism
+  - offer
+  - behavior
+  - metric
+  - money_chain
+  - guardrails
+match_values: [exact, adjacent, different]
+platform_rule: >
+  iOS vs Android compares as adjacent, but becomes different when the mechanism
+  is platform-specific (instant offer as same-subscription plan switch on iOS,
+  commissions, store review flows).
+
+# --- Validity gate (block A) — precedes closeness levels -------------------
+validity_gate:
+  product_conclusion_source_requires:
+    all:
+      - srm_ok == true
+      - maturity_ok == true
+      - result_class in [significant-positive, significant-negative, powered-null]
+  does_not_work_conclusion_requires:
+    result_class: powered-null   # inconclusive is never enough
+  inconclusive_or_bug_contaminated:
+    allowed_uses: [measurement_lessons]
+    forbidden_uses: [product_conclusion, verdict_influence, sizing_prior, guardrail_lesson_as_evidence]
+
+# --- Deterministic level computation ---------------------------------------
+level_computation:
+  authority: deterministic          # the model NEVER asserts a level itself
+  input: matched/mismatched axes of the analog card
+  L1:
+    all:
+      - mechanism == exact
+      - flow_stage == exact
+      - surface in [exact, adjacent]
+      - segment.monetization_state == exact
+      - money_chain.link == exact
+  L2:
+    any:
+      - all: [mechanism == exact]
+        any: [surface == different, flow_stage == different]
+      - all: [surface == exact, flow_stage == exact, mechanism == different]
+      - all: [L1 conditions hold except segment or platform]
+        any: [segment == different, platform == different]
+  L3:
+    otherwise: >
+      any single-axis similarity: metric-only, segment-only, or surface-only
+      without mechanism.
+  invariants:
+    - metric match never raises the level
+    - level is a property of the (new case, source) pair, not of the source
+
+linter:                              # runs BEFORE the answer is emitted
+  hard_errors:                       # any hard error -> answer is not emitted
+    - claimed_level != computed_level          # exactly the RH-05 failure (T3-05: L2 claimed, L3 computed)
+    - analog_card.not_transferable is empty
+    - effect_magnitude present outside [not_transferable, sizing_prior_labeled]
+    - analog cited without source ID existing in KNOWLEDGE CONTEXT
+    - L1_and_L2_empty and "no direct analogs" absent from answer
+
+# --- Decision matrix --------------------------------------------------------
+allowed_influence:
+  L1:
+    can:
+      - change_verdict               # launch / revise / deprioritize
+      - transfer_sign_and_mechanism  # directionally only
+      - warn
+      - sizing_prior_labeled
+      - measurement_lessons
+      - guardrails
+    cannot:
+      - transfer_effect_magnitude_as_prediction
+    conditions:
+      - validity_gate passed
+      - within source transfer_bounds
+  L2:
+    can:
+      - warn                         # primary role: hypothesis or warning
+      - transfer_as_hypothesis
+      - sizing_prior_labeled
+      - measurement_lessons
+      - guardrails
+      - support_L1_reasoning
+    cannot:
+      - sole_basis_for_verdict_change
+      - block_idea
+  L3:
+    can:
+      - sizing                       # baselines, variance, MDE, duration
+      - measurement_lessons          # maturity, known traps
+      - guardrails                   # typical guardrail failures, stop-rules
+    cannot:
+      - product_conclusion
+      - analog_status                # never promoted to analog
+      - verdict_influence
+      - block_idea
+    labeling: every L3 signal carries an explicit L3 label
+
+# --- Blocking a money idea --------------------------------------------------
+blocking:
+  requires_all:                      # to justify deprioritize / do-not-launch
+    - level == L1
+    - validity_gate passed
+    - result_class == significant-negative   # or powered-null for a "no effect" claim
+    - segment comparable by monetization_state
+    - same money_chain link
+    - within source transfer_bounds
+  never_sufficient:
+    - L2 or L3 evidence of any quality
+    - inconclusive sources
+    - metric_only_similarity
+    - unverified_fears               # must be phrased as risks to instrument
+    - absence_of_analogs
+  false_blocker_budget: 0            # permanent requirement inherited from FLOW-579 gate
+
+# --- Mandatory answer behaviors ---------------------------------------------
+mandatory_outputs:
+  no_direct_analogs:
+    when: L1_and_L2_empty
+    text: "no direct analogs"
+    then:
+      - general reasoning continues, labeled as ungrounded assumption
+      - L3 signals allowed only with L3 labels and L3 rights
+  no_analog_hunting_duty:
+    rule: >
+      presence of historical cases creates no obligation to cite an analog;
+      in empty-corpus zones prefer "no direct analogs" over promoting the
+      nearest source (level inflation is the observed failure mode, RH-05).
+  side_effects_section:              # new zone, from FLOW-579 error systematics 2-3
+    name: "Non-monetization effects to instrument"
+    require:
+      - predict retention / refunds / engagement / upper-funnel shifts in BOTH directions
+      - positive side-effects considered, not risks-only framing
+      - state what to instrument and which stop-rules to add
+
+# --- Conflicting analogs ----------------------------------------------------
+conflicts:
+  resolution_order:                  # closer analog wins
+    - level (L1 > L2 > L3)
+    - number of exact axis matches (B1-B7)
+    - segment closeness
+    - recency
+    - result precision (narrow CI beats wide)
+  comparable_closeness: >
+    report the conflict explicitly — both cases, both dates, hypothesized
+    reason for divergence; never average, never suppress.
+  unresolved_conflict:
+    downgrade_to: warning            # cannot ground a verdict change
+
+# --- Fact vs transfer hypothesis ---------------------------------------------
+fact_vs_transfer:
+  fact:
+    definition: measured source outcome (sign, CI, metric, segment) with source ID
+    location: analog_card.transferable
+    inherits: source card fact_vs_interpretation marking
+  transfer_hypothesis:
+    definition: any claim about the NEW case, even when derived from L1
+    labeling: always marked as hypothesis/expectation with uncertainty
+    magnitudes: only as sizing priors labeled "prior"
+  violation: >
+    a source fact presented as a fact about the new case is an unsupported
+    transfer (C6 error).
+
+# --- Rerun gate before freeze (FLOW-581 preconditions) ----------------------
+rerun_gate_before_freeze:
+  after: FLOW-579 formal NO
+  steps:
+    - fix_must_be_generic: >
+        deterministic level recompute from axes + card linter; no
+        case-specific tuning for RH-05
+    - version_bump: KB V1.1 / Validator V1.1 (new version => new run)
+    - regression_rerun:
+        protocol: revenue-corpus-prep-v1/EVALUATION_PROTOCOL.md (frozen)
+        thresholds: unchanged
+    - gate_pass_required:
+        - all §6 conditions including C6 == 0
+        - human confirmation of condition 7 (review <= 10 min/case)
+    - audit: FLOW-584 independent recheck of FLOW-571 closed before freeze

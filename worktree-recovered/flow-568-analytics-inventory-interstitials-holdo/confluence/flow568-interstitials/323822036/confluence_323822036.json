@@ -1,0 +1,148 @@
+{
+  "id": "323822036",
+  "type": "page",
+  "status": "current",
+  "title": "[2023-09-19] UG App: Research on displaying special interstitials [2023-XX-XX]",
+  "space": {
+    "id": 264634395,
+    "key": "CRO",
+    "name": "Growth",
+    "status": "current",
+    "type": "global",
+    "creator": {
+      "type": "known",
+      "username": "e.naidenov",
+      "userKey": "40288076460ab83501460ab974800021",
+      "displayName": "Eugeny Naidenov ✌",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=40288076460ab83501460ab974800021"
+      },
+      "_expandable": {
+        "profilePicture": "",
+        "status": ""
+      }
+    },
+    "creationDate": "2022-11-01T16:19:42.000Z",
+    "lastModifier": {
+      "type": "known",
+      "username": "v.tutunov",
+      "userKey": "308924de7365fe660174bf246179000a",
+      "displayName": "Vitalii Tutunov",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=308924de7365fe660174bf246179000a"
+      },
+      "_expandable": {
+        "profilePicture": "",
+        "status": ""
+      }
+    },
+    "lastModificationDate": "2024-03-20T11:38:38.000Z",
+    "_links": {
+      "webui": "/spaces/CRO/overview",
+      "self": "https://alice.mu.se/rest/api/space/CRO"
+    },
+    "_expandable": {
+      "metadata": "",
+      "permissions": "",
+      "icon": "",
+      "description": "",
+      "retentionPolicy": "",
+      "homepage": "/rest/api/content/276356620"
+    }
+  },
+  "version": {
+    "by": {
+      "email": "s.karukes@mu.se",
+      "type": "known",
+      "username": "s.karukes",
+      "userKey": "308924de793bc28701795b17bef70002",
+      "profilePicture": {
+        "path": "/download/attachments/210241326/user-avatar",
+        "width": 48,
+        "height": 48,
+        "isDefault": false
+      },
+      "displayName": "Sergey Karukes",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=308924de793bc28701795b17bef70002"
+      },
+      "_expandable": {
+        "status": ""
+      }
+    },
+    "when": "2023-09-21T13:29:29.000Z",
+    "message": "",
+    "number": 9,
+    "minorEdit": false,
+    "hidden": false,
+    "_links": {
+      "self": "https://alice.mu.se/rest/experimental/content/323822036/version/9"
+    },
+    "_expandable": {
+      "content": "/rest/api/content/323822036"
+    }
+  },
+  "position": -1,
+  "body": {
+    "storage": {
+      "value": "<p class=\"auto-cursor-target\"><br /></p><ac:structured-macro ac:name=\"excerpt\" ac:schema-version=\"1\" ac:macro-id=\"717278dc-718b-49c8-a7cd-dfd39bc2850f\"><ac:parameter ac:name=\"atlassian-macro-output-type\">INLINE</ac:parameter><ac:rich-text-body><p><ac:structured-macro ac:name=\"status\" ac:schema-version=\"1\" ac:macro-id=\"526bcbad-7e2e-46aa-ace2-9b8be9a30936\"><ac:parameter ac:name=\"title\">IN PROGRESS</ac:parameter></ac:structured-macro></p></ac:rich-text-body></ac:structured-macro><h2><span style=\"color: rgb(0,0,0);\"><ac:structured-macro ac:name=\"toc\" ac:schema-version=\"1\" ac:macro-id=\"97cbcacf-89d7-4cfb-be5f-3f2f3aaf80c4\"><ac:parameter ac:name=\"maxLevel\">4</ac:parameter></ac:structured-macro></span></h2><h2>Research and Context</h2><p><span style=\"color: rgb(0,51,102);\">As a member of the advertising team, I want to increase revenue by displaying specials interstitials for direct sales in the application</span></p><h2>Hypothesis</h2><p>Displaying interstitial advertising for direct sales can provide additional revenue. The peculiarity is that we ourselves can choose one or another advertiser with favorable conditions for us, thereby improving the quality of advertising in the application</p><h2>Project Owner and Team Member(s)</h2><p><ac:link><ri:user ri:userkey=\"08730d2a55a7e89d01570f40d61c0004\" /></ac:link> <ac:link><ri:user ri:userkey=\"308924de793bc28701795b17bef70002\" /></ac:link> </p><h2>Proposal</h2><table class=\"relative-table wrapped\" style=\"width: 101.333%;\"><colgroup><col style=\"width: 3.53618%;\" /><col style=\"width: 37.0066%;\" /><col style=\"width: 10.6085%;\" /><col style=\"width: 12.6644%;\" /><col style=\"width: 24.2599%;\" /><col style=\"width: 5.92106%;\" /><col style=\"width: 5.92106%;\" /></colgroup><tbody><tr><th scope=\"col\">№</th><th scope=\"col\">Description</th><th scope=\"col\">Complexity of implementation</th><th scope=\"col\">Advantages </th><th scope=\"col\">Disadvantages</th><th scope=\"col\">Deadlines</th><th scope=\"col\">Results</th></tr><tr><th scope=\"col\">1</th><th scope=\"col\">Показ интерстишл мощностями Google Ad Manager. По примеру Elixir, добавлять interstitials через админ. панель</th><th scope=\"col\">low</th><th scope=\"col\">Быстрая и простая интеграция без дополнительных доработок</th><th scope=\"col\"><ul style=\"list-style-type: square;\"><li>Слабая кастомизация рекламного элемента, отсуствует возможность выставить такие настройки как:<ul style=\"list-style-type: square;\"><li>Время показа кнопки закрытия интерстишл</li><li>Время показа интерстишл</li></ul></li></ul></th><th scope=\"col\">настроить креативы от 1-3 часов в зависимости от количества креативов</th><th scope=\"col\"><br /></th></tr><tr><th scope=\"col\"><p>2</p></th><th scope=\"col\"><div class=\"content-wrapper\"><p>Интеграция нового рекламного формата, по примеру таких популярных приложений как instagram:</p></div><p><ac:structured-macro ac:name=\"view-file\" ac:schema-version=\"1\" ac:macro-id=\"be0f8522-cd7e-492e-9131-57575678e324\"><ac:parameter ac:name=\"name\"><ri:attachment ri:filename=\"instagram example.webp\" /></ac:parameter><ac:parameter ac:name=\"height\">150</ac:parameter></ac:structured-macro></p><p>facebook: </p><p><ac:image ac:thumbnail=\"true\" ac:height=\"150\"><ri:attachment ri:filename=\"photo_2023-09-20 12.52.55.jpeg\" /></ac:image><ac:image ac:thumbnail=\"true\" ac:height=\"150\"><ri:attachment ri:filename=\"photo_2023-09-20 12.52.56.jpeg\" /></ac:image><ac:image ac:thumbnail=\"true\" ac:height=\"150\"><ri:attachment ri:filename=\"photo_2023-09-20 12.52.57.jpeg\" /></ac:image></p></th><th scope=\"col\">high</th><th scope=\"col\"><ul style=\"list-style-type: square;\"><li>Уникальность</li><li>Нативная реализация</li><li>Реклама для премиум рекламодателей</li><li>Возможность настроить:<ul style=\"list-style-type: square;\"><li>Продолжительность показа</li><li>Кнопку закрытия рекламы</li></ul></li><li>Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) </li></ul></th><th scope=\"col\"><ul style=\"list-style-type: square;\"><li>Сложность реализации, возможно потребуются помощь разработчиков из команды бекенда</li><li>Продолжительный срок исполнения задачи</li></ul></th><th scope=\"col\"><p><span style=\"letter-spacing: 0.0px;\">Со стороны RN приложения:</span></p><ul style=\"list-style-type: square;\"><li>Реализация функционала 3-6 рабочих дня</li></ul><p>(Можем выпустить через Код-пуш)</p><p>---------------</p><p>Если будем использовать наши сервера для показа рекламы, то скорее всего нужна админка + стор для хранения видео - ? ч.</p><p>Дизайн - ? ч.</p></th><th scope=\"col\"><br /></th></tr><tr><th scope=\"col\">3</th><th scope=\"col\"><div class=\"content-wrapper\"><p>Использовать native ads/banner вместе interstitial. Т.е кастомизировать баннер. Логика баннера будет выполнять логику интерстишл,  добавим экран на котором будем показывать video-banner. Мы сможем сами добавить элементы управления и время показа </p></div></th><th scope=\"col\">medium</th><th scope=\"col\"><ul style=\"list-style-type: square;\"><li>Уникальность</li><li>Возможность настроить:<ul><li>Продолжительность показа</li><li>Кнопку закрытия рекламы</li></ul></li><li>Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) </li><li>Получим все плюсы от использования ad manager</li></ul></th><th scope=\"col\"><ul style=\"list-style-type: square;\"><li>Не ясна политика гугла в таком случае</li></ul></th><th scope=\"col\"><p>Добавить дополнительный экран на котором будем отображать баннер, и панель навигации</p><p>8-12 часов + время на релиз</p></th><th scope=\"col\"><br /></th></tr></tbody></table><p><br /></p><h2><span>Execution</span></h2><p><span><ac:structured-macro ac:name=\"jira\" ac:schema-version=\"1\" ac:macro-id=\"16bc8a07-dc79-433b-9efe-666f33100281\"><ac:parameter ac:name=\"server\">Jira</ac:parameter><ac:parameter ac:name=\"columnIds\">issuekey,summary,issuetype,duedate,assignee,status</ac:parameter><ac:parameter ac:name=\"columns\">key,summary,type,due,assignee,status</ac:parameter><ac:parameter ac:name=\"maximumIssues\">20</ac:parameter><ac:parameter ac:name=\"jqlQuery\">project = AD AND issuekey = AD-1270 OR (&quot;Epic Link&quot; = AD-1270 or parent in (AD-1270))                   </ac:parameter><ac:parameter ac:name=\"serverId\">d1985a03-3c98-365b-8107-f4cdc34a26f1</ac:parameter></ac:structured-macro></span></p><div><div class=\"gtx-trans-icon\"><br /></div></div>",
+      "representation": "storage",
+      "_expandable": {
+        "content": "/rest/api/content/323822036"
+      }
+    },
+    "view": {
+      "value": "<p><span class=\"status-macro aui-lozenge conf-macro output-inline\" data-hasbody=\"true\" data-macro-name=\"excerpt\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"717278dc-718b-49c8-a7cd-dfd39bc2850f\" data-content-id=\"323822036\" data-content-version=\"9\">IN PROGRESS</span></p><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-4\"><span style=\"color:var(--ds-text,#172b4d);\"><div class=\"toc-macro client-side-toc-macro conf-macro output-block\" data-headerelements=\"H1,H2,H3,H4\" data-hasbody=\"false\" data-macro-name=\"toc\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"97cbcacf-89d7-4cfb-be5f-3f2f3aaf80c4\" data-content-id=\"323822036\" data-content-version=\"9\"></div></span></h2><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-ResearchandContext\">Research and Context</h2><p><span style=\"color:var(--ds-text-accent-teal-bolder,#164555);\">As a member of the advertising team, I want to increase revenue by displaying specials interstitials for direct sales in the application</span></p><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-Hypothesis\">Hypothesis</h2><p>Displaying interstitial advertising for direct sales can provide additional revenue. The peculiarity is that we ourselves can choose one or another advertiser with favorable conditions for us, thereby improving the quality of advertising in the application</p><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-ProjectOwnerandTeamMember(s)\">Project Owner and Team Member(s)</h2><p><a class=\"confluence-userlink user-mention\" data-username=\"a.danchenko\" href=\"/display/~a.danchenko\" data-linked-resource-id=\"50919004\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Alexander Danchenko</a> <a class=\"confluence-userlink user-mention\" data-username=\"s.karukes\" href=\"/display/~s.karukes\" data-linked-resource-id=\"210241326\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Sergey Karukes</a> </p><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-Proposal\">Proposal</h2><div class=\"table-wrap\"><table class=\"relative-table wrapped confluenceTable\" style=\"width: 101.333%;\"><colgroup><col style=\"width: 3.53618%;\"/><col style=\"width: 37.0066%;\"/><col style=\"width: 10.6085%;\"/><col style=\"width: 12.6644%;\"/><col style=\"width: 24.2599%;\"/><col style=\"width: 5.92106%;\"/><col style=\"width: 5.92106%;\"/></colgroup><tbody><tr><th scope=\"col\" class=\"confluenceTh\">№</th><th scope=\"col\" class=\"confluenceTh\">Description</th><th scope=\"col\" class=\"confluenceTh\">Complexity of implementation</th><th scope=\"col\" class=\"confluenceTh\">Advantages </th><th scope=\"col\" class=\"confluenceTh\">Disadvantages</th><th scope=\"col\" class=\"confluenceTh\">Deadlines</th><th scope=\"col\" class=\"confluenceTh\">Results</th></tr><tr><th scope=\"col\" class=\"confluenceTh\">1</th><th scope=\"col\" class=\"confluenceTh\">Показ интерстишл мощностями Google Ad Manager. По примеру Elixir, добавлять interstitials через админ. панель</th><th scope=\"col\" class=\"confluenceTh\">low</th><th scope=\"col\" class=\"confluenceTh\">Быстрая и простая интеграция без дополнительных доработок</th><th scope=\"col\" class=\"confluenceTh\"><ul style=\"list-style-type: square;\"><li>Слабая кастомизация рекламного элемента, отсуствует возможность выставить такие настройки как:<ul style=\"list-style-type: square;\"><li>Время показа кнопки закрытия интерстишл</li><li>Время показа интерстишл</li></ul></li></ul></th><th scope=\"col\" class=\"confluenceTh\">настроить креативы от 1-3 часов в зависимости от количества креативов</th><th scope=\"col\" class=\"confluenceTh\"><br/></th></tr><tr><th scope=\"col\" class=\"confluenceTh\"><p>2</p></th><th scope=\"col\" class=\"confluenceTh\"><div class=\"content-wrapper\"><p>Интеграция нового рекламного формата, по примеру таких популярных приложений как instagram:</p></div><p><span class=\"confluence-embedded-file-wrapper conf-macro output-inline\" data-hasbody=\"false\" data-macro-name=\"view-file\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"be0f8522-cd7e-492e-9131-57575678e324\" data-content-id=\"323822036\" data-content-version=\"9\"><a class=\"confluence-embedded-file\" href=\"/download/attachments/323822036/instagram%20example.webp?version=1&amp;modificationDate=1695209834000&amp;api=v2\" data-nice-type=\"null\" data-file-src=\"/download/attachments/323822036/instagram%20example.webp?version=1&amp;modificationDate=1695209834000&amp;api=v2\" data-linked-resource-id=\"323822569\" data-linked-resource-type=\"attachment\" data-linked-resource-container-id=\"323822036\" data-linked-resource-default-alias=\"instagram example.webp\" data-mime-type=\"application/octet-stream\" data-has-thumbnail=\"false\" data-linked-resource-version=\"1\" data-can-edit=\"true\" aria-label=\"instagram example.webp\" draggable=\"false\"><img src=\"/s/-ash1ef/9414/c4qk6a/20.2.33/_/download/resources/com.atlassian.confluence.plugins.confluence-view-file-macro:view-file-macro-resources/images/placeholder-small-file.png\" height=\"150\" alt=\"\" draggable=\"false\"/><span class=\"title\">instagram example.webp</span></a><span class=\"companion-edit-button-placeholder edit-button-overlay\" data-linked-resource-container-id=\"323822036\" data-linked-resource-id=\"323822569\" data-template-name=\"companionEditIcon\" data-source-location=\"embedded-attachment\"></span></span></p><p>facebook: </p><p><span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image confluence-thumbnail\" draggable=\"false\" height=\"150\" src=\"/download/thumbnails/323822036/photo_2023-09-20%2012.52.55.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-image-src=\"/download/attachments/323822036/photo_2023-09-20%2012.52.55.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"323822574\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"photo_2023-09-20 12.52.55.jpeg\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/jpeg\" data-linked-resource-container-id=\"323822036\" data-linked-resource-container-version=\"9\" tabindex=\"0\" alt=\"\"></span><span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image confluence-thumbnail\" draggable=\"false\" height=\"150\" src=\"/download/thumbnails/323822036/photo_2023-09-20%2012.52.56.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-image-src=\"/download/attachments/323822036/photo_2023-09-20%2012.52.56.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"323822575\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"photo_2023-09-20 12.52.56.jpeg\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/jpeg\" data-linked-resource-container-id=\"323822036\" data-linked-resource-container-version=\"9\" tabindex=\"0\" alt=\"\"></span><span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image confluence-thumbnail\" draggable=\"false\" height=\"150\" src=\"/download/thumbnails/323822036/photo_2023-09-20%2012.52.57.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-image-src=\"/download/attachments/323822036/photo_2023-09-20%2012.52.57.jpeg?version=1&amp;modificationDate=1695210788000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"323822576\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"photo_2023-09-20 12.52.57.jpeg\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/jpeg\" data-linked-resource-container-id=\"323822036\" data-linked-resource-container-version=\"9\" tabindex=\"0\" alt=\"\"></span></p></th><th scope=\"col\" class=\"confluenceTh\">high</th><th scope=\"col\" class=\"confluenceTh\"><ul style=\"list-style-type: square;\"><li>Уникальность</li><li>Нативная реализация</li><li>Реклама для премиум рекламодателей</li><li>Возможность настроить:<ul style=\"list-style-type: square;\"><li>Продолжительность показа</li><li>Кнопку закрытия рекламы</li></ul></li><li>Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) </li></ul></th><th scope=\"col\" class=\"confluenceTh\"><ul style=\"list-style-type: square;\"><li>Сложность реализации, возможно потребуются помощь разработчиков из команды бекенда</li><li>Продолжительный срок исполнения задачи</li></ul></th><th scope=\"col\" class=\"confluenceTh\"><p><span style=\"letter-spacing: 0.0px;\">Со стороны RN приложения:</span></p><ul style=\"list-style-type: square;\"><li>Реализация функционала 3-6 рабочих дня</li></ul><p>(Можем выпустить через Код-пуш)</p><p>---------------</p><p>Если будем использовать наши сервера для показа рекламы, то скорее всего нужна админка + стор для хранения видео - ? ч.</p><p>Дизайн - ? ч.</p></th><th scope=\"col\" class=\"confluenceTh\"><br/></th></tr><tr><th scope=\"col\" class=\"confluenceTh\">3</th><th scope=\"col\" class=\"confluenceTh\"><div class=\"content-wrapper\"><p>Использовать native ads/banner вместе interstitial. Т.е кастомизировать баннер. Логика баннера будет выполнять логику интерстишл,  добавим экран на котором будем показывать video-banner. Мы сможем сами добавить элементы управления и время показа </p></div></th><th scope=\"col\" class=\"confluenceTh\">medium</th><th scope=\"col\" class=\"confluenceTh\"><ul style=\"list-style-type: square;\"><li>Уникальность</li><li>Возможность настроить:<ul><li>Продолжительность показа</li><li>Кнопку закрытия рекламы</li></ul></li><li>Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) </li><li>Получим все плюсы от использования ad manager</li></ul></th><th scope=\"col\" class=\"confluenceTh\"><ul style=\"list-style-type: square;\"><li>Не ясна политика гугла в таком случае</li></ul></th><th scope=\"col\" class=\"confluenceTh\"><p>Добавить дополнительный экран на котором будем отображать баннер, и панель навигации</p><p>8-12 часов + время на релиз</p></th><th scope=\"col\" class=\"confluenceTh\"><br/></th></tr></tbody></table></div><p><br/></p><h2 id=\"id-[20230919]UGApp:Researchondisplayingspecialinterstitials[2023XXXX]-Execution\"><span>Execution</span></h2><p><span><div id=\"refresh-module-1021134973\" class=\"refresh-module-id jira-table conf-macro output-block\" data-client-id=\"TABLE_d1985a03-3c98-365b-8107-f4cdc34a26f1_323822036_308924de99aa6c1f019a81a6ac900010_cHJvamVjdCA9IEFEIEFORCBpc3N1ZWtleSA9IEFELTEyNzAgT1IgKCJFcGljIExpbmsiID0gQUQtMTI3MCBvciBwYXJlbnQgaW4gKEFELTEyNzApKSAgICAgICAgICAgICAgICAgICA=_aXNzdWVrZXlzdW1tYXJ5aXNzdWV0eXBlZHVlZGF0ZWFzc2lnbmVlc3RhdHVz\" data-jira-key=\"issue-table-TABLE_d1985a03-3c98-365b-8107-f4cdc34a26f1_323822036_308924de99aa6c1f019a81a6ac900010_cHJvamVjdCA9IEFEIEFORCBpc3N1ZWtleSA9IEFELTEyNzAgT1IgKCJFcGljIExpbmsiID0gQUQtMTI3MCBvciBwYXJlbnQgaW4gKEFELTEyNzApKSAgICAgICAgICAgICAgICAgICA=_aXNzdWVrZXlzdW1tYXJ5aXNzdWV0eXBlZHVlZGF0ZWFzc2lnbmVlc3RhdHVz\" data-hasbody=\"false\" data-macro-name=\"jira\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"16bc8a07-dc79-433b-9efe-666f33100281\" data-content-id=\"323822036\" data-content-version=\"9\">\n<p>\n            </p><div id=\"refresh-1021134973\" class=\"refresh-macro\">\n        </div>\n    \n    \n    \n        \n    <div id=\"jira-issues-1021134973\" style=\"width: 100%;  overflow: auto;\" class=\"jira-issues\">\n        <table class=\"aui\">\n            <tbody>\n                <tr></tr>                 <tr>\n                                                                        <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">Key\n                            </th>\n                                                                                                <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">Summary\n                            </th>\n                                                                                                <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">T\n                            </th>\n                                                                                                <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">Due\n                            </th>\n                                                                                                <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">Assignee\n                            </th>\n                                                                                                <th style=\"text-align: left;\" class=\"jira-macro-table-underline-pdfexport\">Status\n                            </th>\n                                                            </tr>\n                                            </tbody>\n        </table>\n    </div>\n            <div class=\"refresh-issues-bottom\">\n                                        <span class=\"refresh-action-group\">\n                    <button id=\"refresh-issues-button-1021134973\" class=\"aui-button aui-button-link refresh-issues-button\" aria-live=\"alert\">\n                        <span id=\"refresh-issues-loading-1021134973\" class=\"refresh-issues-loading\">\n                            <aui-spinner size=\"small\"></aui-spinner>\n                            <span class=\"assistive\">Loading issues</span>\n                        </span>\n\n                        <span class=\"refresh-issues-button-inner hidden\">\n                            <span class=\"aui-icon aui-icon-small aui-iconfont-refresh\" role=\"presentation\"></span>\n                            <span class=\"refresh-issues-button-text\">Refresh<span>\n                        </span>\n                    </span></span></button>\n\n                    <span id=\"error-message-1021134973\" class=\"error-message hidden\"></span>\n\n                    <input type=\"hidden\" id=\"refresh-wiki-1021134973\" class=\"refresh-wiki\" data-pageid=\"323822036\" data-wikimarkup=\"&lt;ac:structured-macro ac:name=&quot;jira&quot; ac:schema-version=&quot;1&quot; ac:macro-id=&quot;77847f5d-7bb6-4549-a6e6-0807e09bbf3a&quot;&gt;&lt;ac:parameter ac:name=&quot;server&quot;&gt;Jira&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;columnIds&quot;&gt;issuekey,summary,issuetype,duedate,assignee,status&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;columns&quot;&gt;key,summary,type,due,assignee,status&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;maximumIssues&quot;&gt;20&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;jqlQuery&quot;&gt;project = AD AND issuekey = AD-1270 OR (&quot;Epic Link&quot; = AD-1270 or parent in (AD-1270))                   &lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;serverId&quot;&gt;d1985a03-3c98-365b-8107-f4cdc34a26f1&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;: = | RAW | = :&quot;&gt;server=Jira|columnIds=issuekey,summary,issuetype,duedate,assignee,status|columns=key,summary,type,due,assignee,status|maximumIssues=20|jqlQuery=project = AD AND issuekey = AD-1270 OR (&quot;Epic Link&quot; = AD-1270 or parent in (AD-1270))                   |serverId=d1985a03-3c98-365b-8107-f4cdc34a26f1&lt;/ac:parameter&gt;&lt;ac:parameter ac:name=&quot;: = | TOKEN_TYPE | = :&quot;&gt;BLOCK&lt;/ac:parameter&gt;&lt;/ac:structured-macro&gt;\"/>\n                </span>\n                    </div>\n        <p></p>\n\n            <div class=\"jim-sortable-dark-layout\"></div>\n    \n</div></span></p><div><div class=\"gtx-trans-icon\"><br/></div></div>",
+      "representation": "storage",
+      "_expandable": {
+        "webresource": "",
+        "content": "/rest/api/content/323822036"
+      }
+    },
+    "_expandable": {
+      "editor": "",
+      "export_view": "",
+      "styled_view": "",
+      "anonymous_export_view": ""
+    }
+  },
+  "metadata": {
+    "labels": {
+      "results": [],
+      "start": 0,
+      "limit": 200,
+      "size": 0,
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/content/323822036/label"
+      }
+    },
+    "_expandable": {
+      "currentuser": "",
+      "properties": "",
+      "frontend": "",
+      "editorHtml": ""
+    }
+  },
+  "extensions": {
+    "position": "none"
+  },
+  "_links": {
+    "webui": "/spaces/CRO/pages/323822036/2023-09-19+UG+App+Research+on+displaying+special+interstitials+2023-XX-XX",
+    "edit": "/pages/resumedraft.action?draftId=323822036&draftShareId=f3bc416c-ae6d-44f8-b81f-09469f2ce0a2",
+    "tinyui": "/x/1CFNEw",
+    "collection": "/rest/api/content",
+    "base": "https://alice.mu.se",
+    "context": "",
+    "self": "https://alice.mu.se/rest/api/content/323822036"
+  },
+  "_expandable": {
+    "container": "/rest/api/space/CRO",
+    "operations": "",
+    "children": "/rest/api/content/323822036/child",
+    "restrictions": "/rest/api/content/323822036/restriction/byOperation",
+    "history": "/rest/api/content/323822036/history",
+    "ancestors": "",
+    "descendants": "/rest/api/content/323822036/descendant",
+    "relevantViewRestrictions": "/rest/api/content/323822036/restriction/relevantViewRestrictions"
+  }
+}

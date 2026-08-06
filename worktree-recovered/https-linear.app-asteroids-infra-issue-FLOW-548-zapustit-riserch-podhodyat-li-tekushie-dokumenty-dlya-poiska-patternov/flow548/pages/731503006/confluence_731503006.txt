@@ -1,0 +1,1272 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-9721
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Goal: increase revenue and conversion from the mobile web
+
+Foundation : 
+
+introduce monetization mechanisms (microtransactions, rewarded access etc.) that better fit mobweb user's behavior and expectations 
+
+we’re doing this now because only ~1% of daily users install the app , leaving a significant untapped audience
+
+### Research results
+
+There have been attempts to sell our basic plans, but they may prove too expensive for the mobile web audience. We want to try selling features separately:
+
+One-time, single-use payments, 1-day access unlocks, feature unlocks 
+
+$0.99/day or $0.29/hour feature
+
+24-hour access to a song
+
+package sales: 5 songs for $3.99
+
+Daytime access to everything
+
+Hybrid with ads: $0.99 or watch ads
+
+Purchase of features or free version in the app
+
+etc.
+
+#### References
+
+### Current metrics
+
+period: 2025-10-10 - 2025-10-25;
+
+os in ('ios', 'android');
+
+platform in (2, 3);
+
+all actions are checked for completion on the same day (except for paid ones);
+
+Asia country list:
+[macro]
+
+'BD', // Bangladesh
+'BT', // Bhutan
+'KH', // Cambodia
+'CN', // China
+'FJ', // Fiji
+'HK', // Hong Kong
+'IN', // India
+'ID', // Indonesia
+'JP', // Japan
+'KR', // Korea, South
+'LA', // Laos
+'MY', // Malaysia
+'MM', // Myanmar
+'MN', // Mongolia
+'NP', // Nepal
+'NZ', // New Zealand
+'PG', // Papua New Guinea
+'PH', // Philippines
+'SG', // Singapore
+'LK', // Sri Lanka
+'TW', // Taiwan
+'TH', // Thailand
+'VN', // Vietnam
+
+//seo-exp: https:// mu--se.atlassian.net/browse/UGP-10274
+/*
+* Добавляем для Италии туже самую сборку что и для Азии
+*/
+'IT', // Italy
+
+//  https://alice.mu.se/pages/viewpage.action?pageId=522542524
+'AR', //Argentina
+'CL', //Chile
+'CO', //Columbia
+'PE', //Peru
+
+[/macro]
+
+AVG Daily Values NOT ASIA  
+  ASIA
+
+IOS ANDROID IOS ANDROID
+
+abs. values % of splash % of prev. step abs. values % of splash % of prev. step abs. values % of splash % of prev. step abs. values % of splash % of prev. step
+
+dau 327,886 - - 233,046 - - 158,510 - - 332,014 - -
+
+splash view 282,594 100.00% 86.19% 174,566 100.00% 74.91% 141,514 100.00% 89.28% 310,560 100.00% 93.54%
+
+install click 17,722 6.27% 6.27% 14,740 8.44% 8.44% 3,459 2.44% 2.44% 10,710 3.45% 3.45%
+
+install 7,337 2.60% 41.40% 3,683 2.11% 24.99 % 791 0.56% 22.86% 1,561 0.50% 14.57%
+
+tour start 4,518 1.60% 61.58% 2,938 1.68% 79.78% 519 0.37% 65.68% 1,238 0.40% 79.33%
+
+banner tour view 2,556 0.90% 56.58% 1,670 0.96% 56.85% 338 0.24% 65.03% 891 0.29% 71.92%
+
+banner tour click 467 0.17% 18.26% 385 0.22% 23.06% 47 0.03% 13.83% 165 0.05% 18.50%
+
+tour access 271 0.096% 58.11% 114 0.065% 29.66% 18 0.013% 39.22% 21 0.007% 12.94%
+
+tour charged access  69 0.025% 25.53% 38 0.021% 32.82% 2 0.002% 12.29% 3 0.001% 14.37%
+
+charged revenue $6,129.37 - - $2,198.03 - - $197.59 - - $145.43 - -
+
+charged revenue
+(w/o store commission) $4,293.09 - - $1,859.89 - - $138.31 - - $120.73 - -
+
+ARPPU $88.62 - - $58.62 - - $83.77 - - $45.64 - -
+
+ARPPU
+(w/o store commission)
+
+$62.07 - - $49.59 - - $58.64 - - $37.86 - -
+
+A/B test model
+
+[macro]
+Iteration 1
+Google Sheets with calculations and calculator.
+
+Metric Not Asia
+
+Scenario 1:
+Microtransactions (1$) create additional value Scenario 2:
+Microtransactions (1$) create value and cannibalise "CR to Install"
+
+A B diff A B diff
+
+splash view 457,160 457,160 0% 457,160 457,160
+
+install click 32,462 32,462 0% 32,462
+25,969
+
+-20%
+
+microtransaction click
+- 9,143
+(2% of splash view) - - 6,857
+(1.5% of splash view) -
+
+microtransaction purchase
+- 4,136
+(45% of click) - - 3,103
+(45% of click) -
+
+microtransaction revenue
+-
+$4,094.64
+( 4,136 *0.99$)
+- -
+$3,071.94
+( 3,103 *0.99$)
+-
+
+install 11,020 11,020 0% 11,020 8,815 -20%
+
+tour start 7,456 7,456 0% 7,456 5,964 -20%
+
+tour access 386 386 0% 386 308 -20%
+
+tour charged access 107 107 0% 107 85 -20%
+
+charged revenue
+(w/o store commission) $6,152.98 $6,152.98 0% $6,152.98 $4,899.33 -20%
+
+CR to Paid 0.02% 0.93%   0.02% 0.7%
+
+total revenue
+$6,152.98 $10,247.62
+($6,152.98+$ 4,094.64 ) + 66.55 % $6,152.98 $7,994.33
+($4,899.33+ $3,071.94 )
++ 30%
+
+total ARPU
+
+$0.013
+($6,152.98 / 457,160)
+
+$0.022
+( $12,357.98 / 457,160)
++ 66.55%
+$0.013
+($6,152.98 / 457,160)
+$0.017
+( $7,994.33  / 457,160) + 30%
+
+# Hypothesis
+
+If we introduce microtransactions for mobile web users, we expect that more than 1.5% of the audience will click on the paid access button, which will prove that the monetization model through microtransactions is viable.
+
+Test Description:
+
+one-sided test,
+
+H0: p < p0 VS H1: p >= p0,
+
+p0 (threshold) = 1.5%,
+
+p1(expected real conversion) = 1.6%.
+
+Audience Active users on mob WEB
+
+Platform UG_WEB (mobile)
+
+Metrics
+Goal
+
+CR from Splash View to Microtransaction Click
+
+Design / each metric
+
+Threshold 1.5%
+
+Expected Value 1.6%
+
+Lift, % 6.7%
+
+MDE 0.1pp
+
+Power 0.8
+
+Alpha 0.05
+
+Sample size (per variation) 93354
+
+Duration (days) 1
+
+[/macro]
+
+# Description of the Solution & Mockups
+
+[macro]
+Iteration 1
+### Solution
+
+Not consider Asia at this iteration  
+
+When click, all paid features open a pop-up window with an offer to purchase daily access and unlock all paid/closed features on the website
+
+list of paid features 
+
+Install, Strumming, Chords list, Listen, PDF, Transpose, Chords Tab 
+
+Indicate the price as $0.99  
+
+localize prices for all other countries (price index)
+
+The second button on the pop-up is an offer to try the feature for free in UG App
+
+When this button is clicked, the user is taken to the store
+
+When selecting the paid option, we display a pop-up with a fake door
+
+say that the feature is not ready on the web and that you can try it in the app
+
+Local prices
+
+cur price
+
+usd 0.99
+
+aud 0.99
+
+brl 2.99
+
+cad 0.99
+
+chf 0.99
+
+czk 9
+
+eur 0.99
+
+gbp 0.99
+
+jpy 80
+
+krw 1000
+
+mxn 8.99
+
+nzd 0.99
+
+pln 1.99
+
+rub 69
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+ 
+
+ 
+
+### Analytics
+
+Exposure event: Tab View
+
+Event Parameters Description
+
+Splash View
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day'
+
+params.key = 'price'
+
+params.value = 0.99
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user sees a new Splash
+
+Splash Purchase Click
+
+item_id - place here the relevant item_id of a clicked product
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day'
+
+params.key = 'price'
+
+params.value = 0.99
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user clicks on a "Unlock for 0.99" button
+
+Install Click
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day'
+
+params.key = 'price'
+
+params.value = 0.99
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user clicks on a "Try for free in App" button
+
+Splash View
+
+params.key = 'splash_name'
+
+params.str_value = 'microtransactions_fakedoor'
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user sees a new Splash after click on a "Unlock for 0.99" button on the previous Splash
+
+Install Click
+
+params.key = 'splash_name'
+
+params.str_value = 'microtransactions_fakedoor'
+
+value - please place here the very first source of splash opening (as it is now)
+
+Splash Close
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day', 'microtransactions_fakedoor'
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user closes a relevant Splash
+
+App Install
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day' / 'microtransactions_fakedoor'
+
+value - please place here the very first source of splash opening (as it is now)
+
+[/macro]
+
+[macro]
+Iteration 2
+### Solution
+
+B — When click, all paid features open a pop-up window with an offer to purchase daily access and unlock all paid/closed features on the website
+
+list of paid features 
+
+Install, Strumming, Chords list, Listen, PDF, Transpose, Chords Tab 
+
+in addition, we display a fakedoor modal when clicking on "Open in APP" (Bottom Scroll Splash btn)
+
+C — same as in variation B, except we change the copyright and CTA for the fakedoor modal
+
+talking about an unlocked song for watching ads 
+
+Local prices
+
+cur price
+
+usd 0.99
+
+aud 0.99
+
+brl 2.99
+
+cad 0.99
+
+chf 0.99
+
+czk 9
+
+eur 0.99
+
+gbp 0.99
+
+jpy 80
+
+krw 1000
+
+mxn 8.99
+
+nzd 0.99
+
+pln 1.99
+
+rub 69
+
+### Mockups & Texts
+
+Figma
+
+Screen А В C
+
+ 
+
+ 
+
+### Analytics
+
+Exposure event: Tab View
+
+Event Parameters Description
+
+Splash View
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_for_one_song'
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user sees a new Splash
+
+Splash Watch Ad Click
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_for_one_song'
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user clicks on a "Watch ad to unlock" button
+
+Install Click
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_for_one_song'
+
+value - please place here the very first source of splash opening (as it is now)
+
+When a user clicks on a "Try for free in App" button
+
+[/macro]
+
+[macro]
+true Iteration 3
+### Solution
+
+B — instead of   "Open in APP" (Bottom Scroll Splash btn) when scrolling, we display a banner stating that access is available for $0.99
+
+make the banner unclosable, check the maximum number of clicks
+
+when any button on the banner is clicked, we display the default state so as not to annoy the user
+
+### Mockups &  Texts
+
+Figma
+
+Screen А В
+
+ 
+
+### Analytics
+
+Exposure event: Tab View
+
+Event Parameters Description
+
+Splash View,
+
+Splash Purchase Click,
+
+Install Click,
+
+Splash Close
+
+params.key = 'splash_name'
+
+params.str_value = 'full_access_full_day'
+
+params.key = 'price'
+
+params.value = 0.99
+
+value = 'BottomScrollSplash' (as it is now for "Open in App" button )
+
+When the user sees the splash screen at the bottom, instead of the "Open in app" button.
+
+[/macro]
+
+### Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 'Epic Link'=umn-9721 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+ 
+
+# Results
+
+[macro]
+Iteration 1 - results
+## Decision
+
+North Star CR from Splash View to Microtransaction Click
+
+Platform(s)
+WEB (mobile)
+
+Audience
+10% of all WEB mobile not Asia DAU
+
+Period
+   –   
+
+Result
+0.13% VS 1.5% target
+
+Verdict ❌  FAILED
+
+The new mechanism cannibalised 45.25% of clicks on Install and 54.40% of total app installs, which is statistically significant for both metrics.
+
+With a large cannibalisation of installs, the new mechanism brought too few clicks on the microtransaction button ("Unlock for 0.99$") - 0.13% vs. 1.5% of the planned one.
+
+#### Conclusion
+
+The coefficients used in the model turned out to be much higher than the actual values; with such views and clicks, the economics will not add up
+
+We close the iteration as FAILED
+
+The next step is to try to expand the funnel at the start using the bottom scroll splash source + additionally test interest in viewing the ad tab
+
+## Metrics
+
+[macro]
+#6779
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+A B
+
+Mob WEB Design 1 93354 93354
+
+915
+complete
+No visible bugs were found throughout the experiment
+
+916
+complete
+No external effects are visible
+
+Experiment 1 19915 19825
+
+Checks
+
+917
+complete
+duration of exp  >= design
+
+918
+complete
+A/B balance is maintained
+
+## Experiment-Related Funnels
+
+ to check, how much users saw experiment-related splashes , how much of them clicked on a target button - "Unlock for 0.99$" .
+SQL is in  Redash .
+
+variation control variant diff, variant VS control
+
+members 19,915 19,825 -0.45%
+
+overall funnel
+
+splash view, overall 19,219 19,092 -0.66%
+
+members -> spalsh view, overall 96.51% 96.30% -0.21%
+
+install click, overall 1,105 601 -45.61%
+
+spalsh view -> install click, overall 5.75% 3.15% -45.25%
+
+app install, overall 375 171 -54.40%
+
+install click -> app install, overall 33.94% 28.45% -16.16%
+
+experiment-related funnel
+
+splash view, full_access_full_day - 2,495 -
+
+members -> spalsh view, full_access_full_day - 12.59% -
+
+install click, full_access_full_day - 144 -
+
+spalsh view -> install click, full_access_full_day - 5.77% -
+
+app install, full_access_full_day - 54 -
+
+install click -> app install, full_access_full_day - 37.50% -
+
+splash purchase click, full_access_full_day
+299
+
+(1.5% * 19,915)
+25 -91.63%
+
+spalsh view -> purchase click, full_access_full_day
+1.00% -
+
+members -> purchase click, full_access_full_day 1.50% 0.13% -91.59%
+
+splash view, microtransactions_fakedoor - 26 -
+
+spalsh view full_access_full_day -> fakedoor view - 1.04% -
+
+install click, microtransactions_fakedoor - 13 -
+
+fakedoor view -> install click - 50.00% -
+
+app install, microtransactions_fakedoor - 4 -
+
+install click -> app install, fakedoor - 30.77% -
+
+to check the funnel after "App Install" click
+SQL is in Redash
+All actions are checked on the same day of install
+
+variation control variant diff, variant VS control
+
+installed 375 171 -54.40%
+
+tour started 268 108 -59.70%
+
+installed -> tour start 71.47% 63.16% -11.63%
+
+tour banner view 164 58 -64.63%
+
+tour start -> tour banner view 61.19% 53.70% -12.24%
+
+tour banner click 35 15 -57.14%
+
+tour start -> tour banner click 13.06% 13.89% 6.35%
+
+tour purchased 15 10 -33.33%
+
+tour start -> tour purchased 5.60% 9.26% 65.43%
+
+subscription revenue 987.09 654.97 -33.65%
+
+[/macro]
+
+## Next steps
+
+## Post-rollout analysis (optional)
+
+[/macro]
+
+[macro]
+Iteration 2 - results
+## Decision
+
+North Star CR from Splash View to Microtransaction Click
+
+Platform(s)
+WEB (mobile)
+
+Audience
+10% of all WEB mobile not Asia DAU
+
+Period
+   –   
+
+Result 0.19% VS 1.5% target
+
+Verdict ❌  FAILED
+
+The new mechanisms cannibalised:
+
+"microtransaction" button: 45% of clicks on Install, 57% of total app installs, 29% of fact revenue.
+
+"watch ad" button: 35% of clicks on Install and 43% of total app installs, 25% of fact revenue.
+
+We have too few clicks on the " microtransaction" button ("Unlock for $0.99") - 0.19% (or 74 users) versus 1.5% of the planned one, that is not enough to even cover the cannibalised installs.
+
+"Watch ad" button has a higher CTR - 2.77% (or 1103 users), but this is not enough to even cover the cannibalised installs.
+
+#### Conclusion
+
+Still haven't reached the number of clicks and button presses specified in the model with purchase
+
+Viewers interact better with ads, but the overall economics are even worse, so we are not testing this branch further
+
+We close the iteration as FAILED
+
+Next, we will try to show the splash screen with the microtransaction button to the maximum number of viewers
+
+## Metrics
+
+[macro]
+#6803
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size
+Other
+
+Control A Varian B Variant C
+
+Mob WEB Design 1 93354 93354 93354
+
+919
+complete
+No visible bugs were found throughout the experiment
+
+920
+complete
+No external effects are visible
+
+Experiment 3 39885 39977 39807
+
+Checks
+
+921
+complete
+duration of exp  >= design
+
+922
+complete
+A/B balance is maintained
+
+## Experiment-Related Funnel
+
+Disclaimer:
+
+SQL for all the calculations below can be found here:
+
+[UG Monetization] MobWeb: Full AB-tests monitoring
+
+[UGM] 6803 - Funnel Check
+
+To estimate the total potential revenue, installs made after Fakedoor were excluded. We can assume that if a user clicked the purchase button or the ad button, they will not install the app.
+
+To estimate revenue from ad the following CPM data was taken:
+
+[macro]
+CPM
+
+Country
+Total average eCPM ($)
+
+Albania 0.6
+
+Algeria 0.11
+
+Argentina 0.96
+
+Armenia 0.18
+
+Australia 6.57
+
+Austria 5.22
+
+Bangladesh 0.19
+
+Belarus 0.67
+
+Belgium 4.13
+
+Bosnia and Herzegovina 0.63
+
+Brazil 0.59
+
+Bulgaria 2.32
+
+Cambodia 0.2
+
+Cameroon 0.24
+
+Canada 7.74
+
+Chile 1.08
+
+China 1.07
+
+Colombia 1.31
+
+Costa Rica 0.9
+
+Croatia 1.26
+
+Cyprus 1.09
+
+Czechia 1.5
+
+Denmark 3.67
+
+Ecuador 0.21
+
+Estonia 2.53
+
+Fiji 0.28
+
+Finland 2.44
+
+France 2.82
+
+French Polynesia 0.48
+
+Georgia 0.66
+
+Germany 4.58
+
+Greece 1.37
+
+Guatemala 0.59
+
+Honduras 0.25
+
+Hong Kong 4.64
+
+Hungary 2.74
+
+Iceland 2.59
+
+India 0.28
+
+Indonesia 0.61
+
+Ireland 3.46
+
+Israel 0.99
+
+Italy 1.67
+
+Jamaica 0.31
+
+Japan 1.71
+
+Jordan 0.53
+
+Kazakhstan 0.56
+
+Kosovo 0.78
+
+Kuwait 1.94
+
+Kyrgyzstan 1.36
+
+Laos 0.12
+
+Lebanon 0.26
+
+Lithuania 1.75
+
+Macao 39.39
+
+Madagascar 0.1
+
+Malaysia 0.95
+
+Mauritius 0.78
+
+Mexico 1.43
+
+Micronesia 0.61
+
+Moldova 0.86
+
+Morocco 0.32
+
+Myanmar (Burma) 0.13
+
+Nepal 0.14
+
+Netherlands 2.78
+
+New Caledonia 1.12
+
+New Zealand 4.69
+
+Nigeria 0.31
+
+North Macedonia 1.91
+
+Norway 6.14
+
+Panama 0.29
+
+Peru 0.89
+
+Philippines 0.48
+
+Poland 2.25
+
+Portugal 1.18
+
+Qatar 1.78
+
+Reunion 2.09
+
+Romania 1.4
+
+Saudi Arabia 1.39
+
+Serbia 1.11
+
+Singapore 2.69
+
+Slovakia 1.29
+
+Slovenia 3.09
+
+South Africa 1.64
+
+South Korea 1.68
+
+Spain 1.83
+
+Sri Lanka 0.27
+
+Sweden 3.96
+
+Switzerland 6.53
+
+Taiwan 0.83
+
+Tanzania 0.47
+
+Thailand 1.23
+
+Trinidad and Tobago 1.45
+
+Tunisia 0.12
+
+Turkiye 0.64
+
+Uganda 1.39
+
+Ukraine 0.54
+
+United Arab Emirates 2.12
+
+United Kingdom 5.01
+
+United States 10.91
+
+Uruguay 0.8
+
+Uzbekistan 1.18
+
+Vietnam 0.41
+
+Zambia 1.75
+
+Total 3.55
+
+[/macro]
+
+Metric Control A Variant B Variant B vs Control A Variant C Variant C vs Control A
+
+tab view 39,885 39,977 0.23% 39,807 -0.20%
+
+install click 2,805 1,539 -45.13% 1,811 -35.44%
+
+tab view -> install click 7.03% 3.85% -45.26% 4.55% -35.31%
+
+Screen 'Full access for the song"
+
+splash view - 6,779 - 6,678 -
+
+tab view -> splash view - 16.96% - 16.78% -
+
+install click, users - 671 - 576 -
+
+install - 297 - 245 -
+
+purchase click, users - 74 - - -
+
+tab view -> purchase click - 0.19% - - -
+
+charge (estimated) - 33 - - -
+
+purchase click -> charge - 45.00% - - -
+
+revenue  (estimated) - $32.97 - - -
+
+watch ad click, users - - - 1,103 -
+
+tab view -> watch ad click - - - 2.77% -
+
+watch ad click, cnt - - - 1,360 -
+
+clicks per user - - - 1.23 -
+
+revenue  (estimated) - - - $8.14 -
+
+avg revenue per ad click (estimated) - - - $0.01 -
+
+Screen 'This feature is coming soon to the web"
+
+splash view - 68 - 1,095 -
+
+install click, users - 23 - 480 -
+
+install - 11 - 241 -
+
+App Install flow
+
+install 908 393 -56.72% 522 -42.51%
+
+tab view -> install 2.28% 0.98% -56.82% 1.31% -42.40%
+
+app open 479 196 -59.08% 271 -43.42%
+
+subscribed 76 66 -13.16% 46 -39.47%
+
+charged 39 26 -33.33% 26 -33.33%
+
+charged revenue $1,556 $1,105 -28.98% $1,161 -25.39%
+
+total revenue (charged after install + microtransaction/ad)  (estimated) $1,556 $1,138 -26.87% $1,169 -24.86%
+
+If exclude installs from fakedoor (after ad click)
+
+install 908 382 -57.93% 284 -68.72%
+
+tab view -> install 2.28% 0.96% -58.03% 0.71% -68.66%
+
+app open 479 189 -60.54% 149 -68.89%
+
+subscribed 76 42 -44.74% 31 -59.21%
+
+charged 39 23 -41.03% 12 -69.23%
+
+charged revenue $1,556 $859 -44.79% $732 -52.96%
+
+total revenue (charged after install + microtransaction/ad)  (estimated) $1,556 $892 -42.68% $740 -52.43%
+
+[/macro]
+
+## Next steps
+
+## Post-rollout analysis (optional)
+
+[/macro]
+
+[macro]
+Iteration 3 - results
+## Decision
+
+North Star CR from Splash View to Microtransaction Click
+
+Platform(s)
+WEB (mobile)
+
+Audience
+100% of all WEB mobile not Asia DAU
+
+Period
+  –  
+
+Result 1.03% VS 1.5% target
+
+Verdict ❌  FAILED
+
+If we assume that users who clicked on the microtransactions would not have installed the app later — since they would have continued using the functionality on mobile web — then the new mechanism would have cannibalized 42% of installs and 34% of in-app revenue , while the total revenue including estimated microtransaction revenue would have decreased by 5.7% .
+
+#### Conclusion
+
+Compared to previous iterations, we are much closer to the coefficients specified in the model, but the model still does not converge (click-through rate from DAU 1.16% vs. 1.5%)
+
+We are closing this iteration and the project as a whole as FAILED
+
+Next, we will conduct qualitative research on the mobile web audience through user interviews, which may yield additional insights for ideas involving microtransactions
+
+## Metrics
+
+[macro]
+#6836
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+Control A Varian B
+
+Mob WEB Design 1 93354 93354
+
+923
+complete
+No visible bugs were found throughout the experiment
+
+924
+complete
+No external effects are visible
+
+Experiment 1 76467 76313
+
+Checks
+
+925
+complete
+duration of exp  >= design
+
+926
+complete
+A/B balance is maintained
+
+## Forecast Revenue (per day)
+
+Group
+
+Tab View
+Install Flow Miscrotransaction Flow
+Total
+
+Install App Open Subscribe Charge Revenue Purchase Click Purchase Revenue
+
+Control A 450761 7,050 3,849 430 183 $7,221 - - - $7,221
+
+Variant B 450761 4,129 2,121 319 118 $4,755 4,637 2,087 $2,066 $6,821
+
+diff, % 0.00% -41.44% -44.91% -25.88% -35.35% -34.15% - - - -5.55%
+
+## Experiment-Related Funnel
+
+Disclaimer:
+
+SQL for all the calculations below can be found here:
+
+[UG Monetization] MobWeb: Full AB-tests monitoring (but not-Asia countries should be filtered ourt)
+
+[UGM] 6836 - Funnel Check
+
+To estimate the total potential revenue, installs made after Fakedoor were excluded. We can assume that if a user clicked the purchase button or the ad button, they will not install the app.
+
+metric Control A Variant B Variant B vs Control A
+
+tab view 76,467 76,313 -0.20%
+
+install click 3,882 7,352 89.39%
+
+tab view -> install click 5.08% 9.63% 89.77%
+
+Screen 'Full access for the song"
+
+splash view - 66,903 -
+
+tab view -> splash view - 87.67% -
+
+install click, users - 6,899 -
+
+install - 633 -
+
+purchase click, users - 785 -
+
+tab view -> purchase click - 1.03% -
+
+charge - estimated - 353 -
+
+purchase click -> charge - 45.00% -
+
+revenue - estimated - $349.72 -
+
+Screen 'This feature is coming soon to the web"
+
+splash view - 774
+
+install click, users - 90
+
+install - 33
+
+App install flow
+
+install 1,196 731 -38.88%
+
+tab view -> install 1.56% 0.96% -38.76%
+
+app open 653 367 -43.80%
+
+subscribed 73 68 -6.85%
+
+charged 31 25 -19.35%
+
+charged revenue $1,225 $948 -22.61%
+
+total revenue (charged after install + microtransaction/ad) - estimated $1,225 $1,298 5.94%
+
+If exclude installs from fakedoor (after ad click)
+
+install 1,196 699 -41.56%
+
+tab view -> install 1.56% 0.92% -41.44%
+
+app open 653 359 -45.02%
+
+subscribed 73 54 -26.03%
+
+charged 31 20 -35.48%
+
+charged revenue $1,225 $805 -34.29%
+
+total revenue (charged after install + microtransaction) - estimated $1,225 $1,155 -5.74%
+
+[/macro]
+
+## Next steps
+
+## Post-rollout analysis (optional)
+
+[/macro]

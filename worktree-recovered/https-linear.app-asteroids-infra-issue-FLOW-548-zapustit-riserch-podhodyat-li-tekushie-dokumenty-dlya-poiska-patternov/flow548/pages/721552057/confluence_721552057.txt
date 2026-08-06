@@ -1,0 +1,323 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-9500
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Goal:  reduce subscription churn and increase upsell conversions by clarifying whether users intend to cancel only Pro or all subscriptions
+
+Foundation :
+
+— the study highlighted the problem that users do not understand that the songbook+course bundle purchased during the upsell is a separate subscription
+
+user reviews left via support also mention this
+
+due to this misunderstanding, they do not cancel the trial for the purchased bundle and then process a refund through refand. the idea behind the project is to make it clear when canceling what exactly the user is canceling and whether they want to cancel the purchased upsell bundle along with the subscription
+
+### Research results
+
+Refunds & Disputes research shows that most refunds in upsells come from users who canceled their Pro subscription trial period. From this, we can conclude that a large number of refunds come from users who canceled their subscription, even though they had already paid for the bundle, and were dissatisfied with it 
+
+#### Usability research
+
+Usability research revealed that users did not understand that they were taking out several different subscriptions, which also had to be canceled separately.
+
+Screen Conclusion Example reviews
+
+  When users want to cancel, they don't understand that they have to cancel 2 subscriptions and cancel only one I now have   two subscriptions, and I thought I just had one . But now do I have to cancel my other subscription? Um, it'd be my understanding that I have totally canceled all my subscriptions, so, oh, okay. [She didn't cancel the second]
+
+#### Refund Cases Analysis
+
+Screen Example reviews
+
+Customers believed they were   signing up for one service , but   unknowingly   committed to   two separate   subscriptions
+
+Users thought   courses/songbooks were included   in the main subscription (as a   bonus/bundle ).
+
+Users attempted to cancel but   didn't realize they needed to cancel multiple   services.
+
+Users describe being   overwhelmed by pop-ups and an unclear signup flow , which led to mistakes and   accidental activations. 
+
+I only   wanted to try out the UG Pro   to see if it would help my project, and it didn't have the song I needed.
+
+I was using Ultimate Guitar  to find sheet music   for my guitarist that was not on praise charts.
+
+I wanted only access to  song words and chords and the ability to change the keys of the songs.
+
+I only signed up for a trial of UG Pro+ to be able  to download a tab to print off a hard copy.
+
+The reason for my trial period was that I wanted  to print 2-3 songs  on August 15th, nothing more.
+
+I just wanted to buy  chords for my singing lessons.
+
+I am a worship team leader at my church, and I was using Ultimate Guitar   to find sheet music.
+
+So I was preparing for our church's musical event. I had  30 songs to prepare and practice.
+
+I only wanted to order the basic Ultimate Guitar subscription because I only   need to access the lyrics and chords.
+
+I subscribed  to see what was new   since the last time I used the product.
+
+I'm a guitar beginner. A few days ago, I found this website on the internet, and   I tried to find out whether this guitar resource fits me.
+
+### A/B test model
+
+code
+
+Metric A B diff
+
+pro cancellations (users with active upsell) 40 40
+
+14d upsell cancellations after pro 20 30 10
+
+upsell 14d refunds 11 5 -6
+
+upsell 14d refund amount, $ $824 $375 -$449
+
+pro cancel → upsell cancel, % 50% 75% 50%
+
+pro cancel → upsell refund, % 27.5% 12.5% -55%
+
+refund amount / pro cancellations, $ $20.6 $9.4 -$11.2
+
+# Hypothesis
+
+If we add a clarification to the cancellation funnel for users who have purchased upsells, specifying what exactly they want to cancel, we will reduce the number of refunds by 55% and improve the upsell process as a whole, this will work because we will remove ambiguities that may have confused users
+
+Audience users who saw registration splash
+
+Platform UG_WEB
+
+Metrics
+Goal
+
+pro cancel → 14d upsell refund, %
+
+Sensitivity analysis /
+
+preliminary calculations
+
+Design / each metric
+
+Baseline 27.5%
+
+Lift, % -55%
+
+MDE 0.38
+
+Power 0.8
+
+Alpha 0.05
+
+Sample size (per variation) 240
+
+Duration (days) 6
+
+Seasonality reflected took 1 week in calculations
+
+Design summary  
+
+Sample 240
+
+Days 6
+
+# Description of the Solution & Mockups
+
+### Solution
+
+Making changes only for those who purchased the Pro+Bundle Courses + Songbooks in upsell
+
+in the future, analyze refunds separately for trial Pro and instant Pro
+
+After the cancellation, pro also proposes to cancel the bundle Courses + Songbooks 
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+Subs section
+
+...
+
+...
+
+Unsubscribe screen
+
+Exit interview
+
+### Analytics
+
+Exposure event: App Experiment Start
+
+Event Parameters Description
+
+App Experiment Start item_id – %experiment id%
+send for both variations
+
+send when user successfully canceled pro subscription and have an active edu+book subscription
+
+Account Subscriptions Cancel Upsell View
+send in test variation when user sees modal window with reminder to cancel upsell subscription
+
+Account Subscriptions Cancel Upsell Keep Click
+send in test variation when user clicks "Keep my plan" button
+
+Account Subscriptions Cancel Upsell Cancel Click
+send in test variation when user clicks "Cancel plan" button
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 'Epic Link'=umn-9500 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+ 
+
+# Results
+
+[macro]
+true Iteration #1 - #6553
+#6553      –   
+
+Exposure event: App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UGT_WEB Design 11 120 120
+
+b67ef00b-0263-e452-c3f0-ed0807510d42
+complete
+No visible bugs were found throughout the experiment
+
+49332dbd-1769-18f1-6f45-66c1e3531331
+complete
+No external effects are visible
+
+Experiment 29 362 357
+
+Checks
+
+9fa4afed-c796-bff5-5c15-cb98b80cd980
+complete
+duration of exp ≥ design
+
+90a5d7db-17f7-d452-5488-31ca879027ad
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+didn't change members → upsell cancellations
+
+nonsignificant 2% decrease
+
+yet number of transactions after cancellation in experiment decreased by 50%
+
+and number of refunds after transaction also decreased by 46%
+
+Conclusion 
+[macro]
+Green Success
+[/macro]
+
+The metric specified in the hypothesis was fulfilled
+
+it might have been worth assessing the leverage effect at the start and making the funnel wider at the beginning, because in absolute terms the effect is small
+
+Probably users became more aware of their upsells
+
+But overall effect is to small to have any affect
+
+we loose ~$100 per day from a ~month window
+
+Next steps
+
+roll outed test variation #2 
+
+## Forecast (per day)
+
+Variations
+users cancelling pro
+
+upsell cancellations
+
+after exp charges
+
+refunds, $
+
+final revenue, $
+
+control  46 39 8 4 $401
+
+variation 2  46 39 4 1 $274
+
+diff
+0  -4 -3 -$127
+
+## Significance analysis
+
+[macro]
+WEB
+cancellation funnel
+
+recently charged (within 1 week before exp start) variation members cancel views cancel clicks members -> cancel click, % upsell cancel members -> unsell cancellations, %
+
+0 1 319 0 0 0 267 83.70%
+
+0 2 306 305 261 85.29% 269 87.91%
+
+diff
+
+5%
+
+1 1 43 0 0 0 37 86.05%
+
+1 2 51 51 37 72.55% 37 72.55%
+
+diff
+
+-16%
+
+after cancellation purchases
+
+variation members with expected billing date after exp had charge after experiment transactions revenue, $ refunds refund revenue, $ final revenue, $ arpu, $
+
+1 267 56 (20.98%) 61 $5551 30 (49.18%) $2394 $3158 $11.83
+
+2 273 28 (10.26%) 30 $2702 8 (26.67%) $574 $2128 $7.79
+
+diff
+-51%
+
+-46%
+
+-34%
+
+[/macro]
+
+[/macro]
+
+## Post-rollout analysis (optional)

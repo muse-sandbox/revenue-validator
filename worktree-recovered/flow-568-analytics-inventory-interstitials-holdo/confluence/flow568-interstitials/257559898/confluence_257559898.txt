@@ -1,0 +1,142 @@
+[macro]
+INLINE
+
+[macro]
+Red fail
+[/macro]
+
+[/macro]
+
+[macro]
+
+## Исследование и контекст
+
+Как член команды рекламы, я хочу протестировать интерстишлы от Гугла на десктопе , чтобы заработать денег компании для выполнения финплана и убедиться, что новый формат рекламы не повлияет на продуктовые метрики.
+
+### Результаты самого исследования и контекст:
+
+В ноябре 2020-го года Гугл представил свои инструменты и гайдлайны для показа интерстишлов на вебе
+
+Заапрувленная Гуглом логика показа : При заходе на табовую или эдиториал проводим аукцион, кэшируем показ, при переходе пользователя с табовой или эдиториала на другую страницу сайта отрисовываем, давая возможность закрыть сразу, без ожидания
+
+Частота показа: Не чаще раза в час
+
+Размеры: В DFP: 320x480, 300x250, and 336x280, фактически будут подстраиваться под viewport.
+
+Как делать нельзя:
+
+Showing a popup that covers the main content, either immediately after the user navigates to a page from the search results, or while they are looking through the page.
+
+Displaying a standalone interstitial that the user has to dismiss before accessing the main content.
+
+Using a layout where the above-the-fold portion of the page appears similar to a standalone interstitial, but the original content has been inlined underneath the fold.
+
+### Расчет сверху
+
+[macro]
+Запрос
+
+[macro]
+sql Запрос 2, 1, 0) as l_test,
+length(arrayReduce('groupUniqArray',groupArray(url))) as l_alt,
+groupArray(toUnixTimestamp(datetime)) as dt,
+arrayDifference(dt) as diffs, --считаем разницу во времени между событиями
+arrayMap(x-> if(x>3600,0,x), diffs) as diffs_mod, -- если между открытиями больше часа - обнуляем
+arrayCount(x->x>3600,diffs) as check_for_long, -- считаем сколько "перерывов" больше часа
+arrayCumSum(diffs_mod) as diffs_mod_cs, -- кумулятивная сумма
+arrayMap(x->toInt64(x/3600), diffs_mod_cs) as diffs_mod_cs_mapped, -- определяем "номер часа" в который произошло данное событие
+arrayUniq(diffs_mod_cs_mapped) as webi_shown, -- считаем количество ожидаемых показов,
+(check_for_long+webi_shown) as webi_shown_alt -- суммируем количество ожидаемых показов и перерывов больше часа
+FROM (
+SELECT *
+FROM default.ug_rt_events_web
+WHERE date>=yesterday()-30
+AND event IN ('Tab View', 'Home View')
+AND url NOT LIKE '%official%'
+AND platform=1
+AND rights IN (0,4,5,10,14,15,20,24,25,30,34,35,40,44,45,50,54,55)
+AND client_id!=0
+ORDER BY datetime ASC
+) GROUP BY date, client_id
+) WHERE l>1
+) GROUP BY date
+)]]>
+[/macro]
+
+[/macro]
+
+Ожидается около 297 тысяч показов в сутки. При CPM=6$ получаем ожидаемую выручку сверху в размере ~1800$
+
+## Гипотеза
+
+Если добавить на десктоп формат интерстишлов при переходе с табовой на другую страницу, мы заработаем сверху ~$1000 в день за счёт, не просядем в SEO т.к. данный формат заапрувлен Гуглом и не просядем по продуктовым метрикам т .к. будем показывать интерстишлы только при уходе с табовой/эдиториала на другую страницу и давать возможность их закрыть сразу после отрисовки. .
+
+## План a/b тестирования
+
+Проводим АБ тест в Канаде, при успехе запускаем АБ на мир
+
+## Ответственный и команда
+
+ 
+
+ 
+
+ 
+
+## Описание решения для гипотезы и макеты
+
+Инструкции по встраиванию интерстишла
+
+https://developers.google.com/publisher-tag/samples/display-web-interstitial-ad
+
+## План реализации гипотезы
+
+Подготовка
+
+179
+incomplete
+ Завести Ad Unit / LI в DFP
+
+180
+incomplete
+ Сделать расчёт сверху
+
+181
+incomplete
+ Сделать тестовую страницу
+
+182
+incomplete
+ Согласовать тестовую с продуктом
+
+183
+incomplete
+ Согласовать метрики, которые будем мониторить, с продуктом
+
+Тестирование
+
+184
+incomplete
+ Запустить АБ тест в Канаде
+
+185
+incomplete
+ Подвести итоги АБ в Канаде
+
+186
+incomplete
+   Запустить АБ на мир
+
+187
+incomplete
+ Подвести итоги АБ на мире
+
+Подведение итогов
+
+188
+incomplete
+  Записать общие итоги и дальнейшие шаги
+
+## Выводы
+
+Проект был отклонён С-тим т.к. данный рекламный формат слишком intrusive и есть опасения по поводу seo.

@@ -1,0 +1,486 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-6211
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[macro]
+
+[/macro]
+
+# Research and Context
+
+Goal: increase revenue retention
+
+Foundation : inform about the imminent loss of premium benefits for those who canceled auto-renewal subscriptions and whose access is ending
+
+### Research results
+
+— similar project for apps
+
+Current funnel for annual subscription auto-renewal cancellations by subscription lifecycle period:
+
+segment cohort_cnt churn1h churn1h1d churn1d7d churn7d30d churn30d90d churn90d180d churn180d270d churn270d365d churn365d375d first_charges first_revenue pool_revenue next_charges next_revenue
+
+trial 169 23 8 23 20 0 0 0 0 4 57 $5,189 $5,189 31 $2,780
+
+recurring charge 674 8 18 15 8 5 3 4 14 0 674 $22,580 $22,580 482 $15,536
+
+instant 293 10 4 3 3 2 3 3 11 0 293 $12,713 $12,713 187 $7,914
+
+тут нужны цифры по целевым пользователям, которые с доступом и без авто-ренью и которые заходят в последние две недели
+
+сколько из них изначально взяли доступ в приложении
+
+References
+
+Duo Twitch 
+
+### A/B test model
+
+Metric A B diff
+
+Ex subscribers can saw permanent banner 566 566
+
+Reactivations 5 31 26
+
+Charges 5 31 26
+
+Banner → Access 0.88% 5% 468%
+
+Revenue, $ $265 $1293 $1028
+
+ARPU, $ $0.47 $2.05 $1.58
+
+ARPPU, $ $53.0 $41.6 -$11.4
+
+# Hypothesis
+
+If we display a permanent banner to the audience that canceled auto-renewal but still has access, and in this banner, we mention the imminent loss of benefits, we will generate an additional $X in revenue because a portion of the audience will renew their subscription to avoid losing premium features.
+
+A/B test plan
+
+A → B
+
+Base value of the metric (access, %) 0.88%
+
+Lift, % 468%
+
+Minimal detectable effect 0.2636
+
+Probability of true-positive (power) 0.8
+
+Probability of false-positive (p-value) 0.05
+
+Sample size (for all the variations) 566
+
+How many days it'll take to conduct the test 1
+
+# Description of the Solution & Mockups
+
+Experiment for users who canceled auto-renew but still have access  
+
+only for those who purchased access on the web  
+
+if the user has access purchased in the app, they are not included in the experiment
+
+we’re preparing an experiment only for PRO in 1 iteration
+
+Two weeks before access ends, display a non-dismissible permanent banner with a countdown to the end of access
+
+The banner message will inform the user that their subscription is ending and offer to maintain access  
+
+After clicking the banner, show a modal window  
+
+The modal will display a list of features the user will lose if access is not renewed  
+
+Will we be able to display the modal window at the point where it is triggered?
+
+Since the user has previously purchased access, we already have their payment details, so we won't ask for them again  
+
+Clicking the button on the modal will enable auto-renewal of the current subscription ( confirm)
+
+After activation, we display a success window
+
+After closing the success window, we return to the original page where the subscription reactivation process began
+
+The permanent banner is hidden in this case
+
+After renewing the subscription, we change the subscription status to "Active" with a "Details" button for potential further actions
+
+FAIL
+
+if we fail to create a new subscription to Braintree, we will try several times without the user.
+
+if we get an error after all our attempts, we should inform the user, for example by mail. In the mail, you can add an action button to re-create the subscription.
+
+Mokups
+
+Figma
+
+Screen A B Desc
+
+PRO
+
+Banner -
+
+Resubscribe
+
+Success
+
+Subs section
+
+ 
+
+User with a canceled auto-renewal and an active subscription
+
+Subscriptions
+
+In the status, we indicate that auto-renewal is turned off
+
+User with a canceled auto-renewal and an active subscription
+
+Subscriptions → Details
+
+In the details, there is no button for further plan editing
+
+User restored auto-renewal through the banner
+
+Subscriptions
+-
+
+After renewing the subscription, we change the subscription status to "Active" with a "Details" button for potential further actions
+
+User restored auto-renewal through the banner
+
+Subscriptions → Details
+-
+
+A button "Manage" to enter the cancellation flow must appear, and there should be the option to cancel the "restored" subscription again.
+
+[macro]
+Next iteration
+
+EDU
+
+Banner
+
+Resubscribe
+
+Success
+
+PRO+Courses
+
+Banner
+
+Resubscribe
+
+Success
+
+Songbooks
+
+Banner
+
+Resubscribe
+
+Success
+
+[/macro]
+
+### Analytics
+
+Start event: App Experiment Start  
+
+Event
+
+Parameters
+
+Description
+
+1 App Experiment Start item_id – %experiment id%
+send for both variations
+
+send if user has a canceled pro subscription that will expire in two week or less
+
+2 Permanent Banner View params.key – ["type", "discount", "sale_title"]
+params.str_value – ["Pro Expiration", "0", "Your subscription will expire soon"]
+params.value – [0, 0, 0]
+User sees new expiration banner
+
+event already exists. add new type and title
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+3 Permanent Banner Click params.key – ["type", "discount", "sale_title"]
+params.str_value – ["Pro Expiration", "0", "Your subscription will expire soon"]
+params.value – [0, 0, 0]
+User clicks new expiration banner
+
+event already exists. add new type and title
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+4 Resubscribe Modal View value – 'Pro Expiration'
+user sees resubscribe popup 
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+5 Resubscribe Modal Close value – 'Pro Expiration'
+user closes resubscribe modal window
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+6 Resubscribe Modal Resubscribe Click value – 'Pro Expiration'
+user clicks "resubscribe now" button
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+7 Resubscribe Modal Congrats View value – 'Pro Expiration'
+user sees resubscribe congrats popup 
+
+for pro subscription sale_title = 'Pro Expiration'
+for books subscription sale_title = 'Book Expiration'
+
+backend events
+
+1 Autorenew Enabled
+user enables autorenew
+
+currently we either receive   Canceled   event or nothing 
+
+same as with   Canceled   event
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 "Epic Link"=umn-6211 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+true Iteration #1
+#5202   -
+
+Exposure event: App Experiment Start  
+
+## Design vs Reality check
+
+Duration (days) Sample size Other
+
+A B
+
+Design 1 283 283
+
+927
+complete
+No visible bugs were found throughout the experiment
+
+928
+complete
+No external effects are visible
+
+Experiment
+37
+
+Checks
+
+929
+complete
+duration of exp  >= design
+
+930
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+8% conversion to successful resubscribe 
+
+yet hadn't increase recurrent charges
+
+only 30% of resubscribers actually charged on billing date
+
+most of the others had their transaction decline (status: PROCESSOR_DECLINED)
+
+earned even less from them
+
+problems
+
+bad split routine: 4% of users in experiment had multiple variations
+
+very few users. got less than 1k for 1+ month. while expected to get this amount in a few days
+
+Conclusions 
+
+can't rollout this test variation
+
+Next steps
+
+first of all find out the problem with small sample size in experiment
+
+can ask users to update their card info after resubscribing
+
+## Metrics
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+ 
+
+App Experiment Start
+
+Accesses
+
+Charges
+
+Recurrent charges
+
+Revenue
+
+1 283 32 31 9 $2085
+
+2 283 24 24 7 $1507
+
+diff
+-8  -7  2 -$578 
+
+[/macro]
+
+[macro]
+Significance analysis
+Monetization stats
+
+members subscribers accesses instants trials charged trials buyers charges recurrent charges revenue 14d cancels 14d refunds 14d disputes
+
+control 486 55 55 52 3 1 53 53 16 $3580 6 0 0
+
+variation 2 499 42 42 39 3 2 42 42 12 $2657 2 1 0
+
+Product / SEO stats
+
+members sessions retention 1d retention 7d members with long tab pageview per session
+
+control 486 3109 152 283 352 4.96
+
+variation 2 499 2372 141 266 356 5.47
+
+Monetization metrics
+
+arpu arppu access cr, % charge cr, % charge -> 14d cancel, %
+
+control $7.37 $43.40 11.32% 10.91% 11.32%
+
+variation 2 $5.32 $43.73 8.42% 8.42% 4.76%
+
+diff, % -27.73% 0.75% -25.63% -22.82% -57.94%
+
+pvalue 0.023 0.96 0.13 0.19 0.23
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Product / SEO metrics
+
+retention 1d, % retention 7d, % members with Long Tab, % Pageview per session
+
+control 31.28% 58.23% 72.43% 4.96%
+
+variation 2 28.26% 53.31% 71.34% 5.47%
+
+diff, % -9.65% -8.46% -1.50% 10.31%
+
+pvalue 0.30 0.12 0.70 0.010
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+Resubscription funnel
+
+variation members resubscriptions recurrent charges members → resubscriptions, % resubscriptions → charges, % memebers → charges, % recurrent revenue, $ recurrent arpu, $
+
+control 486 0 16
+
+3.3% $1280 $2.63
+
+variation #2 499 39 12 7.8% 31% 2.4% $856 $1.72
+
+diff
+
+-27%
+-35%
+
+Bad split users
+
+code
+
+members users with both variations share of bad users, %
+
+891 40 4.49%
+
+[/macro]
+
+[/macro]
+
+## Post-rollout analysis (optional)
+
+..
+
+## Project Termination Stage
+
+1. Remove code by commits
+
+[macro]
+
+[/macro]
+
+2. remove table forum.service_access_short 
+
+[macro]
+
+.htag {margin-left: 8px;color: blueviolet;}
+
+let h = [];
+for (n = 1; n {
+if (item.getAttribute('id') != null) {
+const t = document.createElement('a');
+t.href = '#'+item.getAttribute('id');
+t.classList.add('htag');
+t.innerHTML = '#';
+item.appendChild(t);
+}
+});
+]]>
+[/macro]

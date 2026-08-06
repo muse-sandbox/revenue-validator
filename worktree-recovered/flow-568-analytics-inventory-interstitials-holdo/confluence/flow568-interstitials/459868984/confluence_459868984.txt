@@ -1,0 +1,366 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-5306
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+ 
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Project goal: we want to convert user into trials and subscriptions with new mechanics
+
+Foundation: HL ads are "default" now so we think about swapping them into additional sources
+
+Daily revenue of interstitials is approximately $1400, and there are also no interstitials in Android
+
+### A/B test model
+
+iOS
+Android
+(approximately)
+
+Metric A B diff A B diff
+
+Interstitial Show
+(event = admob_shown) 105451 105451 0 65831 65831 0
+
+Accesses 437 481 44 200 230 30
+
+Interstitial → Access, % 0.0041 0.0046 10% 0.0030 0.0035 15%
+
+Charges 290 319 29 110 127 17
+
+Revenue, $ $6663 $7329 $666
+$2852 $3280 $428
+
+ARPPU, $ $22.98 $22.98 $0.00
+$26 $26 $0.00
+
+ARPU, $ $0.0632 $0.0695 10%
+$0.0433 $0.0498 15%
+
+# Hypothesis
+
+If we swap HL ads with new landing, it will help us earn additional 10% money, because landing can show all the benefits of subscription
+
+# A/B test plan
+
+iOS Android
+
+Base value of the metric 0.0041 0.0030
+
+Lift, % 10% 15%
+
+Minimal detectable effect 0.0063 0.0080
+
+Probability of true-positive (power) 0.8 0.8
+
+Probability of false-positive (p-value) 0.05 0.05
+
+Sample size (for all the variations) 843608 526648
+
+How many days it'll take to conduct the test 8 8
+
+# Description of the Solution & Mockups
+
+### Solution
+
+When we get no-fill state (ex HL-ad), we instantly change it to landing
+
+Applies only for iOS
+
+This offer available only for users without any current subscription or active trial.
+
+The close button appears immediately for this launch.
+
+The logic of showing the landing
+
+User goes to tab
+
+There is a trigger for showing interstitial 
+
+Interstitial conditions:
+
+We show it only 5 times per day. With 180 sec gap in between these cases.
+
+The logic renews everyday at 23:59
+
+Conditions to perform:
+
+If "no-fill" state wins: we show Landing (close button is instant). Then we make a note that we shown it today
+
+If any kind of ad won: we show winner's ad
+
+If "no-fill" state wins again: we DO NOT show it this day again. And just let user pass to the tab. 
+
+That means:
+
+We show landing once per day
+
+Only for the first "winning of no-fill state"
+
+Mute landing until the rest of the day
+
+And then show again on next day with the same logic.
+
+The landing:
+
+Landing is scrollable 
+
+It has button which scroll landing to the paywall in the bottom of the screen
+
+We show it instead of interstitial
+
+Close button is available instantly
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+Landing
+
+заменить баннер на реальную заглушку
+
+Video Preview
+
+[macro]
+
+[/macro]
+
+### Analytics
+
+Start event: Interstitial Banner View  
+
+Event Parameters Description
+
+1
+Interstitial Banner View
+
+users sees interstitial "no-fill" banner
+
+must work for both test and control
+
+Splash View
+
+Splash Close
+
+value – 'AD Interstitial'
+
+TBD
+
+/  
+
+2 Banner Upgrade View
+
+value – 'AD Interstitial'
+
+type – 'button' / 'scroll'
+
+user sees banner in a viewport
+
+value – constant = 'AD Interstitial'
+
+type
+
+'button' if user clicks "Start now" button
+
+'scroll' if user scrolls to banner by themself
+
+3
+Banner Upgrade Close
+all params from Banner Upgrade View
+send when user closes the paywall banner
+
+provide for all banners in app regardless whether it in experiment or not 
+
+4
+Interstitial Banner Scroll
+
+value – 10
+
+type – 'Official Tabs'
+
+send when user scrolls the interstitial banner
+
+by every 10%
+
+or to the next header (specified below)
+
+value - percent of scroll
+
+0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100
+
+type
+
+Official Tabs – first screen. "Official Tabs" header is visible in a viewport
+
+Practice Mode – second screen. "Practice Mode" header is visible in a viewport
+
+Smart Scroll – third screen. "Smart Scroll" header is visible in a viewport
+
+Choose your plan – fourth screen. "Choose your plan" header is visible in a viewport
+
+Start now – end of banner. "Start now" button is visible in a viewport
+
+should be send along with Banner Upgrade View  event (type = scroll )
+
+example
+
+user opens interstitial banner
+
+send event with value = 0; type = Official Tabs
+
+user scrolls first 10%, still doesn't see next header
+
+send event with value = 10; type = Official Tabs
+
+user scrolls to the next header
+
+send event with the last used value = 10; type = Practice Mode
+
+if in this case value already >= 20, then value = 20; type = Practice Mode
+
+...
+
+5
+Banner Purchase Click,
+Purchase Process Start,
+Purchase Process Click,
+Purchase Process Canceled,
+Purchase Process Finish,
+Banner Free Trial Toggle
+
+value – 'AD Interstitial'
+ all purchase funnel events with new source in value
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 parent=umn-5306 order by key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+The obvious thing about its results is simple: nothing changes at all. We didn't get any results with this experiment, there is simply nothing at all. Also we are not planning future iterations with interstitial, so we close experiment as fail. But also we can re-use this landing in future experiments with paywalls. 
+
+#4845     -  
+[macro]
+Red FAIL
+[/macro]
+
+Exposure event:   Interstitial Banner View  
+
+Results
+
+no changes since we affect only a very small portion of users
+
+6% of users with access after interstitial are from its source
+
+Conclusion
+
+average accesses per day are so insignificant, there is no reason in rollout this variation
+
+Next steps
+
+we can work with first step of the interstial funnel
+
+for example show it for same users we show ad, but only once a week as an extra interstitial
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+Variations
+Metrics
+
+Interstitial Banner View
+
+Accesses
+
+Charges
+
+Revenue
+
+control 800 15 9 $183
+
+variation 2 800 15 9 $164
+
+diff
+0 0 -$19
+
+[/macro]
+
+[macro]
+Significance analysis
+Monetization stats
+
+  members subscribers accesses instants trials charged trials buyers charges revenue
+
+control 3283 63 63 32 31 6 38 38 $753
+
+variation 2 3250 59 61 31 28 5 36 37 $667
+
+Product stats
+
+members retention 1d retention 7d
+
+control 3283 824 1105
+
+variation 2 3250 756 1032
+
+Monetization metrics
+
+  arpu aov arppu access cr, % charge cr, % trial -> charge, % accesses per subscriber charge -> 14d cancel, %
+
+control $0.23 $19.82 $19.82 1.92% 1.16% 19.35% 1.00 10.53%
+
+variation 2 $0.21 $18.04 $18.54 1.82% 1.11% 17.86% 1.03 0.00%
+
+diff, % -10.48% -8.99% -6.46% -5.40% -4.30% -7.74% 3.39% -100%
+
+pvalue 0.67 0.48 0.61 0.76 0.85 0.88 0.33 0.03
+
+cumulative
+
+Product metrics
+
+retention 1d, % retention 7d, %
+
+control 25.10% 33.66%
+
+variation 2 23.26% 31.75%
+
+diff, % -7.32% -5.66%
+
+pvalue 0.083 0.101
+
+Accesses distribution by product
+
+variation 1 2 Diff
+
+source
+
+Other 62 54 -8
+
+AD Interstitial
+4
+6% 4
+
+Totals 62 58 -4
+
+[/macro]

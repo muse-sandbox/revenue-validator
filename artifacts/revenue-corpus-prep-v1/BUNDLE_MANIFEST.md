@@ -1,0 +1,25 @@
+# BUNDLE MANIFEST — Revenue Corpus Prep V1 (FLOW-575)
+
+Сгенерировано: 2026-08-04. SHA-256 всех файлов пакета (кроме самого манифеста).
+
+```
+1133f019aa7e129742c5f5419172a27a45c7fa938e13cc2e4704c7e6ce204af4  EVALUATION_PROTOCOL.md
+a0296c41408ccad4ee9570ad86d7689bbc7d7fa95f7dde4c290d9c7b4eefb6a8  EXCLUSION_MANIFEST.md
+0853664105f4b28f1fe935fb148c54d8b0f2578059eb29a093d33dae77f77529  ground-truth-sealed/GT-RH-01.md
+6b687e2be9607e911cdeb6a302fb7a7156d95e5fd9e38516d28da440a02d3933  ground-truth-sealed/GT-RH-02.md
+192c8614a95d02a032fd06b93bca3bc2b311c7bef75cb4d382560c03ce30d2cf  ground-truth-sealed/GT-RH-03.md
+e7c9fd96b7440a512b2393752498d32ddb89ef71191c4a25f636ef31b4de5338  ground-truth-sealed/GT-RH-04.md
+10766e6fa355820a773ad24287de8d4819fa0989fe8edde9f96ac69b76662091  ground-truth-sealed/GT-RH-05.md
+60475482f7b0f48efc3e0975853fe6f726c4430ec1a1fef1be21204661113b9a  ground-truth-sealed/GT-RH-06.md
+bc3f03defa59f0d3907f0c2226d89dc51767044ed136b97d3e1e7aa08899200e  ground-truth-sealed/MAPPING.md
+ab24eb51ab839bcd615828cf4a1d4794917bd37fd410c4c58e7675a48c55e804  holdout-blind/RH-01.md
+eb76cb799846d7eb1019977bb927df258792607bd78e0fe79ab43179b5e938bd  holdout-blind/RH-02.md
+0d6cd5aead29f2074f1dc370c27b3eb8bdcab9fe1e15e69e07cc028df74983ee  holdout-blind/RH-03.md
+906e8cf04414a1e10ad7364770ed8e36b5bb8fea9e005e34513308b3e91ef7e5  holdout-blind/RH-04.md
+ef5f81a602ebb072f56e76ec030d81c17959b2137c20846ee8698bc04d96b14a  holdout-blind/RH-05.md
+95283c2befb79886104e21c718ad6fd46ac6e4e479077751fa01bd58db10aa62  holdout-blind/RH-06.md
+c2943dc7cb27d95a83f1e1084bf3aad3617139ef7426cab302aa9dee1b6534df  LEAKAGE_CHECK.md
+6f22b70c3c7d28b2812a7209198914b3184eb78197237334a2aaec663ba5bafb  README.md
+5c4d7087ee8c3af54a306a5a2f0e9dffa5468d60aa56025a893406cfd63f2138  split_manifest.md
+392234dd3682e36014a3f83b6fc174e70dd4226692343708df0576dd6cb71fb9  split_manifest.json
+```

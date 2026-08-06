@@ -1,0 +1,109 @@
+[macro]
+INLINE
+
+[macro]
+IN PROGRESS
+[/macro]
+
+[/macro]
+
+##
+[macro]
+4
+[/macro]
+
+## Research and Context
+
+As a member of the advertising team, I want to increase revenue by displaying specials interstitials for direct sales in the application
+
+## Hypothesis
+
+Displaying interstitial advertising for direct sales can provide additional revenue. The peculiarity is that we ourselves can choose one or another advertiser with favorable conditions for us, thereby improving the quality of advertising in the application
+
+## Project Owner and Team Member(s)
+
+ 
+
+## Proposal
+
+№ Description Complexity of implementation Advantages  Disadvantages Deadlines Results
+
+1 Показ интерстишл мощностями Google Ad Manager. По примеру Elixir, добавлять interstitials через админ. панель low Быстрая и простая интеграция без дополнительных доработок
+
+Слабая кастомизация рекламного элемента, отсуствует возможность выставить такие настройки как:
+
+Время показа кнопки закрытия интерстишл
+
+Время показа интерстишл
+
+настроить креативы от 1-3 часов в зависимости от количества креативов
+
+2
+
+Интеграция нового рекламного формата, по примеру таких популярных приложений как instagram:
+
+[macro]
+150
+[/macro]
+
+facebook: 
+
+high
+
+Уникальность
+
+Нативная реализация
+
+Реклама для премиум рекламодателей
+
+Возможность настроить:
+
+Продолжительность показа
+
+Кнопку закрытия рекламы
+
+Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) 
+
+Сложность реализации, возможно потребуются помощь разработчиков из команды бекенда
+
+Продолжительный срок исполнения задачи
+
+Со стороны RN приложения:
+
+Реализация функционала 3-6 рабочих дня
+
+(Можем выпустить через Код-пуш)
+
+---------------
+
+Если будем использовать наши сервера для показа рекламы, то скорее всего нужна админка + стор для хранения видео - ? ч.
+
+Дизайн - ? ч.
+
+3
+Использовать native ads/banner вместе interstitial. Т.е кастомизировать баннер. Логика баннера будет выполнять логику интерстишл,  добавим экран на котором будем показывать video-banner. Мы сможем сами добавить элементы управления и время показа 
+medium
+
+Уникальность
+
+Возможность настроить:
+
+Продолжительность показа
+
+Кнопку закрытия рекламы
+
+Возможность подстраивать фон под рекламу (изменять цвет в зависимости от рекламы) 
+
+Получим все плюсы от использования ad manager
+
+Не ясна политика гугла в таком случае
+
+Добавить дополнительный экран на котором будем отображать баннер, и панель навигации
+
+8-12 часов + время на релиз
+
+## Execution
+
+[macro]
+Jira issuekey,summary,issuetype,duedate,assignee,status key,summary,type,due,assignee,status 20 project = AD AND issuekey = AD-1270 OR ("Epic Link" = AD-1270 or parent in (AD-1270)) d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]

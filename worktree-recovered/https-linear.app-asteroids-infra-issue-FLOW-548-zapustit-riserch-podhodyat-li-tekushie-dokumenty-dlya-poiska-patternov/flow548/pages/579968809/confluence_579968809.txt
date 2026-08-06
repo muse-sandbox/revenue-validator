@@ -1,0 +1,1542 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-6821
+[/macro]
+
+DRI / Project owner
+
+Team
+ 
+
+[macro]
+
+[/macro]
+
+# Research and Context
+
+Goal: Generate additional revenue through sales options in the profile section
+
+Foundation : Moving subscription information up to the profile level can give more visibility to subscription plans, making it easier for users to view and access available options. This change may also simplify navigation and reduce the steps needed for users interested in upgrading or renewing their subscription, ultimately boosting conversion rates
+
+### Research results
+
+Right now, the profile consists of two nested levels:
+
+Profile
+
+Settings
+
+Currently, subscription information is hidden within the settings, so it’s not visible upon opening the profile. In this experiment, we’ll try moving the information about plans directly into the profile to make it visible to a larger audience.
+
+— we also previously conducted an experiment with an offboarding process, where we tested moving subscription plans into the profile for a limited audience. This change resulted in an additional X (tbd ) accesses per day.
+
+[macro]
+research
+code
+
+Metric Dynamics Average per day
+
+Users in account
+
+iOS – 18433
+
+Android – 7702
+
+Users in account with active pro subscription 
+
+iOS – 10814
+
+Android – 3490
+
+Users in account with active edu subscription 
+
+iOS – 1308
+
+Android – 415
+
+Users in account with at least one not bought subscription
+(can buy another one)
+
+iOS – 17868
+
+Android – 7671
+
+[/macro]
+
+### A/B test model
+
+iOS
+Android
+
+Metric A B diff A B diff
+
+Account Open 18515 18515
+7759 7759
+
+Settings Accesses 22 33 11 14 21 7
+
+Charges 18 27 9 10 15 5
+
+Account → Access, % 0.12% 0.18% 50% 0.18% 0.27% 50%
+
+Revenue, $ $499 $749 $250 $293 $440 $147
+
+ARPPU, $ $28 $28
+$29 $29
+
+ARPU, $ $0.027 $0.041 $0.014
+50% $0.038 $0.057 $0.019
+50%
+
+# Hypothesis
+
+If you move the subscriptions section from settings directly into the profile, the ARPU will increase by 50%, because this option will become accessible to a larger audience
+
+# Iteration 2
+
+## A/B test plan
+
+iOS Android
+
+Base value of the metric (Account → Access, %) 0.12% 0.18%
+
+Lift, % 50% 50%
+
+Minimal detectable effect 0.0154 0.0191
+
+Probability of true-positive (power) 0.05 0.05
+
+Probability of false-positive (p-value) 0.8 0.8
+
+Sample size (for all the variations) 129605 85349
+
+How many days it'll take to conduct the test 7 11
+
+## Description of the Solution & Mockups
+
+[macro]
+Iteration 1
+Solution
+
+For all types of subscriptions, we will move the plans to the personal account
+
+If there is access to the subscription, we will highlight the corresponding plan
+
+Purchased subscriptions cannot be edited or canceled
+
+We create a profile layout that accommodates both registered and unregistered users
+
+In both cases, we will move the profile settings to a separate section, which can be accessed by clicking on the gear icon
+
+Mokups
+
+Screen A B
+
+Profile: without access
+
+Profile: with access
+
+Profile: non-registered
+
+Settings
+
+iPad
+
+### Analytics
+
+Start event: Account Open  
+
+Event
+
+Parameters
+
+Description
+
+Account Open
+
+For the existing event, let's ensure we push it to the new "Subscriptions" screen.
+
+Subscription View
+
+type -  current subscription rights type
+
+UG Pro
+
+UG Courses
+
+UG Pro + Courses
+
+UG Pro + Courses + Sing
+
+etc
+
+item - current subscription status
+
+Active
+
+Inactive
+
+Free trial
+
+Canceled
+
+etc
+
+ui - button CTA
+
+Manage
+
+Start Now
+
+Resubscribe
+
+etc
+
+  "type" is a key parameter throughout the flow, determining which subscription type the user is managing.
+
+send for both variations
+
+User sees availability to manage his active subscription
+
+  send event for each different subscription
+
+Examples:
+
+If a user has UG Pro + Courses + Sing bundle, it will log as a single event "Subscription View" with:
+
+type →  "UG Pro + Courses + Sing"
+
+item → "Active"
+
+ui → "Manage"
+
+If a user has active UG Pro and UG Courses subscriptions (separate, not bundled) but an inactive UG Sing subscription, it will log as three events:
+
+"Subscription View"
+
+type → "UG Pro"
+
+item → "Active"
+
+ui → "Manage"
+
+"Subscription View"
+
+type → "UG Courses"
+
+item → "Active"
+
+ui → "Manage"
+
+"Subscription View"
+
+type → "UG Sing"
+
+item → "Inactive"
+
+ui → "Start Now"
+
+[/macro]
+
+[macro]
+Iteration 2
+# Iteration 2
+
+## A/B test plan
+
+Only for users without any active subscriptions
+
+iOS
+Android
+
+A B diff B - optimistic diff A B diff B - optimistic diff
+
+Account/Profile Open 10071 10071
+10071
+5479 5479
+5479
+
+Accesses 35 35
+42
+18 18
+21
+
+Account -> Access 0.348% 0.348% 0% 0.417% 20% 0.329% 0.329% 0% 0.394% 20%
+
+Charges 28 28
+33
+14.4 14.4
+16
+
+single 28 22
+26
+28 11
+12
+
+unified 0 6
+7
+0 3.4
+4
+
+ARPPU $27.99 $46.42
+$46.42
+$27.99 $47.07
+$47.07
+
+Revenue $784 $1,300
+$1,532
+$403 $678
+$753
+
+ARPU $0.078 $0.129 65.82% $0.152 95.43% $0.074 $0.124 68.16% $0.137 86.85%
+
+## Description of the Solution & Mockups
+
+Solution
+
+Instead of selling single plans, offer bundles, and upgrade purchased single plans to a unified subscription
+
+We’re preparing an experiment for an audience that doesn’t have any access
+
+In the profile, in the subscriptions section, display a banner for purchasing the unified subscription Pro+Courses+Sing
+
+The instant bundle price of 69.99 is displayed on the banner, so clicking on the banner should lead directly to the purchase, bypassing the paywall
+
+If the user is without an account and without access in the app, we should also show them the banner with the bundle offer
+
+Plans
+
+iOS: com.ultimateguitar.ugt.pro_edu_sing.instant.1year
+
+Android: com.ultimateguitar.tabs.p_e_s.inst.1year
+
+Mockups
+
+Figma
+
+Screen A B Description
+
+Profile: without access
+
+Banner click — purchase
+
+Profile: with access
+
+No changes
+
+Profile: non-registered
+
+### Analytics
+
+Start event: Account Open
+
+Event
+
+Parameters
+
+Description
+
+All events from 1st iteration
+
+Sale Banner View
+item_id = product_code
+
+item = product_id
+
+value = 'Subscriptions Banner'
+
+Users see a new banner for the unified subscription
+
+This is an existing event that is used on the Explore banner. We are adding it for a new banner with new parameters
+
+Banner Upgrade View
+all standard parameters for event
+
+value = 'Subscriptions Banner'
+
+This is an existing event 
+
+Sending this along with the Sale Banner View, as in this case it serves as both a banner and a paywall simultaneously.
+
+Banner Purchase Click
+
+Purchase Process ...
+
+all standard parameters for event
+
+value = 'Subscriptions Banner'
+
+This is an existing events
+
+Purchase funnel events
+
+[/macro]
+
+[macro]
+true Iteration 3
+## A/B test plan
+
+same as iIteration #2
+
+## Description of the Solution & Mockups
+
+Solution
+
+Preparing an experiment for an audience that doesn’t have any access (authorized and not authorized)
+
+in this iteration, we run the experiment only for those who have never had access to premium content. In future iterations, don’t forget to include everyone who currently doesn’t have access
+
+In the profile, in the subscriptions section:
+
+B:  s witch to offering only the PRO subscription and create a card-like banner comparing features in the premium and free versions
+
+sell the instant PRO access for $39.99/$9.99
+
+after purchasing PRO, we show Courses and Sing options with the possibility to upgrade PRO
+
+C: feature-only bundle banner
+
+Plans:
+
+iOS:
+
+annual instant → com.ultimateguitar.ugt.pro_edu_sing.instant.1year
+
+annual trial → com.ultimateguitar.ugt.pro_edu_sing.1year
+
+monthly instant → com.ultimateguitar.ugt.pro_edu_sing.1month2
+
+Android:
+
+annual instant → com.ultimateguitar.tabs.p_e_s.inst.1year
+
+annual trial → com.ultimateguitar.tabs.p_e_s.1year
+
+monthly instant → com.ultimateguitar.tabs.p_e_s.1month
+
+Mockups
+
+Figma
+
+Screen A B (only Pro) С (bundle)
+
+Profile: without access
+
+Paywall
+
+Profile: 
+with purchased access
+
+After purchasing PRO, we show Courses and Sing options with the possibility to upgrade PRO
+
+Profile: non-registered
+
+### Analytics
+
+Start event: Account Open
+
+Event
+
+Parameters
+
+Description
+
+All events from iterations 1
+
+Sale Banner View
+item_id = product_code
+
+item = product_id
+
+value = 'Subscriptions Banner'
+
+Users see a new banner for the unified subscription
+
+This is an existing event that is used on the Explore banner. We are adding it for a new banner with new parameters
+
+Banner Upgrade View
+all standard parameters for event
+
+value = 'Subscriptions Banner'
+
+This is an existing event 
+
+Sending this when the user clicks on the Sale Banner
+
+Banner Purchase Click
+
+Purchase Process ...
+
+all standard parameters for event
+
+value = 'Subscriptions Banner'
+
+This is an existing events
+
+Purchase funnel events
+
+[/macro]
+
+Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status,project,customfield_10100 type,summary,assignee,Start date,due,status,project,Epic Link 20 "Epic Link"=umn-6821 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+Iteration #1
+#5370     -
+
+## Decision
+
+Results
+
+arpu significantly increased by 37% on iOS and 34% on Android
+
+we increased subscription section reach 4 times from account
+
+Conclusion 
+[macro]
+Green Success
+[/macro]
+
+The new source from profile has proven highly effective, driving strong sales
+
+We have a clear improvement in accesses / arpu
+
+Works well for former subscribers
+
+Users might respond more positively to non-marketing sources that don’t push aggressive sales toward them
+
+There was a bug with pro/lifetime users who saw "Resubscribe" button in account in test variation
+
+some of them purchased it again
+
+Rolling out this iteration and preparing the next one
+
+Next steps
+
+Relaunch second iteration with unified offer
+
+Address repeat purchases in the next iteration
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+ 
+
+iOS
+
+Android
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+1 15827 266 203 $4155
+6965 126 95 $2224
+
+2 15827 315 259 $5685
+6965 165 118 $2980
+
+diff
+49 56 $1530
+
+39 23 $756
+
+[/macro]
+
+## Metrics
+
+[macro]
+Significance analysis
+
+[macro]
+iOS
+Monetization stats
+
+                    Settings only
+
+members subscribers accesses instants trials charged trials buyers charges revenue subscribers accesses instants trials charged trials buyers charges revenue
+
+control 24934 414 419 258 149 50 316 320 $6546 25 25 17 8 4 21 21 $573
+
+variation 2 24906 481 496 343 141 53 396 408 $8946 146 148 106 39 23 131 132 $3459
+
+Product stats
+
+members retention 1d retention 7d
+
+control 24934 6213 8603
+
+variation 2 24906 6211 8686
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.26 $20.46 $20.72 1.66% 1.27% 33.56% 9.38%
+
+variation 2 $0.36 $21.93 $22.59 1.93% 1.59% 37.59% 10.78%
+
+diff, % 36.81% 7.18% 9.05% 16.31% 25.46% 12.01% 15.03%
+
+pvalue 0.0001 0.04 0.02 0.02 0.002 0.47 0.53
+
+cumulatives
+
+Settings only
+
+control $0.023 $27.30 $27.30 0.10% 0.084%
+
+variation 2 $0.14 $26.20 $26.40 0.59% 0.53%
+
+diff, % 500% -4.03% -3.29% 485% 525%
+
+pvalue 0 0.41 0.51 0 0
+
+cumulatives
+
+Product metrics
+
+ret1d, % retention 7d, %
+
+control 24.92% 34.50%
+
+variation 2 24.94% 34.88%
+
+diff, % 0.08% 1.08%
+
+pvalue 0.96 0.38
+
+Subscription reach
+
+Account Open Subscriptions section view Members → subscription
+
+control 24934 5817 23%
+
+variation 2 24906 24906 100%
+
+Settings banner funnel
+
+variation funnel paywall view purchase click paywall -> click access click -> access paywall -> access
+
+1 Settings Courses 109 9 8.3% 4 44% 3.7%
+
+2 Settings Courses 294 30 10.2% 10 33% 3.4%
+
+1 Settings Pro 162 54 33% 31 57% 19%
+
+2 Settings Pro 901 236 26% 155 66% 17%
+
+Subscriptions distribution by rights
+
+rights service variation instants trials
+
+free pro control 5 5
+
+test 19 25
+
+edu control 0 1
+
+test 0 1
+
+pro access edu control 1 0
+
+test 1 4
+
+pro access pro control 1 0
+
+test 42 8
+
+edu access pro control 1 0
+
+test 3 0
+
+pro ex subscribers pro control 8 2
+
+test 33 2
+
+edu control 0 0
+
+test 0 0
+
+edu ex subscribers pro control 0 0
+
+test 0 0
+
+edu control 0 0
+
+test 1 0
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+                 
+Settings only
+
+members subscribers accesses instants trials charged trials buyers charges revenue subscribers accesses instants trials charged trials buyers charges revenue
+
+control 15781 268 285 188 93 24 207 216 $5040 33 34 19 14 6 26 26 $813
+
+variation 2 15806 353 374 229 143 36 258 267 $6763 120 124 84 39 18 100 103 $3039
+
+Product stats
+
+members retention 1d retention 7d
+
+control 15781 4093 6050
+
+variation 2 15806 4066 5983
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.32 $23.34 $24.35 1.70% 1.31% 25.81% 11.57%
+
+variation 2 $0.43 $25.33 $26.21 2.23% 1.63% 25.17% 10.49%
+
+diff, % 33.96% 8.54% 7.65% 31.51% 24.44% -2.45% -9.39%
+
+pvalue 0.003 0.048 0.12 0.0006 0.018 0.91 0.71
+
+cumulatives
+
+Settings only
+
+control $0.052 $31.29 $31.29 0.21% 0.16%
+
+variation 2 $0.19 $29.51 $30.39 0.76% 0.63%
+
+diff, % 273% -5.68% -2.85% 263% 284%
+
+pvalue 0 0.46 0.71 0 0
+
+cumulatives
+
+Product metrics
+
+ret1d, % retention 7d, %
+
+control 25.94% 38.34%
+
+variation 2 25.72% 37.85%
+
+diff, % -0.82% -1.26%
+
+pvalue 0.67 0.38
+
+Subscription reach
+
+Account Open Subscriptions section view Members → subscription
+
+control 15781 3679 23%
+
+variation 2 15806 15806 100%
+
+Settings banner funnel
+
+variation funnel paywall view purchase click paywall -> click access click -> access paywall -> access
+
+1 Settings Courses 109 9 8.3% 4 44% 3.67%
+
+2 Settings Courses 294 30 10.2% 10 33% 3.4%
+
+1 Settings Pro 162 54 33% 31 57% 19%
+
+2 Settings Pro 901 236 26% 155 66% 17%
+
+Subscriptions distribution by rights
+
+rights service variation instants trials
+
+free pro control 7 6
+
+test 12 17
+
+edu control 0 3
+
+test 0 5
+
+pro access edu control 0 2
+
+test 1 4
+
+pro access pro control 2 0
+
+test 32 6
+
+edu access pro control 2 1
+
+test 1 3
+
+pro ex subscribers pro control 6 3
+
+test 28 5
+
+edu control 0 0
+
+test 1 0
+
+edu ex subscribers pro control 0 0
+
+test 0 0
+
+edu control 0 0
+
+test 0 0
+
+[/macro]
+
+[/macro]
+
+[/macro]
+
+[macro]
+true Iteration #2
+#5475     -
+
+## Decision
+
+Results
+
+no significant changes, but on longer distance iOS might be better with sales from account
+
+too few unified purchases from account on Android
+
+Conclusion 
+[macro]
+Red fail
+[/macro]
+
+Worsened metrics compared to the first iteration
+
+The unified banner overshadowed the main plans, resulting in fewer PRO accesses sold
+
+iOS arpu from account better than in iteration #1
+
+yet no effect on totals
+
+Made android slightly (non significant) worse
+
+Сlosed the iteration as a fail
+
+Next steps
+
+We prepare the 3rd iteration with variants: one showing only the PRO plan and another featuring only the unified banner
+
+Maybe shouldn't sell expensive pes product on Android
+
+should either sell Pro + Edu for $59.99 or make current unified subscription cheaper
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+ 
+
+iOS
+
+Android
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+1 15827 299 235 $4805
+6965 132 102 $2273
+
+2 15827 291 221 $4873
+6965 122 90 $2127
+
+diff
+ -8 -14 $68
+
+-10 -12 -$146
+
+[/macro]
+
+## Metrics
+
+[macro]
+Significance analysis
+
+[macro]
+iOS
+Monetization stats
+
+Total
+
+members subscribers accesses instants trials charged trials buyers charges revenue 14 cancels
+
+control 19140 353 361 228 122 45 278 284 $5811 34
+
+variation 2 19115 342 351 211 131 47 259 267 $5885 42
+
+  Settings only
+
+control
+83 85 51 30 12 66 67 $1614 10
+
+variation 2
+77 78 47 26 14 65 66 $1908 13
+
+Product stats
+
+members retention 1d retention 7d
+
+control 19140 4684 6220
+
+variation 2 19115 4701 6288
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.30 $20.46 $20.90 1.84% 1.45% 36.89% 11.98%
+
+variation 2 $0.31 $22.04 $22.72 1.79% 1.35% 35.88% 15.73%
+
+diff, % 1.41% 7.72% 8.70% -2.99% -6.71% -2.73% 31.39%
+
+pvalue 0.88 0.073 0.063 0.69 0.42 0.87 0.20
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Settings only
+
+control $0.084 $24.09 $24.45 0.43% 0.34%
+
+variation 2 $0.100 $28.91 $29.35 0.40% 0.34%
+
+diff, % 18.39% 20.03% 20.06% -7.11% -1.39%
+
+pvalue 0.38 0.020 0.017 0.64 0.94
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Product metrics
+
+ret1d, % retention 7d, %
+
+control 24.47% 32.50%
+
+variation 2 24.59% 32.90%
+
+diff, % 0.49% 1.23%
+
+pvalue  0.78  0.41
+
+Settings subscriptions
+
+variation 1 2  Diff
+
+source
+
+Settings Pro – [$9.99 – $39.99] 72 47 -25
+
+Settings Sing 6 11 5
+
+Settings Courses 8 8 0
+
+Subscriptions Banner – $69.99
+12 12
+
+Totals 86 78 -8
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+Total
+
+members subscribers accesses instants trials charged trials buyers charges revenue 14 cancels
+
+control 21229 386 402 272 127 33 301 310 $6928 41
+
+variation 2 20909 356 367 228 135 35 264 269 $6384 36
+
+  Settings only
+
+control
+83 84 53 31 10 64 65 $1701 10
+
+variation 2
+67 69 43 26 11 53 55 $1552 9
+
+Product stats
+
+members retention 1d retention 7d
+
+control 21229 5497 8156
+
+variation 2 20909 5391 7973
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.33 $22.35 $23.02 1.82% 1.42% 25.98% 13.23%
+
+variation 2 $0.31 $23.73 $24.18 1.70% 1.26% 25.93% 13.38%
+
+diff, % -6.44% 6.19% 5.06% -6.36% -10.95% -0.22% 1.19%
+
+pvalue 0.47 0.14 0.26 0.37 0.17 0.99 0.96
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Settings only
+
+control $0.080 $26.17 $26.58 0.39% 0.30%
+
+variation 2 $0.074 $28.22 $29.29 0.32% 0.25%
+
+diff, % -7.34% 7.86% 10.21% -18.04% -15.92%
+
+pvalue 0.71 0.40 0.28 0.22 0.35
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Product metrics
+
+ret1d, % retention 7d, %
+
+control 25.89% 38.42%
+
+variation 2 25.78% 38.13%
+
+diff, % -0.43% -0.75%
+
+pvalue 0.80 0.54
+
+Settings subscriptions
+
+variation 1 2  Diff
+
+source
+
+Settings Pro – [$9.99 – $39.99] 59 39 -20
+
+Settings Sing 11 14 3
+
+Settings Courses 14 13 -1
+
+Subscriptions Banner – $69.99
+4 4
+
+Totals 84 66 -18
+
+[/macro]
+
+[/macro]
+
+[/macro]
+
+[macro]
+true Iteration #3
+# 5 601   -
+[macro]
+Red failed
+[/macro]
+
+## Decision
+
+Results
+
+No significant changes in terms of revenue for both variations. 
+
+The 3rd group (bundle) looks even worse in terms of the main metrics, the 2nd group (only Pro) in general does not differ significantly from the test group.
+
+Conclusion 
+
+Despite some minor successes on Android, the target metrics were not achieved
+
+B : a little higher 1d retention (only for iOS), but not significantly (probably by chance). for those who have selected a tariff plan on the account page : a little more accesses to a Pro plan through iOS, but less to Courses and bundles (Pro + Courses + Sing). Almost no changes for Android users.
+
+C : Expectedly more accesses to bundle (Pro + Courses + Sing), however conversions (trial, charges) are much lower, therefore ARPU is lower (significantly for iOS).  
+
+After launching the experiment, the app’s interface and navigation changed: profile access is now at the top of the page and less noticeable. As a result, the collected data can no longer be considered fully relevant
+
+Nevertheless, the profile from the first iteration has been rolled out and will remain in the same format
+
+The feature comparison element can be reused in other places, such as on Explore instead of a banner
+
+We won’t continue developing the experiment in this form, but we’re closing it as successful since we rolled out the first variation
+
+[macro]
+true Forecast vs Fact
+Forecast (per   day)
+
+ 
+
+iOS
+
+Android
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+ 
+
+Account Open
+
+Accesses
+
+Charges
+
+Revenue
+
+1 15447 318 256 $5,412
+6521 199 152 $3,444
+
+2 15447 315 248 $5,276
+6521 205 155 $3,689
+
+diff
+-2 -7 -$136
+
+6 4 $244
+
+3 15447 293 225 $4,779
+6521 181 135 $3,331
+
+diff
+-24 -30 -$633
+
+-19 -17 -$114
+
+[/macro]
+
+## Metrics
+
+[macro]
+Significance analysis
+
+[macro]
+iOS
+Monetization stats
+
+Total
+
+members subscribers accesses instants trials charged trials buyers charges revenue 14d cancels
+
+control 39259 782 808 515 267 109 634 650 $ 13755 67
+
+variation 2 39242 773 801 508 266 94 610 631 $ 13403 73
+
+variation 3 38848 724 737 476 239 71 560 567 $ 12018 58
+
+  Settings only
+
+control
+201 209 128 72 34 165 171 $4443 7
+
+variation 2
+220 225 143 72 26 174 179 $4594 12
+
+variation 3
+160 163 110 43 19 136 138 $3854 11
+
+Product stats
+
+members retention 1d retention 7d
+
+control 39,259 11,091 (28.25%) 18,791 (47.86%)
+
+variation 2 39,242 11,325 (28.86%) 19,030 (48.49%)
+
+diff, %
+2.11% 1.3%
+
+p value
+0.059 0.076
+
+variation 3 38,848 10,883 (28.01%) 18,593 (47.86%)
+
+diff, %
+-0.86% 0%
+
+p value
+0.46 ~1
+
+Settings (Profile page) conversions
+
+members funnel source paywall view purchase click paywall -> purchase click purchase start paywall -> purchase start purchase purchase click -> purchase paywall -> purchase
+
+control 39,259 Settings 1278 392 30.6% 388 30.3% 241 61% 18.8%
+
+variation 2 39,242 Settings 805 233 28.9% 233 28.9% 151 64% 18.7%
+
+Subscriptions Banner 586 205 34.9% 204 34.8% 108 52% 18.4%
+
+variation 3 38,848 Settings 820 225 27.4% 225 27.4% 153 68% 18.6%
+
+Subscriptions Banner 670 148 22.1% 147 21.9% 53 35% 7.9%
+
+Profile page subscriptions CTRs (for users without any access ( rights = 0) ):
+
+variation Account opened Funnel source Paywall Viewed CTR, % CTR (total), %
+
+control 14244 Settings Pro 456 3.20% 4.80%
+
+Settings Courses 126 0.88%
+
+Settings Sing 89 0.62%
+
+Settings Books 13 0.09%
+
+variation 2 14265 Subscriptions Banner 567 3.97% 4.03%
+
+Settings Pro 5 0.04%
+
+Settings Courses 2 0.01%
+
+Settings Sing 1 0.01%
+
+variation 3 14003 Subscriptions Banner 655 4.68% 4.70%
+
+Settings Pro 2 0.01%
+
+Settings Courses 1 0.01%
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.35 $21.16 $ 21.70 1.99 % 1.62 % 40.82 % 10.31 %
+
+variation 2 $0.34 $21.24 $ 21.97 1.97 % 1.55 % 35.34 % 11.57 %
+
+diff, % -2.5% 0.37% 1.28 % -1.10 % -3.73 % -13.44 % 12.24 %
+
+pvalue 0.67 0.88 0.68 0.83 0.50 0.19 0.47
+
+variation 3 $0.30 $21.19 $21.46 1.86% 1.44% 29.71% 10.23%
+
+diff, % -11.69% 0.16% -1.08% -6.43% -10.73% -27.23% -0.76%
+
+pvalue 0.04 0.95 0.72 0.19 0.05 0.01 0.96
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Subscriptions from profile page only
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, % charge -> 14d cancel, %
+
+control $0.11 $25.98 $26.93 0.51% 0.42%
+
+variation 2 $0.12 $25.67 $26.41 0.56% 0.44%
+
+diff, % 3.47% -1.21% -1.93% 9.51% 5.51%
+
+pvalue 0.77 0.77 0.72 0.35 0.62
+
+variation 3 $0.10 $27.92 $28.34 0.41% 0.35%
+
+diff, % -12.34% 7.48% 5.23% -19.55% -16.70%
+
+pvalue 0.29 0.15 0.36 0.04 0.11
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Settings subscriptions
+
+variation 1 2 Diff (2) 3  Diff (3)
+
+source
+
+Pro 173 190 17 96 -77
+
+Pro + Courses + Sing 9 6 -3 47 38
+
+Courses 17 10 -7 9 -8
+
+Sing 9 10 1 8 -1
+
+Books 3 3 0 2 -1
+
+Total 211 219 8 162 -49
+
+[/macro]
+
+[macro]
+Android
+Monetization stats
+
+Total
+
+members subscribers accesses instants trials charged trials buyers charges revenue 14 cancels
+
+control 6840 199 209 133 74 23 155 159 3613 9
+
+variation 2 6808 202 214 134 78 25 156 162 3851 27
+
+variation 3 6784 175 188 115 71 20 135 140 3465 21
+
+  Settings only
+
+control
+49 49 35 13 9 45 45 1112 2
+
+variation 2
+39 40 22 18 9 31 31 878 2
+
+variation 3
+32 33 26 7 2 28 28 869 4
+
+Product stats
+
+members retention 1d retention 7d
+
+control 6846 1628 (23.78%) 2229 (32.56%)
+
+variation 2 6809 1573 (23.10%) 2168 (31.84%)
+
+diff, %
+-3.38% -2.74%
+
+p value
+0.34 0.36
+
+variation 3 6786 1 653 (24.36%) 2255 (33.23%)
+
+diff, %
+1.54% 1.17%
+
+p value
+0.43 0.4
+
+Settings (Profile page) conversions
+
+members funnel source paywall view purchase click paywall -> purchase click purchase start paywall -> purchase start purchase purchase click -> purchase paywall -> purchase
+
+control 39,259 Settings 312 91             29.2% 91             29.2% 45             49.5% 14.4%
+
+variation 2 39,242 Settings 176 49             27.8% 49             27.8% 13             26.5% 7.4%
+
+Subscriptions Banner 155 54             34.8% 54             34.8% 17             31.5% 11.0%
+
+variation 3 38,848 Settings 182 42             23.1% 42             23.1% 21             50.0% 11.5%
+
+Subscriptions Banner 175 37             21.1% 37             21.1% 7             18.9% 4.0%
+
+Profile page subscriptions CTRs (for users without any access ( rights = 0) ): 
+
+variation Account opened Funnel source Paywall Viewed CTR, % CTR (total), %
+
+control 3315 Settings Pro 113 3.41% 5.64%
+
+Settings Courses 42 1.27%
+
+Settings Sing 31 0.94%
+
+Subscriptions Banner 1 0.03%
+
+variation 2 3230 Subscriptions Banner 150 4.64% 4.67%
+
+Settings Pro 1 0.03%
+
+variation 3 3170 Subscriptions Banner 172 5.43% 5.46%
+
+Settings Pro 1 0.03%
+
+Monetization metrics
+
+arpu aov arppu access cr, % charge cr, % trial -> charge, %
+
+control $0.53 $22.72 $23.31 2.91% 2.27% 31.08%
+
+variation 2 $0.57 $23.77 $24.68 2.97% 2.29% 32.05%
+
+diff, % 7.08% 4.60% 5.90% 1.98% 1.12% 3.12%
+
+pvalue 0.57 0.39 0.32 0.84 0.92 0.90
+
+variation 3 $0.51 $24.75 $25.67 2.58% 1.99% 28.17%
+
+diff, % -3.29% 8.93% 10.13% -11.33% -12.18% -9.37%
+
+pvalue 0.79 0.12 0.12 0.24 0.26 0.70
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Settings only
+
+control $0.16 $24.71 $24.71 0.72% 0.66%
+
+variation 2 $0.13 $28.33 $28.33 0.57% 0.46%
+
+diff, % -20.66% 14.62% 14.62% -20.03% -30.79%
+
+pvalue 0.36 0.20 0.20 0.29 0.11
+
+variation 3 $0.13 $31.05 $31.05 0.47% 0.41%
+
+diff, % -21.18% 25.64% 25.64% -34.15% -37.26%
+
+pvalue 0.35 0.02 0.02 0.06 0.05
+
+cumulatives
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+Settings subscriptions
+
+variation 1 2 Diff (2) 3  Diff (3)
+
+source
+
+Pro 42 34 -8 23 -19
+
+Pro + Courses + Sing 0 0 0 3 3
+
+Courses 7 5 -2 4 -3
+
+Sing
+1 1 3 3
+
+Total 49 40 -9 33 -16
+
+[/macro]
+
+[/macro]
+
+[/macro]

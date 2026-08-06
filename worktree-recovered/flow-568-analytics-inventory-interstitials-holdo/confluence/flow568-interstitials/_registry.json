@@ -1,0 +1,30 @@
+experiment_id,experiment_name,product_code,registry_start_date,registry_end_date,status_code,archive_flag,activation_event,jira_task_key
+1591.0,[AD] A/B interstitial эксперимент ,UG,2022-02-17T00:00:00Z,2022-03-10T00:00:00Z,2,1,,
+2015.0,[AD] Тестирование Rewarded interstitial,UG,2022-10-25T00:00:00Z,2022-12-05T00:00:00Z,2,1,,
+2114.0,[AD] Уменьшение время показа между интерстишелами с 180с до 120с,UG,2022-09-02T00:00:00Z,2022-09-27T00:00:00Z,2,1,,
+2570.0,[AD] Показ интерстишл перед табовой,UG,2023-08-01T00:00:00Z,2023-11-10T00:00:00Z,2,0,App Start,
+4144.0,[AD] APP: Показ интерстишелов на TextTabContainer,UG,2024-02-26T00:00:00Z,2024-04-05T00:00:00Z,2,1,App Start,
+4374.0,[AD] Показ интерстишелов для тех кто перешел по диплинку - 2,UG,2024-04-02T00:00:00Z,2024-07-02T00:00:00Z,2,1,App Start,
+4845.0,[UG Монетизация] UG iOS: Interstitial - Swap into Landing,UG,2024-07-15T00:00:00Z,2024-07-20T00:00:00Z,2,1,Interstitial Banner View,
+4947.0,[AD] Показ интерстишелов без ограничений для пользователей без подписки более 60 дней,UG,2024-07-29T00:00:00Z,2024-08-12T00:00:00Z,2,1,App Start,
+5022.0,[AD] Показ интерстишелов без ограничений для пользователей без подписки более 60 дней - 2,UG,2024-08-12T00:00:00Z,2024-10-10T00:00:00Z,2,1,App Start,
+6002.0,[UG Monetization] UG App: changing banners and interstitials,UG,2025-04-28T00:00:00Z,2025-05-05T00:00:00Z,2,1,admob_shown,
+6128.0,[UG Monetization] UG App: changing banners and interstitials (2 iteration),UG,2025-06-02T00:00:00Z,2025-06-06T00:00:00Z,2,1,App Experiment Start,
+6191.0,[UG Monetization] UG App: changing banners and interstitials (2 iteration - relaunch),UG,2025-06-06T00:00:00Z,2025-06-19T00:00:00Z,2,1,App Experiment Start,
+6335.0,[UG Monetization] UG iOS: paywall – paywall after ad interstitial,UG,2025-07-11T00:00:00Z,2025-07-17T00:00:00Z,2,1,admob_shown,UMN-8971
+6359.0,[UG Monetization] UG App: paywall – monetization video instead of ad interstitials,UG,2025-07-18T00:00:00Z,2025-07-29T00:00:00Z,2,1,admob_fail,UMN-8999
+6416.0,[UG Monetization] UG App: paywall – monetization video instead of ad interstitials (relaunch),UG,2025-07-29T00:00:00Z,2025-07-29T00:00:00Z,2,1,admob_fail,UMN-8999
+6428.0,[UG Monetization] UG App: paywall – monetization video instead of ad interstitials (2 iteration),UG,2025-08-04T00:00:00Z,2025-08-11T00:00:00Z,2,0,admob_request,UMN-9192
+6461.0,[UG Monetization] UG App: winback interstitials for former subscribers,UG,2025-09-09T00:00:00Z,2025-09-16T00:00:00Z,2,1,App Experiment Start,UMN-9259
+6491.0,[UG Monetization] UG App: paywall – offer instead of ad interstitials,UG,2025-09-30T00:00:00Z,2025-10-03T00:00:00Z,2,1,App Experiment Start,UMN-9394
+6575.0,[UG ADV] Interstitials from Applovin MAX,UG,1970-01-01T00:00:00Z,1970-01-01T00:00:00Z,0,0,App Experiment Start,AD-3301
+6626.0,[UG Monetization] UG App: paywall – offer instead of ad interstitials (relaunch),UG,2025-10-06T00:00:00Z,2025-10-16T00:00:00Z,2,0,App Experiment Start,UMN-9394
+6644.0,[UG Monetization] UG App: winback interstitials for former subscribers (relaunch),UG,2025-10-13T00:00:00Z,2025-10-17T00:00:00Z,2,0,App Experiment Start,UMN-9259
+6716.0,[UG Monetization] UG App: paywall – offer instead of ad interstitials (close button relaunch),UG,2025-11-07T00:00:00Z,2025-11-17T00:00:00Z,2,1,App Experiment Start,UMN-9394
+6896.0,[UG Monetization] UG App: paywall – offer instead of ad interstitials (2 iteration),UG,2025-12-22T00:00:00Z,2025-12-29T00:00:00Z,2,0,App Experiment Start,UMN-9394
+7160.0,[UG Monetization] Pre-paywall with animation for interstitials,UG,2026-03-16T00:00:00Z,2026-03-18T00:00:00Z,2,1,App Experiment Start,UMN-10952
+7187.0,[UG Monetization] Pre-paywall with animation for interstitials (relaunch),UG,2026-03-20T00:00:00Z,2026-03-27T00:00:00Z,2,1,App Experiment Start,UMN-10952
+7454.0,[UG Monetization] UG App: personalized interstitial,UG,2026-05-18T00:00:00Z,2026-05-27T00:00:00Z,2,1,App Experiment Start,UMN-11540
+7487.0,[UG Monetization] UG App: winback - final interstitial offer,UG,2026-05-22T00:00:00Z,2026-06-12T00:00:00Z,2,0,App Experiment Start,UMN-11515
+7514.0,[UG Monetization] UG App: interstitials - store checks for ex-pro,UG,1970-01-01T00:00:00Z,1970-01-01T00:00:00Z,0,0,App Experiment Start,UMN-11743
+7712.0,[UG Monetization] UG App: interstitials - discounted prices,UG,2026-07-13T00:00:00Z,2026-07-21T00:00:00Z,2,0,App Experiment Start,UMN-12220

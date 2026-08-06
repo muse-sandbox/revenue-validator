@@ -1,0 +1,414 @@
+[macro]
+
+Link to OKR
+
+Status
+
+[macro]
+Jira issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution d1985a03-3c98-365b-8107-f4cdc34a26f1 UMN-8745
+[/macro]
+
+DRI / Project owner
+ 
+
+Team
+   
+
+[/macro]
+
+[macro]
+
+# Research and Context
+
+Goal: Increase conversion to access purchase by enabling Apple Pay for Chrome users   
+
+Foundation : Apple Pay is one of the fastest-growing payment methods (Statista, Stripe reports). Probably, a part of our audience also trusts and finds this method of payment convenient.
+
+### Research results
+
+Now Apple Pay on the desktop is only available in Safari. While this is an unpopular browser, we have ~ 10 accesses per day via this payment method.  
+
+https://metabase.mu.se/question/4515-payment-methods
+
+Now the Safari checkout looks like this:
+
+### Payment system research
+
+code
+
+payment system metric safari chrome
+
+users on checkout 1748 2022
+
+google charges 0 25
+
+charges share, % 0% 8%
+
+checkout → charge, % 0% 1.23%
+
+apple charges 44 0
+
+charges share, % 15% 0%
+
+checkout → charge, % 2.52% 0%
+
+paypal charges 72 49
+
+charges share, % 24% 15%
+
+checkout → charge, % 4.11% 2.42%
+
+card charges 182 254
+
+charges share, % 61% 77%
+
+checkout → charge, % 10.41% 12.56%
+
+### A/B test model
+
+chrome, os x, optimistic variant without cannibalization
+
+Metric A B diff
+
+users on checkout 289 289
+
+apple pay accesses 0 11 11
+
+apple pay charges 0 7 7
+
+apple pay revenue, $ $0 $359 $359
+
+total accesses 78 89 11
+
+checkout → access, % 26.99% 30.80% 14%
+
+total charges 47 54 7
+
+total revenue, $ $2911 $3345 $434
+
+ARPPU, $ $62 $62 $0
+
+ARPU, $ $10.07 $11.57 $1.5
+15%
+
+# Hypothesis
+
+If we implement Apple Pay support for Chrome users in the checkout flow, we expect the conversion rate to access purchase to increase by N% without a drop in average order value, because Apple Pay offers a faster and more trusted payment method for users
+
+## Experiment design template
+
+#6287 Audience all users with access in tour
+
+Platform UG_WEB
+
+Metrics
+Goal
+
+checkout → access, %
+
+Sensitivity analysis /
+
+preliminary calculations
+
+Design / each metric
+
+Baseline 26.99%
+
+Lift, % 14%
+
+MDE 0.084
+
+Power 0.8
+
+Alpha 0.05
+
+Sample size (per variation) 4624
+
+Duration (days) 16
+
+Seasonality reflected took 1 week in calculations
+
+Design summary  
+
+Sample 4624
+
+Days 16
+
+# Description of the Solution & Mockups
+
+### Solution
+
+Apple Pay can be used in Chrome, but only on macOS devices
+
+Add the appropriate button to checkouts
+
+Use all checkouts: for courses, for songbooks, for upsells and offers
+
+Adapting the checkout a bit for one-click purchases
+
+### Mockups & Texts
+
+Figma
+
+Screen А В
+
+Checkout
+
+AP payment process start
+
+Scanning the AP payment code
+
+AP payment confirmation
+
+After payment: upsell
+
+To make a one-click purchase for Apple Pay, we adapt the checkout:
+
+instead of a card, show the Apple Pay icon
+
+instead of the asterisk mask we show the card name
+
+nothing changes when editing
+
+fyi  
+
+Apple Pay + Google Pay in subscription section
+
+### Analytics
+
+Exposure event: App Experiment Start
+
+Event Parameters Description
+
+App Experiment Start item_id = %experiment id%
+send for both variations
+
+send when user on chrome browser on os x opens checkout screen
+
+#6287 config
+
+segment conditions
+
+Total
+{'pro_rights': 'free', 'platform': 'desktop'}
+
+Apple payments only
+{'pro_rights': 'free', 'platform': 'desktop', 'custom_sub_having': "payment_method = 'Apple Pay'"}
+
+Apple Checkout Funnel {'funnel': "members > event = 'Landing Checkout View' and type = 'apple' > event = 'PURCHASE_SUCCESS' and type = 'apple'"}
+
+# Execution
+
+[macro]
+Jira issuetype,summary,assignee,customfield_10312,duedate,status type,summary,assignee,Start date,due,status 20 "Epic Link"=umn-8745 order by created asc, key d1985a03-3c98-365b-8107-f4cdc34a26f1
+[/macro]
+
+# Results
+
+[macro]
+true Iteration #1 - #6287
+#6287  – 
+
+Exposure event:  App Experiment Start
+
+## Design vs Reality check
+
+Platform Type Duration (days) Sample size Other
+
+control variation 2
+
+UG_WEB Design 16 2312 2312
+
+e7ff9d28-a00a-db5a-dace-57023f57559d
+complete
+No visible bugs were found throughout the experiment
+
+cda63af7-58f3-86f6-6233-3445dd9c3c52
+complete
+No external effects are visible
+
+Experiment 18 24100 24144
+
+Checks
+
+7995ba44-5a7e-614c-052d-9780d7e508b0
+complete
+duration of exp ≥ design
+
+54df3ed6-7383-8437-a8a0-e2f0446cafd6
+complete
+A/B balance is maintained
+
+## Decision
+
+Results
+
+Monetization — [UG_WEB / Apple payments only / Variation 2]
+
+ARPU metric: +246%, revenue per user up
+
+Payment funnel CRs (Access CR, Charge CR): +219%-249%, more users reach and complete payment
+
+Monetization — [UG_WEB / Total / Variation 2] AOV: +3.26%, average order value up
+
+Conclusion 
+[macro]
+Green Success
+[/macro]
+
+Achieved all metrics, specified in the hypothesis. Get another working payment method
+
+The Apple-pay-eligible segment shows very large, highly significant gains in ARPU and key payment conversion rates, consistent with the one‑click checkout hypothesis
+
+On total traffic the only significant movement is a modest AOV lift, likely because Apple‑pay‑eligible users are a small share of overall visitors
+
+Retention and tab view metrics show no significant changes, suggesting no engagement harm
+
+Roll out Apple Pay in Chrome on macOS for all eligible checkouts (courses, songbooks, upsells, offers)
+
+## Forecast (per day)
+
+Variations
+App Experiment Start
+
+Accesses
+
+Charges
+
+Revenue, $
+
+control 2832 408 235 $16378
+
+variation 2 2832 423 241 $17293
+
+diff 0 15 6 $915
+
+## Significance analysis
+
+[macro]
+UG_WEB
+Monetization Stats
+
+Variation Members Subscribers Accesses Instants Trials Charged trials Buyers Charges Revenue Cancels 14d Refunds 14d
+
+control 24100 2560 3478 1313 2165 698 1714 2006 $139345 360 166
+
+variation 2 24144 2677 3606 1343 2263 722 1784 2055 $147406 351 161
+
+diff, % 0.18% 4.6% 3.7% 2.3% 4.5% 3.4% 4.1% 2.4% 5.8% -2.5% -3%
+
+Apple payments only
+
+control 24100 61 74 38 36 9 45 47 $2920 9 5
+
+variation 2 24144 213 276 126 150 33 144 158 $10135 20 5
+
+diff, % 0.18% 250% 270% 230% 320% 270% 220% 240% 250% 120% 0%
+
+   
+
+Retention Stats
+
+Variation Members Retention 1d Retention 7d Retention 14d
+
+control 23481 3053 7632 9467
+
+variation 2 23538 3098 7771 9596
+
+diff, % 0.24% 1.5% 1.8% 1.4%
+
+   
+
+Long Tab View Stats
+
+Variation Members Tab View 60s Tab View 120s Tab View 180s Tab View 300s Tab View 600s
+
+control 24100 14910 15566 15624 14989 13177
+
+variation 2 24144 14815 15587 15629 14937 13115
+
+diff, % 0.18% -0.64% 0.13% 0.032% -0.35% -0.47%
+
+   
+
+Monetization Metrics
+
+Variation ARPU AOV ARPPU Access cr, % Charge cr, % Trials share, % Trial -> charge, % Charge -> 14d cancel, % Charge -> 14d refund, %
+
+control $5.78 $69.5 $81.3 10.6% 7.11% 62.2% 32.2% 17.9% 8.28%
+
+variation 2 $6.11 $71.7 $82.6 11.1% 7.39% 62.8% 31.9% 17.1% 7.83%
+
+diff, % 5.59% 3.26% 1.63% 4.38% 3.89% 0.816% -1.04% -4.82% -5.32%
+
+pvalue 0.08 0.049 0.29 0.10 0.24 0.66 0.81 0.47 0.61
+
+cumulatives
+
+Apple payments only
+
+control $0.121 $62.1 $64.9 0.253% 0.187% 48.6% 25% 19.1% 10.6%
+
+variation 2 $0.42 $64.1 $70.4 0.882% 0.596% 54.3% 22% 12.7% 3.16%
+
+diff, % 246% 3.22% 8.44% 249% 219% 11.7% -12% -33.9% -70.3%
+
+pvalue 0.00 0.70 0.32 0.00 0.00 0.38 0.71 0.30 0.11
+
+cumulatives
+
+   
+
+Retention Metrics
+
+Variation Retention 1d, % Retention 7d, % Retention 14d, %
+
+control 13% 32.5% 40.3%
+
+variation 2 13.2% 33% 40.8%
+
+diff, % 1.23% 1.57% 1.12%
+
+pvalue 0.61 0.24 0.32
+
+cumulatives
+
+   
+
+Tab View Metrics
+
+Variation Tab View 60s, % Tab View 120s, % Tab View 180s, % Tab View 300s, % Tab View 600s, % Tab View per user Tab View 60s per user Tab View 120s per user Tab View 180s per user Tab View 300s per user Tab View 600s per user
+
+control 61.9% 64.6% 64.8% 62.2% 54.7% 7.82 4.31 3.62 3.19 2.57 1.92
+
+variation 2 61.4% 64.6% 64.7% 61.9% 54.3% 7.95 4.31 3.6 3.16 2.55 1.89
+
+diff, % -0.818% -0.0476% -0.15% -0.529% -0.652% 1.63% 0.223% -0.412% -0.742% -0.815% -1.38%
+
+pvalue 0.25 0.94 0.82 0.46 0.43 0.61 0.93 0.86 0.75 0.71 0.55
+
+cumulatives
+
+Apple Checkout Funnel
+
+variation members Landing Checkout View members -> Landing Checkout View, % PURCHASE_SUCCESS Landing Checkout View -> PURCHASE_SUCCESS, % members -> PURCHASE_SUCCESS, %
+
+control 24100 188 0.78% 86 45.74% 0.36%
+
+variation 2 24144 574 2.38% 224 39.02% 0.93%
+
+Laning Funnel
+
+variation members Landing Upgrade Open members -> Landing Upgrade Open, % Landing Plans View Landing Upgrade Open -> Landing Plans View, % Landing Checkout View Landing Plans View -> Landing Checkout View, % Landing Purchase Click Landing Checkout View -> Landing Purchase Click, % PURCHASE_SUCCESS Landing Purchase Click -> PURCHASE_SUCCESS, % members -> PURCHASE_SUCCESS, %
+
+control 24100 23566 97.78% 23082 97.95% 24084 104.34% 4644 19.28% 2836 61.07% 11.77%
+
+variation 2 24144 23637 97.90% 23158 97.97% 24126 104.18% 4574 18.96% 2895 63.29% 11.99%
+
+[/macro]
+
+[/macro]
+
+## Post-rollout analysis (optional)
+
+[Describe how metrics looks like after rollout, if necessary

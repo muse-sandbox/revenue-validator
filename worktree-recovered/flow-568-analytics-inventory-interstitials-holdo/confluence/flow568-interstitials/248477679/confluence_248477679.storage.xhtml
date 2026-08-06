@@ -1,0 +1,60 @@
+<p class="auto-cursor-target"><br /></p><ac:structured-macro ac:name="excerpt" ac:schema-version="1" ac:macro-id="717278dc-718b-49c8-a7cd-dfd39bc2850f"><ac:parameter ac:name="atlassian-macro-output-type">INLINE</ac:parameter><ac:rich-text-body><p><ac:structured-macro ac:name="status" ac:schema-version="1" ac:macro-id="5d45b19a-fd32-409d-9708-b1bbe2e06c13"><ac:parameter ac:name="colour">Green</ac:parameter><ac:parameter ac:name="title">Success</ac:parameter><ac:parameter ac:name="" /></ac:structured-macro></p></ac:rich-text-body></ac:structured-macro><h2><ac:structured-macro ac:name="toc" ac:schema-version="1" ac:macro-id="62e0a451-40c2-4afd-ae34-18dc171ccd57" /></h2><h2>Исследование и контекст</h2><p>Как член команды рекламы, я хочу максимизировать улучшить архитектуру вызова interstitial и сделать рефакторинг кода, разделить логику на отдельные ключевые классы и добавить возможность гибкого добавления новых СДК interstitial</p><h2>Результаты самого исследования и контекст:</h2><p><span>В данный момент текущая реализация запутана и сложна в понимании, логика вызова интерстишл, аналитики перепутаны, добавление новых СДК для тестов затруднительны</span></p><p><span style="font-size: 20.0px;letter-spacing: -0.008em;">Гипотеза</span></p><p>Если мы упростим и отрефакторим текущую логику, то у нас появится быстрый и гибкий способ добавления новых СДК interstitial, код будет более читабелен и лучше поддаваться изменениям</p><h2><span>Цель</span></h2><p><span>Переписать всю текущую логику, упростить, лишнее удалить</span></p><h2><span>План A/B тестирования</span></h2><p>Запускаем АБ в Австралии. При успехе, катим на мир</p><h2>Ответственный и команда</h2><p><strong><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> </strong></p><p><ac:link><ri:user ri:userkey="08730d2a55a7e89d01570f40d61c0004" /></ac:link> </p><h2>План реализации гипотезы</h2><ac:task-list>
+<ac:task>
+<ac:task-id>104</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><time datetime="2022-04-22" /> Релиз на AU<br /><ac:task-list>
+<ac:task>
+<ac:task-id>105</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>ios <ac:task-list>
+<ac:task>
+<ac:task-id>106</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks"><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-07" /> Переписать логику интерстишл</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>107</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-09" /> Вынести логику аналитики интерстишл </ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>108</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-11" /> Добавить Applovin в проект</ac:task-body>
+</ac:task>
+</ac:task-list></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>109</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body>android<ac:task-list>
+<ac:task>
+<ac:task-id>110</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><span class="placeholder-inline-tasks"><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-14" /> Переписать логику интерстишл</span></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>111</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-16" /> Вынести логику аналитики интерстишл </ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>112</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-03-17" /> Добавить Applovin в проект</ac:task-body>
+</ac:task>
+</ac:task-list></ac:task-body>
+</ac:task>
+</ac:task-list></ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>113</ac:task-id>
+<ac:task-status>incomplete</ac:task-status>
+<ac:task-body><time datetime="2022-04-08" /> Релиз на WW</ac:task-body>
+</ac:task>
+<ac:task>
+<ac:task-id>114</ac:task-id>
+<ac:task-status>complete</ac:task-status>
+<ac:task-body><ac:link><ri:user ri:userkey="308924de793bc28701795b17bef70002" /></ac:link> <time datetime="2022-04-20" /> Подвести итоги</ac:task-body>
+</ac:task>
+</ac:task-list><h2>Выводы</h2><p>По итогу улучшение реализации показало большое преимущество перед старой реализацией, новые СДК стало легче добавлять и тестировать.</p><p><br /></p>

@@ -1,0 +1,23 @@
+{
+  "task": "FLOW-575",
+  "frozen": "2026-08-04",
+  "source_corpus": "FLOW-577 revenue inventory V0.1 (24 cases, all verified-card)",
+  "rule": {
+    "unit": "confluence project page",
+    "strata": ["type1: same surface & mechanism", "type2: same flow stage, different surface", "type3: same metric, different flow/mechanism"],
+    "per_stratum": 2,
+    "sort_key": "project page launch date (page title [YYYY-MM-DD]), descending",
+    "burned_ineligible": ["T1-07", "T1-08", "T1-09", "T1-10"],
+    "burned_reason": "used as IH-01..04 in KB V0 A/B evaluation (FLOW-570/571) and FLOW-584 audit; development set",
+    "hx_overlap_check": "HX-01..08 (FLOW-546/565 validator backtest) share no pageId with the 24-case corpus"
+  },
+  "holdout": [
+    {"neutral_id": "RH-01", "stratum": "type1", "flow577_key": "T1-05", "page_launch": "2025-08-01", "page_id": "714409638", "ab_ids": ["6461", "6644"]},
+    {"neutral_id": "RH-02", "stratum": "type1", "flow577_key": "T1-06", "page_launch": "2025-08-20", "page_id": "714432870", "ab_ids": ["6491", "6626", "6716", "6896"]},
+    {"neutral_id": "RH-03", "stratum": "type2", "flow577_key": "T2-03", "page_launch": "2025-12-09", "page_id": "746536863", "ab_ids": ["6878"]},
+    {"neutral_id": "RH-04", "stratum": "type2", "flow577_key": "T2-04", "page_launch": "2025-12-16", "page_id": "746543363", "ab_ids": ["6902"]},
+    {"neutral_id": "RH-05", "stratum": "type3", "flow577_key": "T3-07", "page_launch": "2026-04-20", "page_id": "787253507", "ab_ids": ["7328"]},
+    {"neutral_id": "RH-06", "stratum": "type3", "flow577_key": "T3-04", "page_launch": "2026-06-11", "page_id": "805316848", "ab_ids": ["7598"]}
+  ],
+  "kb_v1_exclusion_keys": ["T1-05", "T1-06", "T2-03", "T2-04", "T3-04", "T3-07"]
+}

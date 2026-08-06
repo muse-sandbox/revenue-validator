@@ -1,0 +1,1 @@
+experiment_id,client,segment,variation_pair,final_dt,"control arpu, $","test arpu, $","ci low, %","ci high, %",pvalue

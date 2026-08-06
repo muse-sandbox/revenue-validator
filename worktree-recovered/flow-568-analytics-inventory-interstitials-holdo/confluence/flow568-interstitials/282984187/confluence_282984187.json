@@ -1,0 +1,148 @@
+{
+  "id": "282984187",
+  "type": "page",
+  "status": "current",
+  "title": "[2022-12-27] Implement Web-Interstitials on Mini Sites (ADS-628) [2023-02-06]",
+  "space": {
+    "id": 264634395,
+    "key": "CRO",
+    "name": "Growth",
+    "status": "current",
+    "type": "global",
+    "creator": {
+      "type": "known",
+      "username": "e.naidenov",
+      "userKey": "40288076460ab83501460ab974800021",
+      "displayName": "Eugeny Naidenov ✌",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=40288076460ab83501460ab974800021"
+      },
+      "_expandable": {
+        "profilePicture": "",
+        "status": ""
+      }
+    },
+    "creationDate": "2022-11-01T16:19:42.000Z",
+    "lastModifier": {
+      "type": "known",
+      "username": "v.tutunov",
+      "userKey": "308924de7365fe660174bf246179000a",
+      "displayName": "Vitalii Tutunov",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=308924de7365fe660174bf246179000a"
+      },
+      "_expandable": {
+        "profilePicture": "",
+        "status": ""
+      }
+    },
+    "lastModificationDate": "2024-03-20T11:38:38.000Z",
+    "_links": {
+      "webui": "/spaces/CRO/overview",
+      "self": "https://alice.mu.se/rest/api/space/CRO"
+    },
+    "_expandable": {
+      "metadata": "",
+      "permissions": "",
+      "icon": "",
+      "description": "",
+      "retentionPolicy": "",
+      "homepage": "/rest/api/content/276356620"
+    }
+  },
+  "version": {
+    "by": {
+      "email": "a.danchenko@mu.se",
+      "type": "known",
+      "username": "a.danchenko",
+      "userKey": "08730d2a55a7e89d01570f40d61c0004",
+      "profilePicture": {
+        "path": "/download/attachments/50919004/user-avatar",
+        "width": 48,
+        "height": 48,
+        "isDefault": false
+      },
+      "displayName": "Alexander Danchenko",
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/user?key=08730d2a55a7e89d01570f40d61c0004"
+      },
+      "_expandable": {
+        "status": ""
+      }
+    },
+    "when": "2023-02-06T15:13:52.000Z",
+    "message": "",
+    "number": 2,
+    "minorEdit": false,
+    "hidden": false,
+    "_links": {
+      "self": "https://alice.mu.se/rest/experimental/content/282984187/version/2"
+    },
+    "_expandable": {
+      "content": "/rest/api/content/282984187"
+    }
+  },
+  "position": -1,
+  "body": {
+    "storage": {
+      "value": "<p class=\"auto-cursor-target\"><br /></p><ac:structured-macro ac:name=\"excerpt\" ac:schema-version=\"1\" ac:macro-id=\"717278dc-718b-49c8-a7cd-dfd39bc2850f\"><ac:parameter ac:name=\"atlassian-macro-output-type\">INLINE</ac:parameter><ac:rich-text-body><p><ac:structured-macro ac:name=\"status\" ac:schema-version=\"1\" ac:macro-id=\"1f2da981-761b-408b-81a8-b0d2f0257932\"><ac:parameter ac:name=\"colour\">Red</ac:parameter><ac:parameter ac:name=\"title\">fail</ac:parameter><ac:parameter ac:name=\"\" /></ac:structured-macro></p></ac:rich-text-body></ac:structured-macro><p class=\"auto-cursor-target\"><ac:structured-macro ac:name=\"toc\" ac:schema-version=\"1\" ac:macro-id=\"5614d8d2-d0ff-4a5f-b90f-38432e58c650\" /></p><h2>Контекст</h2><p>Как член команды рекламы я бы хотел получить новые источники рекламной монетизации на мини-сайтах. Потенциально мы могли бы реализовать Web-интерстишлы (WEBI), так как это формат с высокими CPM и мы не так ограничены заботой о пользовательском опыте на этих сайтах.</p><h2>Исследование</h2><p>Были выгружены данные о количестве визитов, количество просмотров и глубине просмотра из Яндекс-метрики для следующих сайтов:</p><ul><li>LyricsMode</li><li>LyricsFreak</li><li>GuitareTab</li><li>911</li></ul><p>Глубина просмотра - это отношение количества просмотров к количеству визитов. То есть эта метрика показывает сколько в среднем просмотров пользователь совершает за 1 визит на сайт.</p><p>Для нас чем выше эта величина - тем лучше, так как чем больше пользователь совершает переходов между страницами, тем больше потенциальных показов генерируется. Наоборот - если каждый визит состоит в среднем из 1 просмотра, то WEBI просто &quot;негде&quot; показывать.</p><p><br /></p><p>На графике ниже визуализирована динамика глубины просмотров на основных мини-сайтах:</p><p>  <ac:image ac:height=\"400\"><ri:attachment ri:filename=\"image2022-12-27_17-2-23.png\" /></ac:image></p><p>Видно что на сайтах LyricsMode и LyricsFreak наименьший потенциал для внедрения WEBI, так как глубина просмотра немногим более 1. </p><p><br /></p><p>Чтобы оценить потенциальное количество показов на каждом сайте необходимо вычесть из количества просмотров страниц количество визитов на сайт. Исходим при этом из того что показ WEBI генерируется на каждом переходе между страницами.</p><p>Ниже представлен график с потенциальным количеством показов на каждом из сайтов: </p><p><ac:image ac:height=\"400\"><ri:attachment ri:filename=\"image2022-12-27_17-3-58.png\" /></ac:image></p><p>Несмотря на то что GuitareTab обладает меньшей глубиной просмотра в сравнении с 911, количество визитов больше на GuitareTab, поэтому данный сайт способен обеспечить наибольшее количество потенциальных показов WEBI.</p><p>На рисунке ниже представлен суточный график с количеством суммарных потенциальных показов по всем сайтам  </p><p><ac:image ac:height=\"400\"><ri:attachment ri:filename=\"image2022-12-27_17-5-3.png\" /></ac:image></p><p><br /></p><p>В проекте <a href=\"https://alice.mu.se/pages/viewpage.action?pageId=234402316\">[2021-12-03] АБ тест web-interstitials от Google [2021-12-14] - Teams - Confluence (mu.se)</a> прогнозный CPM ожидался в размере 10$</p><p>Оценка выручки сверху в сутки по каждому сайту и суммарно представлена в таблице:</p><table class=\"wrapped\"><colgroup><col /><col /><col /><col /></colgroup><tbody><tr><th scope=\"col\">Mini Sites</th><th scope=\"col\">Потенциальные показы (при показе WEBI на каждом переходе)</th><th scope=\"col\">CPM, $</th><th scope=\"col\">Потенциальная выручка, $</th></tr><tr><th>LM</th><td><span>6227</span></td><td><span>2.5<br /></span></td><th><span>62.27</span></th></tr><tr><th>LF</th><td><span>4354</span></td><td><span>2.5<br /></span></td><th><span>43.54</span></th></tr><tr><th>GT</th><td><span>24030</span></td><td><span>2.5<br /></span></td><th>240.3</th></tr><tr><th>911</th><td><span>11607</span></td><td><span>2.5<br /></span></td><th><span>116.07</span></th></tr><tr><th>TOTAL</th><th><span>46218</span></th><th><span>2.5</span></th><th><span>162.18</span></th></tr></tbody></table><h2>Гипотеза</h2><p>Показ WEBI на мини-сайтах LyricsMode, LyricsFreak, GuitareTab, 911 при каждом переходе на страницу способен принести суммарно 162$ при CPM=2.5$</p><h2>Ответственный и команда</h2><p><ac:link><ri:user ri:userkey=\"08730d2a55a7e89d01570f40d61c0004\" /></ac:link> <ac:link><ri:user ri:userkey=\"308924de75fd040a0178a201d6100017\" /></ac:link> <ac:link><ri:user ri:userkey=\"08730d2a72ba07690172db4a53f90002\" /></ac:link> </p><h2>Макеты</h2><h2>Реализация</h2><ac:task-list>\n<ac:task>\n<ac:task-id>53</ac:task-id>\n<ac:task-status>complete</ac:task-status>\n<ac:task-body><span class=\"placeholder-inline-tasks\"><span><ac:link><ri:user ri:userkey=\"308924de75fd040a0178a201d6100017\" /></ac:link>  </span><time datetime=\"2022-12-27\" /><span> </span>Сделать расчет сверху и проект</span></ac:task-body>\n</ac:task>\n<ac:task>\n<ac:task-id>54</ac:task-id>\n<ac:task-status>complete</ac:task-status>\n<ac:task-body><span class=\"placeholder-inline-tasks\"><span><ac:link><ri:user ri:userkey=\"308924de75fd040a0178a201d6100017\" /></ac:link> <ac:link><ri:user ri:userkey=\"08730d2a72ba07690172db4a53f90002\" /></ac:link> <ac:link><ri:user ri:userkey=\"08730d2a55a7e89d01570f40d61c0004\" /></ac:link>  </span><time datetime=\"2023-01-09\" /><span> </span>Принять решение о реализации проекта</span></ac:task-body>\n</ac:task>\n</ac:task-list><h2>Выводы</h2><p>Слишком малый потенциальный выхлоп. Не делаем. </p><p><br /></p>",
+      "representation": "storage",
+      "_expandable": {
+        "content": "/rest/api/content/282984187"
+      }
+    },
+    "view": {
+      "value": "<p><span class=\"status-macro aui-lozenge aui-lozenge-error conf-macro output-inline\" data-hasbody=\"true\" data-macro-name=\"excerpt\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"717278dc-718b-49c8-a7cd-dfd39bc2850f\" data-content-id=\"282984187\" data-content-version=\"2\">FAIL</span></p><p class=\"auto-cursor-target\"><div class=\"toc-macro client-side-toc-macro conf-macro output-block\" data-headerelements=\"H1,H2,H3,H4,H5,H6,H7\" data-hasbody=\"false\" data-macro-name=\"toc\" data-host-id=\"23d33a86-c149-3b82-a91a-c47ce220f3e1\" data-macro-id=\"5614d8d2-d0ff-4a5f-b90f-38432e58c650\" data-content-id=\"282984187\" data-content-version=\"2\"></div></p><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Контекст\">Контекст</h2><p>Как член команды рекламы я бы хотел получить новые источники рекламной монетизации на мини-сайтах. Потенциально мы могли бы реализовать Web-интерстишлы (WEBI), так как это формат с высокими CPM и мы не так ограничены заботой о пользовательском опыте на этих сайтах.</p><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Исследование\">Исследование</h2><p>Были выгружены данные о количестве визитов, количество просмотров и глубине просмотра из Яндекс-метрики для следующих сайтов:</p><ul><li>LyricsMode</li><li>LyricsFreak</li><li>GuitareTab</li><li>911</li></ul><p>Глубина просмотра - это отношение количества просмотров к количеству визитов. То есть эта метрика показывает сколько в среднем просмотров пользователь совершает за 1 визит на сайт.</p><p>Для нас чем выше эта величина - тем лучше, так как чем больше пользователь совершает переходов между страницами, тем больше потенциальных показов генерируется. Наоборот - если каждый визит состоит в среднем из 1 просмотра, то WEBI просто &quot;негде&quot; показывать.</p><p><br/></p><p>На графике ниже визуализирована динамика глубины просмотров на основных мини-сайтах:</p><p>  <span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image\" draggable=\"false\" height=\"400\" src=\"/download/attachments/282984187/image2022-12-27_17-2-23.png?version=1&amp;modificationDate=1672160543000&amp;api=v2\" data-image-src=\"/download/attachments/282984187/image2022-12-27_17-2-23.png?version=1&amp;modificationDate=1672160543000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"282984195\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"image2022-12-27_17-2-23.png\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/png\" data-linked-resource-container-id=\"282984187\" data-linked-resource-container-version=\"2\" tabindex=\"0\" alt=\"\"></span></p><p>Видно что на сайтах LyricsMode и LyricsFreak наименьший потенциал для внедрения WEBI, так как глубина просмотра немногим более 1. </p><p><br/></p><p>Чтобы оценить потенциальное количество показов на каждом сайте необходимо вычесть из количества просмотров страниц количество визитов на сайт. Исходим при этом из того что показ WEBI генерируется на каждом переходе между страницами.</p><p>Ниже представлен график с потенциальным количеством показов на каждом из сайтов: </p><p><span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image\" draggable=\"false\" height=\"400\" src=\"/download/attachments/282984187/image2022-12-27_17-3-58.png?version=1&amp;modificationDate=1672160638000&amp;api=v2\" data-image-src=\"/download/attachments/282984187/image2022-12-27_17-3-58.png?version=1&amp;modificationDate=1672160638000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"282984198\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"image2022-12-27_17-3-58.png\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/png\" data-linked-resource-container-id=\"282984187\" data-linked-resource-container-version=\"2\" tabindex=\"0\" alt=\"\"></span></p><p>Несмотря на то что GuitareTab обладает меньшей глубиной просмотра в сравнении с 911, количество визитов больше на GuitareTab, поэтому данный сайт способен обеспечить наибольшее количество потенциальных показов WEBI.</p><p>На рисунке ниже представлен суточный график с количеством суммарных потенциальных показов по всем сайтам  </p><p><span class=\"confluence-embedded-file-wrapper confluence-embedded-manual-size\"><img class=\"confluence-embedded-image\" draggable=\"false\" height=\"400\" src=\"/download/attachments/282984187/image2022-12-27_17-5-3.png?version=1&amp;modificationDate=1672160704000&amp;api=v2\" data-image-src=\"/download/attachments/282984187/image2022-12-27_17-5-3.png?version=1&amp;modificationDate=1672160704000&amp;api=v2\" data-unresolved-comment-count=\"0\" data-linked-resource-id=\"282984201\" data-linked-resource-version=\"1\" data-linked-resource-type=\"attachment\" data-linked-resource-default-alias=\"image2022-12-27_17-5-3.png\" data-base-url=\"https://alice.mu.se\" data-linked-resource-content-type=\"image/png\" data-linked-resource-container-id=\"282984187\" data-linked-resource-container-version=\"2\" tabindex=\"0\" alt=\"\"></span></p><p><br/></p><p>В проекте <a href=\"https://alice.mu.se/pages/viewpage.action?pageId=234402316\" rel=\"nofollow\">[2021-12-03] АБ тест web-interstitials от Google [2021-12-14] - Teams - Confluence (mu.se)</a> прогнозный CPM ожидался в размере 10$</p><p>Оценка выручки сверху в сутки по каждому сайту и суммарно представлена в таблице:</p><div class=\"table-wrap\"><table class=\"wrapped confluenceTable\"><colgroup><col/><col/><col/><col/></colgroup><tbody><tr><th scope=\"col\" class=\"confluenceTh\">Mini Sites</th><th scope=\"col\" class=\"confluenceTh\">Потенциальные показы (при показе WEBI на каждом переходе)</th><th scope=\"col\" class=\"confluenceTh\">CPM, $</th><th scope=\"col\" class=\"confluenceTh\">Потенциальная выручка, $</th></tr><tr><th class=\"confluenceTh\">LM</th><td class=\"confluenceTd\"><span>6227</span></td><td class=\"confluenceTd\"><span>2.5<br/></span></td><th class=\"confluenceTh\"><span>62.27</span></th></tr><tr><th class=\"confluenceTh\">LF</th><td class=\"confluenceTd\"><span>4354</span></td><td class=\"confluenceTd\"><span>2.5<br/></span></td><th class=\"confluenceTh\"><span>43.54</span></th></tr><tr><th class=\"confluenceTh\">GT</th><td class=\"confluenceTd\"><span>24030</span></td><td class=\"confluenceTd\"><span>2.5<br/></span></td><th class=\"confluenceTh\">240.3</th></tr><tr><th class=\"confluenceTh\">911</th><td class=\"confluenceTd\"><span>11607</span></td><td class=\"confluenceTd\"><span>2.5<br/></span></td><th class=\"confluenceTh\"><span>116.07</span></th></tr><tr><th class=\"confluenceTh\">TOTAL</th><th class=\"confluenceTh\"><span>46218</span></th><th class=\"confluenceTh\"><span>2.5</span></th><th class=\"confluenceTh\"><span>162.18</span></th></tr></tbody></table></div><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Гипотеза\">Гипотеза</h2><p>Показ WEBI на мини-сайтах LyricsMode, LyricsFreak, GuitareTab, 911 при каждом переходе на страницу способен принести суммарно 162$ при CPM=2.5$</p><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Ответственныйикоманда\">Ответственный и команда</h2><p><a class=\"confluence-userlink user-mention\" data-username=\"a.danchenko\" href=\"/display/~a.danchenko\" data-linked-resource-id=\"50919004\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Alexander Danchenko</a> <a class=\"confluence-userlink user-mention\" data-username=\"p.petkilev\" href=\"/display/~p.petkilev\" data-linked-resource-id=\"206144975\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Unknown User (p.petkilev)</a> <a class=\"confluence-userlink user-mention\" data-username=\"n.bulanov\" href=\"/display/~n.bulanov\" data-linked-resource-id=\"173806333\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Unknown User (n.bulanov)</a> </p><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Макеты\">Макеты</h2><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Реализация\">Реализация</h2><ul class=\"inline-task-list\" data-inline-tasks-content-id=\"282984187\"><li class=\"checked\" data-inline-task-id=\"53\"><span class=\"placeholder-inline-tasks\"><span><a class=\"confluence-userlink user-mention\" data-username=\"p.petkilev\" href=\"/display/~p.petkilev\" data-linked-resource-id=\"206144975\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Unknown User (p.petkilev)</a>  </span><time datetime=\"2022-12-27\" class=\"date-past\">27 Dec 2022</time><span> </span>Сделать расчет сверху и проект</span></li><li class=\"checked\" data-inline-task-id=\"54\"><span class=\"placeholder-inline-tasks\"><span><a class=\"confluence-userlink user-mention\" data-username=\"p.petkilev\" href=\"/display/~p.petkilev\" data-linked-resource-id=\"206144975\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Unknown User (p.petkilev)</a> <a class=\"confluence-userlink user-mention\" data-username=\"n.bulanov\" href=\"/display/~n.bulanov\" data-linked-resource-id=\"173806333\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Unknown User (n.bulanov)</a> <a class=\"confluence-userlink user-mention\" data-username=\"a.danchenko\" href=\"/display/~a.danchenko\" data-linked-resource-id=\"50919004\" data-linked-resource-version=\"1\" data-linked-resource-type=\"userinfo\" data-base-url=\"https://alice.mu.se\">Alexander Danchenko</a>  </span><time datetime=\"2023-01-09\" class=\"date-past\">09 Jan 2023</time><span> </span>Принять решение о реализации проекта</span></li></ul><h2 id=\"id-[20221227]ImplementWebInterstitialsonMiniSites(ADS628)[20230206]-Выводы\">Выводы</h2><p>Слишком малый потенциальный выхлоп. Не делаем. </p><p><br/></p>",
+      "representation": "storage",
+      "_expandable": {
+        "webresource": "",
+        "content": "/rest/api/content/282984187"
+      }
+    },
+    "_expandable": {
+      "editor": "",
+      "export_view": "",
+      "styled_view": "",
+      "anonymous_export_view": ""
+    }
+  },
+  "metadata": {
+    "labels": {
+      "results": [],
+      "start": 0,
+      "limit": 200,
+      "size": 0,
+      "_links": {
+        "self": "https://alice.mu.se/rest/api/content/282984187/label"
+      }
+    },
+    "_expandable": {
+      "currentuser": "",
+      "properties": "",
+      "frontend": "",
+      "editorHtml": ""
+    }
+  },
+  "extensions": {
+    "position": "none"
+  },
+  "_links": {
+    "webui": "/spaces/CRO/pages/282984187/2022-12-27+Implement+Web-Interstitials+on+Mini+Sites+ADS-628+2023-02-06",
+    "edit": "/pages/resumedraft.action?draftId=282984187&draftShareId=3aaaf063-e5ad-47f8-bb9b-b864aefd0543",
+    "tinyui": "/x/_-7dE",
+    "collection": "/rest/api/content",
+    "base": "https://alice.mu.se",
+    "context": "",
+    "self": "https://alice.mu.se/rest/api/content/282984187"
+  },
+  "_expandable": {
+    "container": "/rest/api/space/CRO",
+    "operations": "",
+    "children": "/rest/api/content/282984187/child",
+    "restrictions": "/rest/api/content/282984187/restriction/byOperation",
+    "history": "/rest/api/content/282984187/history",
+    "ancestors": "",
+    "descendants": "/rest/api/content/282984187/descendant",
+    "relevantViewRestrictions": "/rest/api/content/282984187/restriction/relevantViewRestrictions"
+  }
+}
