@@ -93,4 +93,4 @@ Not frozen. The formal gate failed three times on one class of defect — one-si
 
 ## Integrity
 
-Every frozen package carries a manifest with SHA-256 per file. The last full verification covered 9 manifests and 185 entries with no mismatches.
+Every frozen package carries a manifest with SHA-256 per file. Last full verification: 2026-08-08, **377 entries, 0 mismatches** — run after the packages were renamed and split, to prove neither touched a file.
