@@ -1,0 +1,553 @@
+| Link to OKR | |
+| Status
+  [param server] Jira
+  [param columnIds] issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution
+  [param columns] key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+  [param key] UMN-8994
+| | | DRI / Project owner | | | Team | |
+
+# Research and Context
+Goal: the main goal is to earn additional revenue with changing the zero states ads for selling subscription on the app
+Foundation: Currently, if there are no ads for a user, then the interstitial is skipped. We want to use this opportunity to show a monetization scenario.
+We've already tried launching a static banner with an offer (14-day trial) in place of the ad interstitials (when entering the tab) and achieved a significant ARPU increase of 7.5% in iOS and a non-significant 5% in Android.
+The goal of this project is to test another format - video ads for a subscription
+
+### Research results
+| | iOS | Android | Insights | Conclusion |
+Ad analytics (hits)
+[macro:code]
+  [param language] sql
+  [param title] query
+  [param collapse] true
+[/macro:code]
+| 
+| 
+| 
+| Why does the sum of fails and shown not equal the number of requests? What factors are we relying on to display our interstitial banner?
+need to discuss what trigger we use
+| |
+Ad analytics (uniq)
+*user received event at least ones
+| 
+| 
+| 
+For iOS, we expect at least 35к users per day to see the monetization interstitial at least once
+For Android, we anticipate at least 85к users per day to view the monetization interstitial at least once
+| | |
+| Distribution of users by the number of unsuccessful ad displays upon entering the tab page
+| 
+| 
+In iOS, 80% of users with admob_fail have no more than 5 display attempts
+For Android (where there are no interstitials), this proportion is about 90%.
+| 
+We need to set a limit on the number of times a monetization video is shown because 20% make between 5 to 200 show attempts.
+| |
+
+### Model
+[macro:expand]
+  [param title] iteration 1
+period - -
+only users wihtout pro rights → toUInt8(rights%10) in (0,4,5)
+avg per day (calc)
+| | iOS | | Android | | A | B | diff | A | B | diff |
+Tab Open
+| not in ('Official', 'Pro', 'Vocal') | 161,074 | 161,074 | | 90,426 | 90,426 | | | admob_fail | 36,733 | 36,733 | | 90,426 | 90,426 | | | tab open → admob_fail | 22.81% | 22.81% | 0% | 100.00% | 100.00% | 0% | | monetization interstitial view | - | 36733 | | - | 90426 | | | admob_fail → monetization interstitial | - | 100% | 100% | - | 100% | 100% | | monetization interstitial paywall view | - | 3673 | | - | 9042 | | | monetization interstitial CTR | - | 10% | 10% | - | 10% | 10% | | paywall cannibalization rate | | 20% | 20% | | 20% | 20% | | paywall view | 12,406 | 15,344 | | 55,983 | 63,216 | | | admob_fail → paywall view | 33.77% | 41.77% | 23.68% | 61.91% | 69.91% | 12.92% | | accesses | 308 | 380 | | 354 | 399 | | | paywall view → accesses | 2.48% | 2.48% | 0% | 0.63% | 0.63% | 0% | | admob_fail → accesses | 0.84% | 1.03% | | 0.39% | 0.44% | | | charges | 203 | 250 | | 194 | 219 | | | admob_fail → charges | 0.55% | 0.68% | | 0.21% | 0.24% | | | ARPPU | $22.98 | $22.98 | 0% | $26.00 | $26.00 | 0% | | Revenue | $4,664.94 | $5,745.00 | $1,080 | $5,044.00 | $5,694.00 | $650 | | ARPU (admob_fail) | $0.127 | $0.156 | 23.15% | $0.056 | $0.063 | 12.89% |
+[/macro:expand]
+[macro:expand]
+  [param title] iteration 2
+period - -
+only users wihtout pro rights → toUInt8(rights%10) in (0,4,5)
+iOS
+| avg per day (calc) | A | B | diff |
+Tab Open
+| not in ('Official', 'Pro', 'Vocal') | 161,074 | 161,074 | | | admob_request | 155,890 | 155,890 | | | monetization interstitial view | - | 155,890 | | | admob_request -> monetization interstitial | - | 100% | 100% | | monetization interstitial paywall view | - | 15589 | | | monetization interstitial CTR | - | 10% | 10% | | paywall cannibalization rate | | 60% | 70% | | paywall view | 77,037 | 83,272 | | | admob_request → paywall view | 49.42% | 53.42% | 8.09% | | accesses | 1,038 | 1122 | | | paywall view → accesses | 1.35% | 1.35% | 0% | | admob_request → accesses | 0.67% | 0.72% | | | charges | 685 | 740 | | | admob_request → charges | 0.44% | 0.47% | | | ARPPU | $22.98 | $22.98 | 0% | | Revenue | $15,741 | $17,005.20 | $1,264 | | ARPU (admob_request) | $0.101 | $0.109 | 8.03% |
+[/macro:expand]
+
+# Hypothesis
+If we implement the display of video interstitials with a subscription promotion, when the user does not see an advertising interstitial, we expect ARPU to increase by 23% without a drop in 7-day Retention because in the past experiment we saw a similar growth in metrics with another version of the interstitial
+| #6359 Audience
+users who failed to view ad interstitial
+| | | Platform | UGT_IOS | UGT_ANDROID |
+Metrics
+| | Goal | | ARPU |
+Sensitivity analysis /
+preliminary calculations
+| | |
+| Design / each metric
+[link to calculation]
+| | | Baseline | $0.127 | $0.056 | | Lift, % | 23.15% | 12.89% | | MDE | 0.017 | 0.10 | | Power | 0.8 | 0.8 | | Alpha | 0.05 | 0.05 | | Sample size (per variation) | 109556 | 293260 | | Duration (days) | 12 | 8 | | Seasonality reflected | took 1 week in calculations | | Design summary | | | Sample | 109556 | 293260 | | Days | 12 | 8 |
+
+# Description of the Solution & Mockups
+
+## Iteration 1
+  [param title] iteration 1
+
+### Solution
+Figma
+We'll launch ABC test. The content of the "video ads" will vary in the test variations
+In the test iterations, we show a clip if we receive an "admob_fail" event. We show the clip no more than once every 30 seconds and no more than 5 times a day (showing to 80% of the audience and we know from the previous project, then the first 3 showings are the most effective for conversion)
+We don't display the new interstitial in offline mode
+We are rolling it out to all users without Pro rights (both new users and former subscribers)
+For the test, we will take the most converting creatives from the paid UA team (list - https://app.milanote.com/1Uz4yo1Ktmndbf/pua-3049-share-creatives-ug?p=kdJPb3KpT0Z)
+We've chosen two formats: playing songs by tabs and by chords
+Keep the sound in the video, but turn it off by default
+A close button ("x") appears after 5 seconds (animation of a circle filling up and then the cross). Ensure that the tap area matches the cross in the current ad interstitials
+Add a "Try for Free" button on bottom of the video. The button is active and visible throughout the entire video.
+When you click on the advertisement, we open the standard pro-paywall. The availability of a trial plan on the paywall is determined by the standard current procedure and may vary depending on the user's past subscriptions
+If the video ends, stop it on the last frame. The user can only exit by clicking the ("x")
+
+### Mockups & Texts
+| Screen | А | В | C | comments | | User opens a tab | | | | If the user should be shown an interstitial ad and it was shown | | | | |
+| If the user should be shown an interstitial ad and it wasn't shown
+-
+| 
+  [param height] 150
+| 
+  [param height] 150
+| 
+Keep the sound in the video, but turn it off by default
+A cross appears after 5 seconds (animation of a circle filling up and then the cross).
+Add a "Try for Free" button on top of the video. The button is active and visible throughout the entire video.
+--
+*We will change the button in video in variation C from "install" to "try for free"
+| |
+| After clicking on the monetization interstitial (except for the close and sound control buttons)
+-
+| 
+| 
+| 
+When you click on the advertisement, we open the standard pro-paywall. The availability of a trial plan on the paywall is determined by the standard current procedure and may vary depending on the user's past subscriptions.
+| | | After close ad | | | | |
+
+### Analytics
+exposure event: admob_fail
+| | Event | Parameters | Description |
+| 1
+| Interstitial Video Try Show
+| 
+send when the video starts loading
+| |
+| 2
+| Interstitial Video Fail
+| value = 'timeout'
+Send on unsuccessful video upload
+User sees the loader for more than 3 seconds
+| |
+| 3
+| Interstitial Video Shown
+| 
+The beginning of the video has loaded - user can see the first frame
+Timer on close button starts
+| |
+| 4
+| Interstitial Video View
+| 
+Send when the user watches an interstitial video for at least 1 second in test variations
+| | | 5 | Interstitial Video Close | | send when user closes interstitial video in test variations | | 6 | Interstitial Video Mute | | send when user mutes interstitial video in test variations | | 7 | Interstitial Video Unmute | | send when user unmutes interstitial video in test variations |
+| 8
+Banner Upgrade View
+Banner Purchase Click
+Purchase Process Start
+Purchase Process Finish
+Purchase Process Canceled
+| 
+| value – 'AD Interstitial'
+existing banner funnel from interstitial
+| | | #6359 config | | | segment name | conditions | | Total | {'pro_rights': 'Free'} | | Without interstitial accesses | {'pro_rights': 'Free', 'funnel_source_exclude': ['AD Interstitial']} | | Interstitials Funnel | {'funnel': "members > event='Interstitial Video Try Show' > [event = 'Interstitial Video Fail', event = 'Interstitial Video Shown' > event = 'Interstitial Video View' > event = 'Banner Upgrade View' and value = 'AD Interstitial' > event = 'Banner Purchase Click' and value = 'AD Interstitial' > event = 'Purchase Process Finish' and value = 'AD Interstitial']"} |
+
+## Iteration 2
+  [param expanded] true
+  [param title] iteration 2
+
+### Solution
+#6428
+Figma
+Platform: iOS only
+Variation A
+Current baseline behavior with standard ad interstitials
+For variation B
+Trigger: First tab opening on current day
+Action: Monetization video interstitial replaces standard ad interstitial
+Maintain iteration 1 logic
+We begin loading the video as soon as the app launches. We save the video on the user's device to reuse it
+when user should see ads but no ad inventory available, display our custom interstitial
+Close button ("×") appears after 5-second mandatory viewing period
+For all ad views after the first one, the ad is shown in both iterations (if it can be displayed).
+
+### Mockups & Texts
+| Screen | А | В | comments | | First tab opening on current day (first ad showing) |
+| If the user should be shown an interstitial ad and it was shown
+| 
+| 
+Monetization video interstitial replaces standard ad interstitial
+Keep the sound in the video, but turn it off by default
+A cross appears after 5 seconds (animation of a circle filling up and then the cross).
+Add a "Try for Free" button on top of the video. The button is active and visible throughout the entire video.
+  [param height] 150
+| | | 2+ tab opening on current day (2+ ad showing) | | If the user should be shown an interstitial ad and it was shown | | | |
+| If the user should be shown an interstitial ad and it wasn't shown
+-
+| | | |
+| After clicking on the monetization interstitial (except for the close and sound control buttons)
+-
+| 
+| 
+When you click on the advertisement, we open the standard pro-paywall. The availability of a trial plan on the paywall is determined by the standard current procedure and may vary depending on the user's past subscriptions.
+| | | After close ad | | | |
+
+### Analytics
+exposure event: admob_try_show
+| | Event | Parameters | Description | | 1 | admob_try_show | | | | 2 | admob_fail | | |
+| 3
+| Interstitial Video Try Show
+| 
+send when the video starts loading
+| |
+| 4
+| Interstitial Video Fail
+| value = 'timeout'
+Send on unsuccessful video upload
+User sees the loader for more than 3 seconds
+| |
+| 5
+| Interstitial Video Shown
+| 
+The beginning of the video has loaded - user can see the first frame
+Timer on close button starts
+| |
+| 6
+| Interstitial Video View
+| 
+Send when the user watches an interstitial video for at least 1 second in test variations
+| | | 7 | Interstitial Video Close | | send when user closes interstitial video in test variations | | 8 | Interstitial Video Mute | | send when user mutes interstitial video in test variations | | 9 | Interstitial Video Unmute | | send when user unmutes interstitial video in test variations |
+| 10
+Banner Upgrade View
+Banner Purchase Click
+Purchase Process Start
+Purchase Process Finish
+Purchase Process Canceled
+| 
+| value – 'AD Interstitial'
+existing banner funnel from interstitial
+| | | #6428 config | | | segment name | conditions | | Total | {'pro_rights': 'Free'} | | Without interstitial accesses | {'pro_rights': 'Free', 'funnel_source_exclude': ['AD Interstitial']} | | Interstitials Funnel | {'funnel': "members > event= 'Interstitial Video Try Show' > event='Interstitial Video View' > event='Banner Upgrade View' and value='AD Interstitial' > event='Purchase Process Finish' and value='AD Interstitial'"} |
+
+# Execution
+  [param server] Jira
+  [param columnIds] issuetype,summary,assignee,customfield_10312,duedate,status
+  [param columns] type,summary,assignee,Start date,due,status
+  [param maximumIssues] 20
+  [param jqlQuery] parent=umn-8994  order by key
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+
+# Results
+  [param title] #6359
+#6359  –
+Exposure event: admob_fail
+
+## Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | variation 3 | | UGT_IOS | Design | 12 | 36518 | 36518 | 36518 | ecad598a-3f9a-4645-e71a-5cfd85b610bd
+complete
+No visible bugs were found throughout the experiment
+
+
+ba60d983-2995-987e-0c71-48b0552e1a7a
+complete
+No external effects are visible | | Experiment | 12 | 19922 | 19570 | 18679 | | Checks | 449e4e01-d72d-6aaa-12e4-be38e2f6255f
+complete
+duration of exp ≥ design | 36f584ce-bf41-6065-802c-cbdd6ee0ddad
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | 8 | 97753 | 97753 | 97753 | 61050795-1ea3-319d-36b3-a3a2ab6d28a0
+complete
+No visible bugs were found throughout the experiment
+
+
+2085a418-6b4e-a8ec-8cb3-9c05fa6a6331
+complete
+No external effects are visible | | Experiment | 12 | 93901 | 94481 | 86952 | | Checks | d639ab11-90ca-965e-4846-6844c75c96a3
+complete
+duration of exp ≥ design | 0d99316c-b7c9-5ed8-7e83-ba8a8733e394
+complete
+A/B balance is maintained |
+
+## Decision
+Results
+[UGT_IOS / Without interstitial accesses / variation 2] ARPU & lifetime ARPU: -24.7%, revenue drop
+[UGT_IOS / Total & Without interstitial accesses / variation 2] tab view per user: +11.5%, engagement up
+[UGT_IOS / Total & Without interstitial accesses / variation 3] tab view per user: +8.5%, engagement up
+[UGT_ANDROID / Total / variation 2]
+ARPU & lifetime ARPU: +16.9%, revenue up
+access CR: +14.0%, better paywall entry
+charge CR: +12.1%, better monetization conversion
+[UGT_ANDROID / Total / variation 3]
+trial share: +12.8%, more trial starts
+subscriber -> buyer: -10.8%, worse conversion to purchase
+subscription -> charge: -12.0%, worse trial-to-paid
+[UGT_ANDROID / Total & Without interstitial accesses / variation 2] tab view per user: +21.5%, strong engagement up; 300s–600s per user: +2.5%–2.8%
+[UGT_ANDROID / Total & Without interstitial accesses / variation 3]
+tab view per user: +9.6%, but 60s–600s per-user metrics: -7.4%–11.1% and 120s–600s view%: -0.6%–4.1%, quality of viewing down
+Retention 1d/7d/14d: -1.2% to -2.6%, cohort health down
+[UGT_ANDROID / Without interstitial accesses / variation 3] access CR: -8.7%, charge CR: -13.9% (monetization funnel down); trial share: +8.3%
+Conclusion
+Do not roll out globally. Variation 2 is a clear win on Android (ARPU +17%, access/charge CR up, engagement up) with neutral retention—recommend a staged Android-only rollout. On iOS, Variation 2 shows a significant ARPU drop in the “Without interstitial accesses” segment; hold iOS. Variation 3 should be rejected: it hurts Android retention and downstream monetization despite higher trial share and mixed engagement signals.
+Next steps
+P0: Ship Variation 2 to Android only behind a ramp (10%→50%→100%) with guardrails: ARPU ≥ +10%, charge CR ≥ +5%, 1/7/14d retention not worse than -0.5%. Monitor cancels/refunds for 14 days.
+P1: Deep-dive iOS (esp. “Without interstitial accesses”): segment by exposure (saw clip vs not), country, cohort (new vs lapsed), trial availability on paywall, and creative. Validate no tracking/eligibility bias due to admob_fail/offline. If issues found, iterate creatives or disable “Try for Free” overlay and re-test on a small iOS slice.
+P2: Pause Variation 3. If revisiting, test reduced frequency/shorter close-delay and alternative creatives (tabs vs chords) in a separate experiment; add latency/exposure diagnostics to ensure the clip trigger isn’t degrading session quality.
+
+## Forecast (per day)
+| 
+UGT_ANDROID
+| 
+| 
+UGT_IOS
+| |
+| Variations
+admob_fail
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+admob_fail
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 44834 | 500 | 279 | 7328 | 13573 | 187 | 113 | 2746 | | variation 2 | 44834 | 576 | 309 | 8570 | 13573 | 183 | 104 | 2312 | | diff | 0 | 76 | 30 | 1242 | 0 | -4 | -9 | -434 | | variation 3 | 44834 | 514 | 252 | 6966 | 13573 | 202 | 129 | 2997 | | diff | 0 | 14 | -27 | -362 | 0 | 15 | 16 | 251 |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | LT Revenue | Cancels 14d | Refunds 14d | | control | 19922 | 257 | 275 | 102 | 155 | 18 | 47 | 161 | 166 | $4031 | $4031 | 25 | 10 | | variation 2 | 19570 | 245 | 265 | 104 | 151 | 10 | 36 | 150 | 150 | $3334 | $3334 | 21 | 5 | | diff, % | -1.8% | -4.7% | -3.6% | 2% | -2.6% | -44% | -23% | -6.8% | -9.6% | -17% | -17% | -16% | -50% | | variation 3 | 18679 | 250 | 279 | 114 | 142 | 23 | 41 | 171 | 178 | $4125 | $4125 | 22 | 5 | | diff, % | -6.2% | -2.7% | 1.5% | 12% | -8.4% | 28% | -13% | 6.2% | 7.2% | 2.3% | 2.3% | -12% | -50% | | Without interstitial accesses | | control | 19922 | 257 | 275 | 102 | 155 | 18 | 47 | 161 | 166 | $4031 | $4031 | 25 | 10 | | variation 2 | 19570 | 218 | 237 | 98 | 130 | 9 | 28 | 135 | 135 | $2983 | $2983 | 17 | 4 | | diff, % | -1.8% | -15% | -14% | -3.9% | -16% | -50% | -40% | -16% | -19% | -26% | -26% | -32% | -60% | | variation 3 | 18679 | 238 | 265 | 110 | 132 | 23 | 38 | 164 | 171 | $3974 | $3974 | 20 | 4 | | diff, % | -6.2% | -7.4% | -3.6% | 7.8% | -15% | 28% | -19% | 1.9% | 3% | -1.4% | -1.4% | -20% | -60% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 19922 | 5973 | 13025 | 15024 | | variation 2 | 19570 | 5818 | 12826 | 14774 | | diff, % | -1.8% | -2.6% | -1.5% | -1.7% | | variation 3 | 18679 | 5510 | 12197 | 14081 | | diff, % | -6.2% | -7.8% | -6.4% | -6.3% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 19922 | 16645 | 15297 | 13876 | 10469 | 4921 | | variation 2 | 19570 | 16471 | 15067 | 13638 | 10414 | 4814 | | diff, % | -1.8% | -1% | -1.5% | -1.7% | -0.53% | -2.2% | | variation 3 | 18679 | 15682 | 14348 | 13048 | 9901 | 4564 | | diff, % | -6.2% | -5.8% | -6.2% | -6% | -5.4% | -7.3% |
+Monetization Metrics
+| Variation | ARPU | LT ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.202 | $0.202 | $24.3 | $25 | 1.29% | 0.808% | 56.4% | 30.3% | 15.1% | 6.02% | | variation 2 | $0.17 | $0.17 | $22.2 | $22.2 | 1.25% | 0.766% | 57% | 23.8% | 14% | 3.33% | | diff, % | -15.8% | -15.8% | -8.47% | -11.2% | -2.95% | -5.16% | 1.1% | -21.4% | -7.04% | -44.7% | | pvalue | 0.20 | 0.20 | 0.20 | 0.08 | 0.74 | 0.64 | 0.88 | 0.20 | 0.79 | 0.25 | | variation 3 | $0.221 | $0.221 | $23.2 | $24.1 | 1.34% | 0.915% | 50.9% | 28.9% | 12.4% | 2.81% | | diff, % | 9.12% | 9.12% | -4.59% | -3.67% | 3.75% | 13.3% | -9.7% | -4.78% | -17.9% | -53.4% | | pvalue | 0.49 | 0.49 | 0.47 | 0.55 | 0.68 | 0.25 | 0.20 | 0.78 | 0.47 | 0.15 | | cumulatives | | | | | | | | | | | | Without interstitial accesses | | control | $0.202 | $0.202 | $24.3 | $25 | 1.29% | 0.808% | 56.4% | 30.3% | 15.1% | 6.02% | | variation 2 | $0.152 | $0.152 | $22.1 | $22.1 | 1.11% | 0.69% | 54.9% | 21.5% | 12.6% | 2.96% | | diff, % | -24.7% | -24.7% | -9.02% | -11.8% | -13.6% | -14.6% | -2.68% | -29% | -16.4% | -50.8% | | pvalue | 0.039 | 0.039 | 0.19 | 0.08 | 0.11 | 0.17 | 0.73 | 0.09 | 0.54 | 0.19 | | variation 3 | $0.213 | $0.213 | $23.2 | $24.2 | 1.27% | 0.878% | 49.8% | 28.8% | 11.7% | 2.34% | | diff, % | 5.14% | 5.14% | -4.3% | -3.22% | -1.23% | 8.64% | -11.6% | -5.06% | -22.3% | -61.2% | | pvalue | 0.69 | 0.69 | 0.50 | 0.61 | 0.89 | 0.45 | 0.13 | 0.78 | 0.36 | 0.09 | | cumulatives | | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 30% | 65.4% | 75.4% | | variation 2 | 29.7% | 65.5% | 75.5% | | diff, % | -0.843% | 0.243% | 0.105% | | pvalue | 0.58 | 0.74 | 0.86 | | variation 3 | 29.5% | 65.3% | 75.4% | | diff, % | -1.61% | -0.126% | -0.0398% | | pvalue | 0.30 | 0.87 | 0.95 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 83.6% | 76.8% | 69.7% | 52.5% | 24.7% | 15.3 | 6.66 | 4.65 | 3.3 | 1.52 | 0.43 | | variation 2 | 84.2% | 77% | 69.7% | 53.2% | 24.6% | 17 | 6.62 | 4.61 | 3.28 | 1.53 | 0.435 | | diff, % | 0.735% | 0.268% | 0.0526% | 1.26% | -0.415% | 11.5% | -0.597% | -0.74% | -0.554% | 0.721% | 1.06% | | pvalue | 0.10 | 0.63 | 0.94 | 0.19 | 0.81 | 0.00 | 0.71 | 0.65 | 0.74 | 0.69 | 0.67 | | variation 3 | 84% | 76.8% | 69.9% | 53% | 24.4% | 16.6 | 6.59 | 4.64 | 3.29 | 1.51 | 0.426 | | diff, % | 0.484% | 0.0379% | 0.29% | 0.868% | -1.08% | 8.52% | -0.971% | -0.203% | -0.132% | -0.569% | -1.03% | | pvalue | 0.28 | 0.95 | 0.67 | 0.37 | 0.54 | 0.00 | 0.56 | 0.90 | 0.94 | 0.75 | 0.68 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video Fail | Interstitial Video Try Show -> Interstitial Video Fail, % | Interstitial Video Shown | Interstitial Video Try Show -> Interstitial Video Shown, % | Interstitial Video View | Interstitial Video Shown -> Interstitial Video View, % | Banner Upgrade View | Interstitial Video View -> Banner Upgrade View, % | Banner Purchase Click | Banner Upgrade View -> Banner Purchase Click, % | Purchase Process Finish | Banner Purchase Click -> Purchase Process Finish, % | members -> Purchase Process Finish, % | | control | 19922 | 0 | 0.00% | 0 | — | 0 | — | 0 | — | 0 | — | 0 | — | 0 | — | 0.00% | | variation 2 | 19570 | 15888 | 81.19% | 4456 | 28.05% | 13580 | 85.47% | 12962 | 95.45% | 15720 | 121.28% | 125 | 0.80% | 23 | 18.40% | 0.12% | | variation 3 | 18679 | 15066 | 80.66% | 3249 | 21.57% | 13395 | 88.91% | 12666 | 94.56% | 14920 | 117.80% | 73 | 0.49% | 13 | 17.81% | 0.07% |
+  [param title] UGT_ANDROID
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | LT Revenue | Cancels 14d | Refunds 14d | | control | 93901 | 1004 | 1049 | 424 | 602 | 23 | 140 | 571 | 585 | $15349 | $15349 | 82 | 14 | | variation 2 | 94481 | 1152 | 1214 | 469 | 720 | 25 | 159 | 644 | 653 | $18060 | $18060 | 86 | 18 | | diff, % | 0.62% | 15% | 16% | 11% | 20% | 8.7% | 14% | 13% | 12% | 18% | 18% | 4.9% | 29% | | variation 3 | 86952 | 952 | 998 | 345 | 646 | 7 | 139 | 483 | 490 | $13511 | $13511 | 66 | 9 | | diff, % | -7.4% | -5.2% | -4.9% | -19% | 7.3% | -70% | -0.71% | -15% | -16% | -12% | -12% | -20% | -36% | | Without interstitial accesses | | control | 93901 | 1004 | 1049 | 424 | 602 | 23 | 140 | 571 | 585 | $15349 | $15349 | 82 | 14 | | variation 2 | 94481 | 1023 | 1080 | 445 | 611 | 24 | 142 | 603 | 611 | $16918 | $16918 | 81 | 18 | | diff, % | 0.62% | 1.9% | 3% | 5% | 1.5% | 4.3% | 1.4% | 5.6% | 4.4% | 10% | 10% | -1.2% | 29% | | variation 3 | 86952 | 849 | 893 | 331 | 555 | 7 | 125 | 455 | 462 | $12677 | $12677 | 63 | 9 | | diff, % | -7.4% | -15% | -15% | -22% | -7.8% | -70% | -11% | -20% | -21% | -17% | -17% | -23% | -36% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 93901 | 20561 | 52315 | 63088 | | variation 2 | 94481 | 20571 | 52625 | 63289 | | diff, % | 0.62% | 0.049% | 0.59% | 0.32% | | variation 3 | 86951 | 18545 | 47776 | 57707 | | diff, % | -7.4% | -9.8% | -8.7% | -8.5% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 93901 | 75030 | 67431 | 60764 | 46243 | 22614 | | variation 2 | 94481 | 75696 | 67822 | 61222 | 46773 | 22890 | | diff, % | 0.62% | 0.89% | 0.58% | 0.75% | 1.1% | 1.2% | | variation 3 | 86952 | 69532 | 62044 | 55518 | 42053 | 20087 | | diff, % | -7.4% | -7.3% | -8% | -8.6% | -9.1% | -11% |
+Monetization Metrics
+| Variation | ARPU | LT ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.163 | $0.163 | $26.2 | $26.9 | 1.07% | 0.608% | 57.4% | 23.3% | 14% | 2.39% | | variation 2 | $0.191 | $0.191 | $27.7 | $28 | 1.22% | 0.682% | 59.3% | 22.1% | 13.2% | 2.76% | | diff, % | 16.9% | 16.9% | 5.41% | 4.32% | 14% | 12.1% | 3.35% | -5.04% | -6.04% | 15.2% | | pvalue | 0.014 | 0.014 | 0.07 | 0.14 | 0.002 | 0.046 | 0.36 | 0.61 | 0.66 | 0.69 | | variation 3 | $0.155 | $0.155 | $27.6 | $28 | 1.09% | 0.555% | 64.7% | 21.5% | 13.5% | 1.84% | | diff, % | -4.94% | -4.94% | 5.09% | 4.06% | 2.4% | -8.65% | 12.8% | -7.48% | -3.91% | -23.3% | | pvalue | 0.45 | 0.45 | 0.11 | 0.19 | 0.60 | 0.14 | 0.001 | 0.46 | 0.79 | 0.53 | | cumulatives | | | | | | | | | | | | Without interstitial accesses | | control | $0.163 | $0.163 | $26.2 | $26.9 | 1.07% | 0.608% | 57.4% | 23.3% | 14% | 2.39% | | variation 2 | $0.179 | $0.179 | $27.7 | $28.1 | 1.08% | 0.638% | 56.6% | 23.2% | 13.3% | 2.95% | | diff, % | 9.54% | 9.54% | 5.53% | 4.37% | 1.27% | 4.96% | -1.42% | -0.0655% | -5.42% | 23.1% | | pvalue | 0.16 | 0.16 | 0.07 | 0.15 | 0.78 | 0.41 | 0.70 | 0.99 | 0.70 | 0.55 | | variation 3 | $0.146 | $0.146 | $27.4 | $27.9 | 0.976% | 0.523% | 62.2% | 22.5% | 13.6% | 1.95% | | diff, % | -10.8% | -10.8% | 4.58% | 3.65% | -8.68% | -13.9% | 8.3% | -3.15% | -2.72% | -18.6% | | pvalue | 0.10 | 0.10 | 0.15 | 0.25 | 0.050 | 0.016 | 0.033 | 0.77 | 0.86 | 0.62 | | cumulatives | | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 21.9% | 55.7% | 67.2% | | variation 2 | 21.8% | 55.7% | 67% | | diff, % | -0.566% | -0.025% | -0.297% | | pvalue | 0.52 | 0.95 | 0.36 | | variation 3 | 21.3% | 54.9% | 66.4% | | diff, % | -2.6% | -1.38% | -1.22% | | pvalue | 0.003 | 0.001 | 0.000 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 79.9% | 71.8% | 64.7% | 49.2% | 24.1% | 12.6 | 5.62 | 4.06 | 2.95 | 1.41 | 0.427 | | variation 2 | 80.1% | 71.8% | 64.8% | 49.5% | 24.2% | 15.3 | 5.57 | 4.06 | 2.98 | 1.44 | 0.439 | | diff, % | 0.268% | -0.0376% | 0.135% | 0.525% | 0.599% | 21.5% | -1.04% | -0.0273% | 1.07% | 2.55% | 2.82% | | pvalue | 0.24 | 0.90 | 0.69 | 0.26 | 0.46 | 0.00 | 0.22 | 0.97 | 0.23 | 0.006 | 0.020 | | variation 3 | 80% | 71.4% | 63.8% | 48.4% | 23.1% | 13.8 | 5 | 3.63 | 2.66 | 1.3 | 0.395 | | diff, % | 0.0784% | -0.636% | -1.33% | -1.79% | -4.08% | 9.57% | -11.1% | -10.5% | -9.71% | -7.45% | -7.44% | | pvalue | 0.74 | 0.032 | 0.000 | 0.000 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video Fail | Interstitial Video Try Show -> Interstitial Video Fail, % | Interstitial Video Shown | Interstitial Video Try Show -> Interstitial Video Shown, % | Interstitial Video View | Interstitial Video Shown -> Interstitial Video View, % | Banner Upgrade View | Interstitial Video View -> Banner Upgrade View, % | Banner Purchase Click | Banner Upgrade View -> Banner Purchase Click, % | Purchase Process Finish | Banner Purchase Click -> Purchase Process Finish, % | members -> Purchase Process Finish, % | | control | 93901 | 1 | 0.00% | 1 | 100.00% | 0 | 0.00% | 0 | — | 1 | inf% | 0 | 0.00% | 0 | — | 0.00% | | variation 2 | 94481 | 71549 | 75.73% | 34509 | 48.23% | 52734 | 73.70% | 49753 | 94.35% | 70840 | 142.38% | 729 | 1.03% | 97 | 13.31% | 0.10% | | variation 3 | 86952 | 65040 | 74.80% | 32304 | 49.67% | 47045 | 72.33% | 45660 | 97.06% | 64321 | 140.87% | 463 | 0.72% | 73 | 15.77% | 0.08% |
+  [param title] 1st iteration - #6359
+#6359  –
+Exposure event: admob_fail
+
+## Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | variation 3 | | UGT_IOS | Design | 12 | 36518 | 36518 | 36518 | b656e7f4-8e66-668a-b5b0-fca0ee3f9bc6
+complete
+No visible bugs were found throughout the experiment
+
+
+7892e8a6-a57e-c5b9-9866-90f373807f83
+complete
+No external effects are visible | | Experiment | 12 | 19901 | 19556 | 18658 | | Checks | 5372eb64-c005-ebda-22d6-53f03b56ad62
+complete
+duration of exp ≥ design | 565031de-6940-786e-1389-a3e1cf4fa92f
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | 8 | 97753 | 97753 | 97753 | 19dc389f-5dba-b39f-8fb4-06d7b90732ff
+complete
+No visible bugs were found throughout the experiment
+
+
+3a3f7de4-9247-795d-cb43-56fb76749a0b
+complete
+No external effects are visible | | Experiment | 12 | 93855 | 94432 | 86913 | | Checks | d778ad05-0870-1349-633f-85b5674ac97b
+complete
+duration of exp ≥ design | 0c4a7474-7419-9d1e-d640-d8a07fa51084
+complete
+A/B balance is maintained |
+
+## Decision
+Results
+Conclusion
+Next steps
+
+## Forecast (per day)
+| 
+UGT_ANDROID
+| 
+| 
+UGT_IOS
+| |
+| Variations
+admob_fail
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+admob_fail
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 44792 | 500 | 279 | 7325 | 13534 | 187 | 112 | 2742 | | variation 2 | 44792 | 575 | 309 | 8566 | 13534 | 183 | 103 | 2307 | | diff | 0 | 75 | 30 | 1241 | 0 | -4 | -9 | -435 | | variation 3 | 44792 | 514 | 252 | 6963 | 13534 | 202 | 129 | 2992 | | diff | 0 | 14 | -27 | -362 | 0 | 15 | 17 | 250 |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 19901 | 257 | 275 | 102 | 155 | 18 | 47 | 161 | 166 | $4031 | 24 | 10 | | variation 2 | 19556 | 245 | 265 | 104 | 151 | 10 | 36 | 150 | 150 | $3334 | 20 | 5 | | diff, % | -1.7% | -4.7% | -3.6% | 2% | -2.6% | -44% | -23% | -6.8% | -9.6% | -17% | -17% | -50% | | variation 3 | 18658 | 250 | 279 | 114 | 142 | 23 | 41 | 171 | 178 | $4125 | 21 | 5 | | diff, % | -6.2% | -2.7% | 1.5% | 12% | -8.4% | 28% | -13% | 6.2% | 7.2% | 2.3% | -12% | -50% | | Without interstitial accesses | | control | 19901 | 257 | 275 | 102 | 155 | 18 | 47 | 161 | 166 | $4031 | 24 | 10 | | variation 2 | 19556 | 218 | 237 | 98 | 130 | 9 | 28 | 135 | 135 | $2983 | 16 | 4 | | diff, % | -1.7% | -15% | -14% | -3.9% | -16% | -50% | -40% | -16% | -19% | -26% | -33% | -60% | | variation 3 | 18658 | 238 | 265 | 110 | 132 | 23 | 38 | 164 | 171 | $3974 | 20 | 4 | | diff, % | -6.2% | -7.4% | -3.6% | 7.8% | -15% | 28% | -19% | 1.9% | 3% | -1.4% | -17% | -60% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 19901 | 5971 | 13020 | 15009 | | variation 2 | 19556 | 5815 | 12814 | 14754 | | diff, % | -1.7% | -2.6% | -1.6% | -1.7% | | variation 3 | 18658 | 5507 | 12188 | 14064 | | diff, % | -6.2% | -7.8% | -6.4% | -6.3% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 19901 | 16632 | 15288 | 13865 | 10461 | 4916 | | variation 2 | 19556 | 16461 | 15059 | 13633 | 10410 | 4812 | | diff, % | -1.7% | -1% | -1.5% | -1.7% | -0.49% | -2.1% | | variation 3 | 18658 | 15673 | 14334 | 13038 | 9890 | 4559 | | diff, % | -6.2% | -5.8% | -6.2% | -6% | -5.5% | -7.3% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.203 | $24.3 | $25 | 1.29% | 0.809% | 56.4% | 30.3% | 14.5% | 6.02% | | variation 2 | $0.171 | $22.2 | $22.2 | 1.25% | 0.767% | 57% | 23.8% | 13.3% | 3.33% | | diff, % | -15.8% | -8.47% | -11.2% | -2.99% | -5.19% | 1.1% | -21.4% | -7.78% | -44.7% | | pvalue | 0.19 | 0.20 | 0.08 | 0.73 | 0.64 | 0.88 | 0.20 | 0.77 | 0.25 | | variation 3 | $0.221 | $23.2 | $24.1 | 1.34% | 0.916% | 50.9% | 28.9% | 11.8% | 2.81% | | diff, % | 9.13% | -4.59% | -3.67% | 3.76% | 13.3% | -9.7% | -4.78% | -18.4% | -53.4% | | pvalue | 0.49 | 0.47 | 0.55 | 0.68 | 0.25 | 0.20 | 0.78 | 0.47 | 0.15 | | cumulatives | | | | | | | | | | | Without interstitial accesses | | control | $0.203 | $24.3 | $25 | 1.29% | 0.809% | 56.4% | 30.3% | 14.5% | 6.02% | | variation 2 | $0.153 | $22.1 | $22.1 | 1.11% | 0.69% | 54.9% | 21.5% | 11.9% | 2.96% | | diff, % | -24.7% | -9.02% | -11.8% | -13.7% | -14.7% | -2.68% | -29% | -18% | -50.8% | | pvalue | 0.039 | 0.19 | 0.08 | 0.11 | 0.17 | 0.73 | 0.09 | 0.50 | 0.19 | | variation 3 | $0.213 | $23.2 | $24.2 | 1.28% | 0.879% | 49.8% | 28.8% | 11.7% | 2.34% | | diff, % | 5.15% | -4.3% | -3.22% | -1.22% | 8.65% | -11.6% | -5.06% | -19.1% | -61.2% | | pvalue | 0.69 | 0.50 | 0.61 | 0.89 | 0.45 | 0.13 | 0.78 | 0.45 | 0.09 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 30% | 65.4% | 75.4% | | variation 2 | 29.7% | 65.5% | 75.4% | | diff, % | -0.895% | 0.154% | 0.0352% | | pvalue | 0.56 | 0.83 | 0.95 | | variation 3 | 29.5% | 65.3% | 75.4% | | diff, % | -1.63% | -0.154% | -0.0537% | | pvalue | 0.29 | 0.84 | 0.93 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 83.6% | 76.8% | 69.7% | 52.6% | 24.7% | 15.3 | 6.66 | 4.65 | 3.3 | 1.52 | 0.431 | | variation 2 | 84.2% | 77% | 69.7% | 53.2% | 24.6% | 17 | 6.62 | 4.62 | 3.28 | 1.53 | 0.435 | | diff, % | 0.718% | 0.24% | 0.0614% | 1.27% | -0.389% | 11.5% | -0.66% | -0.798% | -0.613% | 0.64% | 0.957% | | pvalue | 0.11 | 0.66 | 0.93 | 0.18 | 0.82 | 0.00 | 0.69 | 0.62 | 0.71 | 0.72 | 0.70 | | variation 3 | 84% | 76.8% | 69.9% | 53% | 24.4% | 16.6 | 6.6 | 4.64 | 3.29 | 1.51 | 0.426 | | diff, % | 0.512% | 0.00611% | 0.3% | 0.84% | -1.08% | 8.51% | -0.99% | -0.228% | -0.148% | -0.617% | -1.05% | | pvalue | 0.25 | 0.99 | 0.66 | 0.39 | 0.54 | 0.00 | 0.55 | 0.89 | 0.93 | 0.73 | 0.67 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video Fail | Interstitial Video Try Show -> Interstitial Video Fail, % | Interstitial Video Shown | Interstitial Video Try Show -> Interstitial Video Shown, % | Interstitial Video View | Interstitial Video Shown -> Interstitial Video View, % | Banner Upgrade View | Interstitial Video View -> Banner Upgrade View, % | Banner Purchase Click | Banner Upgrade View -> Banner Purchase Click, % | Purchase Process Finish | Banner Purchase Click -> Purchase Process Finish, % | members -> Purchase Process Finish, % | | control | 19901 | 0 | 0.00% | 0 | — | 0 | — | 0 | — | 0 | — | 0 | — | 0 | — | 0.00% | | variation 2 | 19556 | 15879 | 81.20% | 4452 | 28.04% | 13573 | 85.48% | 12955 | 95.45% | 15709 | 121.26% | 125 | 0.80% | 23 | 18.40% | 0.12% | | variation 3 | 18658 | 15056 | 80.69% | 3245 | 21.55% | 13389 | 88.93% | 12660 | 94.56% | 14909 | 117.76% | 73 | 0.49% | 13 | 17.81% | 0.07% |
+  [param title] UGT_ANDROID
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 93855 | 1004 | 1049 | 424 | 602 | 23 | 140 | 571 | 585 | $15349 | 79 | 14 | | variation 2 | 94432 | 1152 | 1214 | 469 | 720 | 25 | 159 | 644 | 653 | $18060 | 85 | 18 | | diff, % | 0.61% | 15% | 16% | 11% | 20% | 8.7% | 14% | 13% | 12% | 18% | 7.6% | 29% | | variation 3 | 86913 | 952 | 998 | 345 | 646 | 7 | 139 | 483 | 490 | $13511 | 66 | 9 | | diff, % | -7.4% | -5.2% | -4.9% | -19% | 7.3% | -70% | -0.71% | -15% | -16% | -12% | -16% | -36% | | Without interstitial accesses | | control | 93855 | 1004 | 1049 | 424 | 602 | 23 | 140 | 571 | 585 | $15349 | 79 | 14 | | variation 2 | 94432 | 1023 | 1080 | 445 | 611 | 24 | 142 | 603 | 611 | $16918 | 81 | 18 | | diff, % | 0.61% | 1.9% | 3% | 5% | 1.5% | 4.3% | 1.4% | 5.6% | 4.4% | 10% | 2.5% | 29% | | variation 3 | 86913 | 849 | 893 | 331 | 555 | 7 | 125 | 455 | 462 | $12677 | 63 | 9 | | diff, % | -7.4% | -15% | -15% | -22% | -7.8% | -70% | -11% | -20% | -21% | -17% | -20% | -36% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 93855 | 20555 | 52289 | 63030 | | variation 2 | 94432 | 20564 | 52599 | 63225 | | diff, % | 0.61% | 0.044% | 0.59% | 0.31% | | variation 3 | 86912 | 18539 | 47748 | 57642 | | diff, % | -7.4% | -9.8% | -8.7% | -8.5% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 93855 | 75003 | 67402 | 60748 | 46232 | 22605 | | variation 2 | 94432 | 75654 | 67802 | 61196 | 46757 | 22884 | | diff, % | 0.61% | 0.87% | 0.59% | 0.74% | 1.1% | 1.2% | | variation 3 | 86913 | 69502 | 62017 | 55496 | 42038 | 20080 | | diff, % | -7.4% | -7.3% | -8% | -8.6% | -9.1% | -11% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.164 | $26.2 | $26.9 | 1.07% | 0.608% | 57.4% | 23.3% | 13.5% | 2.39% | | variation 2 | $0.191 | $27.7 | $28 | 1.22% | 0.682% | 59.3% | 22.1% | 13% | 2.76% | | diff, % | 16.9% | 5.41% | 4.32% | 14% | 12.1% | 3.35% | -5.04% | -3.61% | 15.2% | | pvalue | 0.014 | 0.07 | 0.14 | 0.002 | 0.046 | 0.36 | 0.61 | 0.80 | 0.69 | | variation 3 | $0.155 | $27.6 | $28 | 1.1% | 0.556% | 64.7% | 21.5% | 13.5% | 1.84% | | diff, % | -4.94% | 5.09% | 4.06% | 2.39% | -8.66% | 12.8% | -7.48% | -0.258% | -23.3% | | pvalue | 0.45 | 0.11 | 0.19 | 0.60 | 0.14 | 0.001 | 0.46 | 0.99 | 0.53 | | cumulatives | | | | | | | | | | | Without interstitial accesses | | control | $0.164 | $26.2 | $26.9 | 1.07% | 0.608% | 57.4% | 23.3% | 13.5% | 2.39% | | variation 2 | $0.179 | $27.7 | $28.1 | 1.08% | 0.639% | 56.6% | 23.2% | 13.3% | 2.95% | | diff, % | 9.55% | 5.53% | 4.37% | 1.27% | 4.96% | -1.42% | -0.0655% | -1.83% | 23.1% | | pvalue | 0.16 | 0.07 | 0.15 | 0.78 | 0.41 | 0.70 | 0.99 | 0.90 | 0.55 | | variation 3 | $0.146 | $27.4 | $27.9 | 0.977% | 0.524% | 62.2% | 22.5% | 13.6% | 1.95% | | diff, % | -10.8% | 4.58% | 3.65% | -8.68% | -14% | 8.3% | -3.15% | 0.978% | -18.6% | | pvalue | 0.10 | 0.15 | 0.25 | 0.050 | 0.016 | 0.033 | 0.77 | 0.95 | 0.62 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 21.9% | 55.7% | 67.2% | | variation 2 | 21.8% | 55.7% | 67% | | diff, % | -0.568% | -0.0218% | -0.304% | | pvalue | 0.51 | 0.96 | 0.35 | | variation 3 | 21.3% | 54.9% | 66.3% | | diff, % | -2.6% | -1.39% | -1.24% | | pvalue | 0.003 | 0.001 | 0.000 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 79.9% | 71.8% | 64.7% | 49.3% | 24.1% | 12.6 | 5.63 | 4.06 | 2.95 | 1.41 | 0.427 | | variation 2 | 80.1% | 71.8% | 64.8% | 49.5% | 24.2% | 15.3 | 5.57 | 4.06 | 2.98 | 1.44 | 0.439 | | diff, % | 0.252% | -0.0212% | 0.122% | 0.518% | 0.616% | 21.5% | -1.03% | -0.0195% | 1.07% | 2.54% | 2.82% | | pvalue | 0.28 | 0.94 | 0.72 | 0.27 | 0.45 | 0.00 | 0.22 | 0.98 | 0.23 | 0.006 | 0.020 | | variation 3 | 80% | 71.4% | 63.9% | 48.4% | 23.1% | 13.8 | 5 | 3.63 | 2.66 | 1.3 | 0.395 | | diff, % | 0.0671% | -0.64% | -1.35% | -1.81% | -4.07% | 9.56% | -11.1% | -10.5% | -9.72% | -7.46% | -7.46% | | pvalue | 0.78 | 0.030 | 0.000 | 0.000 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | 0.00 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video Fail | Interstitial Video Try Show -> Interstitial Video Fail, % | Interstitial Video Shown | Interstitial Video Try Show -> Interstitial Video Shown, % | Interstitial Video View | Interstitial Video Shown -> Interstitial Video View, % | Banner Upgrade View | Interstitial Video View -> Banner Upgrade View, % | Banner Purchase Click | Banner Upgrade View -> Banner Purchase Click, % | Purchase Process Finish | Banner Purchase Click -> Purchase Process Finish, % | members -> Purchase Process Finish, % | | control | 93855 | 1 | 0.00% | 1 | 100.00% | 0 | 0.00% | 0 | — | 1 | inf% | 0 | 0.00% | 0 | — | 0.00% | | variation 2 | 94432 | 71538 | 75.76% | 34498 | 48.22% | 52725 | 73.70% | 49746 | 94.35% | 70828 | 142.38% | 729 | 1.03% | 97 | 13.31% | 0.10% | | variation 3 | 86913 | 65036 | 74.83% | 32298 | 49.66% | 47037 | 72.32% | 45651 | 97.05% | 64310 | 140.87% | 463 | 0.72% | 73 | 15.77% | 0.08% |
+  [param expanded] true
+  [param title] Iteration #2 - #6428
+#6428  –
+Exposure event: admob_request
+
+## Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | | UGT_IOS | Design | 0 | 0 | 0 | 08635844-e361-1603-9a9b-04b99a995972
+complete
+No visible bugs were found throughout the experiment
+
+
+3888ccbf-2c3f-8ba9-7989-8b7b345a4871
+complete
+No external effects are visible | | Experiment | 8 | 194594 | 195124 | | Checks | 0593defd-a359-4eda-f9fa-918ee430b6d1
+complete
+duration of exp ≥ design | 8bf3d687-20fc-4cb0-bf60-e5b3c8d93475
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | 0 | 0 | 0 | d53876dd-1562-edd7-c237-0b08630d3f5d
+complete
+No visible bugs were found throughout the experiment
+
+
+7bb7d78f-b5ab-c7c5-ca76-4ae44c424624
+complete
+No external effects are visible | | Experiment | 8 | 116915 | 115783 | | Checks | 1d513726-6260-9fdc-e504-91ff6a1c535d
+complete
+duration of exp ≥ design | d210076e-a1a6-357e-bfec-672d8406cbe6
+complete
+A/B balance is maintained |
+
+## Decision
+Results
+[iOS / Total / Variation 2]
+Tab view per user: +14.24%, engagement up (more tabs viewed per user)
+Tab view 60s–180s, %: +0.46%–0.53%, higher short-duration view rates
+[Android / Total / Variation 2]
+ARPU: ≈+19%, monetization up
+Access CR, Charge CR, Trial->Charge, Trial subscriber->Charge: +12.0%, +16.9%, +25.5%, +23.6% (funnel conversions up)
+Retention 1d/7d/14d: -0.9% to -3.3% (retention down)
+Tab View metrics mixed: tab view per user +21.9% (engagement up) while 60s/120s/180s/600s rates fell by 0.65%–1.99%; 60s–120s per-user rates down 1.5%–2.0%
+[Android / Without interstitial accesses / Variation 2] Trial->Charge, Trial subscriber->Charge, Subscriber->Buyer, Subscription->Charge: +26.4%, +25.4%, +8.9%, +9.8% (conversion metrics up)
+Conclusion
+roll outed Android test variation
+Next steps
+Extend iOS test duration and compute total revenue impact: verify that ad/video interstitial revenue is fully captured in ARPU, compare eCPM and fill vs the standard interstitial, and re-check ARPU, cancels, and refunds with higher power.
+Cohort follow-up on purchasers: track 14d/1m cancellations and refunds by cohort post-exposure to ensure no delayed monetization or retention degradation before full rollout.
+
+## Forecast (per day)
+| 
+UGT_ANDROID
+| 
+| 
+UGT_IOS
+| |
+| Variations
+admob_request
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+admob_request
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 53808 | 537 | 278 | $7240 | 96406 | 1795 | 1076 | $22861 | | variation 2 | 53808 | 599 | 328 | $8620 | 96406 | 1847 | 1101 | $23470 | | diff | 0 | 62 | 50 | $1380 | 0 | 52 | 25 | $609 |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 194594 | 3210 | 3624 | 1635 | 1783 | 206 | 335 | 2138 | 2173 | $46145 | 318 | 95 | | variation 2 | 195124 | 3300 | 3740 | 1655 | 1862 | 223 | 352 | 2187 | 2229 | $47503 | 318 | 93 | | diff, % | 0.27% | 2.8% | 3.2% | 1.2% | 4.4% | 8.3% | 5.1% | 2.3% | 2.6% | 2.9% | 0% | -2.1% | | Without interstitial accesses | | control | 194594 | 3210 | 3624 | 1635 | 1783 | 206 | 335 | 2138 | 2173 | $46145 | 318 | 95 | | variation 2 | 195124 | 3107 | 3519 | 1598 | 1733 | 188 | 329 | 2073 | 2114 | $44917 | 305 | 89 | | diff, % | 0.27% | -3.2% | -2.9% | -2.3% | -2.8% | -8.7% | -1.8% | -3% | -2.7% | -2.7% | -4.1% | -6.3% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 194595 | 44478 | 111175 | 133737 | | variation 2 | 195124 | 44278 | 111289 | 133906 | | diff, % | 0.27% | -0.45% | 0.1% | 0.13% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 194595 | 157603 | 141456 | 126252 | 93896 | 42134 | | variation 2 | 195124 | 158876 | 142495 | 127206 | 94551 | 42410 | | diff, % | 0.27% | 0.81% | 0.73% | 0.76% | 0.7% | 0.66% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.237 | $21.2 | $21.6 | 1.65% | 1.1% | 49.2% | 18.8% | 14.6% | 4.37% | | variation 2 | $0.243 | $21.3 | $21.7 | 1.69% | 1.12% | 49.8% | 18.9% | 14.3% | 4.17% | | diff, % | 2.66% | 0.357% | 0.637% | 2.52% | 2.01% | 1.19% | 0.617% | -2.51% | -4.56% | | pvalue | 0.43 | 0.82 | 0.68 | 0.31 | 0.51 | 0.61 | 0.93 | 0.73 | 0.74 | | cumulatives | | | | | | | | | | | Without interstitial accesses | | control | $0.237 | $21.2 | $21.6 | 1.65% | 1.1% | 49.2% | 18.8% | 14.6% | 4.37% | | variation 2 | $0.23 | $21.2 | $21.7 | 1.59% | 1.06% | 49.2% | 19% | 14.4% | 4.21% | | diff, % | -2.93% | 0.0555% | 0.391% | -3.47% | -3.3% | 0.0959% | 1.04% | -1.41% | -3.7% | | pvalue | 0.38 | 0.97 | 0.80 | 0.16 | 0.27 | 0.97 | 0.88 | 0.85 | 0.79 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 22.9% | 57.1% | 68.7% | | variation 2 | 22.7% | 57% | 68.6% | | diff, % | -0.72% | -0.169% | -0.145% | | pvalue | 0.22 | 0.54 | 0.50 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 81% | 72.7% | 64.9% | 48.3% | 21.7% | 10.9 | 4.71 | 3.34 | 2.41 | 1.16 | 0.344 | | variation 2 | 81.4% | 73% | 65.2% | 48.5% | 21.7% | 12.4 | 4.72 | 3.35 | 2.41 | 1.17 | 0.343 | | diff, % | 0.534% | 0.461% | 0.482% | 0.425% | 0.382% | 14.2% | 0.142% | 0.191% | 0.188% | 0.66% | -0.258% | | pvalue | 0.001 | 0.019 | 0.040 | 0.20 | 0.53 | 0.00 | 0.79 | 0.72 | 0.73 | 0.26 | 0.75 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video View | Interstitial Video Try Show -> Interstitial Video View, % | Banner Upgrade View / AD Interstitial | Interstitial Video View -> Banner Upgrade View / AD Interstitial, % | Purchase Process Finish / AD Interstitial | Banner Upgrade View / AD Interstitial -> Purchase Process Finish / AD Interstitial, % | members -> Purchase Process Finish / AD Interstitial, % | | control | 194595 | 1 | 0.00% | 1 | 100.00% | 1 | 100.00% | 0 | 0.00% | 0.00% | | variation 2 | 195124 | 169724 | 86.98% | 148523 | 87.51% | 161278 | 108.59% | 221 | 0.14% | 0.11% |
+Tour Funnel
+| variation | members | Tour Start | members -> Tour Start, % | Tour General Goals View | Tour Start -> Tour General Goals View, % | Banner Tour View | Tour General Goals View -> Banner Tour View, % | Purchase Process Finish / Tour Install | Banner Tour View -> Purchase Process Finish / Tour Install, % | Tour End | members -> Tour End, % | | control | 194595 | 28617 | 14.71% | 28499 | 99.59% | 28433 | 99.77% | 203 | 0.71% | 28338 | 14.56% | | variation 2 | 195124 | 28704 | 14.71% | 28572 | 99.54% | 28501 | 99.75% | 217 | 0.76% | 28432 | 14.57% |
+  [param title] UGT_ANDROID
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 116915 | 1114 | 1167 | 458 | 693 | 16 | 133 | 598 | 606 | $15733 | 98 | 14 | | variation 2 | 115783 | 1236 | 1291 | 507 | 764 | 20 | 184 | 692 | 707 | $18548 | 106 | 18 | | diff, % | -0.97% | 11% | 11% | 11% | 10% | 25% | 38% | 16% | 17% | 18% | 8.2% | 29% | | Without interstitial accesses | | control | 116915 | 1114 | 1167 | 458 | 693 | 16 | 133 | 598 | 606 | $15733 | 98 | 14 | | variation 2 | 115783 | 1097 | 1149 | 482 | 647 | 20 | 157 | 641 | 655 | $17013 | 100 | 18 | | diff, % | -0.97% | -1.5% | -1.5% | 5.2% | -6.6% | 25% | 18% | 7.2% | 8.1% | 8.1% | 2% | 29% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 116915 | 26284 | 66032 | 79038 | | variation 2 | 115783 | 25174 | 64435 | 77554 | | diff, % | -0.97% | -4.2% | -2.4% | -1.9% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 116915 | 89880 | 80325 | 71819 | 53854 | 25490 | | variation 2 | 115783 | 88433 | 78527 | 70344 | 52873 | 24740 | | diff, % | -0.97% | -1.6% | -2.2% | -2.1% | -1.8% | -2.9% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.135 | $26 | $26.3 | 0.953% | 0.511% | 59.4% | 19.2% | 16.2% | 2.31% | | variation 2 | $0.16 | $26.2 | $26.8 | 1.07% | 0.598% | 59.2% | 24.1% | 15% | 2.55% | | diff, % | 19% | 1.05% | 1.88% | 12% | 16.9% | -0.344% | 25.5% | -7.29% | 10.2% | | pvalue | 0.004 | 0.70 | 0.49 | 0.006 | 0.005 | 0.92 | 0.023 | 0.56 | 0.78 | | cumulatives | | | | | | | | | | | Without interstitial accesses | | control | $0.135 | $26 | $26.3 | 0.953% | 0.511% | 59.4% | 19.2% | 16.2% | 2.31% | | variation 2 | $0.147 | $26 | $26.5 | 0.947% | 0.554% | 56.3% | 24.3% | 15.3% | 2.75% | | diff, % | 9.2% | 0.0496% | 0.885% | -0.563% | 8.24% | -5.18% | 26.4% | -5.59% | 19% | | pvalue | 0.16 | 0.99 | 0.75 | 0.89 | 0.16 | 0.13 | 0.024 | 0.66 | 0.62 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 22.5% | 56.5% | 67.6% | | variation 2 | 21.7% | 55.7% | 67% | | diff, % | -3.29% | -1.46% | -0.918% | | pvalue | 0.00 | 0.00 | 0.001 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 76.9% | 68.7% | 61.4% | 46.1% | 21.8% | 11 | 4.73 | 3.42 | 2.49 | 1.19 | 0.362 | | variation 2 | 76.4% | 67.8% | 60.8% | 45.7% | 21.4% | 13.4 | 4.64 | 3.37 | 2.46 | 1.19 | 0.359 | | diff, % | -0.648% | -1.28% | -1.1% | -0.862% | -1.99% | 21.9% | -1.96% | -1.49% | -0.944% | -0.19% | -0.758% | | pvalue | 0.005 | 0.00 | 0.001 | 0.05 | 0.011 | 0.00 | 0.007 | 0.044 | 0.21 | 0.81 | 0.48 | | cumulatives | | | | | | | | | | | |
+Interstitials Funnel
+| variation | members | Interstitial Video Try Show | members -> Interstitial Video Try Show, % | Interstitial Video View | Interstitial Video Try Show -> Interstitial Video View, % | Banner Upgrade View / AD Interstitial | Interstitial Video View -> Banner Upgrade View / AD Interstitial, % | Purchase Process Finish / AD Interstitial | Banner Upgrade View / AD Interstitial -> Purchase Process Finish / AD Interstitial, % | members -> Purchase Process Finish / AD Interstitial, % | | control | 116915 | 0 | 0.00% | 0 | — | 0 | — | 0 | — | 0.00% | | variation 2 | 115783 | 96545 | 83.38% | 81151 | 84.06% | 82974 | 102.25% | 121 | 0.15% | 0.10% |
+Tour Funnel
+| variation | members | Tour Start | members -> Tour Start, % | Tour General Goals View | Tour Start -> Tour General Goals View, % | Banner Tour View | Tour General Goals View -> Banner Tour View, % | Purchase Process Finish / Tour Install | Banner Tour View -> Purchase Process Finish / Tour Install, % | Tour End | members -> Tour End, % | | control | 116915 | 21174 | 18.11% | 21155 | 99.91% | 21109 | 99.78% | 16 | 0.08% | 20968 | 17.93% | | variation 2 | 115783 | 20839 | 18.00% | 20812 | 99.87% | 20776 | 99.83% | 20 | 0.10% | 20446 | 17.66% |
+
+## Post-rollout analysis (optional)
+[Describe how metrics looks like after rollout, if necessary

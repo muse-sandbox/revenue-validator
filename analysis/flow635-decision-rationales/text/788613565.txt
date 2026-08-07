@@ -1,0 +1,356 @@
+| Link to OKR | |
+| Status
+  [param server] Jira
+  [param columnIds] issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution
+  [param columns] key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+  [param key] UMN-11540
+| | | DRI / Project owner | |
+Team
+| | |
+
+# Pitch
+Reach - Reach of this initiative directly depends on the specific personalization signal(s) we choose to use in a given iteration. Different signals (e.g. repeated song, instrument/age group, practice frequency) will naturally cover different shares of the UG App audience on iOS and Android.
+Impact - We expect this initiative to primarily impact revenue / ARPU, not DAU or new traffic, because we are changing the interstitial monetization layer and its relevance, while traffic volume and acquisition stay the same.
+Confidence - Why we believe in this hypothesis:
+Past experiments / internal fake doors
+The UG winback interstitial experiments for former subscribers showed that behavior‑based, locally targeted interstitials can drive around +42–43% ARPU vs control and up to 10–20× higher conversion than a generic AD14Free interstitial, which strongly suggests that contextual, segmented messaging converts much better than one‑size‑fits‑all upsells.
+Internal analysis of local interstitials indicates that 60–90% of conversions happen within the first 2–6 impressions, after which effectiveness quickly drops, which means that simply repeating a generic interstitial is much less effective than adapting it to user behavior and context
+Competitor results / other teams’ experience
+RevenueCat’s analysis of contextual paywalls shows that paywalls triggered by specific in‑app actions and moments consistently outperform static generic paywalls, because they better align with user intent and motivation at the time of display.
+Nami and similar vendors report that behavior‑driven personalized paywalls are now a standard lever for increasing subscription conversion and LTV in mobile apps, supporting our direction to move from generic to personalized interstitials.
+Optimizely defines app personalization as adapting content and messaging to user behavior and context and notes that generic, non‑segmented experiences underperform compared to behavior‑based personalization in engagement and conversion.
+Effort - Overall effort is moderate, because we reuse the existing interstitial and offer infrastructure and mainly add a new personalization layer plus experiment setup.
+
+## Context & Idea
+Goal: Increase conversion to Pro+ by introducing personalized interstitials that adapt message and value proposition to each user’s real behavior (songs, artists, level, time of day), instead of using one generic interstitial for everyone.
+Foundation: Today most users see the same generic interstitial, weakly tied to their actual use cases, so we miss high‑intent moments; we want to move to a system of behavioral segments and contextual interstitials (by song, artist, level, time of day) so the message feels “about me” and appears at the right moment, in line with best practices in app personalization and contextual paywalls.
+
+### Questions & Answers
+The experiment's audience can be divided into three segments. What is the ratio of these segments?
+Free users
+Paying users who have already used the 2-week trial
+Paying users who have not yet used the 2-week trial
+
+## Confidence research
+UG App: winback – add interstitials for former subscribers
+Behavior‑based, locally targeted interstitials for former subscribers drove about +42–43% ARPU vs control and up to 10–20× higher conversion than a generic AD 14Free interstitial, showing that segments defined by user history/behavior convert much better than broad audiences.
+2026-04-13 – UG App: reduction in advertising volume
+Analysis of local interstitials shows that 60–90% of conversions happen within the first 2–6 impressions, after which effectiveness drops sharply, indicating we should vary offer and messaging based on user behavior instead of repeatedly showing the same generic screen.
+[DOCS] Monetization layers UG – Local interstitials
+Documents that UG already uses locally targeted interstitials as a core monetization layer and that performance depends heavily on matching placement, frequency, and audience definition to user context.
+Contextual Paywall Targeting: How Context Wins Conversion (RevenueCat)
+Shows that paywalls triggered by specific in‑app actions and contexts consistently outperform static, one‑size‑fits‑all screens because they better align with user intent and the moment of highest motivation.
+How Personalizing Your Paywall Can Boost Conversions (Nami)
+Reports that behavior‑driven, personalized paywalls (different messages per usage segment) are now a standard lever to increase subscription conversion and LTV in mobile apps.
+What is app personalization? (Optimizely)
+Defines app personalization as adapting content and messaging to user behavior and context, and highlights that generic, non‑segmented experiences underperform compared to behavior‑based personalization in engagement and conversion.
+
+## Reach & Impact
+[macro:info]
+Reach
+Review current analytics to understand how the audience behaves today and what the current reach is.
+Is the audience size sufficient for any changes to significantly affect metrics?
+How can we test the hypothesis on the largest possible audience segment?
+Impact
+Select the target metrics. What exactly will we influence in the experiment?
+What are the current values of this metric for the target audience? Is there enough room for meaningful change? (e.g., if the conversion rate is already 95%, increasing it to 99% may be unrealistic)
+A/B model = forecast: predict the expected changes, explain why we forecast these specific results, and provide the rationale for assumptions.
+Example forecasts:
+Increase ARPU by 5% by expanding offer reach by 5% while maintaining current conversion.
+Increase ret1d by 10% by sending a reminder push to 20% of new installs (with a specific attribute), expecting a 15% CTR.
+| Metrics | A | B | diff | | | Registration splash view | 1533 | 1533 | | Reach | | Accesses | 56 | 67 | 11 | |
+| splash → access, %
+| 3.65%
+| 4.27%
+| 20%
+diff assumption (proxy metric)
++ these assumptions will be tested in the experiment
+| | | Charges | 31 | 37 | 6 | | | Revenue, $ | $2121 | $2545 | $424 | Impact | | ARPPU, $ | $68 | $68 | $0 | | | ARPU, $ | $1.38 | $1.66 | $0.28 | Goal metric |
+Results
+Absolute values for reach calculated (can be translated into a reach score of 1–10)
+Target metric selected
+Absolute impact calculated
+Estimated additional revenue from changes
+Estimated additional traffic from changes
+Decision
+Based on reach and impact analysis, decide whether to proceed with this hypothesis.
+Delete this info block after you fill in the page.
+[/macro:info]
+code
+| Platform | UGT_IOS | | UGT_ANDROID | | user type | free | ex subscriber | ex long trial subscriber | free | ex subscriber | ex long trial subscriber | | Metrics | A | B | diff | A | B | diff | A | B | diff | A | B | diff | A | B | diff | A | B | diff | | users without subscription who opened tab for the same song more than 3 times in a 2 weeks window | 33,378 | 33,378 | | 6,232 | 6,232 | | 279 | 279 | | 21,216 | 21,216 | | 2,303 | 2,303 | | 167 | 167 | | | subscriptions from interstitial | 28 | | | 46 | | | 4 | | | 17 | | | 33 | | | 4 | | | | members → access, % | 0.084% | | | 0.74% | | | 1.43% | | | 0.080% | | | 1.43% | | | 2.40% | | | | charges | 22 | | | 13 | | | 0.4 | | | 14 | | | 8 | | | 0.7 | | | | revenue, $ | $554 | | | $345 | | | $11 | | | $440 | | | $232 | | | $19 | | | | ARPPU, $ | $25 | | | $27 | | | $28 | | | $31 | | | $29 | | | $27 | | | | ARPU, $ | $0.017 | | | $0.055 | | | $0.10 | | | $0.021 | | | $0.10 | | | $0.16 | | | | Platform | UGT_IOS | | UGT_ANDROID | | user type | free | ex subscriber | ex long trial subscriber | free | ex subscriber | ex long trial subscriber | | Metrics | A | B | diff | A | B | diff | A | B | diff | A | B | diff | A | B | diff | A | B | diff | | users without subscription who opened tab for the same song 2+ times in a 2 weeks window | 48,260 | 48,260 | | 9,748 | 9,748 | | 404 | 404 | | 29,923 | 29,923 | | 3,442 | 3,442 | | 228 | 228 | | | subscriptions from interstitial | 42 | | | 69 | | | 8 | | | 24 | | | 43 | | | 5 | | | | members → access, % | 0.087% | | | 0.71% | | | 1.98% | | | 0.080% | | | 1.25% | | | 2.19% | | | | charges | 33 | | | 22 | | | 0.8 | | | 18 | | | 11 | | | 1 | | | | revenue, $ | $839 | | | $574 | | | $21 | | | $580 | | | $307 | | | $29 | | | | ARPPU, $ | $25 | | | $26 | | | $26 | | | $32 | | | $28 | | | $29 | | | | ARPU, $ | $0.017 | | | $0.059 | | | $0.052 | | | $0.019 | | | $0.089 | | | 0.13% | | |
+
+## Hypothesis
+If we replace the current generic interstitial with a personalized interstitial that adapts its message and value framing to each user’s context, while keeping the same commercial offers and eligibility rules as today, we expect an increase in interstitial monetization efficiency (ARPU14d and conversion to Pro+) versus control, because personalized messaging should perform better than a one‑size‑fits‑all screen at high‑intent moments.
+
+## Experiment design
+  [param title] Experiment design
+[macro:info]
+Example of usage:
+| Platform | iOS | Android |
+Metrics
+| | Goal |
+Trial → Charge, %
+| | | Design / each metric | | | | Baseline | 30% | 24% | | Lift, % | 9% | 20% | | MDE | 0.0605 | |
+| Power
+0.8
+| |
+| Alpha
+0.05
+| | | Sample size (per variation) | 13530 | 3990 | | Duration (days) | 10 | 6 | | Design summary | | | | Days | 10 |
+Delete this info block after you fill in the page.
+[/macro:info]
+| Platform | | | |
+Metrics
+| 
+| Goal
+| Guardrail
+[add more metrics
+or delete this column]
+| | | [Metric Name and description if needed] | [Metric Name and description if needed] | | | Design / each metric | [link to calculation] | | Baseline | [value %] | [value %] | | | MDE | [value %] | [value %] | | | Power | [value %] | [value %] | | | Alpha | [value] | [value] | | | Sample size (per variation) | [value] for each segment (if we split the exp by segments) | [value] for each segment (if we split the exp by segments) | | | Duration (days) | [value] | [value] | | | Design summary | | | Sample | [value] | | Days | [value] |
+
+# Description of the Solution & Mockups
+
+## Main idea
+We plan to introduce a system of behavior-based personalized interstitials in the UG App, where the message and offer are selected not as a single generic upsell, but according to user context, product stage, and monetization eligibility, since contextual targeting and behavioral segmentation are widely used to improve subscription conversion in mobile apps.
+Potential signals for this system include:
+behavior signals, such as repeatedly opening the same song, frequently viewing beginner tabs, strong preference for a specific artist, or recurring late-night sessions;
+user-level signals, such as beginner vs more advanced usage patterns;
+offer eligibility signals, such as free user, former paid user, and whether a user has already consumed a specific reactivation offer.
+In subsequent iterations, we will test different signals for this approach
+
+## Solution
+#7454
+We will trigger a new personalized interstitial when the user opens a song and becomes eligible for an interstitial impression in that placement.
+The interstitial will use the currently opened song as the contextual anchor of the message, so the screen feels tied to the user’s immediate intent and not like a generic monetization surface.
+In this experiment, we are testing personalization of the interstitial message and framing, not a new offer model, so commercial logic will remain the same as in the current interstitial setup.
+The experiment will work for both free and ex-paid users, but each segment will receive the product and copy that match its existing monetization eligibility.
+Free users will see the same product configuration that is currently used in the standard interstitial flow for free users.
+Former subscribers who are eligible for the extra 2-week trial will see the winback version with that same 2-week trial.
+The new interstitial takes precedence over the others
+The new interstitial will appear only once
+Core message:
+Free segment:
+Song: "Play %SONG_NAME% like %SONG_AUTHOR%"
+Message: "Learn it closer to the original with official tabs and tools."
+Badge: "80% off Pro+"
+Ex-paid:
+Song: "Play %SONG_NAME% like %SONG_AUTHOR%"
+Message: "Learn it closer to the original with official tabs and tools."
+Badge: "Welcome-back gift: +14 days Pro+"
+
+## Mockups & Texts
+FIGMA
+| Screen
+| А (free segment)
+| A (ex-paid)
+В (free and ex-paid who
+used 2 weeks trial)
+| | В (ex-paid) | | Tab screen | | | | | | usual Interstitial | | | | | | local interstitial | | | | | | Paywall after ad | | | | |
+
+## Analytics
+first: replace current AD Interstitial  source on Android with AD Video Interstitial
+| | Event | Parameters | Description |
+| 1
+| App Experiment Start
+| item_id – %experiment id%
+send in all variations
+send when user is eligible for new interstitial splash
+| |
+| 2
+Splash View
+Splash Close
+| 
+| value – 'AD Song Interstitial' / 'AD Winback Song Interstitial'
+existing events
+send in both test variations with new interstitial
+set value = 'AD Song Interstitial' for free users and 'AD Winback Song Interstitial' for ex subscribers
+| |
+| 3
+Banner Upgrade View
+Banner Purchase Click
+Purchase Process Start
+Purchase Process Started
+Purchase Process Finish
+Purchase Process Canceled
+Purchase Process Failed
+| 
+| value – 'AD Song Interstitial' / 'AD Winback Song Interstitial'
+existing events
+send in both test variations with new interstitial
+set value = 'AD Song Interstitial' for free users and 'AD Winback Song Interstitial' for ex subscribers
+important:
+check that there are correct products in params
+| | | #7454 config | | | segment name | conditions | | Total | {'pro_rights': 'All'} | | Interstitials | {'pro_rights': 'All', 'custom_sub_having': "funnel_source like '%Interstitial%'"} | | Free | {'pro_rights': 'Free'} |
+
+# Execution
+  [param server] Jira
+  [param columnIds] issuetype,summary,assignee,customfield_10312,duedate,status
+  [param columns] type,summary,assignee,Start date,due,status
+  [param maximumIssues] 20
+  [param jqlQuery] parent=UMN-11540  order by key
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+
+# Results
+  [param expanded] true
+  [param title] Iteration #1 - #7454
+#7454  –
+Exposure event: App Experiment Start
+Decision
+[macro:status]
+  [param colour] Red
+  [param title] Fail
+[/macro:status]
+do not roll out iteration #1 as-is. The result is neutral / inconclusive (no significant lift), so iterate before any further investment.
+No metric is statistically significant (all p ≥ 0.32); underpowered on the goal metric despite ~80k members/arm — interstitial-attributed conversions are only ~70–165 per arm.
+Net conversion is flat: combined per family ≈ control (free 0.155% vs 0.153%; winback 1.59% vs 1.66%).
+At impression #1 (~50–60% of all interstitial conversions) the personalized splash converts same-or-worse (free −6%, winback −25%): it wins curiosity but loses intent — paywall→click roughly halves (7.25% → 3.90%).
+The one apparent win (winback paywall +4.6×) was an attribution artifact, not real engagement.
+No guardrail benefit either; ARPU / churn / refund moves are all within noise.
+
+## Next steps
+Align the paywall to the personalized hook — change the paywall / offer, not just the interstitial copy. The biggest leak is paywall→click; an unchanged generic paywall likely creates an expectation mismatch after the personalized promise.
+Extend the personalization dose beyond the first impression (it currently reverts to generic after #1, where ~half of conversions live) — test personalized framing on repeat / high-intent impressions.
+The next iteration should test offer-level personalization.
+One possible direction is to create an additional interstitial for users who stay free for more than a week and offer them a stronger deal that can move them into trial or paid.
+Another direction is to target users who previously had a paid subscription, not just a trial, and test a discount instead of another free trial, similar to the current winback logic.
+We should continue looking for meaningful user groups and match each group with the offer that is most relevant to their situation.
+The main direction is to personalize the offer, not only the message around the offer.
+
+## Forecast (per day)
+| 
+UGT_IOS
+| | | UGT_ANDROID |
+| Variations
+App Experiment Start
+| 
+Accesses
+| 
+Interstitial accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+App Experiment Start
+| 
+Accesses
+| 
+Interstitial accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 63109 | 2383 | 464 | 1428 | $25839 | 32415 | 334 | 84 | 174 | $3703 | | variation 2 | 63109 | 2172 | 283 | 1276 | $22386 | 32415 | 337 | 80 | 176 | $3788 | | diff | | -211 | -181 | -152 | -$3453 | | 3 | -4 | 2 | $85 |
+  [param title] Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | | UGT_IOS | Design | was not calculated | 9
+3b71a646-b4bc-43d5-bd39-d145295b7e25
+complete
+No visible bugs were found throughout the experiment
+
+
+10
+007fc677-9816-4859-afe3-494a13d5133d
+complete
+No external effects are visible | | Experiment | 10 | 14674 | 14293 | | Checks | 11
+70bbfc5d-74dd-4015-87ad-5cc295699152
+incomplete
+duration of exp ≥ design | 12
+532fc974-146b-463c-9740-37169c955044
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | was not calculated | 13
+44f31d75-2dd6-4d85-a23e-8664672b42bc
+complete
+No visible bugs were found throughout the experiment
+
+
+14
+179365c8-70ab-44f3-9d0e-af7e695c7ca7
+complete
+No external effects are visible | | Experiment | 10 | 81189 | 80724 | | Checks | 15
+ea706e12-65ee-4d70-af61-721f80cfd134
+incomplete
+duration of exp ≥ design | 16
+aca17bf3-8b79-4452-b68f-6c4e31eca2d6
+complete
+A/B balance is maintained |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.409 | $18.1 | $18.4 | 3.62% | 2.22% | 50.9% | 21.3% | 25.6% | 4.52% | | variation 2 | $0.355 | $17.5 | $17.8 | 3.29% | 1.99% | 51.8% | 20.8% | 30.8% | 5.54% | | diff, % | -13.4% | -3.05% | -3.47% | -9.13% | -10.2% | 1.82% | -2.31% | 20.3% | 22.5% | | pvalue | 0.11 | 0.48 | 0.42 | 0.12 | 0.18 | 0.76 | 0.89 | 0.15 | 0.56 | | cumulatives | | | | | | | | | | | Interstitials | | control | $0.0713 | $14.5 | $14.5 | 0.75% | 0.491% | 45.4% | 24.5% | 25% | 6.94% | | variation 2 | $0.0432 | $16.3 | $16.3 | 0.455% | 0.266% | 54.7% | 22.9% | 36.8% | 0% | | diff, % | -39.4% | 11.9% | 11.9% | -39.3% | -45.8% | 20.5% | -6.67% | 47.4% | -100% | | pvalue | 0.023 | 0.29 | 0.29 | 0.001 | 0.002 | 0.24 | 0.86 | 0.20 | 0.020 | | cumulatives | | | | | | | | | | | Free | | control | $0.409 | $18.1 | $18.4 | 3.62% | 2.22% | 50.9% | 21.3% | 25.6% | 4.52% | | variation 2 | $0.355 | $17.5 | $17.8 | 3.29% | 1.99% | 51.8% | 20.8% | 30.8% | 5.54% | | diff, % | -13.4% | -3.05% | -3.47% | -9.13% | -10.2% | 1.82% | -2.31% | 20.3% | 22.5% | | pvalue | 0.11 | 0.48 | 0.42 | 0.12 | 0.18 | 0.76 | 0.89 | 0.15 | 0.56 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 21.2% | 48.5% | 57.6% | | variation 2 | 21.2% | 48.9% | 58.2% | | diff, % | -0.0135% | 0.805% | 1.05% | | pvalue | 1.00 | 0.51 | 0.30 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 86.7% | 77.5% | 70.2% | 55.2% | 28.3% | 20.6 | 6.95 | 4.86 | 3.51 | 1.76 | 0.565 | | variation 2 | 87.1% | 77.6% | 69.9% | 55% | 28.4% | 20.3 | 6.89 | 4.83 | 3.49 | 1.77 | 0.561 | | diff, % | 0.391% | 0.137% | -0.472% | -0.513% | 0.296% | -1.63% | -0.941% | -0.621% | -0.58% | 0.0775% | -0.726% | | pvalue | 0.39 | 0.83 | 0.54 | 0.63 | 0.87 | 0.39 | 0.65 | 0.77 | 0.79 | 0.97 | 0.80 | | cumulatives | | | | | | | | | | | |
+  [param title] Stats
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 14674 | 531 | 554 | 239 | 282 | 33 | 60 | 326 | 332 | $6008 | 85 | 15 | | variation 2 | 14293 | 470 | 492 | 204 | 255 | 33 | 53 | 285 | 289 | $5070 | 89 | 16 | | diff, % | -2.6% | -11% | -11% | -15% | -9.6% | 0% | -12% | -13% | -13% | -16% | 4.7% | 6.7% | | Interstitials | | control | 14674 | 110 | 108 | 59 | 49 | 0 | 12 | 72 | 72 | $1045 | 18 | 5 | | variation 2 | 14293 | 65 | 64 | 29 | 35 | 0 | 8 | 38 | 38 | $617 | 14 | 0 | | diff, % | -2.6% | -41% | -41% | -51% | -29% | | -33% | -47% | -47% | -41% | -22% | -100% | | Free | | control | 14674 | 531 | 554 | 239 | 282 | 33 | 60 | 326 | 332 | $6008 | 85 | 15 | | variation 2 | 14293 | 470 | 492 | 204 | 255 | 33 | 53 | 285 | 289 | $5070 | 89 | 16 | | diff, % | -2.6% | -11% | -11% | -15% | -9.6% | 0% | -12% | -13% | -13% | -16% | 4.7% | 6.7% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 14674 | 3104 | 7119 | 8453 | | variation 2 | 14293 | 3023 | 6990 | 8320 | | diff, % | -2.6% | -2.6% | -1.8% | -1.6% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 14674 | 12727 | 11367 | 10306 | 8106 | 4160 | | variation 2 | 14293 | 12445 | 11087 | 9991 | 7855 | 4064 | | diff, % | -2.6% | -2.2% | -2.5% | -3.1% | -3.1% | -2.3% |
+  [param title] UGT_ANDROID
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.114 | $21.2 | $21.8 | 0.987% | 0.525% | 55.5% | 14% | 14.9% | 1.83% | | variation 2 | $0.117 | $21.5 | $22 | 0.985% | 0.53% | 56.5% | 15.6% | 16.2% | 2.28% | | diff, % | 2.32% | 1.5% | 1.25% | -0.177% | 1.05% | 1.88% | 11.2% | 8.98% | 24.7% | | pvalue | 0.77 | 0.70 | 0.74 | 0.97 | 0.88 | 0.67 | 0.50 | 0.59 | 0.64 | | cumulatives | | | | | | | | | | | Interstitials | | control | $0.0278 | $18.1 | $18.1 | 0.259% | 0.154% | 51.4% | 21.3% | 14.4% | 2.4% | | variation 2 | $0.0284 | $18.8 | $18.8 | 0.248% | 0.151% | 47% | 17% | 13.1% | 0.82% | | diff, % | 1.92% | 3.83% | 3.83% | -4.21% | -1.84% | -8.61% | -20.1% | -8.93% | -65.8% | | pvalue | 0.89 | 0.56 | 0.56 | 0.66 | 0.88 | 0.37 | 0.44 | 0.77 | 0.32 | | cumulatives | | | | | | | | | | | Free | | control | $0.114 | $21.2 | $21.8 | 0.987% | 0.525% | 55.5% | 14% | 14.9% | 1.83% | | variation 2 | $0.117 | $21.5 | $22 | 0.985% | 0.53% | 56.5% | 15.6% | 16.2% | 2.28% | | diff, % | 2.31% | 1.5% | 1.25% | -0.18% | 1.05% | 1.88% | 11.2% | 8.98% | 24.7% | | pvalue | 0.77 | 0.70 | 0.74 | 0.97 | 0.88 | 0.67 | 0.50 | 0.59 | 0.64 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 22.6% | 57.3% | 68.6% | | variation 2 | 22.9% | 57.5% | 69% | | diff, % | 1.69% | 0.362% | 0.665% | | pvalue | 0.07 | 0.40 | 0.048 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 86.1% | 76.8% | 69.2% | 52.1% | 24.2% | 17.9 | 6.31 | 4.51 | 3.23 | 1.48 | 0.42 | | variation 2 | 86.1% | 77% | 69.4% | 52% | 24.3% | 18.1 | 6.41 | 4.56 | 3.26 | 1.49 | 0.428 | | diff, % | 0.0132% | 0.231% | 0.306% | -0.185% | 0.305% | 1.36% | 1.58% | 1.08% | 1.05% | 1.09% | 1.87% | | pvalue | 0.95 | 0.40 | 0.36 | 0.70 | 0.73 | 0.08 | 0.06 | 0.21 | 0.23 | 0.24 | 0.14 | | cumulatives | | | | | | | | | | | |
+  [param title] Stats
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 81189 | 801 | 836 | 366 | 464 | 6 | 65 | 426 | 437 | $9274 | 65 | 8 | | variation 2 | 80724 | 795 | 840 | 354 | 475 | 11 | 74 | 428 | 438 | $9434 | 71 | 10 | | diff, % | -0.57% | -0.75% | 0.48% | -3.3% | 2.4% | 83% | 14% | 0.47% | 0.23% | 1.7% | 9.2% | 25% | | Interstitials | | control | 81189 | 210 | 210 | 99 | 108 | 3 | 23 | 125 | 125 | $2260 | 18 | 3 | | variation 2 | 80724 | 200 | 200 | 101 | 94 | 5 | 16 | 122 | 122 | $2290 | 16 | 1 | | diff, % | -0.57% | -4.8% | -4.8% | 2% | -13% | 67% | -30% | -2.4% | -2.4% | 1.3% | -11% | -67% | | Free | | control | 81187 | 801 | 836 | 366 | 464 | 6 | 65 | 426 | 437 | $9274 | 65 | 8 | | variation 2 | 80724 | 795 | 840 | 354 | 475 | 11 | 74 | 428 | 438 | $9434 | 71 | 10 | | diff, % | -0.57% | -0.75% | 0.48% | -3.3% | 2.4% | 83% | 14% | 0.47% | 0.23% | 1.7% | 9.2% | 25% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 81189 | 18314 | 46507 | 55677 | | variation 2 | 80724 | 18516 | 46408 | 55726 | | diff, % | -0.57% | 1.1% | -0.21% | 0.088% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 81189 | 69866 | 62365 | 56150 | 42287 | 19650 | | variation 2 | 80724 | 69475 | 62151 | 55999 | 41967 | 19597 | | diff, % | -0.57% | -0.56% | -0.34% | -0.27% | -0.76% | -0.27% |
+
+## Insights
+Behavioral / funnel deep-dive on top of the standard result tables. Platform: Android only (iOS is excluded — see below). Control = variation 1 (generic interstitial); Test = variation 2 (personalized "song" interstitial). Conversion figures here are event-based (Purchase Process Finish), used as a behavioral signal, not net revenue.
+The personalized splash did not increase purchase intent. It brought slightly more users to the paywall, but the paywall-to-click conversion dropped almost twice in the free flow: from 7.25% to 3.90%.
+This suggests that the personalized screen created curiosity, but the generic paywall after it did not continue the personalized promise. Users reached the payment screen, but were less likely to click the purchase button.
+The biggest leak is on the paywall. The splash was more contextual, but the offer and paywall experience stayed generic. As a result, the personalization stopped before the actual purchase decision.
+This experiment also suggests that personalization is more likely to work when it changes the offer itself, not only the wrapper around the offer. Previous examples like winback interstitials and discount offers for young users are better examples of meaningful personalization, because the offer matches the user segment.
+
+### Audience & exposure reality
+App Experiment Start fires only when a user becomes eligible for an interstitial, which happens only for free / ex-paid users — Pro users never enter. The three configured segments are therefore essentially the same set: Total ≡ Interstitials ≡ Free (v1: 81,189 / 81,189 / 81,187), and Total and Free are identical to the cent in every metric. Group balance is clean (Δ 0.57%).
+iOS effectively never ran: real volume exists only for 2026-05-18…05-20 (~14.3k of 14.7k members), then 1–3 users/day. No iOS reading is possible.
+Cohort split (correct pro right = last digit of rights): pure free rights%10=0 ≈ 72.5k/arm; ex-paid rights%10 ∈ {4,5} ≈ 8.3k/arm (~10% of the audience).
+
+### How the treatment was actually delivered
+The personalized interstitial shows once, on the first eligible song-open, then the user reverts to the default AD 14Free. So in Test each family has two sources (personalized first, default afterwards), exactly like Control already has within the free flow. Splash value by impression position (Test):
+| Impression | What the Test variation shows | | #1 | ~74% personalized (AD Song 55.2k + AD Winback Song 4.7k of 80.7k), ~26% default | | #2+ | almost entirely default AD 14Free (#2: 52.2k default vs 5.8k song) |
+
+### Conversion by impression number (numbered within each interstitial family)
+Impressions are counted within each family (free = AD 14Free + AD Song; winback = AD Winback + AD Winback Song), so a default AD 14Free shown right after the personalized AD Song counts as the family's 2nd impression, not a fresh #1. Conversion is attributed to the impression whose time-window contains the purchase (window function over datetime_server).
+Free family (AD 14Free + AD Song):
+| Impression # | Control conv. rate | Test conv. rate | Share of conv. (ctrl / test) | | #1 | 0.077% | 0.072% | 50% / 47% | | #2 | 0.036% | 0.042% | 18% / 21% | | #3 | 0.018% | 0.016% | 8% / 7% | | #4 | 0.014% | 0.032% | 5% / 12% | | #5+ | 0.006% | 0.005% | 18% / 14% |
+Winback family (AD Winback + AD Winback Song):
+| Impression # | Control conv. rate | Test conv. rate | Share of conv. (ctrl / test) | | #1 | 0.996% | 0.749% | 60% / 47% | | #2 | 0.400% | 0.360% | 18% / 17% | | #3 | 0.149% | 0.149% | 5% / 6% | | #4 | 0.212% | 0.119% | 6% / 4% | | #5+ | 0.069% | 0.167% | 11% / 27% |
+→ In both families conversion is heavily front-loaded: impression #1 alone holds ~50% (free) / ~60% (winback) of all conversions, and the personalized splash sits in exactly that slot. Free: at #1 the personalized splash is essentially flat vs the generic (0.077% → 0.072%, −6%); later impressions are comparable. Winback: at #1 it converts ~25% worse (0.996% → 0.749%), but Test recovers on later impressions (#5+ 0.069% → 0.167%). Summed across all positions both families land ≈ Control (see combined conversion below) — no single position is a clear win or loss.
+
+### Funnel shape (free flow): more paywall views, fewer clicks per impression
+| Variation · surface | Splash→Paywall | Paywall→Click | Splash→Finish (per source) | | Control · AD 14Free (free) | 30.9% | 7.25% | 0.153% | | Test · AD Song (new, family #1) | 32.4% | 3.90% | 0.079% | | Test · AD 14Free (default, family #2+) | 27.8% | 8.01% | 0.101% |
+→ The personalized song surface reaches the paywall about as often (30.9% → 32.4%) but its paywall converts to a purchase click at ~half the rate (7.25% → 3.90%) — the incremental attention is low-intent. The per-source Splash→Finish looks low for the song splash in isolation (0.079%) only because the second source (default splash) is counted separately; combined across both sources, total free conversion is flat (see below).
+
+### ⚠️ Winback "paywall lift" is an attribution artifact (not a real effect)
+A value-filtered funnel makes the winback paywall rate look like it jumped 6.4% → 29.8% (4.6×) in Test while free barely moved. That asymmetry is a measurement artifact:
+| Group (splash source) | Splash viewers | Any paywall view | Paywall self-tagged with splash value | Tagged finishes | | Control · winback (generic) | 6,827 | 65.5% | 6.4% | 113 | | Test · winback (song) | 6,133 | 72.8% | 29.8% | 53 | | Control · free (generic) | 77,740 | 72.6% | 30.9% | 119 | | Test · free (song) | 75,149 | 76.1% | 32.4% | 59 |
+By any Banner Upgrade View, all four groups sit at ~66–76% — real paywall reach barely differs. The gap is purely in tagging: the legacy generic winback interstitial does not stamp its own name onto the downstream paywall event (logged under feature/contextual values — Smartscroll, Transpose, Autoscroll, Official Tabs Search…), so filtering by value='AD Winback Interstitial' captures almost none of Control. The new song-winback flow does stamp AD Winback Song Interstitial onto the paywall (per the analytics spec). The free flow self-tags in both arms, hence the honest near-flat 30.9% → 32.4%.
+End-to-end conversion is flat once both Test sources are summed (a single-source row understates Test, which serves the personalized splash first and the default splash afterwards):
+| Family | Control — 1 source | Test — 2 sources combined | | Winback | 1.66% (113 / 6,827) | 1.59% (108 / 6,807) | | Free | 0.153% (119 / 77,740) | 0.155% (120 / 77,299) |
+
+### Free vs ex-paid (winback) behavior — intent-to-treat (member level)
+| Cohort | Variation | Members | Any paywall-view rate | Interstitial finish / member | | Pure free | Control | 72,826 | 72.7% | 0.095% | | Pure free | Test | 72,454 | 76.0% | 0.108% | | Ex-paid | Control | 8,361 | 66.8% | 1.95% | | Ex-paid | Test | 8,270 | 74.0% | 1.81% |
+→ Ex-paid converts ~20× better per member than free (1.95% vs 0.095%) — by far the most valuable cohort despite being ~10% of the audience. The genuine paywall-reach lift is modest (+3pp free, +7pp ex-paid), not the 2× the artifact suggested; conversion is flat-to-noisy (free +14% on a tiny base, ex-paid −7%).
+
+## Post-Rollout Analysis (optional)
+[macro:info]
+  [param title] Example
+Use this section if results need to be revisited after the initial decision.
+Examples include:
+Adding actual reconversion data for subscriptions with atypical billing cycles.
+Evaluating long-term cohort survival or retention trends.
+Validating delayed impact metrics that were not available during the initial analysis.
+Delete this info block after you fill in the page.
+[/macro:info]

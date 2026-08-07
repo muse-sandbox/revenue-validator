@@ -1,0 +1,489 @@
+| Link to OKR | |
+| Status
+  [param server] Jira
+  [param columnIds] issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution
+  [param columns] key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+  [param key] UMN-10952
+| | | DRI / Project owner | |
+Team
+| | |
+
+# Pitch
+
+## Context & Idea
+Goal: Increase revenue and long-term conversion in Pro+ through systematic optimization of local interstitial paywalls in UG (frequency of impressions, creatives, offers) without compromising retention or cannibalizing existing paying segments.
+Foundation: Local interstitials are now displayed according to strict rules (once a day instead of the usual ad interstitial and then only as a fallback), sell one standard intro offer Pro+ (19.99 for the first year → 39.99), do not take into account the segment and context, and are practically not tested as a separate monetization channel. As a result, we are not utilizing their potential: we do not know the optimal frequency and timing, we do not check the impact of different creatives/formats and offers on conversion and retention, and we cannot consciously balance subscription vs. advertising.
+Idea: Understand whether we can significantly improve key metrics for local interstitial paywalls (subscription conversion, revenue, paying traffic quality) by consciously working with display frequency, screen content, and offers, rather than leaving the current static implementation as is.
+
+### Questions & Answers
+
+#### Frequency and logic of displays
+How often are local interstitials currently displayed for different segments and platforms?
+Which display frequency converts free and paid segments (purchase, trial, intro) most often?
+Is it possible to reduce the number of impressions without a significant drop in conversion and revenue (are there any “extra” impressions)?
+Is there a combination of timing and frequency that generates more revenue with comparable retention and advertising ARPU?
+
+#### First screen and display format
+Does gamification (e.g., the “swipe to reveal offer” mechanic) increase conversion and/or the quality of paying traffic compared to the current screen?
+If showing a video before the main paywall, are there video options that consistently perform better than the current pre-paywall?
+Can changing the appearance of the interstitial from show to show (variable design, different messages) increase conversion without increasing cancellations and cannibalizing other paid streams?
+
+#### Offer and pricing
+Can we increase the price of the current intro offer without significant losses in conversion and without an increase in cancellations after the first year?
+Can we shorten the length of the intro period without losing conversion and without increasing cancellations?
+Are there combinations of display time and discount level (e.g., increasing the discount with each subsequent display) that increase conversion and LTV without worsening churn and advertising revenue?
+
+#### Ex-premium and reactivation
+Why do ex-premium users convert so well from interstitial ads: how do they differ in terms of behavior and subscription history?
+What subscriptions did they have before (type of rights: Pro / Unified / Courses / Sing; subscription type: paid / trial / intro)?
+What percentage of users in this group never paid at all (only took a trial and canceled before billing)?
+How long ago did their previous subscription end, and how much time usually passes between cancellation and a new purchase through interstitial ads?
+How is the frequency/context of interstitial display related to the likelihood of reactivation in this group (is there a “sweet spot” in terms of time or number of displays)?
+
+## Confidence research
+  [param title] Research about native interstitials view frequency
+only viewed iOS (because ads are not shown on Android)
+returned on day N
+data: unique users per week
+https://redash.ultimate-guitar.com/queries/21241/source
+days after expiration
+| 
+returned to the tab
+| 
+saw the advertisement
+| |
+1
+| 
+140
+| 
+70
+| |
+2
+| 
+143
+| 
+70
+| |
+3
+| 
+145
+| 
+65
+| |
+4
+| 
+121
+| 
+48
+| |
+5
+| 
+144
+| 
+60
+| |
+6
+| 
+148
+| 
+61
+| |
+7
+| 
+137
+| 
+60
+| |
+8
+| 
+144
+| 
+55
+| |
+9
+| 
+121
+| 
+53
+| |
+10
+| 
+139
+| 
+59
+| |
+11
+| 
+142
+| 
+53
+| |
+12
+| 
+134
+| 
+46
+| |
+13
+| 
+127
+| 
+45
+| |
+14
+| 
+126
+| 
+50
+| |
+number of users who viewed N tabs per day. same cohort
+https://redash.ultimate-guitar.com/queries/21242/source
+tab views per day
+| 
+unique users
+| |
+1
+| 
+303
+| |
+2
+| 
+214
+| |
+3
+| 
+174
+| |
+4
+| 
+148
+| |
+5
+| 
+130
+| |
+6
+| 
+97
+| |
+7
+| 
+86
+| |
+8
+| 
+72
+| |
+9
+| 
+62
+| |
+10
+| 
+58
+| |
+11
+| 
+46
+| |
+12
+| 
+37
+| |
+13
+| 
+42
+| |
+14
+| 
+38
+| |
+number of users who saw N advertising interstitials. same cohort
+unique ad impressions
+| 
+unique users
+| |
+0
+| 
+625
+| |
+1
+| 
+319
+| |
+2
+| 
+134
+| |
+3
+| 
+66
+| |
+4
+| 
+30
+| |
+5
+| 
+24
+| |
+6
+| 
+16
+| |
+7
+| 
+1
+| |
+  [param title] Previous interstitial experiments
+[2025-04-11] UG App: paywall – offer instead of ad interstitials [2025-07-10]
+The 2025 project stalled at the design stage: the uplifta model based on ARPU/Revenue was prepared, but the A/B test was not launched and no final results were obtained.
+[2025-07-07] UG iOS: paywall – paywall after ad interstitial [2025-08-12]
+After each ad-interstitial was shown, a two-step pre-paywall focused on the ad-free experience was shown, followed by the standard Pro+ paywall, repeating this scenario for all free users (including ex-premium).
+The test did not yield the expected increase in conversion in access (~+10% according to the model): due to a sharp drop on the first pre-paywall, the final conversion of the source fell to ~0.07%, and the hypothesis was deemed unsuccessful. The team recorded the status as FAIL and decided to focus on projects to replace some of the ad interstitials with their banners and videos.
+[2025-07-09] UG App: paywall – monetization video instead of ad interstitials [2025-XX-XX]
+We tested video monetization instead of the usual ad interstitial for users who are not shown ads.
+Iteration 2 (#6428, iOS+Android) showed significant ARPU growth without a noticeable impact on retention: the uplift was positive and statistically significant, so it was decided to roll out the solution more widely. The learnings showed that the short UG video format with a clear “Try for free” message works better than static images, but requires a strict limit on the frequency of displays and a careful trigger so as not to annoy users.
+[2025-08-01] UG App: winback – add interstitials for former subscribers [2025-10-17]
+[2025-08-20] UG App: paywall – offer instead of ad interstitials [XXXX-XX-XX]
+
+## Reach & Impact
+[macro:info]
+Reach
+Review current analytics to understand how the audience behaves today and what the current reach is.
+Is the audience size sufficient for any changes to significantly affect metrics?
+How can we test the hypothesis on the largest possible audience segment?
+Impact
+Select the target metrics. What exactly will we influence in the experiment?
+What are the current values of this metric for the target audience? Is there enough room for meaningful change? (e.g., if the conversion rate is already 95%, increasing it to 99% may be unrealistic)
+A/B model = forecast: predict the expected changes, explain why we forecast these specific results, and provide the rationale for assumptions.
+Example forecasts:
+Increase ARPU by 5% by expanding offer reach by 5% while maintaining current conversion.
+Increase ret1d by 10% by sending a reminder push to 20% of new installs (with a specific attribute), expecting a 15% CTR.
+| Metrics | A | B | diff | | | Registration splash view | 1533 | 1533 | | Reach | | Accesses | 56 | 67 | 11 | |
+| splash → access, %
+| 3.65%
+| 4.27%
+| 20%
+diff assumption (proxy metric)
++ these assumptions will be tested in the experiment
+| | | Charges | 31 | 37 | 6 | | | Revenue, $ | $2121 | $2545 | $424 | Impact | | ARPPU, $ | $68 | $68 | $0 | | | ARPU, $ | $1.38 | $1.66 | $0.28 | Goal metric |
+Results
+Absolute values for reach calculated (can be translated into a reach score of 1–10)
+Target metric selected
+Absolute impact calculated
+Estimated additional revenue from changes
+Estimated additional traffic from changes
+Decision
+Based on reach and impact analysis, decide whether to proceed with this hypothesis.
+Delete this info block after you fill in the page.
+[/macro:info]
+| Metrics | A | B | diff | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+
+## Hypothesis
+If we implement a more systematic and data‑driven approach to configuring local interstitial paywalls (coverage, timing, frequency, content, and offers) for ad‑monetized users across key segments and platforms, we expect ARPU from this audience to increase by XX% without a statistically significant drop in 7‑day retention, because we will better balance subscription and advertising monetization, remove “wasted” impressions, and align paywall relevance with user context and willingness to pay
+
+## Experiment design
+  [param title] Experiment design
+[macro:info]
+Example of usage:
+| Platform | iOS | Android |
+Metrics
+| | Goal |
+Trial → Charge, %
+| | | Design / each metric | | | | Baseline | 30% | 24% | | Lift, % | 9% | 20% | | MDE | 0.0605 | |
+| Power
+0.8
+| |
+| Alpha
+0.05
+| | | Sample size (per variation) | 13530 | 3990 | | Duration (days) | 10 | 6 | | Design summary | | | | Days | 10 |
+Delete this info block after you fill in the page.
+[/macro:info]
+| Platform | | | |
+Metrics
+| 
+| Goal
+| Guardrail
+[add more metrics
+or delete this column]
+| | | [Metric Name and description if needed] | [Metric Name and description if needed] | | | Design / each metric | [link to calculation] | | Baseline | [value %] | [value %] | | | MDE | [value %] | [value %] | | | Power | [value %] | [value %] | | | Alpha | [value] | [value] | | | Sample size (per variation) | [value] for each segment (if we split the exp by segments) | [value] for each segment (if we split the exp by segments) | | | Duration (days) | [value] | [value] | | | Design summary | | | Sample | [value] | | Days | [value] |
+
+# Description of the Solution & Mockups
+
+## Solution
+  [param expanded] true
+  [param title] 1 iteration - interstitial with code
+The experiment will work for iOS and Android users.
+The experiment will only work for new users who have already completed the tour install during the experiment.
+The experiment is available only to the free audience (there is no subscription and never has been)
+We are replacing our standard local interstitial with a new one featuring a promotional code.
+This new type of interstitial will only be available when the user first enters the tab, and they will only see it once.
+The interstitial has a 5-second timer, after which it can be skipped
+The experiment has a version C; the only difference is that this version removes the timer and the option to skip the interstitial.
+On the new interstitial screen, the user will see an interactive element - a promo code.
+The promo code is initially hidden, but the user can rub it off to reveal the discount (like a lottery ticket).
+When the promo code appears, we will launch a small animation (confetti or something else that emphasizes the luckiness of this offer).
+After that, the user sees a paywall with the discount received.
+No additional actions (like entering a code) are required—the discount is automatically applied for eligible users.
+The user's device vibrates during the “erasing” of the promo code.
+The products on the new screen are similar to our usual products in interstitials. The only difference here is the scratching mechanic instead of a static screen.
+
+## Mockups & Texts
+| Screen | А | В | С | | Tab screen | | | | | Interstitial | | | | | Paywall | | | |
+
+## Analytics
+Start event - App Experiment Start
+| | Event | Parameters | Description |
+| 0
+| App Experiment Start
+| item_id – %exp id%
+send in both variations
+send when user see interstitial spalsh
+| | | 1 | Interstitial Coupon Scratch | | user starts scratching their coupon | | 2 | Interstitial Coupon View | | user sees coupon gift screen | | 3 | Interstitial Coupon Click | | user clicks "Apply Now" |
+| 4
+Banner Upgrade View
+Paywall View
+Banner Purchase Click
+Purchase Process Start
+Purchase Process Finish
+Purchase Process Canceled
+Purchase Process Failed
+| 
+params.key – [..., 'promo_code']
+params.value – [..., 0]
+params.str_value – [..., '%user generated promo code%']
+value – 'AD Code Interstitial'
+| 
+existing events.
+for test variation add new param 'promo_code' and with new AD Code Interstitial values
+check that product_* params for Banner Upgrade View / Paywall View are set correctly
+| |
+| 5
+| Splash View
+| value – 'AD Code Interstitial'
+existing event
+send also on new interstitial screen with new value
+| | | | | | | | #7187 config | | | segment name | conditions | | Total | {'pro_rights': 'Free'} | | Interstitials | {'pro_rights': 'Free', 'custom_sub_having': "funnel_source like '%Interstitial%' and funnel_source not like '%Winback%'"} |
+Execution
+  [param server] Jira
+  [param columnIds] issuetype,summary,assignee,customfield_10312,duedate,status
+  [param columns] type,summary,assignee,Start date,due,status
+  [param maximumIssues] 20
+  [param jqlQuery] parent=UMN-10952  order by key
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+
+# Results
+  [param expanded] true
+  [param title] Iteration #1 - #7187 (relaunch)
+#7187  –
+Exposure event: App Experiment Start
+Decision
+[macro:status]
+  [param colour] Red
+  [param title] fail
+[/macro:status]
+variation #2 is best for roll out
+variation #3 on Android has better monetization (because trials have near 5% conversion rate) metrics but worsen retention
+but i do not recommend full roll out since for some reason variation #2 had 75-77% lower conversion from interstitial to banner which needs further investigation (or relaunch to test)
+Next steps
+It was decided not to roll it out because the revenue was too low.
+
+## Forecast (per day)
+code
+| 
+UGT_IOS
+| 
+| 
+UGT_ANDROID
+| |
+| Variations
+Interstitial Splash View
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+Interstitial Splash View
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 5,569 | 266 | 136 | $1,785 | 5,610 | 151 | 43 | $814 | | variation 2 | 5,569 | 310 | 173 | $2,259 | 5,610 | 139 | 46 | $832 | | diff | | 44 | 37 | $474 | | -12 | 3 | $18 | | variation 3 | 5,569 | 292 | 171 | $1,837 | 5,610 | 133 | 53 | $1,040 | | diff | | 26 | 35 | $52 | | -18 | 10 | $226 |
+  [param title] Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | variation 3 | | UGT_IOS | Design | not calculated | 9
+complete
+No visible bugs were found throughout the experiment
+
+
+10
+complete
+No external effects are visible | | Experiment | 8 | 13899 | 13872 | 13795 | | Checks | 11
+incomplete
+duration of exp ≥ design | 12
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | not calculated | 13
+complete
+No visible bugs were found throughout the experiment
+
+
+14
+complete
+No external effects are visible | | Experiment | 8 | 7854 | 7891 | 7746 | | Checks | 15
+incomplete
+duration of exp ≥ design | 16
+complete
+A/B balance is maintained |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.321 | $13.1 | $13.2 | 4.58% | 2.43% | 58.6% | 16.7% | 36.5% | 5% | | variation 2 | $0.406 | $13.1 | $13.2 | 5.33% | 3.08% | 55.1% | 19.8% | 28.1% | 4.42% | | diff, % | 26.5% | -0.145% | -0.0345% | 16.4% | 26.6% | -6.01% | 18.6% | -22.8% | -11.6% | | pvalue | 0.011 | 0.98 | 1.00 | 0.004 | 0.001 | 0.18 | 0.25 | 0.014 | 0.71 | | variation 3 | $0.33 | $10.7 | $10.8 | 5.05% | 3.05% | 47.5% | 12.8% | 25.2% | 3.54% | | diff, % | 2.9% | -18.1% | -18% | 10.4% | 25.5% | -19% | -23.3% | -30.8% | -29.2% | | pvalue | 0.75 | 0.001 | 0.001 | 0.06 | 0.002 | 0.00 | 0.14 | 0.001 | 0.32 | | cumulatives | | | | | | | | | | | Interstitials | | control | $0.0399 | $6.77 | $6.77 | 0.59% | 0.59% | 0% | | 34.1% | 1.22% | | variation 2 | $0.0689 | $7.19 | $7.19 | 1% | 0.959% | 4.32% | 0% | 23.3% | 0% | | diff, % | 72.7% | 6.25% | 6.25% | 69.8% | 62.5% | | | -31.7% | -100% | | pvalue | 0.001 | 0.35 | 0.35 | 0.000 | 0.000 | 0.012 | | 0.09 | 0.31 | | variation 3 | $0.106 | $6.87 | $6.87 | 1.57% | 1.54% | 1.84% | 0% | 20.2% | 1.88% | | diff, % | 166% | 1.49% | 1.49% | 165% | 162% | | | -40.9% | 54% | | pvalue | 0.00 | 0.76 | 0.76 | 0.00 | 0.00 | 0.044 | | 0.018 | 0.67 | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 17.2% | 38.2% | 45.3% | | variation 2 | 16.8% | 38.4% | 45.4% | | diff, % | -2.31% | 0.459% | 0.0992% | | pvalue | 0.38 | 0.76 | 0.94 | | variation 3 | 17.9% | 39% | 45.7% | | diff, % | 3.61% | 2.22% | 0.946% | | pvalue | 0.17 | 0.15 | 0.47 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 81.3% | 69% | 59.7% | 45% | 24.1% | 15.5 | 3.95 | 2.71 | 2 | 1.13 | 0.423 | | variation 2 | 82.5% | 69.9% | 60.3% | 45.6% | 24.2% | 16 | 4.14 | 2.85 | 2.1 | 1.19 | 0.44 | | diff, % | 1.49% | 1.27% | 0.992% | 1.51% | 0.494% | 3.69% | 4.71% | 5.24% | 5.01% | 5.62% | 4.1% | | pvalue | 0.009 | 0.11 | 0.31 | 0.26 | 0.82 | 0.06 | 0.049 | 0.033 | 0.047 | 0.034 | 0.19 | | variation 3 | 81.9% | 68.9% | 59.5% | 44.8% | 23.7% | 15.5 | 4.02 | 2.76 | 2.02 | 1.14 | 0.417 | | diff, % | 0.656% | -0.233% | -0.315% | -0.31% | -1.29% | 0.347% | 1.79% | 1.63% | 1.36% | 0.883% | -1.29% | | pvalue | 0.25 | 0.77 | 0.75 | 0.82 | 0.54 | 0.85 | 0.43 | 0.48 | 0.57 | 0.73 | 0.67 | | cumulatives | | | | | | | | | | | |
+  [param title] Stats
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 13899 | 636 | 665 | 263 | 390 | 12 | 65 | 338 | 340 | $4455 | 124 | 17 | | variation 2 | 13872 | 739 | 771 | 333 | 425 | 13 | 84 | 427 | 430 | $5627 | 121 | 19 | | diff, % | -0.19% | 16% | 16% | 27% | 9% | 8.3% | 29% | 26% | 26% | 26% | -2.4% | 12% | | variation 3 | 13795 | 697 | 724 | 375 | 344 | 5 | 44 | 421 | 424 | $4550 | 107 | 15 | | diff, % | -0.75% | 9.6% | 8.9% | 43% | -12% | -58% | -32% | 25% | 25% | 2.1% | -14% | -12% | | Interstitials | | control | 13899 | 82 | 82 | 82 | 0 | 0 | 0 | 82 | 82 | $554 | 28 | 1 | | variation 2 | 13872 | 139 | 139 | 133 | 6 | 0 | 0 | 133 | 133 | $956 | 31 | 0 | | diff, % | -0.19% | 70% | 70% | 62% | | | | 62% | 62% | 72% | 11% | -100% | | variation 3 | 13795 | 216 | 217 | 213 | 4 | 0 | 0 | 213 | 213 | $1462 | 43 | 4 | | diff, % | -0.75% | 160% | 160% | 160% | | | | 160% | 160% | 160% | 54% | 300% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 13899 | 2396 | 5308 | 6297 | | variation 2 | 13872 | 2336 | 5322 | 6291 | | diff, % | -0.19% | -2.5% | 0.26% | -0.095% | | variation 3 | 13795 | 2464 | 5385 | 6309 | | diff, % | -0.75% | 2.8% | 1.5% | 0.19% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 13899 | 11305 | 9592 | 8293 | 6248 | 3344 | | variation 2 | 13872 | 11451 | 9695 | 8359 | 6330 | 3354 | | diff, % | -0.19% | 1.3% | 1.1% | 0.8% | 1.3% | 0.3% | | variation 3 | 13795 | 11294 | 9498 | 8205 | 6182 | 3276 | | diff, % | -0.75% | -0.097% | -0.98% | -1.1% | -1.1% | -2% |
+  [param title] UGT_ANDROID
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trials share, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.145 | $19 | $19.6 | 2.42% | 0.738% | 74.9% | 5.06% | 18.3% | 1.67% | | variation 2 | $0.148 | $18 | $18.3 | 2.31% | 0.811% | 70.3% | 5.11% | 13.8% | 6.15% | | diff, % | 2.28% | -5.15% | -6.87% | -4.66% | 9.83% | -6.18% | 0.912% | -24.5% | 269% | | pvalue | 0.91 | 0.61 | 0.49 | 0.64 | 0.60 | 0.30 | 0.99 | 0.50 | 0.19 | | variation 3 | $0.185 | $19.7 | $20 | 2.23% | 0.93% | 66.3% | 9.02% | 9.59% | 2.74% | | diff, % | 27.9% | 3.66% | 1.6% | -7.68% | 25.9% | -11.5% | 78.1% | -47.7% | 64.4% | | pvalue | 0.20 | 0.67 | 0.85 | 0.44 | 0.19 | 0.06 | 0.21 | 0.15 | 0.67 | | cumulatives | | | | | | | | | | | Interstitials | | control | $0.0281 | $15.8 | $15.8 | 0.178% | 0.178% | 0% | | 21.4% | 0% | | variation 2 | $0.0387 | $14.5 | $14.5 | 0.266% | 0.266% | 0% | | 4.76% | 0% | | diff, % | 37.6% | -7.84% | -7.84% | 49.3% | 49.3% | | | -77.8% | | | pvalue | 0.38 | 0.48 | 0.48 | 0.24 | 0.24 | | | 0.16 | | | variation 3 | $0.0734 | $16.2 | $16.2 | 0.452% | 0.452% | 0% | | 5.71% | 0% | | diff, % | 161% | 2.95% | 2.95% | 153% | 153% | | | -73.3% | | | pvalue | 0.003 | 0.78 | 0.78 | 0.002 | 0.002 | | | 0.18 | | | cumulatives | | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 15.5% | 33.9% | 39.9% | | variation 2 | 15.4% | 33.4% | 39.2% | | diff, % | -0.795% | -1.66% | -1.52% | | pvalue | 0.83 | 0.45 | 0.44 | | variation 3 | 14.1% | 32.1% | 38.1% | | diff, % | -9.15% | -5.26% | -4.47% | | pvalue | 0.012 | 0.018 | 0.023 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 72.2% | 56.9% | 47% | 34% | 16.6% | 12.4 | 2.9 | 1.95 | 1.42 | 0.769 | 0.275 | | variation 2 | 74.3% | 58.2% | 48.1% | 34.4% | 17% | 11.8 | 2.98 | 1.99 | 1.45 | 0.797 | 0.293 | | diff, % | 2.96% | 2.2% | 2.22% | 1.13% | 2.35% | -4.61% | 2.54% | 2.05% | 2.03% | 3.58% | 6.82% | | pvalue | 0.003 | 0.11 | 0.19 | 0.61 | 0.51 | 0.046 | 0.42 | 0.54 | 0.56 | 0.35 | 0.18 | | variation 3 | 73.3% | 56.7% | 47.3% | 33.6% | 16% | 11.3 | 2.85 | 1.9 | 1.37 | 0.739 | 0.26 | | diff, % | 1.57% | -0.398% | 0.434% | -1.04% | -3.57% | -8.68% | -1.92% | -2.73% | -3.15% | -3.91% | -5.33% | | pvalue | 0.11 | 0.78 | 0.80 | 0.64 | 0.32 | 0.000 | 0.54 | 0.41 | 0.36 | 0.29 | 0.27 | | cumulatives | | | | | | | | | | | |
+  [param title] Stats
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 7854 | 190 | 211 | 53 | 158 | 0 | 8 | 58 | 60 | $1139 | 11 | 1 | | variation 2 | 7891 | 182 | 195 | 56 | 137 | 2 | 7 | 64 | 65 | $1170 | 9 | 4 | | diff, % | 0.47% | -4.2% | -7.6% | 5.7% | -13% | | -12% | 10% | 8.3% | 2.8% | -18% | 300% | | variation 3 | 7746 | 173 | 184 | 62 | 122 | 0 | 11 | 72 | 73 | $1436 | 7 | 2 | | diff, % | -1.4% | -8.9% | -13% | 17% | -23% | | 38% | 24% | 22% | 26% | -36% | 100% | | Interstitials | | control | 7854 | 14 | 14 | 14 | 0 | 0 | 0 | 14 | 14 | $220 | 3 | 0 | | variation 2 | 7891 | 21 | 21 | 21 | 0 | 0 | 0 | 21 | 21 | $305 | 1 | 0 | | diff, % | 0.47% | 50% | 50% | 50% | | | | 50% | 50% | 38% | -67% | | | variation 3 | 7746 | 35 | 35 | 35 | 0 | 0 | 0 | 35 | 35 | $568 | 2 | 0 | | diff, % | -1.4% | 150% | 150% | 150% | | | | 150% | 150% | 160% | -33% | |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 7854 | 1221 | 2665 | 3130 | | variation 2 | 7891 | 1217 | 2633 | 3097 | | diff, % | 0.47% | -0.33% | -1.2% | -1.1% | | variation 3 | 7746 | 1094 | 2490 | 2949 | | diff, % | -1.4% | -10% | -6.6% | -5.8% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 7854 | 5667 | 4469 | 3695 | 2670 | 1306 | | variation 2 | 7891 | 5862 | 4589 | 3795 | 2713 | 1343 | | diff, % | 0.47% | 3.4% | 2.7% | 2.7% | 1.6% | 2.8% | | variation 3 | 7746 | 5677 | 4390 | 3660 | 2606 | 1242 | | diff, % | -1.4% | 0.18% | -1.8% | -0.95% | -2.4% | -4.9% |
+
+## Insights
+  [param title] Interstitials funnel
+Q: did we increase conversion from interstitials?
+yes, overall conversion from interstitial to access increased
+Android: 64% in variation #2 and 164% in variation #3
+iOS: 35% variation #2 and 171% variation #3
+variation #2 had a lower conversion to interaction with coupon due to ability to close the banner. as a result 75-77% lower conversion from interstitial to banner on average
+code
+First (new) Splashes
+iOS
+| Platofrm | variation | interstitials | coupon view | interstitials → coupon view, % | coupon scratch | coupon view → coupon scratch, % | coupon click | coupon scratch → coupon click, % | banner | coupon click → banner, % | interstitials → banner, % | click | banner → click, % | access | click → access, % | banner→ access, % | interstitials → access, % |
+iOS
+| | 1 | 13901 | 0 | 0 | 0 | | 0 | | 7062 | | 50.80% | 325 | 4.60% | 82 | 25.23% | 1.16% | 0.59% | | 2 | 13876 | 13864 | 99.9% | 9274 | 66.89% | 1626 | 17.53% | 1625 | 99.94% | 11.71% | 338 | 20.80% | 135 | 39.94% | 8.31% | 0.97% | | diff | | | | | | | | | | -76.95% | | 352% | | 58.30% | 616% | 64.41% | | 3 | 13804 | 13799 | 99.96% | 13547 | 98.17% | 12599 | 93.00% | 12595 | 99.97% | 91.24% | 623 | 4.95% | 215 | 34.51% | 1.71% | 1.56% | | diff | | | | | | | | | 0.03% (variation 3 vs 2) | 79.61% | | 7.61% | | 36.78% | 47.41% | 164.41% | | | | Android | 1 | 7862 | 0 | 0 | 0 | | 0 | | 3535 | | 44.96% | 195 | 5.52% | 13 | 6.67% | 0.37% | 0.17% | | 2 | 7901 | 7880 | 99.73% | 5096 | 64.67% | 877 | 17.21% | 875 | 99.77% | 11.07% | 149 | 17.03% | 18 | 12.08% | 2.06% | 0.23% | | diff | | | | | | | | | | -75.38% | | 209% | | 81.11% | 457% | 35.29% | | 3 | 7750 | 7735 | 99.81% | 7368 | 95.26% | 6707 | 91.03% | 6692 | 99.78% | 86.35% | 370 | 5.53% | 36 | 9.73% | 0.54% | 0.46% | | diff | | | | | | | | | 0.010% (variation 3 vs 2) | 92.06% | | 0.18% | | 45.88% | 45.95% | 170.59% |
+Second splashes
+Q: did conversion on 2+ splashes changed?
+not really: less clicks, but overall about the same amount of accesses + most of the accesses are still on the first splash
+| Platofrm | variation | first interstitials | second interstitials | first interstitial → second, % | click | banner →  click, % | access | click → access, % | second interstitials →  access, % | first interstitials → access from second % | | iOS | 1 | 13901 | 4295 | | 117 | 2.72% | 9 | 7.69% | 0.21% | 0.065% | | 2 | 13876 | 3340 | | 45 | 1.35% | 8 | 17.78% | 0.24% | 0.058% | | diff | | | | | -50% | | 131% | 14.29% | -10.77% | | 3 | 13804 | 3313 | | 40 | 1.21% | 8 | 20.00% | 0.24% | 0.058% | | diff | | | | | -56% | | 160% | 14.29% | -10.77% | | | | Android | 1 | 3533 | 3533 | | 98 | 2.77% | 3 | 3.06% | 0.085% | | | 2 | 1444 | 1444 | | 20 | 1.39% | 3 | 15.00% | 0.21% | | | diff | | | | | -49.82% | | | | | | 3 | 1346 | 1346 | | 21 | 1.56% | 0 | 0.00% | 0.00% | | | diff | | | | | -43.68% | | | | |

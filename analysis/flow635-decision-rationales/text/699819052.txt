@@ -1,0 +1,167 @@
+| Link to OKR | |
+| Status
+  [param server] Jira
+  [param columnIds] issuekey,summary,issuetype,created,updated,duedate,assignee,reporter,priority,status,resolution
+  [param columns] key,summary,type,created,updated,due,assignee,reporter,priority,status,resolution
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+  [param key] UMN-8876
+| | | DRI / Project owner | | | Team | |
+
+# Research and Context
+Goal: Determine the current impact of promo/sale mechanics on premium user acquisition
+Foundation
+For users without Pro access, we operate a "permanent seasonal sales" mechanic - the same offer but with different visuals depending on the season. The seasonal offer has two main placements:
+Permanent banner on Explore with two scenarios: introductory 50% discount in the first 24h after install and permanent 50% discount after 24h
+Splash screens shown on app entry (limited by display frequency and number of shows per promotion, and cannot be shown on the same day as onboarding tour or app update tour)
+For Splashes, there's a concept of key promotion - a seasonal promotion code that resets all limits when changed
+Historically, switching promotions to a new season gave us a sales boost, but the last 2 promotions (spring and summer) no longer show the usual growth
+In this project, we want to test current promotion effectiveness and its impact on ARPU, and determine next steps for sales direction development based on results
+
+### Research results
+
+### A/B test model
+[macro:expand]
+  [param title] A/B test model
+| avg per day | New Installs (< 24h) | | Returned Users (>24h) | | A | B | diff | A | B | diff | | DAU (without Pro/Pro+/LT) | | | | | | | | Sale Accesses | | | | | | | | DAU →Sale Accesses | | | | | | | | SaleCharges | | | | | | | | DAU →Sale Charges | | | | | | | | ARPPU | | | | | | | | Sale Revenue | | | | | | | | | | Regular Accesses | | | | | | | | | DAU → Regular Accesses | | | | | | | | Regular Charges | | | | | | | | DAU → Regular Charges | | | | | | | | ARPPU | | | | | | | | Regular Revenue | | | | | | | | | | | Total Accesses | | | | | | | | DAU → Total Accesses | | | | | | | | Total Charges | | | | | | | | DAU → Total Charges | | | | | | | | ARPPU | | | | | | | | Total Revenue | | | | | | | | ARPU | | | | | | |
+[/macro:expand]
+
+# Hypothesis
+If we disable the Free offer sale for all users, ARPU will drop by no more than 3%, because sales have lost their effectiveness and conversions from them will redistribute to other sources
+
+## Experiment design template
+| Audience
+[describe the audience in details, how we pick users]
+| |
+Metrics
+| | Goal | Guardrail | | ARPU | conv2charge |
+Sensitivity analysis /
+preliminary calculations
+| 
+[describe a sensitivity and add a link to sensitivity analysis]
+| |
+| Design / each metric
+[link to calculation]
+| | | Baseline | | | | MDE | | | | Power | 80% | 80% | | Alpha | 0.05 | 0.05 | | Sample size (per variation) | | | | Duration (days) | | | | Seasonality reflected | | | Design summary | | | Sample | | | Days | |
+
+# Description of the Solution & Mockups
+
+### Solution
+Launch for iOS и Android
+Don't segment the audience in the experiment (new / returning users), launch for all (we'll split results in analytics if needed)
+Run A/B/C test:
+Variation B - disable only splashes, keep the Explore banner (and both offer types on it)
+Variation C - disable both splashes and Explore banner for all users without Pro access
+
+### Mockups & Texts
+| Screen | А | В | С | | New Install (<24h) | | Explore (Banner) | | | | | Banner Paywall | | | - | | Splash | - | - | - | | Returning Users (>24h) | | Explore (Banner) | | | | | Banner Paywall | | | - | | Splash Paywall | | | - |
+
+### Analytics
+Exposure event: Explore Open (pro_rights = free)
+No need to add new events
+| | Event | Parameters | Description | | 1 | | | | | 2 | | | |
+
+# Execution
+  [param server] Jira
+  [param columnIds] issuetype,summary,assignee,customfield_10312,duedate,status
+  [param columns] type,summary,assignee,Start date,due,status
+  [param maximumIssues] 20
+  [param jqlQuery] parent=umn-8876  order by key
+  [param serverId] d1985a03-3c98-365b-8107-f4cdc34a26f1
+
+# Results
+  [param expanded] true
+  [param title] Iteration #1
+#6293  –
+Exposure event: Explore Open
+
+## Design vs Reality check
+| Platform | Type | Duration (days) | Sample size | Other | | control | variation 2 | variation 3 | | UGT_IOS | Design | 0 | 0 | 0 | 0 | 919
+complete
+No visible bugs were found throughout the experiment
+
+
+920
+complete
+No external effects are visible | | Experiment | 15 | 55406 | 55318 | 55348 | | Checks | 921
+complete
+duration of exp ≥ design | 922
+complete
+A/B balance is maintained | | UGT_ANDROID | Design | 0 | 0 | 0 | 0 | 923
+complete
+No visible bugs were found throughout the experiment
+
+
+924
+complete
+No external effects are visible | | Experiment | 8 | 23100 | 23086 | 23291 | | Checks | 925
+complete
+duration of exp ≥ design | 926
+complete
+A/B balance is maintained |
+Decision
+[macro:status]
+  [param colour] Red
+  [param title] FAIL
+[/macro:status]
+Results
+significant arpu decrease by 12% iOS and 26% Android in variation #3 (without all splashes)
+non significant arpu decrease by 1.2% iOS and 6% Android in variation #2
+didn't increase any product metrics
+Conclusion
+variation #2 arpu changes within expected 3% range. Android is 2 times larger
+We're not rolling out the experiment
+
+## Forecast (per day)
+| 
+UGT_ANDROID
+| 
+| 
+UGT_IOS
+| |
+| Variations
+Explore Open
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| 
+Explore Open
+| 
+Accesses
+| 
+Charges
+| 
+Revenue, $
+| | | control | 54472 | 596 | 358 | 9053 | 73221 | 1947 | 1063 | 24007 | | variation 2 | 54472 | 521 | 292 | 8490 | 73221 | 1882 | 1028 | 23719 | | diff | 0 | -75 | -66 | -563 | 0 | -65 | -35 | -288 | | variation 3 | 54472 | 493 | 222 | 6703 | 73221 | 1771 | 910 | 21211 | | diff | 0 | -103 | -136 | -2350 | 0 | -176 | -153 | -2796 |
+
+## Significance analysis
+  [param title] UGT_IOS
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 55406 | 1257 | 1474 | 583 | 790 | 101 | 191 | 795 | 805 | $18165 | 132 | 35 | | variation 2 | 55318 | 1227 | 1422 | 596 | 745 | 81 | 161 | 766 | 777 | $17919 | 122 | 31 | | diff, % | -0.16% | -2.4% | -3.5% | 2.2% | -5.7% | -20% | -16% | -3.6% | -3.5% | -1.4% | -7.6% | -11% | | variation 3 | 55348 | 1161 | 1339 | 444 | 793 | 102 | 199 | 676 | 688 | $16033 | 123 | 41 | | diff, % | -0.1% | -7.6% | -9.2% | -24% | 0.38% | 0.99% | 4.2% | -15% | -15% | -12% | -6.8% | 17% | | Accesses without splashes | | control | 55406 | 1174 | 1341 | 451 | 789 | 101 | 191 | 681 | 686 | $16205 | 126 | 34 | | variation 2 | 55318 | 1134 | 1296 | 471 | 744 | 81 | 161 | 663 | 669 | $15848 | 111 | 31 | | diff, % | -0.16% | -3.4% | -3.4% | 4.4% | -5.7% | -20% | -16% | -2.6% | -2.5% | -2.2% | -12% | -8.8% | | variation 3 | 55347 | 1153 | 1326 | 432 | 792 | 102 | 199 | 674 | 686 | $15996 | 123 | 41 | | diff, % | -0.11% | -1.8% | -1.1% | -4.2% | 0.38% | 0.99% | 4.2% | -1% | 0% | -1.3% | -2.4% | 21% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 55404 | 11275 | 29123 | 34066 | | variation 2 | 55317 | 11180 | 28818 | 33796 | | diff, % | -0.16% | -0.84% | -1% | -0.79% | | variation 3 | 55348 | 11266 | 28967 | 33990 | | diff, % | -0.1% | -0.08% | -0.54% | -0.22% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 55407 | 45001 | 40451 | 36373 | 27807 | 13462 | | variation 2 | 55319 | 44974 | 40481 | 36412 | 27721 | 13344 | | diff, % | -0.16% | -0.06% | 0.074% | 0.11% | -0.31% | -0.88% | | variation 3 | 55347 | 44950 | 40455 | 36498 | 27915 | 13535 | | diff, % | -0.11% | -0.11% | 0.0099% | 0.34% | 0.39% | 0.54% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.328 | $22.6 | $22.9 | 2.27% | 1.43% | 24.2% | 16.4% | 4.35% | | variation 2 | $0.324 | $23.1 | $23.4 | 2.22% | 1.38% | 21.6% | 15.7% | 3.99% | | diff, % | -1.2% | 2.2% | 2.38% | -2.23% | -3.49% | -10.6% | -4.25% | -8.24% | | pvalue | 0.83 | 0.53 | 0.39 | 0.57 | 0.48 | 0.23 | 0.71 | 0.72 | | variation 3 | $0.29 | $23.3 | $23.7 | 2.1% | 1.22% | 25.1% | 17.9% | 5.96% | | diff, % | -11.6% | 3.27% | 3.8% | -7.54% | -14.9% | 3.79% | 9.03% | 37.1% | | pvalue | 0.036 | 0.40 | 0.18 | 0.05 | 0.002 | 0.67 | 0.45 | 0.16 | | cumulatives | | | | | | | | | | Accesses without splashes | | control | $0.292 | $23.6 | $23.8 | 2.12% | 1.23% | 24.2% | 18.4% | 4.96% | | variation 2 | $0.286 | $23.7 | $23.9 | 2.05% | 1.2% | 21.6% | 16.6% | 4.63% | | diff, % | -2.05% | 0.277% | 0.447% | -3.25% | -2.49% | -10.6% | -9.67% | -6.51% | | pvalue | 0.74 | 0.94 | 0.88 | 0.42 | 0.64 | 0.23 | 0.39 | 0.78 | | variation 3 | $0.289 | $23.3 | $23.7 | 2.08% | 1.22% | 25.1% | 17.9% | 5.98% | | diff, % | -1.19% | -1.29% | -0.268% | -1.68% | -0.922% | 3.79% | -2.38% | 20.6% | | pvalue | 0.85 | 0.74 | 0.93 | 0.68 | 0.86 | 0.67 | 0.83 | 0.41 | | cumulatives | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 20.4% | 52.6% | 61.5% | | variation 2 | 20.2% | 52.1% | 61.1% | | diff, % | -0.687% | -0.892% | -0.637% | | pvalue | 0.56 | 0.12 | 0.18 | | variation 3 | 20.4% | 52.3% | 61.4% | | diff, % | 0.0213% | -0.435% | -0.122% | | pvalue | 0.99 | 0.45 | 0.80 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 81.2% | 73% | 65.6% | 50.2% | 24.3% | 14.2 | 5.93 | 4.18 | 3.01 | 1.46 | 0.439 | | variation 2 | 81.3% | 73.2% | 65.8% | 50.1% | 24.1% | 14.1 | 5.89 | 4.15 | 2.99 | 1.45 | 0.432 | | diff, % | 0.099% | 0.233% | 0.266% | -0.151% | -0.719% | -0.36% | -0.587% | -0.638% | -0.603% | -0.512% | -1.51% | | pvalue | 0.73 | 0.52 | 0.54 | 0.80 | 0.50 | 0.75 | 0.60 | 0.57 | 0.60 | 0.67 | 0.34 | | variation 3 | 81.2% | 73.1% | 65.9% | 50.4% | 24.5% | 14 | 5.84 | 4.13 | 2.98 | 1.45 | 0.435 | | diff, % | -0.00505% | 0.118% | 0.452% | 0.497% | 0.651% | -1.17% | -1.46% | -1.3% | -0.989% | -0.453% | -0.773% | | pvalue | 0.99 | 0.75 | 0.30 | 0.41 | 0.54 | 0.29 | 0.19 | 0.24 | 0.38 | 0.70 | 0.62 | | cumulatives | | | | | | | | | | | |
+  [param title] UGT_ANDROID
+Monetization Stats
+| Variation | Members | Subscribers | Accesses | Instants | Trials | Ex trials | Charged trials | Buyers | Charges | Revenue | Cancels 14d | Refunds 14d | | control | 23100 | 236 | 253 | 120 | 127 | 6 | 27 | 149 | 152 | $3839 | 17 | 5 | | variation 2 | 23086 | 213 | 221 | 89 | 127 | 5 | 30 | 123 | 124 | $3598 | 20 | 5 | | diff, % | -0.061% | -9.7% | -13% | -26% | 0% | -17% | 11% | -17% | -18% | -6.3% | 18% | 0% | | variation 3 | 23291 | 203 | 211 | 64 | 143 | 4 | 27 | 93 | 95 | $2866 | 10 | 2 | | diff, % | 0.83% | -14% | -17% | -47% | 13% | -33% | 0% | -38% | -38% | -25% | -41% | -60% | | Accesses without splashes | | control | 23100 | 191 | 205 | 72 | 127 | 6 | 27 | 104 | 104 | $2991 | 16 | 4 | | variation 2 | 23086 | 195 | 202 | 70 | 127 | 5 | 30 | 104 | 105 | $3154 | 19 | 5 | | diff, % | -0.061% | 2.1% | -1.5% | -2.8% | 0% | -17% | 11% | 0% | 0.96% | 5.4% | 19% | 25% | | variation 3 | 23291 | 203 | 211 | 64 | 143 | 4 | 27 | 93 | 95 | $2866 | 10 | 2 | | diff, % | 0.83% | 6.3% | 2.9% | -11% | 13% | -33% | 0% | -11% | -8.7% | -4.2% | -38% | -50% |
+Retention Stats
+| Variation | Members | Retention 1d | Retention 7d | Retention 14d | | control | 23100 | 5217 | 13244 | 15802 | | variation 2 | 23086 | 5269 | 13172 | 15806 | | diff, % | -0.061% | 1% | -0.54% | 0.025% | | variation 3 | 23292 | 5209 | 13423 | 16023 | | diff, % | 0.83% | -0.15% | 1.4% | 1.4% |
+Long Tab View Stats
+| Variation | Members | Tab View 60s | Tab View 120s | Tab View 180s | Tab View 300s | Tab View 600s | | control | 23101 | 18049 | 16134 | 14430 | 10763 | 4964 | | variation 2 | 23086 | 17842 | 15981 | 14326 | 10705 | 4997 | | diff, % | -0.065% | -1.1% | -0.95% | -0.72% | -0.54% | 0.66% | | variation 3 | 23290 | 18026 | 16110 | 14416 | 10819 | 5047 | | diff, % | 0.82% | -0.13% | -0.15% | -0.097% | 0.52% | 1.7% |
+Monetization Metrics
+| Variation | ARPU | AOV | ARPPU | Access cr, % | Charge cr, % | Trial -> charge, % | Charge -> 14d cancel, % | Charge -> 14d refund, % | | control | $0.166 | $25.3 | $25.8 | 1.02% | 0.645% | 21.3% | 11.2% | 3.29% | | variation 2 | $0.156 | $29 | $29.3 | 0.923% | 0.533% | 23.6% | 16.1% | 4.03% | | diff, % | -6.22% | 14.9% | 13.5% | -9.69% | -17.4% | 11.1% | 44.2% | 22.6% | | pvalue | 0.63 | 0.06 | 0.046 | 0.28 | 0.11 | 0.65 | 0.24 | 0.74 | | variation 3 | $0.123 | $30.2 | $30.8 | 0.872% | 0.399% | 18.9% | 10.5% | 2.11% | | diff, % | -26% | 19.5% | 19.6% | -14.7% | -38.1% | -11.2% | -5.88% | -36% | | pvalue | 0.036 | 0.017 | 0.005 | 0.10 | 0.000 | 0.63 | 0.87 | 0.57 | | cumulatives | | | | | | | | | | Accesses without splashes | | control | $0.13 | $28.8 | $28.8 | 0.827% | 0.45% | 21.3% | 15.4% | 3.85% | | variation 2 | $0.137 | $30 | $30.3 | 0.845% | 0.45% | 23.6% | 18.1% | 4.76% | | diff, % | 5.5% | 4.43% | 5.43% | 2.16% | 0.0606% | 11.1% | 17.6% | 23.8% | | pvalue | 0.73 | 0.60 | 0.44 | 0.83 | 1.00 | 0.65 | 0.60 | 0.74 | | variation 3 | $0.123 | $30.2 | $30.8 | 0.872% | 0.399% | 18.9% | 10.5% | 2.11% | | diff, % | -4.97% | 4.89% | 7.15% | 5.41% | -11.3% | -11.2% | -31.6% | -45.3% | | pvalue | 0.74 | 0.54 | 0.29 | 0.60 | 0.40 | 0.63 | 0.30 | 0.47 | | cumulatives | | | | | | | | |
+Retention Metrics
+| Variation | Retention 1d, % | Retention 7d, % | Retention 14d, % | | control | 22.6% | 57.3% | 68.4% | | variation 2 | 22.8% | 57.1% | 68.5% | | diff, % | 1.06% | -0.483% | 0.086% | | pvalue | 0.54 | 0.55 | 0.89 | | variation 3 | 22.4% | 57.6% | 68.8% | | diff, % | -0.976% | 0.516% | 0.563% | | pvalue | 0.57 | 0.52 | 0.37 | | cumulatives | | | |
+Tab View Metrics
+| Variation | Tab View 60s, % | Tab View 120s, % | Tab View 180s, % | Tab View 300s, % | Tab View 600s, % | Tab View per user | Tab View 60s per user | Tab View 120s per user | Tab View 180s per user | Tab View 300s per user | Tab View 600s per user | | control | 78.1% | 69.8% | 62.5% | 46.6% | 21.5% | 10.9 | 4.8 | 3.46 | 2.5 | 1.19 | 0.36 | | variation 2 | 77.3% | 69.2% | 62.1% | 46.4% | 21.6% | 10.7 | 4.71 | 3.41 | 2.48 | 1.19 | 0.358 | | diff, % | -1.08% | -0.884% | -0.656% | -0.474% | 0.73% | -1.55% | -2% | -1.4% | -0.958% | -0.389% | -0.296% | | pvalue | 0.029 | 0.15 | 0.36 | 0.63 | 0.68 | 0.30 | 0.21 | 0.39 | 0.56 | 0.83 | 0.90 | | variation 3 | 77.4% | 69.2% | 61.9% | 46.5% | 21.7% | 10.9 | 4.77 | 3.46 | 2.51 | 1.21 | 0.362 | | diff, % | -0.938% | -0.959% | -0.908% | -0.295% | 0.847% | 0.152% | -0.576% | 0.0305% | 0.453% | 1.09% | 0.765% | | pvalue | 0.06 | 0.12 | 0.21 | 0.77 | 0.63 | 0.92 | 0.72 | 0.99 | 0.79 | 0.55 | 0.76 | | cumulatives | | | | | | | | | | | |
+
+## Post-rollout analysis (optional)
