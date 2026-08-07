@@ -6,15 +6,17 @@ This repository holds the pre-launch validator for revenue experiments: the froz
 
 Read `context/rules/` first. It describes how this team actually works — how long experiments run, who owns which metric, what the company currently optimizes for. Without those rules any critique of an experiment design is formally correct and practically useless.
 
-The current validator is `packages/version-revenue-kb-v1.2/`. Older versions stay in `packages/` unchanged; a new version means a new directory, never an edit to an existing one.
+`packages/current/` holds what the validator uses today — one version, one corpus, one policy. Everything else lives in `packages/history/` unchanged. A new version is a new directory in `current/` while the previous one moves to `history/`; never an edit to either. If `current/` ever holds two versions, something was left half-done.
+
+The current validator here is `packages/current/version-revenue-kb-v1.2/`, but `docs/CURRENT.md` is the authority — v1.4 exists and has not been moved into this repository yet.
 
 ## Never do this
 
 Do not read, quote, or pass to any model:
 
-- `packages/corpus-revenue-v1/ground-truth-sealed/`
-- `packages/corpus-interstitials/ground-truth-sealed/`
-- `packages/input-validator-v0-unblind/ground-truth/`
+- `packages/current/corpus-revenue-v1/ground-truth-sealed/`
+- `packages/history/corpus-interstitials/ground-truth-sealed/`
+- `packages/history/input-validator-v0-unblind/ground-truth/`
 
 These hold the actual outcomes of held-out experiments. Every blind comparison in this repository depends on the validator not seeing them before it commits to a recommendation. One leak invalidates the whole evaluation history.
 

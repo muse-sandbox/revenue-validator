@@ -7,9 +7,9 @@ description: Rules for keeping evaluations honest — which files must never rea
 
 ## Never pass these to a model
 
-- `packages/corpus-revenue-v1/ground-truth-sealed/`
-- `packages/corpus-interstitials/ground-truth-sealed/`
-- `packages/input-validator-v0-unblind/ground-truth/`
+- `packages/current/corpus-revenue-v1/ground-truth-sealed/`
+- `packages/history/corpus-interstitials/ground-truth-sealed/`
+- `packages/history/input-validator-v0-unblind/ground-truth/`
 
 They contain actual outcomes of held-out experiments. Passing them to a
 validator run destroys the only property that makes the evaluation meaningful.

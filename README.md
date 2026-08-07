@@ -18,15 +18,15 @@ Pre-launch validator for revenue experiments at Ultimate Guitar. It reviews an e
 | run the validator on an experiment | `.claude/skills/validator-run/` |
 | run an evaluation without breaking it | `.claude/skills/holdout-discipline/` |
 | know how this team actually works | `context/rules/` |
-| see a worked example | `packages/run-live-official-tabs-v1.2/` |
+| see a worked example | `packages/history/run-live-official-tabs-v1.2/` |
 
 ## ⚠️ Sealed outcomes
 
 Three directories hold the actual results of held-out experiments and must never reach a model:
 
-- `packages/corpus-revenue-v1/ground-truth-sealed/`
-- `packages/corpus-interstitials/ground-truth-sealed/`
-- `packages/input-validator-v0-unblind/ground-truth/`
+- `packages/current/corpus-revenue-v1/ground-truth-sealed/`
+- `packages/history/corpus-interstitials/ground-truth-sealed/`
+- `packages/history/input-validator-v0-unblind/ground-truth/`
 
 Every blind comparison in this repository depends on the validator not seeing them before committing to a recommendation. Blind versions of the same cases, safe as input, are in `holdout-blind/` inside those packages.
 
@@ -38,7 +38,9 @@ context/
   rules/               how this team decides, what it owns, what the company optimizes for
 .claude/skills/        procedures: running the validator, keeping evaluations honest
 docs/                  runbook and version pointer
-packages/              versioned, frozen, append-only artifacts
+packages/
+  current/             the validator in use, its corpus, its policy
+  history/             older versions, and every run and evaluation
 worktree-recovered/    files that existed only inside isolated task worktrees
 ```
 
@@ -48,8 +50,13 @@ Current validator: see `docs/CURRENT.md` — it is the single place that names t
 current version. As of 2026-08-08 that is **v1.4**, which has not been moved into
 this repository yet (FLOW-636); `packages/` here stops at `version-revenue-kb-v1.2/`.
 
-**The name starts with the kind.** Full list and the old→new table:
-`packages/README.md`. What may flow into what: `docs/ARCHITECTURE.md`.
+Two directories, and the name of each package starts with its kind:
+
+```text
+packages/
+  current/    the validator in use, its corpus, its policy — 3 packages
+  history/    older versions, and every run and evaluation — 15 packages
+```
 
 | Prefix | Kind |
 |---|---|
@@ -60,7 +67,11 @@ this repository yet (FLOW-636); `packages/` here stops at `version-revenue-kb-v1
 | `input-` | a bundle handed to an isolated agent |
 | `policy-` | frozen evidence rules |
 
-Packages are append-only and their checksum manifests use relative paths, so they must stay siblings. A new version means a new directory, never an edit.
+What `current/` holds and what the corpus is made of: `packages/README.md`.
+What may flow into what: `docs/ARCHITECTURE.md`.
+
+Packages are append-only. A new version means a new directory in `current/` and
+the previous one moving to `history/` — never an edit to either.
 
 ## Project state
 

@@ -41,8 +41,11 @@ repository may use.
 
 ## What a package is
 
-Every directory under `packages/` is exactly one kind, and its name starts with
-that kind. The prefix determines what may flow into it.
+`packages/` has two directories. `current/` holds what the validator uses today —
+one version, one corpus, one policy. `history/` holds everything that led here.
+
+Inside either, a package's name starts with its kind, and the prefix determines
+what may flow into it.
 
 ### 1. Version — a frozen validator
 
