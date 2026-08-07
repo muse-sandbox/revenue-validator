@@ -6,19 +6,29 @@ This repository holds the pre-launch validator for revenue experiments: the froz
 
 Read `context/rules/` first. It describes how this team actually works — how long experiments run, who owns which metric, what the company currently optimizes for. Without those rules any critique of an experiment design is formally correct and practically useless.
 
-The current validator is `packages/revenue-kb-v1.2/`. Older versions stay in `packages/` unchanged; a new version means a new directory, never an edit to an existing one.
+The current validator is `packages/version-revenue-kb-v1.2/`. Older versions stay in `packages/` unchanged; a new version means a new directory, never an edit to an existing one.
 
 ## Never do this
 
 Do not read, quote, or pass to any model:
 
-- `packages/revenue-corpus-prep-v1/ground-truth-sealed/`
-- `packages/interstitials-corpus-prep/ground-truth-sealed/`
-- `packages/flow565-evaluation-input/ground-truth/`
+- `packages/corpus-revenue-v1/ground-truth-sealed/`
+- `packages/corpus-interstitials/ground-truth-sealed/`
+- `packages/input-validator-v0-unblind/ground-truth/`
 
 These hold the actual outcomes of held-out experiments. Every blind comparison in this repository depends on the validator not seeing them before it commits to a recommendation. One leak invalidates the whole evaluation history.
 
 Blind versions of the same cases live in `holdout-blind/` inside those packages and are safe to use as input.
+
+## The package name states its kind
+
+Every directory in `packages/` starts with its kind: `version-`, `corpus-`,
+`run-`, `eval-`, `input-`, `policy-`. The prefix tells you what may flow into it
+before you open it — a `run-` never reads sealed outcomes, an `eval-` may, and
+only after the run's answers are frozen. Full rules: `docs/ARCHITECTURE.md`.
+
+Renamed to this scheme on 2026-08-08. Frozen files still cite the old names and
+must not be edited to fix that; `packages/README.md` holds the old→new table.
 
 ## Frozen packages are append-only
 

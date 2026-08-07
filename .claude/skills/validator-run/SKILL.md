@@ -10,7 +10,7 @@ description: Run the revenue validator on an experiment card. Use when asked to 
 The prompt is a template with two placeholders:
 
 ```
-packages/revenue-kb-v1.2/validator_prompt_v1_2.md
+packages/version-revenue-kb-v1.2/validator_prompt_v1_2.md
   {KNOWLEDGE_CONTEXT}  ->  knowledge_base.md + pattern_cards.md, concatenated
   {EXPERIMENT_CARD}    ->  the experiment document under review
 ```
@@ -35,9 +35,9 @@ difference is whether the knowledge context block is filled.
 ## Lint the answer
 
 ```bash
-python3 packages/revenue-kb-v1.2/linter.py ANSWER.md \
-  --kb packages/revenue-kb-v1.2/knowledge_base.md \
-  --patterns packages/revenue-kb-v1.2/pattern_cards.md
+python3 packages/version-revenue-kb-v1.2/linter.py ANSWER.md \
+  --kb packages/version-revenue-kb-v1.2/knowledge_base.md \
+  --patterns packages/version-revenue-kb-v1.2/pattern_cards.md
 ```
 
 Add `--no-kb-arm` for the arm without a knowledge context — there the linter
@@ -50,7 +50,7 @@ not substance: a PASS does not mean the advice is good.
 ## Record the run
 
 Save inputs, outputs and a manifest with SHA-256 for each file, plus the
-checksums of the frozen files used. See `packages/trial-run-815603314/` for the
+checksums of the frozen files used. See `packages/run-live-official-tabs-v1.2/` for the
 shape.
 
 ## Before calling a run a pilot case

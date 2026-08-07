@@ -18,15 +18,15 @@ Pre-launch validator for revenue experiments at Ultimate Guitar. It reviews an e
 | run the validator on an experiment | `.claude/skills/validator-run/` |
 | run an evaluation without breaking it | `.claude/skills/holdout-discipline/` |
 | know how this team actually works | `context/rules/` |
-| see a worked example | `packages/trial-run-815603314/` |
+| see a worked example | `packages/run-live-official-tabs-v1.2/` |
 
 ## ⚠️ Sealed outcomes
 
 Three directories hold the actual results of held-out experiments and must never reach a model:
 
-- `packages/revenue-corpus-prep-v1/ground-truth-sealed/`
-- `packages/interstitials-corpus-prep/ground-truth-sealed/`
-- `packages/flow565-evaluation-input/ground-truth/`
+- `packages/corpus-revenue-v1/ground-truth-sealed/`
+- `packages/corpus-interstitials/ground-truth-sealed/`
+- `packages/input-validator-v0-unblind/ground-truth/`
 
 Every blind comparison in this repository depends on the validator not seeing them before committing to a recommendation. Blind versions of the same cases, safe as input, are in `holdout-blind/` inside those packages.
 
@@ -46,21 +46,19 @@ worktree-recovered/    files that existed only inside isolated task worktrees
 
 Current validator: see `docs/CURRENT.md` — it is the single place that names the
 current version. As of 2026-08-08 that is **v1.4**, which has not been moved into
-this repository yet (FLOW-636); `packages/` here stops at `revenue-kb-v1.2/`.
+this repository yet (FLOW-636); `packages/` here stops at `version-revenue-kb-v1.2/`.
 
-Every directory here is one of four kinds — version, corpus, run, evaluation.
-`docs/ARCHITECTURE.md` explains which is which and what may flow into what.
+**The name starts with the kind.** Full list and the old→new table:
+`packages/README.md`. What may flow into what: `docs/ARCHITECTURE.md`.
 
-| Package | What it is |
+| Prefix | Kind |
 |---|---|
-| `revenue-kb-v1.2/` `revenue-kb-v1.1/` `revenue-kb-v1/` | validator versions, newest first |
-| `interstitials-kb-v0/` | first knowledge base, interstitials only |
-| `revenue-corpus-prep-v1/` `interstitials-corpus-prep/` | holdouts: blind cards, sealed outcomes, evaluation protocol |
-| `revenue-kb-ab-run/` `interstitials-kb-ab-run/` | blind A/B runs |
-| `revenue-kb-v1.1-regression-*` `revenue-kb-v1.2-regression-*` | regression runs and their evaluations |
-| `flow546-clean-input/` `flow565-evaluation-input/` | Validator V0 and its blind backtest |
-| `revenue-evidence-policy-v1/` | evidence policy |
-| `trial-run-815603314/` | first run on a live, not-yet-launched experiment |
+| `version-` | a runnable frozen validator |
+| `corpus-` | cases split for honest evaluation |
+| `run-` | inference only, no judgement |
+| `eval-` | judgement against a pre-registered protocol |
+| `input-` | a bundle handed to an isolated agent |
+| `policy-` | frozen evidence rules |
 
 Packages are append-only and their checksum manifests use relative paths, so they must stay siblings. A new version means a new directory, never an edit.
 

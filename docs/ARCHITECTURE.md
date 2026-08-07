@@ -41,16 +41,19 @@ repository may use.
 
 ## What a package is
 
-Every directory under `packages/` is exactly one of four kinds. The kind
-determines what may flow into it.
+Every directory under `packages/` is exactly one kind, and its name starts with
+that kind. The prefix determines what may flow into it.
 
 ### 1. Version — a frozen validator
 
 Prompt template, knowledge base, pattern cards, evidence policy, linter, and a
 `FREEZE_MANIFEST.md` with SHA-256 per file. Runnable on its own.
 
-`revenue-kb-v1` · `revenue-kb-v1.1` · `revenue-kb-v1.2` · `revenue-kb-v1.3` ·
-`revenue-kb-v1.4` · `interstitials-kb-v0` · `flow546-clean-input/validator-v0`
+`version-revenue-kb-v1` · `version-revenue-kb-v1.1` · `version-revenue-kb-v1.2` ·
+`version-interstitials-kb-v0` · `input-validator-v0-backtest/validator-v0`
+
+Not here yet: v1.3 and v1.4, still outside the repository (FLOW-636). They arrive
+as `version-revenue-kb-v1.3` and `version-revenue-kb-v1.4`.
 
 ### 2. Corpus — cases split for honest evaluation
 
@@ -58,32 +61,40 @@ Three physically separate parts: `knowledge-sources/` feeds a version,
 `holdout-blind/` feeds a run, `ground-truth-sealed/` feeds only an evaluation.
 Plus an exclusion manifest and a leakage check.
 
-`interstitials-corpus-prep` · `revenue-corpus-prep-v1`
+`corpus-interstitials` · `corpus-revenue-v1`
 
 ### 3. Run — inference, no judgement
 
 Verbatim answers, the exact inputs, a manifest with checksums of every frozen
 file used. A run never opens outcomes and never decides which arm was better.
 
-`interstitials-kb-ab-run` · `revenue-kb-ab-run` ·
-`revenue-kb-v1.1-regression-run` · `revenue-kb-v1.2-regression-run` ·
-`trial-run-815603314` (+ the `-v1.3`, `-v1.3-run2`, `-v1.4` trials)
+`run-interstitials-kb-ab` · `run-revenue-kb-v1-ab` ·
+`run-revenue-kb-v1.1-regression` · `run-revenue-kb-v1.2-regression` ·
+`run-live-official-tabs-v1.2` (+ the `-v1.3`, `-v1.3-run2`, `-v1.4` trials)
 
 ### 4. Evaluation — judgement against a pre-registered protocol
 
 Scorecards, metrics, limitations, verdict. This is the only kind allowed to open
 sealed outcomes, and only after the run's answers are frozen.
 
-`interstitials-kb-evaluation` · `revenue-kb-evaluation` ·
-`revenue-kb-v1.1-regression-evaluation` · `revenue-kb-v1.2-regression-evaluation`
+`eval-interstitials-kb-ab` · `eval-revenue-kb-v1-ab` ·
+`eval-revenue-kb-v1.1-regression` · `eval-revenue-kb-v1.2-regression`
 
-### Two exceptions
+### 5. Input — a bundle handed to an isolated agent
 
-`flow546-clean-input` and `flow565-evaluation-input` are named after the task
-that produced them rather than their role. Both are assembled inputs for a clean
-run — a bundle handed to an isolated agent so it need not touch anything else.
-Kept under their original names because manifests of completed runs cite those
-paths.
+`input-validator-v0-backtest` · `input-validator-v0-unblind`
+
+Assembled so a clean-room agent needs to touch nothing else: everything it may
+read, and nothing it may not. Each carries its own README stating what is
+forbidden inside it — the unblind bundle, for instance, contains ground truth and
+is therefore off limits to any run.
+
+### 6. Policy — frozen evidence rules
+
+`policy-revenue-evidence-v1`
+
+Referenced by versions rather than copied into them, so a policy change is
+visible as its own event.
 
 ## Flow
 
@@ -107,9 +118,12 @@ directory. Manifest paths are relative, so packages must stay siblings.
 **One version at a time is current.** `docs/CURRENT.md` names it. Nothing else
 does — not this file, not the README, not a Linear issue.
 
-**Naming.** `<area>-<version>[-<role>]`, as in
-`revenue-kb-v1.2-regression-evaluation`. The role suffix is what makes the kind
-readable without opening the directory.
+**Naming — the kind comes first.** `<kind>-<area>-<version>[-<what>]`, as in
+`eval-revenue-kb-v1.2-regression`. Six kinds: `version-`, `corpus-`, `run-`,
+`eval-`, `input-`, `policy-`. Reading the prefix tells you what may flow into
+that directory without opening it. Packages were renamed to this scheme on
+2026-08-08; `packages/README.md` holds the old→new table, because frozen files
+still cite the old names and may not be edited.
 
 **Domain rules are input, not code.** `context/rules/` holds how the team
 actually decides. Four of its seven files are still TODO, and that gap is the
