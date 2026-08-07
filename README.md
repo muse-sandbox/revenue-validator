@@ -4,10 +4,16 @@ Pre-launch validator for revenue experiments at Ultimate Guitar. It reviews an e
 
 > **Internal repository.** Contains real revenue figures, conversion rates, experiment outcomes and links to internal Confluence. Do not mirror, fork outside the organization, or paste contents into external services.
 
+**Plan and progress live in Linear:**
+[AI Revenue Decision Loop — валидатор денежных гипотез](https://linear.app/asteroids-infra/project/ai-revenue-decision-loop-validator-denezhnyh-gipotez-231007a9bbcd)
+
 ## Start here
 
 | If you want to | Read |
 |---|---|
+| know where the project stands right now | `docs/CURRENT.md` |
+| understand who does what, and what a package is | `docs/ARCHITECTURE.md` |
+| see what is planned and in progress | the Linear project linked above |
 | understand the rules an agent must follow | `CLAUDE.md` |
 | run the validator on an experiment | `.claude/skills/validator-run/` |
 | run an evaluation without breaking it | `.claude/skills/holdout-discipline/` |
@@ -38,7 +44,12 @@ worktree-recovered/    files that existed only inside isolated task worktrees
 
 ### packages/
 
-Current validator: **`revenue-kb-v1.2/`** — prompt, knowledge base, pattern cards, evidence policy, linter.
+Current validator: see `docs/CURRENT.md` — it is the single place that names the
+current version. As of 2026-08-08 that is **v1.4**, which has not been moved into
+this repository yet (FLOW-636); `packages/` here stops at `revenue-kb-v1.2/`.
+
+Every directory here is one of four kinds — version, corpus, run, evaluation.
+`docs/ARCHITECTURE.md` explains which is which and what may flow into what.
 
 | Package | What it is |
 |---|---|
