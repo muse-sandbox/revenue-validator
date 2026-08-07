@@ -10,7 +10,7 @@ description: Run the revenue validator on an experiment card. Use when asked to 
 The prompt is a template with two placeholders:
 
 ```
-packages/current/version-revenue-kb-v1.2/validator_prompt_v1_2.md
+packages/current/version-revenue-kb-v1.4/validator_prompt_v1_4.md
   {KNOWLEDGE_CONTEXT}  ->  knowledge_base.md + pattern_cards.md, concatenated
   {EXPERIMENT_CARD}    ->  the experiment document under review
 ```
@@ -35,9 +35,9 @@ difference is whether the knowledge context block is filled.
 ## Lint the answer
 
 ```bash
-python3 packages/current/version-revenue-kb-v1.2/linter.py ANSWER.md \
-  --kb packages/current/version-revenue-kb-v1.2/knowledge_base.md \
-  --patterns packages/current/version-revenue-kb-v1.2/pattern_cards.md
+python3 packages/current/version-revenue-kb-v1.4/linter.py ANSWER.md \
+  --kb packages/current/version-revenue-kb-v1.4/knowledge_base.md \
+  --patterns packages/current/version-revenue-kb-v1.4/pattern_cards.md
 ```
 
 Add `--no-kb-arm` for the arm without a knowledge context — there the linter

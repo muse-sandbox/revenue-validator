@@ -1,0 +1,69 @@
+{
+  "cards": [],
+  "errors": [],
+  "files": {
+    "answer": "outputs/arm-a.md",
+    "kb": "../revenue-kb-v1.3/knowledge_base.md",
+    "patterns": "../revenue-kb-v1.3/pattern_cards.md"
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [
+    {
+      "annotations": 0,
+      "classes": [],
+      "errors": [
+        {
+          "code": "E_UNQUALIFIED_UNIVERSAL",
+          "detail": "corpus-scoped universal without a [scope: …] annotation (corpus markers ['past experiments']; universal markers ['nothing'])"
+        }
+      ],
+      "excerpt": "## Product proposals No KNOWLEDGE CONTEXT was supplied, so nothing product-level can be grounded in past experiments.",
+      "flagged": true,
+      "index": 1,
+      "paragraph": 4,
+      "polarity": "negative"
+    }
+  ],
+  "known_source_ids_count": 32,
+  "mode": "no-kb-arm",
+  "product_proposals": {
+    "abstention_literal": true,
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- **[ungrounded]** Check whether the harmed slice is even reachable: harm concentrates in Intermediate iOS users, but the demo only reaches Chords choosers (78%",
+        "grounded": false,
+        "ids": [],
+        "index": 1,
+        "type": "ungrounded"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[ungrounded]** The −1.79 pp loss sits in non-purchasers, which points at the paywall wall rather than an awareness gap. A paywall-side arm (dismiss path, gi",
+        "grounded": false,
+        "ids": [],
+        "index": 2,
+        "type": "ungrounded"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[ungrounded]** Whether coercion is load-bearing: a skippable version of the same demo would separate content value from forced interaction.",
+        "grounded": false,
+        "ids": [],
+        "index": 3,
+        "type": "ungrounded"
+      }
+    ],
+    "grounded_count": 0,
+    "section_present": true
+  },
+  "verdict": "FAIL",
+  "warnings": []
+}

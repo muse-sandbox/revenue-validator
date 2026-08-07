@@ -1,13 +1,12 @@
 # Current version
 
-**Validator:** `revenue-kb-v1.4/` — see the location warning below
+**Validator:** `packages/current/version-revenue-kb-v1.4/`
 **Frozen:** 2026-08-07
 **Status:** not accepted — the formal gate has never passed; used for live trials only.
 
-> ⚠️ **v1.3 and v1.4 are not in this repository yet.** They live in a single copy at
-> `~/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/`,
-> together with the trial runs `trial-run-815603314-v1.3`, `-v1.3-run2` and `-v1.4`.
-> Consolidating them is FLOW-636. Until then `packages/` stops at v1.2.
+Consolidated into this repository on 2026-08-08 (FLOW-636) together with v1.3 and
+the three live runs on Official Tabs. Integrity after the move: 480 manifest
+entries, 0 mismatches.
 
 ## Where we are
 
@@ -27,6 +26,7 @@ Plan and progress: [Linear project](https://linear.app/asteroids-infra/project/a
 | File | Role |
 |---|---|
 | `validator_prompt_v1_4.md` | prompt template, two placeholders |
+| `README.md` | what this version fixed and why |
 | `knowledge_base.md` | source cards, closeness model, generalization classes |
 | `pattern_cards.md` | recurring patterns with scope and transfer bans |
 | `evidence_policy.md` + `evidence_policy_rules.yaml` | policy, human and machine readable |

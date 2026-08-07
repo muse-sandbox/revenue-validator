@@ -18,7 +18,7 @@ Pre-launch validator for revenue experiments at Ultimate Guitar. It reviews an e
 | run the validator on an experiment | `.claude/skills/validator-run/` |
 | run an evaluation without breaking it | `.claude/skills/holdout-discipline/` |
 | know how this team actually works | `context/rules/` |
-| see a worked example | `packages/history/run-live-official-tabs-v1.2/` |
+| see a worked example | `packages/history/run-live-official-tabs-v1.4/` |
 
 ## ⚠️ Sealed outcomes
 
@@ -47,15 +47,14 @@ worktree-recovered/    files that existed only inside isolated task worktrees
 ### packages/
 
 Current validator: see `docs/CURRENT.md` — it is the single place that names the
-current version. As of 2026-08-08 that is **v1.4**, which has not been moved into
-this repository yet (FLOW-636); `packages/` here stops at `version-revenue-kb-v1.2/`.
+current version. As of 2026-08-08 that is **v1.4**, in `packages/current/`.
 
 Two directories, and the name of each package starts with its kind:
 
 ```text
 packages/
   current/    the validator in use, its corpus, its policy — 3 packages
-  history/    older versions, and every run and evaluation — 15 packages
+  history/    older versions, and every run and evaluation — 20 packages
 ```
 
 | Prefix | Kind |
@@ -93,4 +92,4 @@ Not frozen. The formal gate failed three times on one class of defect — one-si
 
 ## Integrity
 
-Every frozen package carries a manifest with SHA-256 per file. Last full verification: 2026-08-08, **377 entries, 0 mismatches** — run after the packages were renamed and split, to prove neither touched a file.
+Every frozen package carries a manifest with SHA-256 per file. Last full verification: 2026-08-08, **480 entries, 0 mismatches** — run after the rename, the split, and the consolidation of v1.3/v1.4, to prove none of them touched a file.

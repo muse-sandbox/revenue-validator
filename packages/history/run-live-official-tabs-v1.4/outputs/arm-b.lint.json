@@ -1,0 +1,282 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 1,
+      "source_id": "T1-07"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 2,
+      "source_id": "T1-03"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 3,
+      "source_id": "T2-07"
+    }
+  ],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 189,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [],
+        "excerpt": "- [computed] The guardrail is sized at −2.37% relative on a 42.14% baseline, i.e. 42.14% × 2.37% ≈ 1.0 pp, while the acceptable margin is 0.5 pp — 1.0 / 0.5 = 2",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": -2.37
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "1.0 / 0.5",
+            "result": 2.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- [computed] Only the Chords branch is treated (78% of the arm), so a demo that recovers half of B's 1.60 pp loss on treated users arrives arm-wide as 78% × (1.",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.6
+          },
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.6
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "derived",
+            "value": 0.62
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "78% * (1.60 / 2)",
+            "result": 0.62
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NUMBER_FROM_KB",
+            "detail": "48 is absent from the experiment card and is not derived by any operation shown here, but it occurs in the KNOWLEDGE CONTEXT: this is a magnitude transfer presented as a calculation (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- [computed] Reach and duration disagree by ~4×: 2 × 38,147 = 76,294 exposures at ≈7,700/day is ≈10 days, not the 39 stated; at exp #7622's own rate (24,500 per",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "derived",
+            "value": 76294.0
+          },
+          {
+            "origin": "card",
+            "value": 7700.0
+          },
+          {
+            "origin": "card",
+            "value": 10.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 7622.0
+          },
+          {
+            "origin": "card",
+            "value": 24500.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "derived",
+            "value": 1114.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "derived",
+            "value": 1114.0
+          },
+          {
+            "origin": "card",
+            "value": 34.0
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          },
+          {
+            "origin": "knowledge_base",
+            "value": 48.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "2 * 38147",
+            "result": 76294.0
+          },
+          {
+            "agrees": true,
+            "expression": "(24500 / 22",
+            "result": 1114.0
+          },
+          {
+            "agrees": true,
+            "expression": ") 38147 / 1114",
+            "result": 34.0
+          }
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_NUMBER_FROM_KB",
+      "detail": "48 is absent from the experiment card and is not derived by any operation shown here, but it occurs in the KNOWLEDGE CONTEXT: this is a magnitude transfer presented as a calculation (KB §2.8 CC1)"
+    }
+  ],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.4/outputs/arm-b.md",
+    "card": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.4/inputs/experiment_card.md",
+    "kb": "knowledge_base.md",
+    "patterns": "pattern_cards.md"
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "known_source_ids_count": 32,
+  "mode": "kb-arm",
+  "product_proposals": {
+    "abstention_literal": false,
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- **[mechanic]** Keep Continue always available instead of feature-tap-only exits — grounded in **T1-07** (L2): [fact] the skippable gamified pre-paywall varian",
+        "grounded": true,
+        "ids": [
+          "T1-07"
+        ],
+        "index": 1,
+        "type": "mechanic"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[mechanic]** Place the feature demo *after* the Paywall 2 dismissal (the chooser slot the card already says improves the 60s transition) rather than before ",
+        "grounded": true,
+        "ids": [
+          "P-04",
+          "T1-03"
+        ],
+        "index": 2,
+        "type": "mechanic"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[segment]** Pre-register the readout split by chosen format and by user level, and consider restricting eligibility to Chords — grounded in **T2-07** (L2): ",
+        "grounded": true,
+        "ids": [
+          "T2-07"
+        ],
+        "index": 3,
+        "type": "segment"
+      }
+    ],
+    "grounded_count": 3,
+    "section_present": true
+  },
+  "verdict": "FAIL",
+  "warnings": []
+}

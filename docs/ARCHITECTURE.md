@@ -52,11 +52,8 @@ what may flow into it.
 Prompt template, knowledge base, pattern cards, evidence policy, linter, and a
 `FREEZE_MANIFEST.md` with SHA-256 per file. Runnable on its own.
 
-`version-revenue-kb-v1` · `version-revenue-kb-v1.1` · `version-revenue-kb-v1.2` ·
+`version-revenue-kb-v1.4` (current) · `-v1.3` · `-v1.2` · `-v1.1` · `-v1` ·
 `version-interstitials-kb-v0` · `input-validator-v0-backtest/validator-v0`
-
-Not here yet: v1.3 and v1.4, still outside the repository (FLOW-636). They arrive
-as `version-revenue-kb-v1.3` and `version-revenue-kb-v1.4`.
 
 ### 2. Corpus — cases split for honest evaluation
 

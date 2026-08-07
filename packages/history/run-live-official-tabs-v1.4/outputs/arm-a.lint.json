@@ -1,0 +1,385 @@
+{
+  "cards": [],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 189,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [],
+        "excerpt": "- [computed] Only the Chords branch sees the demo (78% of exposed), and the full flow needs Simplify, unavailable for ~27% of songs, so at most `78% × (1 − 27%)",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "derived",
+            "value": 57.0
+          },
+          {
+            "origin": "derived",
+            "value": 57.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 0.78
+          },
+          {
+            "origin": "derived",
+            "value": 48900.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 0.78
+          },
+          {
+            "origin": "card",
+            "value": 50.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "78% * (1 - 27%)",
+            "result": 57.0
+          },
+          {
+            "agrees": true,
+            "expression": "38147 / 0.78",
+            "result": 48900.0
+          },
+          {
+            "agrees": true,
+            "expression": "39 / 0.78",
+            "result": 50.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- [computed] The guardrail is sized to detect `42.14% × 2.37% ≈ 1.0 pp`, but the working decision margin is −0.5 pp; halving the detectable difference multiplie",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": -0.5
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 152600.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 156.0
+          },
+          {
+            "origin": "card",
+            "value": -0.5
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14% * 2.37%",
+            "result": 1.0
+          },
+          {
+            "agrees": true,
+            "expression": "(1.0 / 0.5)^2",
+            "result": 4.0
+          },
+          {
+            "agrees": true,
+            "expression": "38147 * 4",
+            "result": 152600.0
+          },
+          {
+            "agrees": true,
+            "expression": "39 * 4",
+            "result": 156.0
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "53 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- [computed] The reach numbers contradict each other: `38,147 × 2 / 7,700 ≈ 9.9` days versus the stated 39 days, while #7622 ran at `24,500 × 2 / 22 ≈ 2,230` ex",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 7700.0
+          },
+          {
+            "origin": "derived",
+            "value": 9.9
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 7622.0
+          },
+          {
+            "origin": "card",
+            "value": 24500.0
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "derived",
+            "value": 2230.0
+          },
+          {
+            "origin": "card",
+            "value": 10.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          },
+          {
+            "origin": "unknown",
+            "value": 53.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "38147 * 2 / 7700",
+            "result": 9.9
+          },
+          {
+            "agrees": true,
+            "expression": "24500 * 2 / 22",
+            "result": 2230.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- [computed] The MDE column does not reconcile with baseline × lift for any metric: `0.68 × 20% = 0.136 ≠ 0.032`; `6.49% × 13% ≈ 0.84 pp ≠ 0.033`; `3.76% × 14% ",
+        "index": 4,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 0.68
+          },
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "derived",
+            "value": 0.136
+          },
+          {
+            "origin": "card",
+            "value": 0.032
+          },
+          {
+            "origin": "card",
+            "value": 6.49
+          },
+          {
+            "origin": "card",
+            "value": 13.0
+          },
+          {
+            "origin": "derived",
+            "value": 0.84
+          },
+          {
+            "origin": "card",
+            "value": 0.033
+          },
+          {
+            "origin": "card",
+            "value": 3.76
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          },
+          {
+            "origin": "derived",
+            "value": 0.53
+          },
+          {
+            "origin": "card",
+            "value": 0.027
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "0.68 * 20%",
+            "result": 0.136
+          },
+          {
+            "agrees": true,
+            "expression": "6.49% * 13%",
+            "result": 0.84
+          },
+          {
+            "agrees": true,
+            "expression": "3.76% * 14%",
+            "result": 0.53
+          }
+        ]
+      }
+    ]
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "53 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    }
+  ],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.4/outputs/arm-a.md",
+    "card": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.4/inputs/experiment_card.md",
+    "kb": "knowledge_base.md",
+    "patterns": "pattern_cards.md"
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "known_source_ids_count": 32,
+  "mode": "no-kb-arm",
+  "product_proposals": {
+    "abstention_literal": true,
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- [ungrounded] Research whether the retention loss is caused by paywall friction or by unmet in-tab value: instrument #7622's non-purchaser cohort (81%, −1.79 p",
+        "grounded": false,
+        "ids": [],
+        "index": 1,
+        "type": "ungrounded"
+      },
+      {
+        "errors": [],
+        "excerpt": "- [ungrounded] Research a Tabs-branch equivalent (Smartscroll/Autoscroll) — the card reports Tabs demand exists but the design gives that 22% nothing, which bot",
+        "grounded": false,
+        "ids": [],
+        "index": 2,
+        "type": "ungrounded"
+      },
+      {
+        "errors": [],
+        "excerpt": "- [ungrounded] Research a non-gated variant (skippable demo, ✕ close available) so the forced-gate cost can be separated from the demo-content benefit.",
+        "grounded": false,
+        "ids": [],
+        "index": 3,
+        "type": "ungrounded"
+      }
+    ],
+    "grounded_count": 0,
+    "section_present": true
+  },
+  "verdict": "FAIL",
+  "warnings": []
+}

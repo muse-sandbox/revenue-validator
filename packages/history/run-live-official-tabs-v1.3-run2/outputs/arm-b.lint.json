@@ -1,0 +1,87 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L1",
+      "computed_level": "L1",
+      "index": 1,
+      "source_id": "T2-07"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 2,
+      "source_id": "T1-03"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 3,
+      "source_id": "T1-07"
+    }
+  ],
+  "errors": [],
+  "files": {
+    "answer": "outputs/arm-b.md",
+    "kb": "../revenue-kb-v1.3/knowledge_base.md",
+    "patterns": "../revenue-kb-v1.3/pattern_cards.md"
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "known_source_ids_count": 32,
+  "mode": "kb-arm",
+  "product_proposals": {
+    "abstention_literal": false,
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- **[mechanic]** Deliver the in-tab value **after the paywall dismiss** instead of between the tab and Paywall 2 — grounded in T2-07 (L1 card) and P-04, whose t",
+        "grounded": true,
+        "ids": [
+          "P-04",
+          "T2-07"
+        ],
+        "index": 1,
+        "type": "mechanic"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[segment]** Pre-register the **user-level split as a decision rule**, not an analytical slice, and consider making the demo eligibility-gated by level — gro",
+        "grounded": true,
+        "ids": [
+          "T2-07"
+        ],
+        "index": 2,
+        "type": "segment"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[offer]** Test changing Paywall 2's **structure instead of its preamble** — instant discounted purchase in place of the trial — grounded in P-05 (applicabil",
+        "grounded": true,
+        "ids": [
+          "P-05"
+        ],
+        "index": 3,
+        "type": "offer"
+      }
+    ],
+    "grounded_count": 3,
+    "section_present": true
+  },
+  "verdict": "PASS",
+  "warnings": [
+    {
+      "code": "W_RISK_SOURCE_WITHOUT_PROPOSAL",
+      "detail": "source(s) T1-03 ground a risk but no product proposal (KB §2.7 PP5)"
+    }
+  ]
+}

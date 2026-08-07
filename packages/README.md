@@ -6,20 +6,20 @@ everything that led here and must not be edited.
 ```
 packages/
   current/     3 packages — the validator, its corpus, its policy
-  history/    15 packages — older versions, and every run and evaluation
+  history/    20 packages — older versions, and every run and evaluation
 ```
 
 ## current/
 
 | Package | Kind | What it is |
 |---|---|---|
-| `version-revenue-kb-v1.2` | version | prompt, knowledge base, pattern cards, linter |
+| `version-revenue-kb-v1.4` | version | prompt, knowledge base, pattern cards, evidence policy, linter |
 | `corpus-revenue-v1` | corpus | the 24-experiment inventory split into base and holdout |
 | `policy-revenue-evidence-v1` | policy | what an analog gives you the right to claim |
 
-> **v1.4 is the real current version** and is not in this repository yet — it
-> still lives in a single copy outside git (FLOW-636). v1.2 is the newest
-> version present here. `docs/CURRENT.md` is the authority on which is which.
+v1.3, v1.4 and the three live Official Tabs runs were consolidated here on
+2026-08-08 (FLOW-636). Nothing of this project now exists in a single copy
+outside git. `docs/CURRENT.md` remains the authority on which version is current.
 
 ## The current corpus, and what it is made of
 
@@ -49,9 +49,15 @@ Nine killed, eight rolled out, one stopped as inconclusive. From these 18 the
 base also carries **14 pattern cards** (`P-01`…`P-14`) — recurring findings with
 their scope and their transfer bans.
 
-What the corpus records well: the *conditions* of each decision. What it barely
-records: the *reasons*. Only two of the 18 quote the team verbatim. Closing that
-is FLOW-635.
+The corpus cards record the *conditions* of each decision and only two of the 18
+quote the team verbatim — but that is an artefact of how the cards were built.
+FLOW-635 went back to the source pages: 16 of 18 state the grounds for the
+decision explicitly, 13 also explain the mechanism. The reasoning was there and
+was lost when the conclusions section was compressed to one line.
+
+Verbatim sections, the quality assessment and the corrected fifteen-rule set:
+`analysis/flow635-decision-rationales/`. Folding those rules into the knowledge
+base is FLOW-644.
 
 ### The 6 in the holdout
 
@@ -71,13 +77,14 @@ inputs that produced it.
 
 | Package | Kind |
 |---|---|
-| `version-revenue-kb-v1` · `version-revenue-kb-v1.1` | earlier validators |
+| `version-revenue-kb-v1` · `-v1.1` · `-v1.2` · `-v1.3` | earlier validators |
 | `version-interstitials-kb-v0` | the first knowledge base, interstitials only |
 | `corpus-interstitials` | the corpus it was built on |
 | `input-validator-v0-backtest` · `input-validator-v0-unblind` | V0 and its blind backtest |
 | `run-interstitials-kb-ab` · `run-revenue-kb-v1-ab` | blind A/B runs |
 | `run-revenue-kb-v1.1-regression` · `run-revenue-kb-v1.2-regression` | regressions |
 | `run-live-official-tabs-v1.2` | the first run on a live experiment |
+| `run-live-official-tabs-v1.3` · `-v1.3-run2` · `-v1.4` | later runs on the same live case |
 | `eval-*` | the verdict for each run above |
 
 ## The prefix is the kind
@@ -99,10 +106,10 @@ step and never earlier.
 Two changes on the same day: packages were renamed so the kind leads the name,
 then split into `current/` and `history/`.
 
-File contents were never touched. Integrity check after both changes: **377
-manifest entries, 0 mismatches** — manifests hash file contents and list paths
-relative to their own package, so neither the rename nor the move entered a
-checksum.
+File contents were never touched. Integrity check after the rename, the split and
+the consolidation of v1.3/v1.4: **480 manifest entries, 0 mismatches** — manifests
+hash file contents and list paths relative to their own package, so neither the
+rename nor the move entered a checksum.
 
 What did go stale: prose cross-references inside frozen READMEs and manifests
 pointing at a sibling by its old name and old place, such as
@@ -121,7 +128,7 @@ and were left unedited on purpose. Resolve them here.
 | `revenue-evidence-policy-v1` | `current/policy-revenue-evidence-v1` |
 | `revenue-kb-v1` | `history/version-revenue-kb-v1` |
 | `revenue-kb-v1.1` | `history/version-revenue-kb-v1.1` |
-| `revenue-kb-v1.2` | `current/version-revenue-kb-v1.2` |
+| `revenue-kb-v1.2` | `history/version-revenue-kb-v1.2` |
 | `revenue-kb-ab-run` | `history/run-revenue-kb-v1-ab` |
 | `revenue-kb-evaluation` | `history/eval-revenue-kb-v1-ab` |
 | `revenue-kb-v1.1-regression-run` | `history/run-revenue-kb-v1.1-regression` |
@@ -129,6 +136,11 @@ and were left unedited on purpose. Resolve them here.
 | `revenue-kb-v1.2-regression-run` | `history/run-revenue-kb-v1.2-regression` |
 | `revenue-kb-v1.2-regression-evaluation` | `history/eval-revenue-kb-v1.2-regression` |
 | `trial-run-815603314` | `history/run-live-official-tabs-v1.2` |
+| `revenue-kb-v1.3` | `history/version-revenue-kb-v1.3` |
+| `revenue-kb-v1.4` | `current/version-revenue-kb-v1.4` |
+| `trial-run-815603314-v1.3` | `history/run-live-official-tabs-v1.3` |
+| `trial-run-815603314-v1.3-run2` | `history/run-live-official-tabs-v1.3-run2` |
+| `trial-run-815603314-v1.4` | `history/run-live-official-tabs-v1.4` |
 
 ## When a new version arrives
 

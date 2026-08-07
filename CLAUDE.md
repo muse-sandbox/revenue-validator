@@ -8,7 +8,7 @@ Read `context/rules/` first. It describes how this team actually works — how l
 
 `packages/current/` holds what the validator uses today — one version, one corpus, one policy. Everything else lives in `packages/history/` unchanged. A new version is a new directory in `current/` while the previous one moves to `history/`; never an edit to either. If `current/` ever holds two versions, something was left half-done.
 
-The current validator here is `packages/current/version-revenue-kb-v1.2/`, but `docs/CURRENT.md` is the authority — v1.4 exists and has not been moved into this repository yet.
+The current validator is `packages/current/version-revenue-kb-v1.4/`. `docs/CURRENT.md` is the authority on that — nothing else names it.
 
 ## Never do this
 
