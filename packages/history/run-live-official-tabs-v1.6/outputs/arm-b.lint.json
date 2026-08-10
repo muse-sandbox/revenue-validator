@@ -1,0 +1,458 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 1,
+      "source_id": "T2-07"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 2,
+      "source_id": "T1-07"
+    }
+  ],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 189,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: b-arm-absent-arpu-resolution] We spend the slot and get a number that reads as a win over control whether the demo held B's lift or ate mos",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "card",
+            "value": 22.8
+          },
+          {
+            "origin": "card",
+            "value": 24.2
+          },
+          {
+            "origin": "card",
+            "value": 24.2
+          },
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "card",
+            "value": 4.2
+          },
+          {
+            "origin": "card",
+            "value": 4.2
+          },
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "derived",
+            "value": 0.21
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "24.2% - 20.00%",
+            "result": 4.2
+          },
+          {
+            "agrees": true,
+            "expression": "(4.2 / 20.00",
+            "result": 0.21
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: retention-guardrail-margin-power] We spend 39 days of enrollment and come back with a retention result that cannot clear the launch conditi",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": -0.5
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14% * 2.37%",
+            "result": 1.0
+          },
+          {
+            "agrees": true,
+            "expression": "1.0 / 0.5",
+            "result": 2.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: exposure-boundary-cohort-mismatch] The retention cohort we compare turns out to be a different population from the one the sizing describes",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 7622.0
+          },
+          {
+            "origin": "card",
+            "value": 37.58
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 37.58
+          },
+          {
+            "origin": "derived",
+            "value": 4.56
+          },
+          {
+            "origin": "card",
+            "value": 2.5
+          },
+          {
+            "origin": "card",
+            "value": 1.84
+          },
+          {
+            "origin": "derived",
+            "value": 4.56
+          },
+          {
+            "origin": "card",
+            "value": 1.84
+          },
+          {
+            "origin": "card",
+            "value": 2.5
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14 - 37.58",
+            "result": 4.56
+          },
+          {
+            "agrees": true,
+            "expression": "(4.56 / 1.84",
+            "result": 2.5
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_SOURCE_ID",
+            "detail": "[computed] statement cites source ID(s) P-11; a calculation over the card's own numbers carries none, and a knowledge-base number makes it a magnitude transfer under rule 4 (KB §2.8 CC3)"
+          }
+        ],
+        "excerpt": "- **[improve]** [topic: chords-branch-dilution-readout] A fifth of the arm carries no demo at all and shrinks whatever the demo does to the goal number. *If:* w",
+        "index": 4,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "derived",
+            "value": 57.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "78% * (1 - 27%)",
+            "result": 57.0
+          }
+        ]
+      }
+    ]
+  },
+  "conditional_form": {
+    "complete": 6,
+    "findings": {
+      "complete": 4,
+      "units": 4
+    },
+    "proposals": {
+      "complete": 2,
+      "units": 2
+    },
+    "units": 6
+  },
+  "decisions": {
+    "bullets": 4,
+    "roles": [
+      "analyst",
+      "product owner"
+    ],
+    "section_present": true
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_SOURCE_ID",
+      "detail": "[computed] statement cites source ID(s) P-11; a calculation over the card's own numbers carries none, and a knowledge-base number makes it a magnitude transfer under rule 4 (KB §2.8 CC3)"
+    }
+  ],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.6/outputs/arm-b.md",
+    "card": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.6/inputs/experiment_card.md",
+    "kb": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.6/knowledge_base.md",
+    "patterns": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.6/pattern_cards.md"
+  },
+  "findings": {
+    "bullets": [
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: b-arm-absent-arpu-resolution] We spend the slot and get a number that reads as a win over control whether the demo held B's lift or ate mos",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: b-arm-absent-arpu-resolution] We spend the slot and get a number that reads as a win over control whether the demo held B's lift or ate most of it.",
+        "index": 1,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: retention-guardrail-margin-power] We spend 39 days of enrollment and come back with a retention result that cannot clear the launch conditi",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: retention-guardrail-margin-power] We spend 39 days of enrollment and come back with a retention result that cannot clear the launch condition.",
+        "index": 2,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: exposure-boundary-cohort-mismatch] The retention cohort we compare turns out to be a different population from the one the sizing describes",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: exposure-boundary-cohort-mismatch] The retention cohort we compare turns out to be a different population from the one the sizing describes.",
+        "index": 3,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: chords-branch-dilution-readout] A fifth of the arm carries no demo at all and shrinks whatever the demo does to the goal number. *If:* w",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: chords-branch-dilution-readout] A fifth of the arm carries no demo at all and shrinks whatever the demo does to the goal number.",
+        "index": 4,
+        "price_rank": 3,
+        "price_unit": "share of the expected effect",
+        "severity": "improve"
+      }
+    ],
+    "conditional_complete": 4,
+    "improve_count": 1,
+    "section_present": true,
+    "stop_count": 3
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "generic_screen": {
+    "card_supplied": true,
+    "fixes_anchored": 4,
+    "fixes_checked": 4,
+    "flagged": [],
+    "proposals_anchored": 2,
+    "proposals_checked": 2
+  },
+  "known_source_ids_count": 32,
+  "main": {
+    "banner": true,
+    "duplicates": [],
+    "word_count": 1289
+  },
+  "mode": "kb-arm",
+  "product_proposals": {
+    "abstention_literal": false,
+    "bullets": [
+      {
+        "conditional": true,
+        "errors": [],
+        "excerpt": "- **[mechanic]** [topic: demo-after-paywall-dismissal-nonbuyers] *If:* the demo moves behind the Paywall 2 dismissal, aimed at the 81% who reach the paywall wit",
+        "grounded": true,
+        "grounds_label": "fact",
+        "ids": [
+          "T2-07"
+        ],
+        "index": 1,
+        "type": "mechanic"
+      },
+      {
+        "conditional": true,
+        "errors": [],
+        "excerpt": "- **[segment]** [topic: level-slice-eligibility-intermediate] *If:* user level becomes a decision segment instead of an analytical slice, with Intermediate — wh",
+        "grounded": true,
+        "grounds_label": "fact",
+        "ids": [
+          "T2-07"
+        ],
+        "index": 2,
+        "type": "segment"
+      }
+    ],
+    "conditional_complete": 2,
+    "grounded_count": 2,
+    "section_present": true,
+    "typed_count": 2
+  },
+  "topics": {
+    "duplicates": [],
+    "restated_in_appendix": [],
+    "tags": [
+      {
+        "index": 1,
+        "section": "findings",
+        "slug": "b-arm-absent-arpu-resolution"
+      },
+      {
+        "index": 2,
+        "section": "findings",
+        "slug": "retention-guardrail-margin-power"
+      },
+      {
+        "index": 3,
+        "section": "findings",
+        "slug": "exposure-boundary-cohort-mismatch"
+      },
+      {
+        "index": 4,
+        "section": "findings",
+        "slug": "chords-branch-dilution-readout"
+      },
+      {
+        "index": 1,
+        "section": "product proposals",
+        "slug": "demo-after-paywall-dismissal-nonbuyers"
+      },
+      {
+        "index": 2,
+        "section": "product proposals",
+        "slug": "level-slice-eligibility-intermediate"
+      },
+      {
+        "index": 1,
+        "section": "non-monetization effects",
+        "slug": "forced-steps-early-churn-signal"
+      },
+      {
+        "index": 2,
+        "section": "non-monetization effects",
+        "slug": "temporary-unlock-expectation-refunds"
+      },
+      {
+        "index": 3,
+        "section": "non-monetization effects",
+        "slug": "first-session-content-engagement"
+      }
+    ]
+  },
+  "verdict": "FAIL",
+  "warnings": [
+    {
+      "code": "W_MAIN_OVER_CAP",
+      "detail": "the MAIN part runs to 1289 words against a ~550-word cap"
+    }
+  ]
+}

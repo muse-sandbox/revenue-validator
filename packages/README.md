@@ -6,20 +6,21 @@ everything that led here and must not be edited.
 ```
 packages/
   current/     3 packages — the validator, its corpus, its policy
-  history/    20 packages — older versions, and every run and evaluation
+  history/    25 packages — older versions, and every run and evaluation
 ```
 
 ## current/
 
 | Package | Kind | What it is |
 |---|---|---|
-| `version-revenue-kb-v1.4` | version | prompt, knowledge base, pattern cards, evidence policy, linter |
+| `version-revenue-kb-v1.6` | version | prompt, knowledge base, pattern cards, evidence policy, linter |
 | `corpus-revenue-v1` | corpus | the 24-experiment inventory split into base and holdout |
 | `policy-revenue-evidence-v1` | policy | what an analog gives you the right to claim |
 
 v1.3, v1.4 and the three live Official Tabs runs were consolidated here on
-2026-08-08 (FLOW-636). Nothing of this project now exists in a single copy
-outside git. `docs/CURRENT.md` remains the authority on which version is current.
+2026-08-08 (FLOW-636); v1.5, v1.6 and three more live runs on 2026-08-11.
+Nothing of this project now exists in a single copy outside git.
+`docs/CURRENT.md` remains the authority on which version is current.
 
 ## The current corpus, and what it is made of
 
@@ -77,14 +78,15 @@ inputs that produced it.
 
 | Package | Kind |
 |---|---|
-| `version-revenue-kb-v1` · `-v1.1` · `-v1.2` · `-v1.3` | earlier validators |
+| `version-revenue-kb-v1` · `-v1.1` · `-v1.2` · `-v1.3` · `-v1.4` · `-v1.5` | earlier validators |
 | `version-interstitials-kb-v0` | the first knowledge base, interstitials only |
 | `corpus-interstitials` | the corpus it was built on |
 | `input-validator-v0-backtest` · `input-validator-v0-unblind` | V0 and its blind backtest |
 | `run-interstitials-kb-ab` · `run-revenue-kb-v1-ab` | blind A/B runs |
 | `run-revenue-kb-v1.1-regression` · `run-revenue-kb-v1.2-regression` | regressions |
 | `run-live-official-tabs-v1.2` | the first run on a live experiment |
-| `run-live-official-tabs-v1.3` · `-v1.3-run2` · `-v1.4` | later runs on the same live case |
+| `run-live-official-tabs-v1.3` · `-v1.3-run2` · `-v1.4` · `-v1.5` · `-v1.6` | later runs on the same live case |
+| `run-live-premium-default-v1.6` | the first run on a second live case, arm B only |
 | `eval-*` | the verdict for each run above |
 
 ## The prefix is the kind
@@ -141,6 +143,31 @@ and were left unedited on purpose. Resolve them here.
 | `trial-run-815603314-v1.3` | `history/run-live-official-tabs-v1.3` |
 | `trial-run-815603314-v1.3-run2` | `history/run-live-official-tabs-v1.3-run2` |
 | `trial-run-815603314-v1.4` | `history/run-live-official-tabs-v1.4` |
+
+## Consolidated, 2026-08-11
+
+v1.5 and v1.6 and the runs made on them, until then the last artefacts of this
+project living in a single copy outside git.
+
+| Old name, in `…/outputs/` | Now |
+|---|---|
+| `revenue-kb-v1.5` | `history/version-revenue-kb-v1.5` |
+| `revenue-kb-v1.6` | `current/version-revenue-kb-v1.6` |
+| `trial-run-815603314-v1.5` | `history/run-live-official-tabs-v1.5` |
+| `trial-run-815603314-v1.6` | `history/run-live-official-tabs-v1.6` |
+| `trial-run-828875488-v1.6` | `history/run-live-premium-default-v1.6` |
+
+`current/version-revenue-kb-v1.4` moved to `history/` on the same day, per the
+rule below. `__pycache__` directories were not copied; nothing else was touched.
+
+Integrity across every manifest in `packages/`: **666 entries, 0 mismatches**.
+22 manifest lines name a path that does not resolve — 8 are the virtual
+`KNOWLEDGE_CONTEXT` concatenation, which is a hash of two files joined in
+memory and never a file on disk, and 14 are the same class of stale sibling
+cross-reference the rename left behind: a `run-live-*` manifest points at its
+bundle as `../revenue-kb-v1.5/…` or `../revenue-kb-v1.6/…`. Read those as
+`../../history/version-revenue-kb-v1.5/…` and
+`../../current/version-revenue-kb-v1.6/…`. The frozen files stay unedited.
 
 ## When a new version arrives
 

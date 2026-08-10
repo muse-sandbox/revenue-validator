@@ -1,0 +1,505 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 1,
+      "source_id": "T2-07"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 2,
+      "source_id": "T1-03"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 3,
+      "source_id": "T1-07"
+    }
+  ],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 189,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** We spend the slot and come back with a Retention 14d number that cannot clear the approved margin either way. *Mechanism:* [computed] the design re",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14% * 2.37%",
+            "result": 1.0
+          },
+          {
+            "agrees": true,
+            "expression": "1.0 / 0.5",
+            "result": 2.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** The question the card is built on — did the demo keep B's uplift — gets answered against another experiment's numbers rather than a live arm. *Mech",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "card",
+            "value": 24.2
+          },
+          {
+            "origin": "card",
+            "value": 20.0
+          },
+          {
+            "origin": "card",
+            "value": 4.2
+          },
+          {
+            "origin": "card",
+            "value": 31.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "24.2% - 20.0%",
+            "result": 4.2
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[improve]** Both headline metrics land on a population where 22% of the arm never sees a demo, so a flat read leaves the treated branch undecided. *Mechanis",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "derived",
+            "value": 57.0
+          },
+          {
+            "origin": "card",
+            "value": -0.5
+          },
+          {
+            "origin": "card",
+            "value": -1.6
+          },
+          {
+            "origin": "card",
+            "value": 1.6
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "derived",
+            "value": 1.1
+          },
+          {
+            "origin": "derived",
+            "value": 1.1
+          },
+          {
+            "origin": "card",
+            "value": 0.78
+          },
+          {
+            "origin": "derived",
+            "value": 1.41
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "78% * (1 - 27%)",
+            "result": 57.0
+          },
+          {
+            "agrees": true,
+            "expression": "1.60 - 0.50",
+            "result": 1.1
+          },
+          {
+            "agrees": true,
+            "expression": "1.10 / 0.78",
+            "result": 1.41
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "3850 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- **[improve]** The calendar drifts by weeks: the card's reach figure and its sizing yield 10 days and 39 days for the same sample. *Mechanism:* [computed] at `",
+        "index": 4,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 10.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 7700.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 7700.0
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 10.0
+          },
+          {
+            "origin": "card",
+            "value": 7622.0
+          },
+          {
+            "origin": "card",
+            "value": 24500.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "derived",
+            "value": 1114.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "derived",
+            "value": 1114.0
+          },
+          {
+            "origin": "card",
+            "value": 34.0
+          },
+          {
+            "origin": "unknown",
+            "value": 3850.0
+          },
+          {
+            "origin": "derived",
+            "value": 1114.0
+          },
+          {
+            "origin": "derived",
+            "value": 3.5
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "38147 / (7700 / 2)",
+            "result": 10.0
+          },
+          {
+            "agrees": true,
+            "expression": "24500 / 22",
+            "result": 1114.0
+          },
+          {
+            "agrees": true,
+            "expression": "38147 / 1114",
+            "result": 34.0
+          },
+          {
+            "agrees": true,
+            "expression": "3850 / 1114",
+            "result": 3.5
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[product owner]** The retention margin, as a number, before re-sizing: [computed] halving the detectable drop multiplies the sample by `(1.0 / 0.5)² = 4` → ",
+        "index": 5,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 152588.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 156.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "(1.0 / 0.5)^2",
+            "result": 4.0
+          },
+          {
+            "agrees": true,
+            "expression": "38147 * 4",
+            "result": 152588.0
+          },
+          {
+            "agrees": true,
+            "expression": "39 * 4",
+            "result": 156.0
+          }
+        ]
+      }
+    ]
+  },
+  "decisions": {
+    "bullets": 4,
+    "roles": [
+      "analyst",
+      "product owner"
+    ],
+    "section_present": true
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "3850 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    }
+  ],
+  "files": {
+    "answer": "../trial-run-815603314-v1.5/outputs/arm-b.md",
+    "card": "../trial-run-815603314-v1.5/inputs/experiment_card.md",
+    "kb": "knowledge_base.md",
+    "patterns": "pattern_cards.md"
+  },
+  "findings": {
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** We spend the slot and come back with a Retention 14d number that cannot clear the approved margin either way. *Mechanism:* [computed] the design re",
+        "headline": "We spend the slot and come back with a Retention 14d number that cannot clear the approved margin either way.",
+        "index": 1,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** Arms enrolled at one boundary and read at another produce a composition artifact indistinguishable from the retention effect. *Mechanism:* the card",
+        "headline": "Arms enrolled at one boundary and read at another produce a composition artifact indistinguishable from the retention effect.",
+        "index": 2,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** The question the card is built on — did the demo keep B's uplift — gets answered against another experiment's numbers rather than a live arm. *Mech",
+        "headline": "The question the card is built on — did the demo keep B's uplift — gets answered against another experiment's numbers rather than a live arm.",
+        "index": 3,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[improve]** Both headline metrics land on a population where 22% of the arm never sees a demo, so a flat read leaves the treated branch undecided. *Mechanis",
+        "headline": "Both headline metrics land on a population where 22% of the arm never sees a demo, so a flat read leaves the treated branch undecided.",
+        "index": 4,
+        "price_rank": 3,
+        "price_unit": "share of the expected effect",
+        "severity": "improve"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[improve]** The calendar drifts by weeks: the card's reach figure and its sizing yield 10 days and 39 days for the same sample. *Mechanism:* [computed] at `",
+        "headline": "The calendar drifts by weeks: the card's reach figure and its sizing yield 10 days and 39 days for the same sample.",
+        "index": 5,
+        "price_rank": 1,
+        "price_unit": "days to decision",
+        "severity": "improve"
+      }
+    ],
+    "improve_count": 2,
+    "section_present": true,
+    "stop_count": 3
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "known_source_ids_count": 32,
+  "main": {
+    "banner": true,
+    "duplicates": [],
+    "word_count": 1352
+  },
+  "mode": "kb-arm",
+  "product_proposals": {
+    "abstention_literal": false,
+    "bullets": [
+      {
+        "errors": [],
+        "excerpt": "- **[offer]** Test the Paywall 2 offer structure — instant discounted purchase instead of the trial — rather than lengthening the funnel: grounded in P-05 (iOS ",
+        "grounded": true,
+        "ids": [
+          "P-05"
+        ],
+        "index": 1,
+        "type": "offer"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[mechanic]** Keep an exit on the demo steps instead of making the feature tap the only way out: grounded in P-03 (skippability decisions). Expected directio",
+        "grounded": true,
+        "ids": [
+          "P-03"
+        ],
+        "index": 2,
+        "type": "mechanic"
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[segment]** Pre-register the level split as a decision rule, not an analytical slice: grounded in T2-07, where the pre-paywall demo's access-CR loss concent",
+        "grounded": true,
+        "ids": [
+          "T2-07"
+        ],
+        "index": 3,
+        "type": "segment"
+      }
+    ],
+    "grounded_count": 3,
+    "section_present": true
+  },
+  "verdict": "FAIL",
+  "warnings": [
+    {
+      "code": "W_MAIN_OVER_CAP",
+      "detail": "the MAIN part runs to 1352 words against a ~550-word cap"
+    }
+  ]
+}

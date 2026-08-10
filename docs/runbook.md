@@ -3,7 +3,7 @@
 ## Validate one experiment
 
 1. Take the experiment document.
-2. Assemble the prompt: `packages/current/version-revenue-kb-v1.4/validator_prompt_v1_4.md`,
+2. Assemble the prompt: `packages/current/version-revenue-kb-v1.6/validator_prompt_v1_6.md`,
    substituting the knowledge context and the card.
 3. Run in a clean context, no search tools, no access to the outcome.
 4. Lint the answer.

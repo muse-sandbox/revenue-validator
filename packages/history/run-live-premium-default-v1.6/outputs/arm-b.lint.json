@@ -1,0 +1,485 @@
+{
+  "cards": [
+    {
+      "card_errors": [],
+      "claimed_level": "L2",
+      "computed_level": "L2",
+      "index": 1,
+      "source_id": "T3-03"
+    },
+    {
+      "card_errors": [],
+      "claimed_level": "L3",
+      "computed_level": "L3",
+      "index": 2,
+      "source_id": "T3-06"
+    }
+  ],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 204,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: tab-restore-default-confound] The slot buys a verdict on \"tabs plus a Premium default\" and leaves the card's own question — which product i",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 4805.0
+          },
+          {
+            "origin": "card",
+            "value": 7.0
+          },
+          {
+            "origin": "card",
+            "value": 13.5
+          },
+          {
+            "origin": "card",
+            "value": 6.3
+          },
+          {
+            "origin": "derived",
+            "value": 7.2
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "13.5 - 6.3",
+            "result": 7.2
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: guardrail-refund-cancel-subscribers] The safety half of the read arrives on far fewer subscriptions than it was sized for, and no outcome c",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 4805.0
+          },
+          {
+            "origin": "card",
+            "value": 4805.0
+          },
+          {
+            "origin": "card",
+            "value": 17.43
+          },
+          {
+            "origin": "derived",
+            "value": 838.0
+          },
+          {
+            "origin": "card",
+            "value": 1185.0
+          },
+          {
+            "origin": "card",
+            "value": 4.61
+          },
+          {
+            "origin": "card",
+            "value": 58.8
+          },
+          {
+            "origin": "derived",
+            "value": 2.71
+          },
+          {
+            "origin": "card",
+            "value": 4.61
+          },
+          {
+            "origin": "derived",
+            "value": 2.71
+          },
+          {
+            "origin": "derived",
+            "value": 7.32
+          },
+          {
+            "origin": "card",
+            "value": 1185.0
+          },
+          {
+            "origin": "card",
+            "value": 17.43
+          },
+          {
+            "origin": "derived",
+            "value": 6798.0
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "derived",
+            "value": 6798.0
+          },
+          {
+            "origin": "card",
+            "value": 1373.0
+          },
+          {
+            "origin": "derived",
+            "value": 9.9
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "4805 * 17.43%",
+            "result": 838.0
+          },
+          {
+            "agrees": true,
+            "expression": "4.61% * 58.8%",
+            "result": 2.71
+          },
+          {
+            "agrees": true,
+            "expression": "4.61% + 2.71",
+            "result": 7.32
+          },
+          {
+            "agrees": true,
+            "expression": "1185 / 17.43%",
+            "result": 6798.0
+          },
+          {
+            "agrees": true,
+            "expression": "2 * 6798 / 1373",
+            "result": 9.9
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NO_OPERATION",
+            "detail": "[computed] statement shows no arithmetic: the operation must be written out in the sentence (KB §2.8 CC2)"
+          }
+        ],
+        "excerpt": "- **[stop]** [topic: tour-surface-zero-addressable] A tour-only run spends the slot and returns a defensive read against a target the surface cannot produce. *I",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 9459.0
+          },
+          {
+            "origin": "card",
+            "value": 15.0
+          },
+          {
+            "origin": "card",
+            "value": 1419.0
+          },
+          {
+            "origin": "card",
+            "value": 0.0
+          },
+          {
+            "origin": "card",
+            "value": 2646.0
+          },
+          {
+            "origin": "card",
+            "value": 2647.0
+          }
+        ],
+        "operations": []
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "2058 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- **[improve]** [topic: feature-surface-bundle-price-gap] The surfaces that hold the leak stay outside version 1 while the catalogue gap creating it stays open.",
+        "index": 4,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 12572.0
+          },
+          {
+            "origin": "card",
+            "value": 1083.0
+          },
+          {
+            "origin": "card",
+            "value": 15.0
+          },
+          {
+            "origin": "derived",
+            "value": 72.0
+          },
+          {
+            "origin": "card",
+            "value": 28.5
+          },
+          {
+            "origin": "unknown",
+            "value": 2058.0
+          },
+          {
+            "origin": "card",
+            "value": 2344.0
+          },
+          {
+            "origin": "card",
+            "value": 12572.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "1083 / 15",
+            "result": 72.0
+          }
+        ]
+      }
+    ]
+  },
+  "conditional_form": {
+    "complete": 6,
+    "findings": {
+      "complete": 5,
+      "units": 5
+    },
+    "proposals": {
+      "complete": 1,
+      "units": 1
+    },
+    "units": 6
+  },
+  "decisions": {
+    "bullets": 4,
+    "roles": [
+      "analyst",
+      "product owner"
+    ],
+    "section_present": true
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_NO_OPERATION",
+      "detail": "[computed] statement shows no arithmetic: the operation must be written out in the sentence (KB §2.8 CC2)"
+    },
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "2058 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    }
+  ],
+  "files": {
+    "answer": "outputs/arm-b.md",
+    "card": "inputs/experiment_card.md",
+    "kb": "../revenue-kb-v1.6/knowledge_base.md",
+    "patterns": "../revenue-kb-v1.6/pattern_cards.md"
+  },
+  "findings": {
+    "bullets": [
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: tab-restore-default-confound] The slot buys a verdict on \"tabs plus a Premium default\" and leaves the card's own question — which product i",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: tab-restore-default-confound] The slot buys a verdict on \"tabs plus a Premium default\" and leaves the card's own question — which product is shown first",
+        "index": 1,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: guardrail-refund-cancel-subscribers] The safety half of the read arrives on far fewer subscriptions than it was sized for, and no outcome c",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: guardrail-refund-cancel-subscribers] The safety half of the read arrives on far fewer subscriptions than it was sized for, and no outcome can fail it.",
+        "index": 2,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: tour-surface-zero-addressable] A tour-only run spends the slot and returns a defensive read against a target the surface cannot produce. *I",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: tour-surface-zero-addressable] A tour-only run spends the slot and returns a defensive read against a target the surface cannot produce.",
+        "index": 3,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: pro-tab-downside-top-segment] The segment gets a cheaper option it cannot choose today, and the bundle mix pays for it. *If:* the tab la",
+        "generic_hits": [],
+        "grounds_label": "hypothesis",
+        "headline": "[topic: pro-tab-downside-top-segment] The segment gets a cheaper option it cannot choose today, and the bundle mix pays for it.",
+        "index": 4,
+        "price_rank": 3,
+        "price_unit": "share of the expected effect",
+        "severity": "improve"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: feature-surface-bundle-price-gap] The surfaces that hold the leak stay outside version 1 while the catalogue gap creating it stays open.",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: feature-surface-bundle-price-gap] The surfaces that hold the leak stay outside version 1 while the catalogue gap creating it stays open.",
+        "index": 5,
+        "price_rank": 2,
+        "price_unit": "money",
+        "severity": "improve"
+      }
+    ],
+    "conditional_complete": 5,
+    "improve_count": 2,
+    "section_present": true,
+    "stop_count": 3
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "generic_screen": {
+    "card_supplied": true,
+    "fixes_anchored": 5,
+    "fixes_checked": 5,
+    "flagged": [],
+    "proposals_anchored": 1,
+    "proposals_checked": 1
+  },
+  "known_source_ids_count": 32,
+  "main": {
+    "banner": true,
+    "duplicates": [],
+    "word_count": 1136
+  },
+  "mode": "kb-arm",
+  "product_proposals": {
+    "abstention_literal": false,
+    "bullets": [
+      {
+        "conditional": true,
+        "errors": [],
+        "excerpt": "- **[offer]** [topic: bundle-price-feature-catalogue] *If:* a bundle SKU is priced on the feature paywalls before any tab work, covering the 1,083 of 1,235 chea",
+        "grounded": true,
+        "grounds_label": "hypothesis",
+        "ids": [
+          "T3-03"
+        ],
+        "index": 1,
+        "type": "offer"
+      },
+      {
+        "conditional": false,
+        "errors": [],
+        "excerpt": "- **[ungrounded]** [topic: tier-tab-precedent-ios-paywall] Whether a Pro/Premium tab split behaves like a menu addition on an iOS paywall is not covered here — ",
+        "grounded": false,
+        "grounds_label": null,
+        "ids": [],
+        "index": 2,
+        "type": "ungrounded"
+      }
+    ],
+    "conditional_complete": 1,
+    "grounded_count": 1,
+    "section_present": true,
+    "typed_count": 1
+  },
+  "topics": {
+    "duplicates": [],
+    "restated_in_appendix": [],
+    "tags": [
+      {
+        "index": 1,
+        "section": "findings",
+        "slug": "tab-restore-default-confound"
+      },
+      {
+        "index": 2,
+        "section": "findings",
+        "slug": "guardrail-refund-cancel-subscribers"
+      },
+      {
+        "index": 3,
+        "section": "findings",
+        "slug": "tour-surface-zero-addressable"
+      },
+      {
+        "index": 4,
+        "section": "findings",
+        "slug": "pro-tab-downside-top-segment"
+      },
+      {
+        "index": 5,
+        "section": "findings",
+        "slug": "feature-surface-bundle-price-gap"
+      },
+      {
+        "index": 1,
+        "section": "product proposals",
+        "slug": "bundle-price-feature-catalogue"
+      },
+      {
+        "index": 2,
+        "section": "product proposals",
+        "slug": "tier-tab-precedent-ios-paywall"
+      },
+      {
+        "index": 1,
+        "section": "non-monetization effects",
+        "slug": "tour-skip-upper-funnel-top-segment"
+      },
+      {
+        "index": 2,
+        "section": "non-monetization effects",
+        "slug": "retention-d7-d14-tier-default"
+      },
+      {
+        "index": 3,
+        "section": "non-monetization effects",
+        "slug": "non-top-pro-default-engagement"
+      }
+    ]
+  },
+  "verdict": "FAIL",
+  "warnings": [
+    {
+      "code": "W_MAIN_OVER_CAP",
+      "detail": "the MAIN part runs to 1136 words against a ~550-word cap"
+    }
+  ]
+}

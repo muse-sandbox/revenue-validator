@@ -52,7 +52,8 @@ what may flow into it.
 Prompt template, knowledge base, pattern cards, evidence policy, linter, and a
 `FREEZE_MANIFEST.md` with SHA-256 per file. Runnable on its own.
 
-`version-revenue-kb-v1.4` (current) · `-v1.3` · `-v1.2` · `-v1.1` · `-v1` ·
+`version-revenue-kb-v1.6` (current) · `-v1.5` · `-v1.4` · `-v1.3` · `-v1.2` ·
+`-v1.1` · `-v1` ·
 `version-interstitials-kb-v0` · `input-validator-v0-backtest/validator-v0`
 
 ### 2. Corpus — cases split for honest evaluation
@@ -70,7 +71,8 @@ file used. A run never opens outcomes and never decides which arm was better.
 
 `run-interstitials-kb-ab` · `run-revenue-kb-v1-ab` ·
 `run-revenue-kb-v1.1-regression` · `run-revenue-kb-v1.2-regression` ·
-`run-live-official-tabs-v1.2` (+ the `-v1.3`, `-v1.3-run2`, `-v1.4` trials)
+`run-live-official-tabs-v1.2` (+ the `-v1.3`, `-v1.3-run2`, `-v1.4`, `-v1.5`,
+`-v1.6` trials) · `run-live-premium-default-v1.6`
 
 ### 4. Evaluation — judgement against a pre-registered protocol
 

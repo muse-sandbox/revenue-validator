@@ -1,0 +1,638 @@
+{
+  "cards": [],
+  "computed_claims": {
+    "abstention_literal": false,
+    "card_number_count": 189,
+    "card_supplied": true,
+    "slot_has_computed": true,
+    "slot_present": true,
+    "statements": [
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "-0.9 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- **[stop]** [topic: retention-guardrail-noninferiority] The guardrail returns a pass for any retention loss up to 1.0 pp — twice the margin it is meant to poli",
+        "index": 1,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": -0.5
+          },
+          {
+            "origin": "card",
+            "value": -2.37
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 2.37
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.5
+          },
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 152588.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "derived",
+            "value": 156.0
+          },
+          {
+            "origin": "unknown",
+            "value": -0.9
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 4.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14% * 2.37%",
+            "result": 1.0
+          },
+          {
+            "agrees": true,
+            "expression": "(1.0/0.5)^2",
+            "result": 4.0
+          },
+          {
+            "agrees": true,
+            "expression": "38147 * 4",
+            "result": 152588.0
+          },
+          {
+            "agrees": true,
+            "expression": "39 * 4",
+            "result": 156.0
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: missing-variation-b-arm] The \"hold the B level\" question ends up answered against a historical reading instead of a live arm. `If:` open de",
+        "index": 2,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 2.0
+          },
+          {
+            "origin": "card",
+            "value": 24.2
+          },
+          {
+            "origin": "card",
+            "value": 22.8
+          },
+          {
+            "origin": "derived",
+            "value": 1.4
+          },
+          {
+            "origin": "card",
+            "value": 0.68
+          },
+          {
+            "origin": "card",
+            "value": 0.66
+          },
+          {
+            "origin": "card",
+            "value": 0.02
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "24.2% - 22.8%",
+            "result": 1.4
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: exposure-event-split-enrollment] The population you size on and the population you read out end up different. `If:` the admin start event a",
+        "index": 3,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 4.0
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 37.58
+          },
+          {
+            "origin": "card",
+            "value": 42.14
+          },
+          {
+            "origin": "card",
+            "value": 37.58
+          },
+          {
+            "origin": "derived",
+            "value": 4.56
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 7622.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "42.14 - 37.58",
+            "result": 4.56
+          }
+        ]
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: chords-branch-dilution] The retention recovery shrinks to the share of the arm that actually sees a demo. `If:` nothing changes and both",
+        "index": 4,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 78.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 27.0
+          },
+          {
+            "origin": "derived",
+            "value": 57.0
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          },
+          {
+            "origin": "card",
+            "value": 7700.0
+          },
+          {
+            "origin": "derived",
+            "value": 1694.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 1.0
+          },
+          {
+            "origin": "card",
+            "value": 0.78
+          },
+          {
+            "origin": "derived",
+            "value": 1.28
+          },
+          {
+            "origin": "card",
+            "value": 22.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "78% * (1 - 27%)",
+            "result": 57.0
+          },
+          {
+            "agrees": true,
+            "expression": "22% * 7700",
+            "result": 1694.0
+          },
+          {
+            "agrees": true,
+            "expression": "1.0 / 0.78",
+            "result": 1.28
+          }
+        ]
+      },
+      {
+        "errors": [
+          {
+            "code": "E_COMPUTED_NO_OPERATION",
+            "detail": "[computed] statement shows no arithmetic: the operation must be written out in the sentence (KB §2.8 CC2)"
+          },
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "0.11 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          },
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "4196 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          },
+          {
+            "code": "E_COMPUTED_NUMBER_FABRICATED",
+            "detail": "4196 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+          }
+        ],
+        "excerpt": "- **[improve]** [topic: arpu-regression-late-detection] A regression to control ARPU costs a full run before the guardrail reveals it. `If:` the demo dampens pa",
+        "index": 5,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 0.77
+          },
+          {
+            "origin": "card",
+            "value": 0.66
+          },
+          {
+            "origin": "unknown",
+            "value": 0.11
+          },
+          {
+            "origin": "card",
+            "value": 38147.0
+          },
+          {
+            "origin": "unknown",
+            "value": 4196.0
+          },
+          {
+            "origin": "unknown",
+            "value": 4196.0
+          }
+        ],
+        "operations": []
+      },
+      {
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: retention-maturity-readout-lag] Day 39 in the design summary reads as the decision date, and the decision arrives on day 53. `If:` enrol",
+        "index": 6,
+        "numbers": [
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "derived",
+            "value": 53.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 39.0
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          },
+          {
+            "origin": "derived",
+            "value": 53.0
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          },
+          {
+            "origin": "card",
+            "value": 14.0
+          }
+        ],
+        "operations": [
+          {
+            "agrees": true,
+            "expression": "39 + 14",
+            "result": 53.0
+          }
+        ]
+      }
+    ]
+  },
+  "conditional_form": {
+    "complete": 6,
+    "findings": {
+      "complete": 6,
+      "units": 6
+    },
+    "proposals": {
+      "complete": 0,
+      "units": 0
+    },
+    "units": 6
+  },
+  "decisions": {
+    "bullets": 4,
+    "roles": [
+      "analyst",
+      "product owner"
+    ],
+    "section_present": true
+  },
+  "errors": [
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "-0.9 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    },
+    {
+      "code": "E_COMPUTED_NO_OPERATION",
+      "detail": "[computed] statement shows no arithmetic: the operation must be written out in the sentence (KB §2.8 CC2)"
+    },
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "0.11 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    },
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "4196 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    },
+    {
+      "code": "E_COMPUTED_NUMBER_FABRICATED",
+      "detail": "4196 is absent from the experiment card and is not derived by any operation shown here (KB §2.8 CC1)"
+    }
+  ],
+  "files": {
+    "answer": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.6/outputs/arm-a.md",
+    "card": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/trial-run-815603314-v1.6/inputs/experiment_card.md",
+    "kb": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.6/knowledge_base.md",
+    "patterns": "/Users/elzira/Documents/Codex/2026-08-03/users-elzira-obsidian-ug-ai-infrastructure/outputs/revenue-kb-v1.6/pattern_cards.md"
+  },
+  "findings": {
+    "bullets": [
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: retention-guardrail-noninferiority] The guardrail returns a pass for any retention loss up to 1.0 pp — twice the margin it is meant to poli",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: retention-guardrail-noninferiority] The guardrail returns a pass for any retention loss up to 1.0 pp — twice the margin it is meant to police.",
+        "index": 1,
+        "price_rank": 5,
+        "price_unit": "decision impossible",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: missing-variation-b-arm] The \"hold the B level\" question ends up answered against a historical reading instead of a live arm. `If:` open de",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: missing-variation-b-arm] The \"hold the B level\" question ends up answered against a historical reading instead of a live arm.",
+        "index": 2,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[stop]** [topic: exposure-event-split-enrollment] The population you size on and the population you read out end up different. `If:` the admin start event a",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: exposure-event-split-enrollment] The population you size on and the population you read out end up different.",
+        "index": 3,
+        "price_rank": 4,
+        "price_unit": "experiment slot",
+        "severity": "stop"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: chords-branch-dilution] The retention recovery shrinks to the share of the arm that actually sees a demo. `If:` nothing changes and both",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: chords-branch-dilution] The retention recovery shrinks to the share of the arm that actually sees a demo.",
+        "index": 4,
+        "price_rank": 3,
+        "price_unit": "share of the expected effect",
+        "severity": "improve"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: arpu-regression-late-detection] A regression to control ARPU costs a full run before the guardrail reveals it. `If:` the demo dampens pa",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: arpu-regression-late-detection] A regression to control ARPU costs a full run before the guardrail reveals it.",
+        "index": 5,
+        "price_rank": 2,
+        "price_unit": "money",
+        "severity": "improve"
+      },
+      {
+        "condition": true,
+        "errors": [],
+        "excerpt": "- **[improve]** [topic: retention-maturity-readout-lag] Day 39 in the design summary reads as the decision date, and the decision arrives on day 53. `If:` enrol",
+        "generic_hits": [],
+        "grounds_label": "computed",
+        "headline": "[topic: retention-maturity-readout-lag] Day 39 in the design summary reads as the decision date, and the decision arrives on day 53.",
+        "index": 6,
+        "price_rank": 1,
+        "price_unit": "days to decision",
+        "severity": "improve"
+      }
+    ],
+    "conditional_complete": 6,
+    "improve_count": 3,
+    "section_present": true,
+    "stop_count": 3
+  },
+  "generalization_classes": [
+    "GC-01",
+    "GC-02",
+    "GC-03",
+    "GC-04",
+    "GC-05",
+    "GC-06"
+  ],
+  "generalizations": [],
+  "generic_screen": {
+    "card_supplied": true,
+    "fixes_anchored": 6,
+    "fixes_checked": 6,
+    "flagged": [],
+    "proposals_anchored": 0,
+    "proposals_checked": 0
+  },
+  "known_source_ids_count": 32,
+  "main": {
+    "banner": true,
+    "duplicates": [],
+    "word_count": 1036
+  },
+  "mode": "no-kb-arm",
+  "product_proposals": {
+    "abstention_literal": true,
+    "bullets": [
+      {
+        "conditional": false,
+        "errors": [],
+        "excerpt": "- **[ungrounded]** [topic: tabs-branch-untouched-segment] Whether the Tabs branch needs its own in-tab context (Smartscroll/Autoscroll) is unresearched here — t",
+        "grounded": false,
+        "grounds_label": null,
+        "ids": [],
+        "index": 1,
+        "type": "ungrounded"
+      },
+      {
+        "conditional": false,
+        "errors": [],
+        "excerpt": "- **[ungrounded]** [topic: forced-tap-vs-skippable-demo] Whether a forced-tap demo beats a skippable one on retention is unestablished; the card's own note that",
+        "grounded": false,
+        "grounds_label": null,
+        "ids": [],
+        "index": 2,
+        "type": "ungrounded"
+      }
+    ],
+    "conditional_complete": 0,
+    "grounded_count": 0,
+    "section_present": true,
+    "typed_count": 0
+  },
+  "topics": {
+    "duplicates": [],
+    "restated_in_appendix": [],
+    "tags": [
+      {
+        "index": 1,
+        "section": "findings",
+        "slug": "retention-guardrail-noninferiority"
+      },
+      {
+        "index": 2,
+        "section": "findings",
+        "slug": "missing-variation-b-arm"
+      },
+      {
+        "index": 3,
+        "section": "findings",
+        "slug": "exposure-event-split-enrollment"
+      },
+      {
+        "index": 4,
+        "section": "findings",
+        "slug": "chords-branch-dilution"
+      },
+      {
+        "index": 5,
+        "section": "findings",
+        "slug": "arpu-regression-late-detection"
+      },
+      {
+        "index": 6,
+        "section": "findings",
+        "slug": "retention-maturity-readout-lag"
+      },
+      {
+        "index": 1,
+        "section": "product proposals",
+        "slug": "tabs-branch-untouched-segment"
+      },
+      {
+        "index": 2,
+        "section": "product proposals",
+        "slug": "forced-tap-vs-skippable-demo"
+      },
+      {
+        "index": 1,
+        "section": "non-monetization effects",
+        "slug": "tab-view-60s-post-paywall"
+      },
+      {
+        "index": 2,
+        "section": "non-monetization effects",
+        "slug": "forced-step-frustration-signals"
+      },
+      {
+        "index": 3,
+        "section": "non-monetization effects",
+        "slug": "refunds-after-demo-unlock"
+      }
+    ]
+  },
+  "verdict": "FAIL",
+  "warnings": [
+    {
+      "code": "W_MAIN_OVER_CAP",
+      "detail": "the MAIN part runs to 1036 words against a ~550-word cap"
+    }
+  ]
+}
