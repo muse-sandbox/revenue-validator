@@ -1,24 +1,24 @@
-# Company priorities and forbidden trade-offs
+# Приоритеты компании и запрещённые размены
 
-> **TODO.** Fill before the next live run.
+> **TODO.** Заполнить до следующего живого прогона.
 
-## What must be answered here
+## На что здесь нужно ответить
 
-- What the company optimizes for right now, and since when.
-- Which trade-offs are forbidden.
-- Who owns this policy and can grant an exception.
-- What happens to an experiment that wins on money but loses on the priority metric.
-- Which proven wins are currently blocked by policy, and how much money is frozen in them.
-- How stable the current priority is and when it gets revisited.
+- На что компания оптимизирует прямо сейчас и с какого момента.
+- Какие размены запрещены.
+- Кто владеет этой политикой и может дать исключение.
+- Что происходит с экспериментом, который выигрывает в деньгах, но проигрывает по приоритетной метрике.
+- Какие доказанные выигрыши сейчас заблокированы политикой и сколько денег в них заморожено.
+- Насколько устойчив текущий приоритет и когда его пересматривают.
 
-## Already known
+## Что уже известно
 
-Retention cannot be traded for ARPU. Because of this, a variant with a proven
-+22.8% ARPU was not rolled out; the team stays on control and is trying to
-recover retention so the same money can be unblocked later.
+Retention нельзя разменивать на ARPU. Из-за этого вариация с доказанными
++22,8% ARPU не была раскатана; команда остаётся на контроле и пытается вернуть
+retention, чтобы те же деньги можно было разблокировать позже.
 
-## Why the validator needs this
+## Зачем это валидатору
 
-An idea can be excellent on money and still be unshippable under policy — the
-slot is then wasted. The reverse also holds: an idea with no revenue upside can
-be worth a slot if it unblocks money that is already proven.
+Идея может быть отличной по деньгам и всё равно нераскатываемой по политике —
+тогда слот потрачен впустую. Верно и обратное: идея без прироста выручки может
+стоить слота, если разблокирует уже доказанные деньги.

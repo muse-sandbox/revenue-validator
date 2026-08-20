@@ -1,19 +1,19 @@
-# Ownership and decision rights
+# Владение и права решения
 
-> **TODO.** Fill before the next live run.
+> **TODO.** Заполнить до следующего живого прогона.
 
-## What must be answered here
+## На что здесь нужно ответить
 
-- Which metrics belong to the monetization team and which belong to others.
-- Who owns retention, engagement, upper funnel.
-- Who proposes a hypothesis, who confirms the money estimate, who decides to
-  launch, who decides to roll out.
-- What each role decides alone and what needs sign-off.
-- Whether the 100 experiment slots are this team's budget or shared.
-- What happens when an experiment moves another team's metric.
+- Какие метрики принадлежат команде монетизации, а какие — другим.
+- Кто владеет retention, вовлечённостью, верхом воронки.
+- Кто предлагает гипотезу, кто подтверждает денежную оценку, кто решает запускать,
+  кто решает раскатывать.
+- Что каждая роль решает единолично, а что требует согласования.
+- Являются ли 100 экспериментальных слотов бюджетом этой команды или общими.
+- Что происходит, когда эксперимент двигает метрику другой команды.
 
-## Why the validator needs this
+## Зачем это валидатору
 
-On the first live case the experiment existed to recover retention — a metric
-that is secondary for the monetization team. That changes the answer to "whose
-slot is this", and the validator could not raise the question at all.
+На первом живом кейсе эксперимент существовал ради возврата retention — метрики,
+которая для команды монетизации вторична. Это меняет ответ на вопрос «чей это
+слот», а валидатор не смог вообще поставить этот вопрос.

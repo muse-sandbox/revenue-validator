@@ -1,145 +1,150 @@
-# Transfer classes registry
+# Реестр классов переноса
 
-Formal registry of the generalization classes of Revenue KB V1.2. Compiled from
-`packages/revenue-kb-v1.2/knowledge_base.md` §2.6 (GC-01…GC-06, KB-declared) and
-from `packages/revenue-kb-v1.2/pattern_cards.md` for the families §2.6 does not
-cover (GC-07…GC-13, derived here).
+Формальный реестр классов обобщения Revenue KB V1.2. Составлен по
+`packages/revenue-kb-v1.2/knowledge_base.md` §2.6 (GC-01…GC-06, объявлены самой KB)
+и по `packages/revenue-kb-v1.2/pattern_cards.md` для семейств, которые §2.6
+не покрывает (GC-07…GC-13, выведены здесь).
 
-**This file is not evidence.** It is a routing and contradiction table. Every
-claim must still cite the source cards (`knowledge_base.md` §4) and the pattern
-cards. Never cite a GC id as the basis of a product conclusion.
+**Этот файл не является свидетельством.** Это таблица маршрутизации и
+противоречий. Каждое утверждение всё равно обязано ссылаться на карточки
+источников (`knowledge_base.md` §4) и на карточки паттернов. Никогда не
+ссылайтесь на id класса GC как на основание продуктового вывода.
 
-## Verdict rules (normative for this file)
+## Правила вердикта (нормативны для этого файла)
 
-1. **TWO-SIDED** — the class has at least one source with a positive outcome AND
-   at least one with a negative outcome. The counts are irrelevant: one positive
-   against four negatives is still TWO-SIDED.
-2. An **indeterminate** source carries no sign. It never makes a class
-   one-sided, and it never resolves a contradiction. Sources are indeterminate
-   when the KB assigns them no direction in this family, or when their outcome
-   inside the family is mixed within the source itself.
-3. **INSUFFICIENT** — fewer than three sources in the class. Signed sources are
-   counted for this threshold; indeterminate sources are listed but not counted.
-4. **ONE-SIDED** — three or more sources, all signed the same way.
-5. Contradictions are preserved, never averaged. A source that points one way in
-   one class and the other way in another class keeps both records.
+1. **TWO-SIDED** — в классе есть как минимум один источник с положительным
+   исходом И как минимум один с отрицательным. Количества не важны: один
+   положительный против четырёх отрицательных — это всё равно TWO-SIDED.
+2. **Неопределённый** (indeterminate) источник не несёт знака. Он никогда не
+   делает класс односторонним и никогда не разрешает противоречие. Источники
+   неопределённы, когда KB не приписывает им направления в этом семействе или
+   когда их исход внутри семейства разнонаправлен внутри самого источника.
+3. **INSUFFICIENT** — в классе меньше трёх источников. Для этого порога
+   считаются источники со знаком; неопределённые перечисляются, но не считаются.
+4. **ONE-SIDED** — три и более источников, все со знаком в одну сторону.
+5. Противоречия сохраняются, а не усредняются. Источник, указывающий в одну
+   сторону в одном классе и в другую — в другом, сохраняет обе записи.
 
-## Violation warning
+## Предупреждение о нарушении
 
-**A one-sided claim over a TWO-SIDED class is a violation of KB §2.5 (G2/G3).**
-Any sentence that generalizes across the corpus about such a class must either
-contain the literal phrase `evidence is mixed` with the transfer boundary
-enumerated, or be narrowed to the evidenced sub-class and annotated per G1:
+**Одностороннее утверждение о классе TWO-SIDED — нарушение KB §2.5 (G2/G3).**
+Любая фраза, обобщающая по корпусу о таком классе, обязана либо содержать
+буквальную формулировку `evidence is mixed` с перечисленной границей переноса,
+либо быть сужена до подкласса со свидетельствами и аннотирована по G1:
 
 ```
-[scope: <sub-class>; ids: <ID>[, <ID>…]; not covered: <what the claim does NOT cover>]
+[scope: <под-класс>; ids: <ID>[, <ID>…]; not covered: <что утверждение НЕ покрывает>]
 ```
 
-ONE-SIDED does not license an unqualified universal either: it still requires
-the G1 annotation, and the per-class caveats below list the within-source
-counter-evidence that bounds it. INSUFFICIENT classes must not carry a
-corpus-level generalization at all.
+ONE-SIDED тоже не даёт права на безоговорочную универсальность: аннотация G1
+по-прежнему обязательна, а покласcные оговорки ниже перечисляют
+внутриисточниковые контрсвидетельства, которые её ограничивают. Классы
+INSUFFICIENT не должны нести обобщение корпусного уровня вообще.
 
-## Summary table
+## Сводная таблица
 
-| id | label | verdict | positive | negative | indeterminate | signed n | origin |
+| id | ярлык | вердикт | положительные | отрицательные | неопределённые | со знаком n | происхождение |
 |---|---|---|---|---|---|---|---|
-| GC-01 | personalization | TWO-SIDED | T2-06 | T1-09, T3-01 | — | 3 | KB §2.6 |
-| GC-02 | price change | TWO-SIDED | T1-08, T3-02, T3-06 | T3-01 | T1-10, T1-02 | 4 | KB §2.6 |
-| GC-03 | offer structure | TWO-SIDED | T1-08, T2-05, T2-06, T3-05, T3-06 | T3-03 | T1-10, T1-02 | 6 | KB §2.6 |
-| GC-04 | monetization surface added/replaced/removed | TWO-SIDED | T1-04, T2-01 | T1-01, T1-02, T1-03 | T2-02, T2-06 | 5 | KB §2.6 |
-| GC-05 | creative / design / gamification | TWO-SIDED | T1-04, T1-07 | T1-09, T2-02 | T3-05 | 4 | KB §2.6 |
-| GC-06 | funnel length | TWO-SIDED | T1-07 | T1-03, T2-07 | — | 3 | KB §2.6 |
-| GC-07 | reach, frequency, forced exposure | TWO-SIDED | T1-04 | T1-01, T1-02 | T1-07, T1-09 | 3 | derived (P-01, P-03) |
-| GC-08 | lifecycle segment targeting by monetization state | ONE-SIDED (positive) | T1-08, T2-05, T2-06 | — | T1-02, T1-09 | 3 | derived (P-08) |
-| GC-09 | metric scope vs touched surface (method) | ONE-SIDED (positive) | T1-10, T1-08, T2-06 | — | — | 3 | derived (P-11) |
-| GC-10 | delivery / exposure gate (method) | TWO-SIDED | T1-10, T1-09, T2-02 | T2-07 | — | 4 | derived (P-12) |
-| GC-11 | maturity gate (method) | ONE-SIDED (positive) | T1-08, T1-10, T3-03, T2-02 | — | — | 4 | derived (P-13) |
-| GC-12 | attribution artifacts / segment contamination (method) | TWO-SIDED | T1-02, T1-09, T2-05, T3-05 | T2-06 | — | 5 | derived (P-14) |
-| GC-13 | decision-moment offer timing | INSUFFICIENT | T2-05, T1-08 | — | — | 2 | derived (P-09) |
+| GC-01 | персонализация | TWO-SIDED | T2-06 | T1-09, T3-01 | — | 3 | KB §2.6 |
+| GC-02 | изменение цены | TWO-SIDED | T1-08, T3-02, T3-06 | T3-01 | T1-10, T1-02 | 4 | KB §2.6 |
+| GC-03 | структура оффера | TWO-SIDED | T1-08, T2-05, T2-06, T3-05, T3-06 | T3-03 | T1-10, T1-02 | 6 | KB §2.6 |
+| GC-04 | монетизационная поверхность добавлена/заменена/убрана | TWO-SIDED | T1-04, T2-01 | T1-01, T1-02, T1-03 | T2-02, T2-06 | 5 | KB §2.6 |
+| GC-05 | креатив / дизайн / геймификация | TWO-SIDED | T1-04, T1-07 | T1-09, T2-02 | T3-05 | 4 | KB §2.6 |
+| GC-06 | длина воронки | TWO-SIDED | T1-07 | T1-03, T2-07 | — | 3 | KB §2.6 |
+| GC-07 | охват, частота, принудительный показ | TWO-SIDED | T1-04 | T1-01, T1-02 | T1-07, T1-09 | 3 | выведен (P-01, P-03) |
+| GC-08 | таргетинг lifecycle-сегмента по монетизационному состоянию | ONE-SIDED (положительный) | T1-08, T2-05, T2-06 | — | T1-02, T1-09 | 3 | выведен (P-08) |
+| GC-09 | область метрики против затронутой поверхности (метод) | ONE-SIDED (положительный) | T1-10, T1-08, T2-06 | — | — | 3 | выведен (P-11) |
+| GC-10 | гейт доставки / экспозиции (метод) | TWO-SIDED | T1-10, T1-09, T2-02 | T2-07 | — | 4 | выведен (P-12) |
+| GC-11 | гейт зрелости (метод) | ONE-SIDED (положительный) | T1-08, T1-10, T3-03, T2-02 | — | — | 4 | выведен (P-13) |
+| GC-12 | артефакты атрибуции / загрязнение сегмента (метод) | TWO-SIDED | T1-02, T1-09, T2-05, T3-05 | T2-06 | — | 5 | выведен (P-14) |
+| GC-13 | момент оффера в точке принятия решения | INSUFFICIENT | T2-05, T1-08 | — | — | 2 | выведен (P-09) |
 
-Totals: 13 classes — 9 TWO-SIDED, 3 ONE-SIDED, 1 INSUFFICIENT.
+Итого: 13 классов — 9 TWO-SIDED, 3 ONE-SIDED, 1 INSUFFICIENT.
 
-For the method classes GC-09…GC-12, `positive` means "the gate fired: the
-measurement condition changed, blocked or invalidated the read" and `negative`
-means "the gate did not fire: the read survived the condition". These are
-method claims, never product conclusions.
+Для методных классов GC-09…GC-12 `положительный` означает «гейт сработал:
+условие измерения изменило, заблокировало или обесценило чтение», а
+`отрицательный` — «гейт не сработал: чтение пережило это условие». Это
+утверждения о методе, никогда не продуктовые выводы.
 
 ---
 
-## GC-01 — personalization
+## GC-01 — персонализация
 
 ```
 generalization_class: GC-01
-  label: tailoring the message, creative, offer or price to a user attribute or state (direction = did the personalization lift money)
+  label: подгонка сообщения, креатива, оффера или цены под атрибут или состояние пользователя (направление = подняла ли персонализация деньги)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial (T1-09); App splash (T2-06); standard App paywalls (T3-01)
-    segment: free + ex-paid winback (T1-09); paying Pro without Courses/Sing (T2-06); free on mid-high device tiers (T3-01)
-    mechanism: message/creative personalization with the offer held constant (T1-09); occasion-based offer personalization (T2-06); price personalization by a payment-capacity proxy (T3-01)
-    flow_stage: S3-S4 (T1-09, T2-06); S6 purchase conditions with S2 segmentation (T3-01)
+    surface: интерстишл в App (T1-09); сплэш в App (T2-06); стандартные пейволы App (T3-01)
+    segment: free + ex-paid winback (T1-09); платящие Pro без Courses/Sing (T2-06); free на средних и высоких тирах устройств (T3-01)
+    mechanism: персонализация сообщения/креатива при неизменном оффере (T1-09); персонализация оффера по поводу (T2-06); персонализация цены по прокси платёжеспособности (T3-01)
+    flow_stage: S3-S4 (T1-09, T2-06); S6 условия покупки с сегментацией S2 (T3-01)
   outcome_positive: T2-06
   outcome_negative: T1-09, T3-01
   outcome_indeterminate: -
   related_patterns: P-10
 ```
 
-- **Positive.** T2-06 — anniversary upsell splash on paying Pro users, offer
-  personalized to the milestone (Pro+Courses bundle discount): significant on
-  both platforms, rolled out, post-rollout ≈$1100/day iOS.
-- **Negative.** T1-09 — song-personalized interstitial with offers unchanged:
-  flat conversion, paywall→click halved; `result_class: inconclusive`, so this
-  is a direction lesson only. T3-01 — device-tier price personalization:
-  elasticity ate the increase, killed.
-- **Boundary that explains the split (P-10).** What was personalized: the OFFER
-  (positive) versus the wrapper around an unchanged offer, or a capacity proxy
-  instead of the user's actual state (negative). Non-personalized creative
-  changes are GC-05, not this class.
+- **Положительный.** T2-06 — юбилейный апселл-сплэш на платящих Pro, оффер
+  персонализирован под веху (скидка на бандл Pro+Courses): значимо на обеих
+  платформах, раскатан, пост-раскаточно ≈$1100/день на iOS.
+- **Отрицательный.** T1-09 — интерстишл с персонализацией по песне при
+  неизменных офферах: конверсия плоская, переход пейвол→клик упал вдвое;
+  `result_class: inconclusive`, поэтому это только урок о направлении. T3-01 —
+  персонализация цены по тиру устройства: эластичность съела повышение, зарублен.
+- **Граница, объясняющая расхождение (P-10).** Что именно персонализировали:
+  ОФФЕР (положительно) против обёртки вокруг неизменного оффера или прокси
+  платёжеспособности вместо фактического состояния пользователя (отрицательно).
+  Неперсонализированные изменения креатива — это GC-05, а не этот класс.
 
-## GC-02 — price change
+## GC-02 — изменение цены
 
 ```
 generalization_class: GC-02
-  label: moving the price level up or down on any surface (direction = did the price change move net revenue)
+  label: сдвиг уровня цены вверх или вниз на любой поверхности (направление = сдвинуло ли изменение цены чистую выручку)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial (T1-08, T1-10); web paywall + checkout (T3-02); iOS internal PRO paywalls (T3-06); standard App paywalls (T3-01)
-    segment: ex-paid past the winback window (T1-08); web new + unconverted (T3-02); free (T3-06, T3-01, T1-10)
-    mechanism: deep-discount instant (T1-08); entry-price decrease across the menu (T3-02); trial->instant at -40% (T3-06); increase by device tier (T3-01)
+    surface: интерстишл в App (T1-08, T1-10); веб-пейвол + чекаут (T3-02); внутренние PRO-пейволы iOS (T3-06); стандартные пейволы App (T3-01)
+    segment: ex-paid за пределами окна winback (T1-08); веб — новые и неконвертнувшиеся (T3-02); free (T3-06, T3-01, T1-10)
+    mechanism: instant с глубокой скидкой (T1-08); снижение входной цены по всему меню (T3-02); trial->instant со скидкой 40% (T3-06); повышение по тиру устройства (T3-01)
     flow_stage: S3-S4 (T1-08, T1-10); S5-S6 (T3-02); S6 (T3-06, T3-01)
   outcome_positive: T1-08, T3-02, T3-06
   outcome_negative: T3-01
   outcome_indeterminate: T1-10, T1-02
-  related_patterns: P-07 (base + LIMITS), P-05
+  related_patterns: P-07 (база + LIMITS), P-05
 ```
 
-- **Positive.** T1-08 — $19.99 final offer on ex-paid: segment ARPU +241%
-  (p=0.000), rolled out. T3-02 — web entry-price decrease: Access CR +68.9%,
-  Charge CR +88.9%, revenue fact +4.18%, rolled out; post-rollout humbler
-  (full-rollout revenue ≈ flat). T3-06 — iOS trial→instant at −40%: charge CR
-  +16.4% (p=0.00), rolled out, ARPU itself n.s.
-- **Negative.** T3-01 — App paywall increase on a device-tier proxy: decisive
-  iteration Total ARPU +1.38% (p=0.61), refunds 14d +26.2%, killed.
-- **Indeterminate.** T1-10 — $29.99 discounted instant on the interstitial:
-  `inconclusive`, maturity failed (pending 59–79%), stopped with "hold and
-  re-run"; §2.6 assigns it no direction. T1-02 — the card notes intro pricing of
-  the same annual plan was the positive part of iter 1–2, but §2.6 assigns T1-02
-  only to GC-04 (negative); no price direction is declared for it.
-- **Boundary.** Direction of the move (decrease vs increase), platform
-  elasticity (Android washed out where iOS won — T1-10, P-05), and segment
-  intent (high-intent ex-paid vs free). P-07 explicitly forbids transferring
-  "price is a dead lever" to web funnels, to decreases, or to discount-instants.
+- **Положительные.** T1-08 — финальный оффер $19.99 на ex-paid: ARPU сегмента
+  +241% (p=0.000), раскатан. T3-02 — снижение входной цены на вебе: Access CR
+  +68,9%, Charge CR +88,9%, факт по выручке +4,18%, раскатан; пост-раскаточно
+  скромнее (выручка при полной раскатке ≈ без изменений). T3-06 — iOS
+  trial→instant со скидкой 40%: charge CR +16,4% (p=0.00), раскатан, сам ARPU
+  незначим.
+- **Отрицательный.** T3-01 — повышение цены на пейволе App по прокси тира
+  устройства: решающая итерация Total ARPU +1,38% (p=0.61), рефанды 14d +26,2%,
+  зарублен.
+- **Неопределённые.** T1-10 — instant со скидкой $29.99 на интерстишле:
+  `inconclusive`, зрелость не набрана (pending 59–79%), остановлен с формулировкой
+  «отложить и перезапустить»; §2.6 не приписывает ему направления. T1-02 —
+  карточка отмечает, что intro-цена того же годового плана была положительной
+  частью итераций 1–2, но §2.6 относит T1-02 только к GC-04 (отрицательно);
+  направления по цене для него не объявлено.
+- **Граница.** Направление сдвига (снижение против повышения), эластичность
+  платформы (Android размывался там, где iOS выигрывал — T1-10, P-05) и
+  намерение сегмента (high-intent ex-paid против free). P-07 прямо запрещает
+  переносить «цена — мёртвый рычаг» на веб-воронки, на снижения и на
+  instant-офферы со скидкой.
 
-## GC-03 — offer structure
+## GC-03 — структура оффера
 
 ```
 generalization_class: GC-03
-  label: changing what is offered (plan menu composition, trial vs instant, intro offers, bundle upsells) (direction = did the structural change earn money)
+  label: изменение того, что предлагается (состав меню планов, триал против instant, intro-офферы, бандл-апселлы) (направление = заработало ли структурное изменение денег)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial (T1-08, T1-10); splash + Explore banner (T2-05, T2-06); web paywall + offer chain (T3-05, T3-03); iOS internal paywalls (T3-06)
-    segment: ex-paid (T1-08); canceling at autorenew-off (T2-05); paying (T2-06); web new + unconverted (T3-03, T3-05); free (T3-06)
-    mechanism: trial -> instant / intro offer (T1-08, T3-05, T3-06); immediate offer at the cancel moment (T2-05); bundle upsell (T2-06); adding plans to a menu (T3-03)
+    surface: интерстишл в App (T1-08, T1-10); сплэш + баннер на Explore (T2-05, T2-06); веб-пейвол + цепочка офферов (T3-05, T3-03); внутренние пейволы iOS (T3-06)
+    segment: ex-paid (T1-08); отменяющие при выключении автопродления (T2-05); платящие (T2-06); веб — новые и неконвертнувшиеся (T3-03, T3-05); free (T3-06)
+    mechanism: триал -> instant / intro-оффер (T1-08, T3-05, T3-06); немедленный оффер в момент отмены (T2-05); бандл-апселл (T2-06); добавление планов в меню (T3-03)
     flow_stage: S3-S4 (T1-08, T2-06); S8 -> S3 (T2-05); S5-S6 (T3-03, T3-05); S6 (T3-06)
   outcome_positive: T1-08, T2-05, T2-06, T3-05, T3-06
   outcome_negative: T3-03
@@ -147,335 +152,345 @@ generalization_class: GC-03
   related_patterns: P-05, P-06, P-09
 ```
 
-- **Positive.** T1-08, T2-05, T2-06, T3-05 (intro iteration 6875: ARPU
-  +12.1–19.2%, trial→charge +28.9–32%), T3-06 — all rolled out.
-- **Negative.** T3-03 — adding 3m/$19.99 and 6m/$24.99 to the web menu:
-  members→subscribers −11.08% (p=0.028), forecast −$918…−$1408/day, killed.
-- **Indeterminate.** T1-10 (inconclusive, undelivered design); T1-02 (offer
-  component Pro+ $39.99/yr with an extended 14d trial — §2.6 records T1-02 only
-  under GC-04).
-- **Boundary (P-06 vs P-05).** Adding an option to an existing menu behaves as a
-  substitute (negative, web only — App menus untested). Replacing the trial step
-  with an instant/intro charge behaves as a structure shift toward immediate
-  payment (positive, iOS + web post-trial chains). Inside T3-05 itself the paid
-  trial $0.99 failed twice — the positive is the intro/instant sub-class, not
-  "offer structure changes" as a family.
+- **Положительные.** T1-08, T2-05, T2-06, T3-05 (intro-итерация 6875: ARPU
+  +12,1–19,2%, триал→чардж +28,9–32%), T3-06 — все раскатаны.
+- **Отрицательный.** T3-03 — добавление 3 мес/$19.99 и 6 мес/$24.99 в веб-меню:
+  members→subscribers −11,08% (p=0.028), прогноз −$918…−$1408/день, зарублен.
+- **Неопределённые.** T1-10 (inconclusive, дизайн недопоставлен); T1-02
+  (оффер-компонент Pro+ $39.99/год с продлённым 14-дневным триалом — §2.6
+  записывает T1-02 только под GC-04).
+- **Граница (P-06 против P-05).** Добавление опции в существующее меню ведёт
+  себя как субститут (отрицательно, только веб — меню App не тестировались).
+  Замена триального шага на instant/intro-списание ведёт себя как сдвиг структуры
+  к немедленной оплате (положительно, iOS + веб-цепочки после триала). Внутри
+  самого T3-05 платный триал $0.99 провалился дважды — положителен подкласс
+  intro/instant, а не «изменения структуры оффера» как семейство.
 
-## GC-04 — monetization surface added, replaced or removed
+## GC-04 — монетизационная поверхность добавлена, заменена или убрана
 
 ```
 generalization_class: GC-04
-  label: monetization surface added, replaced or removed (direction = did the surface carry net incremental money; removal tests count positive when turning the surface OFF harmed revenue)
+  label: монетизационная поверхность добавлена, заменена или убрана (направление = несла ли поверхность чистые дополнительные деньги; тесты на выключение считаются положительными, когда выключение поверхности навредило выручке)
   verdict: TWO-SIDED
   bounds:
-    surface: interstitial slot (T1-01, T1-02, T1-03, T1-04); sale banner + splash (T2-01, T2-02); anniversary splash (T2-06)
-    segment: free, incl. mixed free + ex-paid (T1-02 iter1 contaminated, T1-04)
-    mechanism: new-surface replacing ad inventory or no-fill (T1-01..T1-04); surface OFF as a negative test (T2-01)
-    flow_stage: S3-S4 throughout
+    surface: слот интерстишла (T1-01, T1-02, T1-03, T1-04); sale-баннер + сплэш (T2-01, T2-02); юбилейный сплэш (T2-06)
+    segment: free, в том числе смешанный free + ex-paid (T1-02 iter1 загрязнён, T1-04)
+    mechanism: новая поверхность вместо рекламного инвентаря или no-fill (T1-01..T1-04); выключение поверхности как отрицательный тест (T2-01)
+    flow_stage: S3-S4 повсеместно
   outcome_positive: T1-04, T2-01
   outcome_negative: T1-01, T1-02, T1-03
   outcome_indeterminate: T2-02, T2-06
   related_patterns: P-01, P-02
 ```
 
-- **Positive.** T1-04 — video interstitial where it replaced "nothing":
-  Android ARPU +17–19% significant, rolled out on Android. T2-01 — turning the
-  sale banner + splash OFF cost ARPU −11.6% iOS / −26% Android (p=0.036): the
-  surfaces carried real incremental money.
-- **Negative.** T1-01 (reach ≈ zero, 4 accesses, inconclusive), T1-02 (34%/63%
-  cannibalization, killed), T1-03 (new-scenario conversion 0.07%, powered-null).
-- **Indeterminate.** T2-02 — seasonal surfaces with emotional design,
-  `inconclusive`, rolled out early; §2.6 records it under GC-05 only. T2-06 —
-  the control had NO splash, so it is also a surface addition, but §2.6 assigns
-  it to GC-01/GC-03; no GC-04 direction is declared.
-- **Boundary (P-02).** Whether the new surface displaces monetized inventory
-  (iOS ads and other paywalls → cannibalization is the default) or fills empty
-  space (Android → pure increment). Seasonal surfaces do not transfer to
-  permanent layers. Web surfaces are outside P-01/P-02 evidence entirely.
+- **Положительные.** T1-04 — видеоинтерстишл там, где он заменял «ничего»:
+  Android ARPU +17–19% значимо, раскатан на Android. T2-01 — выключение
+  sale-баннера и сплэша стоило ARPU −11,6% на iOS / −26% на Android (p=0.036):
+  поверхности несли реальные дополнительные деньги.
+- **Отрицательные.** T1-01 (охват ≈ нулевой, 4 доступа, inconclusive), T1-02
+  (каннибализация 34%/63%, зарублен), T1-03 (конверсия нового сценария 0,07%,
+  powered-null).
+- **Неопределённые.** T2-02 — сезонные поверхности с эмоциональным дизайном,
+  `inconclusive`, раскатан досрочно; §2.6 записывает его только под GC-05. T2-06 —
+  в контроле сплэша НЕ было, так что это тоже добавление поверхности, но §2.6
+  относит его к GC-01/GC-03; направления по GC-04 не объявлено.
+- **Граница (P-02).** Вытесняет ли новая поверхность монетизированный инвентарь
+  (реклама на iOS и другие пейволы → каннибализация по умолчанию) или заполняет
+  пустое место (Android → чистый прирост). Сезонные поверхности не переносятся на
+  постоянные слои. Веб-поверхности вообще вне свидетельств P-01/P-02.
 
-## GC-05 — creative, design or gamification change
+## GC-05 — изменение креатива, дизайна или геймификация
 
 ```
 generalization_class: GC-05
-  label: creative, design or gamification change on an existing surface, personalization aside (direction = did the creative/design change move the funnel)
+  label: изменение креатива, дизайна или геймификация на существующей поверхности, персонализация в стороне (направление = сдвинуло ли изменение креатива/дизайна воронку)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial slot (T1-04, T1-07, T1-09); sale splash + banner + paywall-entry animation (T2-02); web paywall UI (T3-05, indeterminate)
-    segment: free (T1-07 new post-tour, T2-02); free + ex-paid (T1-04, T1-09)
-    mechanism: video creative (T1-04); gamified scratch coupon (T1-07); song creative (T1-09); emotional design with sound/haptics (T2-02)
-    flow_stage: S3-S4; S5-S6 for the indeterminate web UI iterations
+    surface: слот интерстишла в App (T1-04, T1-07, T1-09); sale-сплэш + баннер + анимация входа на пейвол (T2-02); UI веб-пейвола (T3-05, неопределённо)
+    segment: free (T1-07 новые после тура, T2-02); free + ex-paid (T1-04, T1-09)
+    mechanism: видеокреатив (T1-04); геймифицированный скретч-купон (T1-07); креатив по песне (T1-09); эмоциональный дизайн со звуком и хаптикой (T2-02)
+    flow_stage: S3-S4; S5-S6 для неопределённых веб-итераций UI
   outcome_positive: T1-04, T1-07
   outcome_negative: T1-09, T2-02
   outcome_indeterminate: T3-05
-  related_patterns: P-03, P-10 (scope boundary)
+  related_patterns: P-03, P-10 (граница области действия)
 ```
 
-- **Positive.** T1-04 — creative quality mattered (the chords variant was
-  strictly worse); Android ARPU +17–19%. T1-07 — gamified scratch coupon: iOS
-  var2 ARPU +26.5% (p=0.011), interstitial segment +72.7%.
-- **Negative.** T1-09 — creative lifted attention, halved paywall→click
-  (inconclusive; direction lesson only). T2-02 — emotional seasonal design: all
-  money metrics n.s., post-rollout forecast iOS −$1716/day (inconclusive).
-- **Indeterminate.** T3-05 — earlier web UI iterations rejected on guardrails
-  (print AOV −32.2%, cancels +37.4%, refunds +72.3%); §2.6 records T3-05 under
-  GC-03 only.
-- **Boundary (P-03, P-10).** Engagement/attention lifts do not imply purchase
-  lifts; T1-07's monetization win came with Android D1 retention −9.15%
-  (p=0.012). Personalized wrappers belong to GC-01 — do not merge the two
-  classes into a "wrapper changes" universal.
+- **Положительные.** T1-04 — качество креатива имело значение (вариант с
+  аккордами строго хуже); Android ARPU +17–19%. T1-07 — геймифицированный
+  скретч-купон: iOS var2 ARPU +26,5% (p=0.011), сегмент интерстишла +72,7%.
+- **Отрицательные.** T1-09 — креатив поднял внимание и вдвое срезал переход
+  пейвол→клик (inconclusive; только урок о направлении). T2-02 — эмоциональный
+  сезонный дизайн: все денежные метрики незначимы, пост-раскаточный прогноз iOS
+  −$1716/день (inconclusive).
+- **Неопределённый.** T3-05 — более ранние итерации веб-UI отклонены по
+  гардрейлам (print AOV −32,2%, отмены +37,4%, рефанды +72,3%); §2.6 записывает
+  T3-05 только под GC-03.
+- **Граница (P-03, P-10).** Прирост вовлечённости и внимания не влечёт прироста
+  покупок; монетизационная победа T1-07 пришла вместе с Android D1 retention
+  −9,15% (p=0.012). Персонализированные обёртки принадлежат GC-01 — не сливайте
+  эти два класса в универсальное «изменения обёртки».
 
-## GC-06 — funnel length
+## GC-06 — длина воронки
 
 ```
 generalization_class: GC-06
-  label: inserting or removing a step between the trigger and the offer (direction = did the extra step help)
+  label: вставка или удаление шага между триггером и оффером (направление = помог ли лишний шаг)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial slot (T1-07); post-ad interstitial chain (T1-03); feature paywall (T2-07)
-    segment: free new post-tour (T1-07); free incl. ex-premium (T1-03); free never-subscribed (T2-07)
-    mechanism: gamified pre-step before the offer (T1-07); pre-paywall + compare table after an ad (T1-03); 10s feature demo + timer after feature tap (T2-07)
-    flow_stage: S3-S4 (T1-07, T1-03); S1-S3 feature-gate (T2-07)
+    surface: слот интерстишла в App (T1-07); цепочка интерстишлов после рекламы (T1-03); пейвол фичи (T2-07)
+    segment: free новые после тура (T1-07); free, включая ex-premium (T1-03); free, никогда не подписывавшиеся (T2-07)
+    mechanism: геймифицированный пред-шаг перед оффером (T1-07); пред-пейвол + таблица сравнения после рекламы (T1-03); 10-секундное демо фичи + таймер после тапа по фиче (T2-07)
+    flow_stage: S3-S4 (T1-07, T1-03); гейт фичи S1-S3 (T2-07)
   outcome_positive: T1-07
   outcome_negative: T1-03, T2-07
   outcome_indeterminate: -
   related_patterns: P-04
 ```
 
-- **Positive.** T1-07 — a gamified step inserted before the offer in a neutral
-  context lifted layer conversion on both platforms (the card was still killed
-  on absolute increment and the retention guardrail).
-- **Negative.** T1-03 — 96% drop on the first skippable pre-paywall after an ad,
-  powered-null on goal. T2-07 — a 10-second demo after the user tapped the
-  feature: access CR −36% iOS / −28.5% Android, significant-negative.
-- **Boundary (P-04, T1-03 transfer bounds).** The split is intent: a step
-  inserted AFTER a captured intent trigger is a multiplicative drop-off; a step
-  shown BEFORE intent, in a neutral context, is the positive case and remains
-  largely untested. "Extra steps always lose" is a violation of this class.
+- **Положительный.** T1-07 — геймифицированный шаг, вставленный перед оффером в
+  нейтральном контексте, поднял конверсию слоя на обеих платформах (карточку
+  всё равно зарубили по абсолютному приросту и гардрейлу удержания).
+- **Отрицательные.** T1-03 — падение 96% на первом пропускаемом пред-пейволе
+  после рекламы, powered-null по цели. T2-07 — 10-секундное демо после того, как
+  пользователь тапнул по фиче: access CR −36% на iOS / −28,5% на Android,
+  значимо-отрицательно.
+- **Граница (P-04, границы переноса T1-03).** Разделяющий признак — намерение:
+  шаг, вставленный ПОСЛЕ триггера захваченного намерения, даёт мультипликативный
+  отвал; шаг, показанный ДО намерения, в нейтральном контексте, — это
+  положительный случай, и он остаётся во многом непроверенным. «Лишние шаги
+  всегда проигрывают» — нарушение по этому классу.
 
-## GC-07 — reach, frequency and forced exposure (derived)
+## GC-07 — охват, частота и принудительный показ (выведен)
 
 ```
 generalization_class: GC-07
-  label: how much exposure an App S3-S4 surface gets - reach, repeat frequency, capping, removal of the skip option (direction = did more or forced exposure earn net money)
+  label: сколько показов получает поверхность App S3-S4 - охват, частота повторов, кэпы, снятие возможности пропуска (направление = принесли ли большие или принудительные показы чистые деньги)
   verdict: TWO-SIDED
   bounds:
-    surface: App interstitial layer and splashes (S3-S4)
-    segment: free; free + ex-paid; new post-tour for the forced-exposure arm
-    mechanism: no-fill-only passive filling vs guaranteed placement; repeat shows; non-skippable exposure
-    flow_stage: S3-S4 only - web funnels and S5-S6 internals are NOT covered (P-01 ban)
+    surface: слой интерстишлов и сплэши в App (S3-S4)
+    segment: free; free + ex-paid; новые после тура для плеча с принудительным показом
+    mechanism: пассивное заполнение только по no-fill против гарантированного размещения; повторные показы; непропускаемый показ
+    flow_stage: только S3-S4 - веб-воронки и внутренности S5-S6 НЕ покрыты (запрет P-01)
   outcome_positive: T1-04
   outcome_negative: T1-01, T1-02
   outcome_indeterminate: T1-07, T1-09
   related_patterns: P-01, P-03
-  note: signs derived from pattern cards; not declared in KB 2.6
+  note: знаки выведены из карточек паттернов; в KB 2.6 не объявлены
 ```
 
-- **Positive.** T1-04 — value came from reach, not click quality (click rate
-  0.5–1% of views, Android ARPU +17–19%).
-- **Negative.** T1-01 — no-fill-only with a 1/day cap produced 4 accesses over
-  the whole run; everything n.s. T1-02 — the first exposure does 60–87% of the
-  layer's work, so additional frequency buys little.
-- **Indeterminate.** T1-07 — mixed within the source: repeated splashes added
-  almost nothing, while non-skippable exposure gave ×8 engagement and +150–160%
-  layer revenue at Android D1 retention −9.15% (p=0.012). T1-09 — show #1 = 50–60%
-  of layer conversions, but the case is `inconclusive` and supporting only.
-- **Boundary.** Reach numbers are config-specific (caps, triggers) and never
-  transfer as magnitudes. More exposure is not a free lever: P-01 does not
-  license unlimited frequency, and the retention price was measured only on
-  Android, new post-tour users.
+- **Положительный.** T1-04 — ценность дал охват, а не качество кликов (кликрейт
+  0,5–1% от показов, Android ARPU +17–19%).
+- **Отрицательные.** T1-01 — только по no-fill с кэпом 1/день дал 4 доступа за
+  весь прогон; всё незначимо. T1-02 — первый показ делает 60–87% работы слоя,
+  поэтому дополнительная частота покупает мало.
+- **Неопределённые.** T1-07 — разнонаправлен внутри самого источника: повторные
+  сплэши почти ничего не добавили, тогда как непропускаемый показ дал ×8
+  вовлечённости и +150–160% выручки слоя при Android D1 retention −9,15%
+  (p=0.012). T1-09 — показ №1 = 50–60% конверсий слоя, но кейс `inconclusive`
+  и только поддерживающий.
+- **Граница.** Цифры охвата зависят от конфигурации (кэпы, триггеры) и никогда
+  не переносятся как величины. Больше показов — не бесплатный рычаг: P-01 не даёт
+  права на неограниченную частоту, а цена в удержании измерена только на Android,
+  на новых пользователях после тура.
 
-## GC-08 — lifecycle segment targeting by monetization state (derived)
+## GC-08 — таргетинг lifecycle-сегмента по монетизационному состоянию (выведен)
 
 ```
 generalization_class: GC-08
-  label: targeting a segment defined by monetization state (ex-paid, canceling, paying) with a tailored App offer (direction = did targeting that segment earn money)
-  verdict: ONE-SIDED (positive)
+  label: таргетинг сегмента, заданного монетизационным состоянием (ex-paid, отменяющие, платящие), подогнанным оффером в App (направление = заработал ли таргетинг на этот сегмент денег)
+  verdict: ONE-SIDED (положительный)
   bounds:
-    surface: App interstitial (T1-08); splash + Explore banner (T2-05, T2-06)
-    segment: ex-paid past the winback window; canceling at autorenew-off; paying Pro at milestones
-    mechanism: deep-discount instant; immediate offer at the cancel decision; milestone bundle upsell
-    flow_stage: S3-S4 and S8 -> S3
+    surface: интерстишл в App (T1-08); сплэш + баннер на Explore (T2-05, T2-06)
+    segment: ex-paid за пределами окна winback; отменяющие при выключении автопродления; платящие Pro на вехах
+    mechanism: instant с глубокой скидкой; немедленный оффер в момент решения об отмене; бандл-апселл к вехе
+    flow_stage: S3-S4 и S8 -> S3
   outcome_positive: T1-08, T2-05, T2-06
   outcome_negative: -
   outcome_indeterminate: T1-02, T1-09
   related_patterns: P-08, P-09
-  note: signs derived from pattern cards; not declared in KB 2.6
+  note: знаки выведены из карточек паттернов; в KB 2.6 не объявлены
 ```
 
-- **Positive.** T1-08 (+241% segment ARPU), T2-05 (iOS ARPU +49.3%, charge CR
-  +67.3%), T2-06 (significant on both platforms) — the three largest significant
-  segment wins in the corpus, all rolled out.
-- **Indeterminate.** T1-02 — ex-subscribers up to 13×, but discovered through a
-  segmentation bug (direction only). T1-09 — ex-paid ~20× better per member, but
-  `inconclusive`/supporting.
-- **Caveats that bound the one-sidedness.** Within-source counter-evidence
-  exists and must be carried: T2-05 iter2 Android expensive plans −55% ARPU
-  ("keep cheap control on Android"); T2-05 iter3 invalidated by a
-  subscription-tracking bug; T1-08 iOS diffuse dilution −$702/day on non-winback
-  users. The 13×/20× figures are direction indicators, never sizing priors.
-- **Hard rule.** free → ex-paid and ex-paid → free transfers are forbidden by
-  the mandatory minimum (KB §2.3, item 4), independently of this class.
+- **Положительные.** T1-08 (+241% ARPU сегмента), T2-05 (iOS ARPU +49,3%,
+  charge CR +67,3%), T2-06 (значимо на обеих платформах) — три крупнейшие
+  значимые победы по сегментам в корпусе, все раскатаны.
+- **Неопределённые.** T1-02 — ex-подписчики до 13×, но обнаружено через баг
+  сегментации (только направление). T1-09 — ex-paid примерно в 20 раз лучше
+  на участника, но `inconclusive`/поддерживающий.
+- **Оговорки, ограничивающие односторонность.** Внутриисточниковые
+  контрсвидетельства существуют, и их нужно нести: T2-05 iter2 — дорогие планы
+  на Android −55% ARPU («держать дешёвый контроль на Android»); T2-05 iter3
+  обесценен багом трекинга подписок; T1-08 iOS — размытое разбавление
+  −$702/день на пользователях вне winback. Цифры 13×/20× — индикаторы
+  направления, никогда не априорные оценки для сайзинга.
+- **Жёсткое правило.** Переносы free → ex-paid и ex-paid → free запрещены
+  обязательным минимумом (KB §2.3, пункт 4) независимо от этого класса.
 
-## GC-09 — metric scope vs touched surface (method, derived)
+## GC-09 — область метрики против затронутой поверхности (метод, выведен)
 
 ```
 generalization_class: GC-09
-  label: whether the goal metric was scoped to the touched surface or segment (direction = did mis-scoping change the read)
-  verdict: ONE-SIDED (positive)
+  label: была ли целевая метрика ограничена затронутой поверхностью или сегментом (направление = изменила ли неверная область чтение)
+  verdict: ONE-SIDED (положительный)
   bounds:
-    surface: any surface- or segment-scoped treatment
-    segment: any
-    mechanism: measurement design, not an intervention
-    flow_stage: any
+    surface: любое вмешательство, ограниченное поверхностью или сегментом
+    segment: любой
+    mechanism: дизайн измерения, а не вмешательство
+    flow_stage: любая
   outcome_positive: T1-10, T1-08, T2-06
   outcome_negative: -
   outcome_indeterminate: -
   related_patterns: P-11
-  note: method gate; never usable as a product conclusion
+  note: методный гейт; никогда не пригоден как продуктовый вывод
 ```
 
-- T1-10 — Total ARPU flat-negative (−5.4%, p=0.61) while the touched surface read
-  +58.14% net revenue; 83–88% of revenue untouched.
-- T1-08 — segment win (+241%, p=0.000) real and rolled out while the Total lift
-  lost significance after control trials matured (+9.3%, p=0.40).
-- T2-06 — goal correctly scoped to anniversary members → upsell %; the +3910%
-  figure is a near-zero control base, not magic.
-- **Boundary.** This does not license ignoring Total and guardrail metrics
-  (T1-08 iOS dilution −$702/day); surface metrics inherit surface-selection bias
-  and need their own SRM check.
+- T1-10 — Total ARPU плоско-отрицательный (−5,4%, p=0.61), тогда как на
+  затронутой поверхности чистая выручка читалась как +58,14%; 83–88% выручки
+  не затронуто.
+- T1-08 — победа в сегменте (+241%, p=0.000) реальна и раскатана, тогда как
+  Total-лифт потерял значимость после дозревания контрольных триалов
+  (+9,3%, p=0.40).
+- T2-06 — цель корректно ограничена участниками юбилея → % апселла; цифра
+  +3910% — это околонулевая база контроля, а не магия.
+- **Граница.** Это не даёт права игнорировать Total и гардрейл-метрики
+  (разбавление T1-08 на iOS −$702/день); метрики поверхности наследуют
+  смещение отбора поверхности и требуют собственной проверки SRM.
 
-## GC-10 — delivery / exposure gate (method, derived)
+## GC-10 — гейт доставки / экспозиции (метод, выведен)
 
 ```
 generalization_class: GC-10
-  label: whether the treatment was delivered as designed - arms live, platforms launched, duration and sample reached (direction = did under-delivery invalidate or block the read)
+  label: было ли вмешательство доставлено так, как задумано - плечи живы, платформы запущены, длительность и выборка набраны (направление = обесценила ли недопоставка чтение или заблокировала его)
   verdict: TWO-SIDED
   bounds:
-    surface: any
-    segment: any
-    mechanism: delivery/instrumentation, not an intervention
-    flow_stage: any
+    surface: любая
+    segment: любой
+    mechanism: доставка/разметка, а не вмешательство
+    flow_stage: любая
   outcome_positive: T1-10, T1-09, T2-02
   outcome_negative: T2-07
   outcome_indeterminate: -
   related_patterns: P-12
-  note: method gate; never usable as a product conclusion
+  note: методный гейт; никогда не пригоден как продуктовый вывод
 ```
 
-- **Gate fired.** T1-10 — 9 of 15/20 design days, 2 of 3 arms, churn/refund
-  unreadable, ended inconclusive-stopped. T1-09 — iOS effectively never launched
-  (real volume 3 days), platform read declared unreadable. T2-02 — sample a
-  fraction of design (iOS 20,329 vs 216,622) plus early rollout on interim
-  reads, final read permanently lost.
-- **Gate did not fire.** T2-07 — significant negatives survived heavy
-  undersampling (access CR −36%, p=0.00) and the experiment was correctly
-  killed on them.
-- **Boundary.** The gate governs the interpretation of nulls and positives, not
-  of clear harm. "Under-delivered experiments cannot be read" is a one-sided
-  claim over a TWO-SIDED class and is a violation.
+- **Гейт сработал.** T1-10 — 9 дней из 15/20 по дизайну, 2 плеча из 3, отток и
+  рефанды нечитаемы, закончился остановкой без вывода. T1-09 — iOS фактически
+  так и не запустился (реальный объём 3 дня), чтение по платформе объявлено
+  нечитаемым. T2-02 — выборка в разы меньше дизайна (iOS 20 329 против 216 622)
+  плюс досрочная раскатка по промежуточным чтениям, финальное чтение потеряно
+  навсегда.
+- **Гейт не сработал.** T2-07 — значимые отрицательные результаты пережили
+  сильный недобор выборки (access CR −36%, p=0.00), и эксперимент был корректно
+  зарублен по ним.
+- **Граница.** Гейт управляет интерпретацией нулевых и положительных чтений, а
+  не явного вреда. «Недопоставленные эксперименты нельзя читать» — одностороннее
+  утверждение о классе TWO-SIDED и является нарушением.
 
-## GC-11 — maturity gate (method, derived)
+## GC-11 — гейт зрелости (метод, выведен)
 
 ```
 generalization_class: GC-11
-  label: whether trial windows and pending charges had matured before the read (direction = did immaturity change or block the conclusion)
-  verdict: ONE-SIDED (positive)
+  label: дозрели ли триальные окна и pending-списания до чтения (направление = изменила ли незрелость вывод или заблокировала его)
+  verdict: ONE-SIDED (положительный)
   bounds:
-    surface: any trial-bearing funnel
-    segment: any
-    mechanism: read timing, not an intervention
-    flow_stage: S6-S8 money chain
+    surface: любая воронка с триалом
+    segment: любой
+    mechanism: момент чтения, а не вмешательство
+    flow_stage: денежная цепочка S6-S8
   outcome_positive: T1-08, T1-10, T3-03, T2-02
   outcome_negative: -
   outcome_indeterminate: -
   related_patterns: P-13
-  note: method gate; never usable as a product conclusion
+  note: методный гейт; никогда не пригоден как продуктовый вывод
 ```
 
-- T1-08 — the Total ARPU lift disappeared once control trials matured.
-- T1-10 — pending 14d charges 59–79% by arm made churn/refund unreadable.
-- T3-03 — pending 24.0%/15.7% with an explicit "re-check churn and refund in
-  ~2 weeks".
-- T2-02 — early rollout on interim reads forfeited the final read.
-- **Boundary.** No counter-case in the corpus, but the gate is about the read,
-  not about the product: a matured read does not by itself validate anything,
-  and the corpus contains no case where immaturity was shown to be harmless.
+- T1-08 — лифт Total ARPU исчез, как только дозрели контрольные триалы.
+- T1-10 — pending-списания на 14 день 59–79% по плечам сделали отток и рефанды
+  нечитаемыми.
+- T3-03 — pending 24,0%/15,7% с явной пометкой «перепроверить отток и рефанды
+  примерно через 2 недели».
+- T2-02 — досрочная раскатка по промежуточным чтениям лишила финального чтения.
+- **Граница.** Контрпримера в корпусе нет, но гейт — про чтение, а не про
+  продукт: дозревшее чтение само по себе ничего не валидирует, и в корпусе нет
+  ни одного случая, где незрелость оказалась бы безвредной.
 
-## GC-12 — attribution artifacts and segment contamination (method, derived)
+## GC-12 — артефакты атрибуции и загрязнение сегмента (метод, выведен)
 
 ```
 generalization_class: GC-12
-  label: whether an observed effect was an artifact of attribution, segment contamination or a tracking bug (direction = did the artifact fabricate or destroy the read)
+  label: был ли наблюдаемый эффект артефактом атрибуции, загрязнения сегмента или бага трекинга (направление = сфабриковал ли артефакт чтение или разрушил его)
   verdict: TWO-SIDED
   bounds:
-    surface: any
-    segment: any, especially newly instrumented or low-volume sources
-    mechanism: instrumentation and cohort definition, not an intervention
-    flow_stage: any
+    surface: любая
+    segment: любой, особенно только что размеченные или малообъёмные источники
+    mechanism: разметка и определение когорты, а не вмешательство
+    flow_stage: любая
   outcome_positive: T1-02, T1-09, T2-05, T3-05
   outcome_negative: T2-06
   outcome_indeterminate: -
   related_patterns: P-14
-  note: method gate; never usable as a product conclusion
+  note: методный гейт; никогда не пригоден как продуктовый вывод
 ```
 
-- **Artifact drove the number.** T1-02 — iter1 +24%/+13% was ex-premium
-  contamination (~37% of revenue); the clean iter2 read was 2–3× smaller.
-  T1-09 — a visible ×4.6 winback lift was an attribution artifact. T2-05 iter3 —
-  a subscription-tracking bug dropped −30% of conversions. T3-05 — 2% of intro
-  subscriptions wrongfully charged as weekly.
-- **Artifact did NOT drive the number.** T2-06 — a targeting bug showed the
-  splash to trial users but provably contributed 6 iOS / 26 Android
-  subscriptions.
-- **Boundary.** Bugs must be quantified, not assumed decisive. "Any striking
-  lift on a new source is an artifact" is a one-sided claim over a TWO-SIDED
-  class and is a violation.
+- **Артефакт определял цифру.** T1-02 — +24%/+13% в iter1 были загрязнением
+  ex-premium (~37% выручки); чистое чтение iter2 оказалось в 2–3 раза меньше.
+  T1-09 — видимый ×4,6 лифт winback был артефактом атрибуции. T2-05 iter3 — баг
+  трекинга подписок срезал −30% конверсий. T3-05 — 2% intro-подписок ошибочно
+  списывались как недельные.
+- **Артефакт НЕ определял цифру.** T2-06 — баг таргетинга показывал сплэш
+  триальным пользователям, но доказуемо дал 6 подписок на iOS и 26 на Android.
+- **Граница.** Баги нужно квантифицировать, а не считать решающими по умолчанию.
+  «Любой яркий лифт на новом источнике — артефакт» есть одностороннее утверждение
+  о классе TWO-SIDED и является нарушением.
 
-## GC-13 — decision-moment offer timing (derived)
+## GC-13 — момент оффера в точке принятия решения (выведен)
 
 ```
 generalization_class: GC-13
-  label: showing a targeted offer at a lifecycle decision moment, sequenced after the standard funnel (direction = did the decision-moment offer convert)
+  label: показ таргетированного оффера в lifecycle-момент принятия решения, секвенированный после стандартной воронки (направление = конвертил ли оффер в момент решения)
   verdict: INSUFFICIENT
   bounds:
-    surface: splash + Explore banner (T2-05); App interstitial (T1-08)
-    segment: canceling at autorenew-off (T2-05); ex-paid past the winback window (T1-08)
-    mechanism: immediate alternative offer at the moment of re-evaluation, sequenced after the standard flow
+    surface: сплэш + баннер на Explore (T2-05); интерстишл в App (T1-08)
+    segment: отменяющие при выключении автопродления (T2-05); ex-paid за пределами окна winback (T1-08)
+    mechanism: немедленный альтернативный оффер в момент переоценки, секвенированный после стандартного флоу
     flow_stage: S8 -> S3
   outcome_positive: T2-05, T1-08
   outcome_negative: -
   outcome_indeterminate: -
   related_patterns: P-09
-  note: only two signed sources - no corpus-level generalization may be made over this class; both sources also appear as positives in GC-03
+  note: только два источника со знаком - обобщение корпусного уровня по этому классу делать нельзя; оба источника также фигурируют как положительные в GC-03
 ```
 
-- The two measured moments are the autorenew-cancel moment (T2-05) and
-  winback-window exhaustion (T1-08). Every other "decision moment" is untested
-  in this corpus (P-09 scope line).
-- Sequencing is part of the evidenced mechanism, not decoration: the T1-08 final
-  offer was shown only after the winback interstitial and not earlier than the
-  next day, which structurally protected the standard winback.
-- Android asymmetry applies here as in GC-08 (T2-05 iter2 expensive plans
-  −55% ARPU); magnitudes are iOS-specific.
+- Два измеренных момента — момент отмены автопродления (T2-05) и исчерпание
+  окна winback (T1-08). Любой другой «момент принятия решения» в этом корпусе
+  не проверен (строка области действия P-09).
+- Секвенирование — часть доказанной механики, а не украшение: финальный оффер
+  T1-08 показывался только после winback-интерстишла и не раньше следующего дня,
+  что структурно защищало стандартный winback.
+- Асимметрия Android действует здесь так же, как в GC-08 (T2-05 iter2, дорогие
+  планы −55% ARPU); величины специфичны для iOS.
 
 ---
 
-## Compilation notes
+## Заметки о составлении
 
-- GC-01…GC-06 reproduce the KB §2.6 direction table without change: no source
-  was added to or removed from a declared sign. Everything added for those
-  classes is either `outcome_indeterminate` (sources the KB assigns no direction
-  in that family) or bounds/prose drawn from the source cards.
-- GC-07…GC-13 are derived here from pattern cards P-01, P-03, P-08, P-09,
-  P-11…P-14, which §2.6 does not cover. Their signs are this registry's
-  reading of the source cards, not KB-declared directions. When a G3 check
-  disagrees with a derived class, §2.6 wins.
-- Pattern cards already folded into KB classes: P-02 → GC-04, P-04 → GC-06,
+- GC-01…GC-06 воспроизводят таблицу направлений KB §2.6 без изменений: ни один
+  источник не был добавлен к объявленному знаку или убран из него. Всё
+  добавленное для этих классов — это либо `outcome_indeterminate` (источники,
+  которым KB не приписывает направления в этом семействе), либо границы и проза,
+  взятые из карточек источников.
+- GC-07…GC-13 выведены здесь из карточек паттернов P-01, P-03, P-08, P-09,
+  P-11…P-14, которых §2.6 не покрывает. Их знаки — это прочтение карточек
+  источников данным реестром, а не объявленные KB направления. Когда проверка G3
+  расходится с выведенным классом, побеждает §2.6.
+- Карточки паттернов, уже свёрнутые в классы KB: P-02 → GC-04, P-04 → GC-06,
   P-05 → GC-02/GC-03, P-06 → GC-03, P-07 → GC-02, P-10 → GC-01.
-- Sources carrying opposite signs in different classes: T1-02 (negative in
-  GC-04 and GC-07, positive in GC-12, indeterminate in GC-02/GC-03/GC-08),
-  T1-09 (negative in GC-01 and GC-05, positive in GC-10 and GC-12,
-  indeterminate in GC-07), T2-06 (positive in GC-01/GC-03/GC-08/GC-09, negative
-  in GC-12, indeterminate in GC-04). These records are kept
-  separate on purpose; a source's sign in one class says nothing about its sign
-  in another.
+- Источники, несущие противоположные знаки в разных классах: T1-02
+  (отрицательный в GC-04 и GC-07, положительный в GC-12, неопределённый в
+  GC-02/GC-03/GC-08), T1-09 (отрицательный в GC-01 и GC-05, положительный в
+  GC-10 и GC-12, неопределённый в GC-07), T2-06 (положительный в
+  GC-01/GC-03/GC-08/GC-09, отрицательный в GC-12, неопределённый в GC-04).
+  Эти записи намеренно хранятся раздельно; знак источника в одном классе ничего
+  не говорит о его знаке в другом.

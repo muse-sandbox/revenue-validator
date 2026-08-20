@@ -1,65 +1,67 @@
-# Revenue Validator — working rules
+# Revenue Validator — рабочие правила
 
-This repository holds the pre-launch validator for revenue experiments: the frozen prompt bundles, the experiment knowledge base, and every evaluation run.
+Этот репозиторий держит предзапусковый валидатор денежных экспериментов: замороженные пакеты промптов, базу знаний по экспериментам и каждый оценочный прогон.
 
-## Before anything else
+## Прежде всего остального
 
-Read `context/rules/` first. It describes how this team actually works — how long experiments run, who owns which metric, what the company currently optimizes for. Without those rules any critique of an experiment design is formally correct and practically useless.
+Сначала прочитайте `context/rules/`. Там описано, как эта команда работает на самом деле — сколько живут эксперименты, кто владеет какой метрикой, на что компания оптимизирует прямо сейчас. Без этих правил любая критика дизайна эксперимента формально верна и практически бесполезна.
 
-`packages/current/` holds what the validator uses today — one version, one corpus, one policy. Everything else lives in `packages/history/` unchanged. A new version is a new directory in `current/` while the previous one moves to `history/`; never an edit to either. If `current/` ever holds two versions, something was left half-done.
+`packages/current/` держит то, что валидатор использует сегодня — одна версия, один корпус, одна policy. Всё остальное лежит в `packages/history/` без изменений. Новая версия — это новая директория в `current/`, а прежняя переезжает в `history/`; никогда не правка одной из них. Если в `current/` когда-нибудь окажутся две версии, значит что-то было брошено на полпути.
 
-The current validator is `packages/current/version-revenue-kb-v1.4/`. `docs/CURRENT.md` is the authority on that — nothing else names it.
+Текущий валидатор — `packages/current/version-revenue-kb-v1.4/`. Авторитет по этому вопросу — `docs/CURRENT.md`; больше его нигде не называют.
 
-## Never do this
+## Так делать нельзя
 
-Do not read, quote, or pass to any model:
+Не читать, не цитировать и не передавать ни в одну модель:
 
 - `packages/current/corpus-revenue-v1/ground-truth-sealed/`
 - `packages/history/corpus-interstitials/ground-truth-sealed/`
 - `packages/history/input-validator-v0-unblind/ground-truth/`
 
-These hold the actual outcomes of held-out experiments. Every blind comparison in this repository depends on the validator not seeing them before it commits to a recommendation. One leak invalidates the whole evaluation history.
+Здесь лежат фактические исходы отложенных экспериментов. Каждое слепое сравнение в этом репозитории держится на том, что валидатор не видел их до того, как зафиксировал рекомендацию. Одна утечка обесценивает всю историю оценок.
 
-Blind versions of the same cases live in `holdout-blind/` inside those packages and are safe to use as input.
+Слепые версии тех же кейсов лежат в `holdout-blind/` внутри этих пакетов и безопасны как вход.
 
-## The package name states its kind
+## Имя пакета называет его тип
 
-Every directory in `packages/` starts with its kind: `version-`, `corpus-`,
-`run-`, `eval-`, `input-`, `policy-`. The prefix tells you what may flow into it
-before you open it — a `run-` never reads sealed outcomes, an `eval-` may, and
-only after the run's answers are frozen. Full rules: `docs/ARCHITECTURE.md`.
+Каждая директория в `packages/` начинается со своего типа: `version-`, `corpus-`,
+`run-`, `eval-`, `input-`, `policy-`. Префикс говорит, что в неё может втекать,
+ещё до того как вы её открыли: `run-` никогда не читает запечатанные исходы,
+`eval-` может — и только после того, как ответы прогона заморожены.
+Полные правила: `docs/ARCHITECTURE.md`.
 
-Renamed to this scheme on 2026-08-08. Frozen files still cite the old names and
-must not be edited to fix that; `packages/README.md` holds the old→new table.
+Переименовано в эту схему 2026-08-08. Замороженные файлы по-прежнему ссылаются на
+старые имена, и править их ради этого нельзя; таблица «старое → новое» лежит в
+`packages/README.md`.
 
-## Frozen packages are append-only
+## Замороженные пакеты append-only
 
-Every package carries a manifest with SHA-256 per file. Do not edit files inside a frozen package, do not move packages relative to each other — manifest paths are relative and siblings must stay siblings.
+Каждый пакет несёт манифест с SHA-256 по каждому файлу. Не правьте файлы внутри замороженного пакета и не перемещайте пакеты относительно друг друга — пути в манифесте относительные, и соседи должны остаться соседями.
 
-If a fix is needed, build a new versioned package and record what changed.
+Если нужна правка, соберите новый версионированный пакет и зафиксируйте, что изменилось.
 
-## Running the validator
+## Запуск валидатора
 
-See `docs/runbook.md`. In short: assemble the prompt template with a knowledge context and an experiment card, run it in a clean context with no search tools, then lint the answer.
+См. `docs/runbook.md`. Коротко: собрать шаблон промпта с контекстом знаний и карточкой эксперимента, запустить в чистом контексте без поисковых инструментов, затем прогнать ответ через линтер.
 
-Two rules that are easy to break:
+Два правила, которые легко нарушить:
 
-- The run must not have access to the outcome of the experiment under review.
-- Both arms of a comparison must use a byte-identical prompt; the only difference is presence of the knowledge context.
+- Прогон не должен иметь доступа к исходу разбираемого эксперимента.
+- Оба плеча сравнения должны использовать побайтово одинаковый промпт; единственное различие — наличие контекста знаний.
 
-## Evidence discipline
+## Дисциплина доказательств
 
-These rules are enforced by the linter and must survive any change to the prompt:
+Эти правила проверяются линтером и должны пережить любое изменение промпта:
 
-- every claim about a past experiment cites a source ID that exists in the knowledge base;
-- closeness level is computed from the analog's axis values, never chosen;
-- only sign and mechanism transfer, and only from close analogs; magnitudes never transfer as predictions;
-- when no close analog exists, the answer says so instead of promoting a weak one;
-- a statement about a whole class carries an explicit scope annotation;
-- when cited cases point in conflicting directions, the answer says the evidence is mixed and names the boundary.
+- каждое утверждение о прошлом эксперименте ссылается на source ID, существующий в базе знаний;
+- уровень близости вычисляется из значений осей аналога, а не выбирается;
+- переносятся только знак и механика, и только от близких аналогов; величины никогда не переносятся как предсказания;
+- когда близкого аналога нет, ответ так и говорит, а не продвигает слабый;
+- утверждение о целом классе несёт явную аннотацию области действия (scope);
+- когда цитируемые кейсы указывают в разные стороны, ответ говорит, что свидетельства разнонаправленны, и называет границу.
 
-## Known state
+## Известное состояние
 
-The validator is not frozen. The formal gate failed three times on one class of defect: one-sided generalizations over classes where the corpus evidence is mixed. Product usefulness was confirmed in all three runs, so the decision was to validate on live cases rather than keep iterating on the historical holdout.
+Валидатор не заморожен. Формальный гейт трижды провалился на одном классе дефекта: односторонние обобщения по классам, где свидетельства корпуса разнонаправленны. Продуктовая полезность подтверждалась во всех трёх прогонах, поэтому решено валидировать на живых кейсах, а не продолжать итерации на историческом холдауте.
 
-Post-rollout causal revenue is missing for every experiment in the corpus. Any post-rollout figure in these documents is a forecast, not a measurement.
+Пост-раскаточная причинная выручка отсутствует для каждого эксперимента в корпусе. Любая пост-раскаточная цифра в этих документах — прогноз, а не измерение.

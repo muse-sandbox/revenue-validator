@@ -1,34 +1,35 @@
-# Evidence policy
+# Policy по доказательствам
 
-Which evidence may change a decision, which may only warn. Full text:
-`packages/revenue-evidence-policy-v1/`.
+Какое свидетельство вправе менять решение, а какое может только предупреждать.
+Полный текст: `packages/revenue-evidence-policy-v1/`.
 
-## Marking
+## Маркировка
 
-Every consequential statement carries its status:
+Каждое значимое утверждение несёт свой статус:
 
-- **fact** — measured in a named source;
-- **interpretation** — the source team's reading of their own result;
-- **transfer hypothesis** — any claim about the case under review, including
-  one derived from a close analog.
+- **факт** — измерено в названном источнике;
+- **интерпретация** — прочтение собственного результата командой источника;
+- **гипотеза переноса** — любое утверждение о разбираемом кейсе, включая
+  выведенное из близкого аналога.
 
-A claim about the current experiment is never a fact. It has not happened yet.
+Утверждение о текущем эксперименте никогда не является фактом. Он ещё не произошёл.
 
-## Generalizations
+## Обобщения
 
-A statement about a whole class of interventions must carry an explicit scope
-annotation: which sub-class it covers, which source IDs it rests on, what it
-does not cover.
+Утверждение о целом классе вмешательств обязано нести явную аннотацию области
+действия: какой подкласс оно покрывает, на какие source ID опирается, чего
+не покрывает.
 
-When cited sources point in conflicting directions inside one class, the answer
-must say the evidence is mixed and name the boundary between sub-classes, rather
-than asserting one side.
+Когда цитируемые источники внутри одного класса указывают в разные стороны,
+ответ обязан сказать, что свидетельства разнонаправленны, и назвать границу
+между подклассами, а не утверждать одну из сторон.
 
-This rule exists because the formal gate failed three times on exactly this
-defect: a one-sided claim over a class where the corpus holds both outcomes.
+Это правило существует потому, что формальный гейт трижды провалился ровно на
+этом дефекте: одностороннее утверждение о классе, по которому корпус держит
+оба исхода.
 
-## Blocking
+## Блокировка
 
-A recommendation to stop or deprioritize requires concrete, evidence-backed
-reasons. Unverified concerns are phrased as risks to instrument, never as
-blockers.
+Рекомендация остановить или депроритизировать требует конкретных, подкреплённых
+свидетельствами оснований. Непроверенные опасения формулируются как риски,
+которые надо разметить, и никогда как блокеры.

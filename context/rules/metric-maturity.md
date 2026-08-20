@@ -1,31 +1,32 @@
-# Metric maturity
+# Зрелость метрик
 
-> **TODO.** Likely filled by analytics.
+> **TODO.** Вероятно, заполняется аналитикой.
 
-## What must be answered here
+## На что здесь нужно ответить
 
-- Days after entry before each metric can be read: trial conversion,
-  trial to charge, ARPU, retention 7d and 14d, refunds, reconversion.
-- Share of charges still pending at 3, 7 and 14 days.
-- How much an early read distorts each metric, and on which funnel shapes
-  the distortion is largest.
-- Whether maturity differs between iOS and Android.
-- At what share of pending charges a result becomes usable for a decision.
+- Сколько дней после входа должно пройти, прежде чем метрику можно читать:
+  конверсия в триал, из триала в списание, ARPU, retention 7d и 14d, рефанды,
+  реконверсия.
+- Доля списаний, всё ещё pending на 3, 7 и 14 день.
+- Насколько раннее чтение искажает каждую метрику и на каких формах воронки
+  искажение максимально.
+- Различается ли зрелость между iOS и Android.
+- При какой доле pending-списаний результат становится пригодным для решения.
 
-## Already known
+## Что уже известно
 
-Experiment 7622: ARPU read early +17.25%, read mature +22.8% and +24.2% —
-a mature-to-early ratio of 1.3–1.4 on a funnel with a trial step.
+Эксперимент 7622: ARPU при раннем чтении +17,25%, при зрелом +22,8% и +24,2% —
+отношение зрелого к раннему 1,3–1,4 на воронке с триальным шагом.
 
-Product treats maturity as binary: either the decision is taken immediately and
-nothing in the window has matured, or it is taken after the whole cohort has.
-Not mature on a 3–8 day window: cancellations, trial-to-charge, alive14d,
-retention 7d and 14d. Source and caveats in
-[`decision-practice.md`](decision-practice.md). What is still missing here is
-the quantitative part — days per metric, pending share at 3/7/14 days, and
-whether any of it differs between iOS and Android.
+Продукт трактует зрелость бинарно: либо решение принимается сразу — и тогда
+в окне не дозрело ничего, — либо оно принимается после того, как дозрела вся
+когорта. Не зрелы на окне 3–8 дней: отмены, конверсия из триала в списание,
+alive14d, retention 7d и 14d. Источник и оговорки — в
+[`decision-model.md`](decision-model.md). Чего здесь по-прежнему не хватает,
+так это количественной части — дней на метрику, доли pending на 3/7/14 день и
+того, различается ли что-то из этого между iOS и Android.
 
-## Why the validator needs this
+## Зачем это валидатору
 
-So it can say which metric will still be immature when the decision is taken,
-and by how much the early read is expected to be wrong.
+Чтобы он мог сказать, какая метрика к моменту решения ещё не дозреет и насколько
+раннее чтение ожидаемо ошибётся.
