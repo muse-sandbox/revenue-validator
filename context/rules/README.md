@@ -7,9 +7,9 @@
 |---|---|---|
 | `decision-model.md` | заполнен | — |
 | `model-vs-fact-calibration.md` | заполнен | — |
-| `company-priorities.md` | **TODO** | product |
-| `team-ownership.md` | **TODO** | product |
-| `metric-maturity.md` | **TODO** | analytics |
+| `company-priorities.md` | заполнен (снимок стр. 828882553 v13, 2026-08-21) | product / CRO |
+| `team-ownership.md` | **TODO** — ждёт ответов продукта и CRO | product |
+| `metric-maturity.md` | частично (качественная часть 2026-08-21; числа за аналитикой) | analytics |
 | `closeness-model.md` | заполнен | — |
 | `evidence-policy.md` | заполнен | — |
 | `transfer-classes.md` | заполнен | — |
