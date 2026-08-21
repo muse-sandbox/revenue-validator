@@ -1,19 +1,32 @@
-# Ownership and decision rights
+# Владение и права решения
 
-> **TODO.** Fill before the next live run.
+> **TODO.** Заполнить до следующего живого прогона. Ответы есть только у продукта
+> и CRO — файл закрывается одним заходом к ним, а не работой по репозиторию.
 
-## What must be answered here
+## На что здесь нужно ответить
 
-- Which metrics belong to the monetization team and which belong to others.
-- Who owns retention, engagement, upper funnel.
-- Who proposes a hypothesis, who confirms the money estimate, who decides to
-  launch, who decides to roll out.
-- What each role decides alone and what needs sign-off.
-- Whether the 100 experiment slots are this team's budget or shared.
-- What happens when an experiment moves another team's metric.
+- Какие метрики принадлежат команде монетизации, а какие — другим.
+- Кто владеет retention, вовлечённостью, верхом воронки.
+- Кто предлагает гипотезу, кто подтверждает денежную оценку, кто решает запускать,
+  кто решает раскатывать.
+- Что каждая роль решает единолично, а что требует согласования.
+- Являются ли 100 экспериментальных слотов бюджетом этой команды или общими.
+- Что происходит, когда эксперимент двигает метрику другой команды.
 
-## Why the validator needs this
+## Что уже известно
 
-On the first live case the experiment existed to recover retention — a metric
-that is secondary for the monetization team. That changes the answer to "whose
-slot is this", and the validator could not raise the question at all.
+Роли уровня компании выписаны в [`company-priorities.md`](company-priorities.md):
+CRO держит бизнес-рамку и дисциплину экспериментов, CPO отвечает за перестройку
+продуктовых OKR и экосистемные цели портфеля, Product Owner несёт конструкцию на
+своём продукте.
+
+Чего там нет — прав решения **внутри** команды монетизации: кто предлагает, кто
+подтверждает денежную оценку, кто решает запускать и кто раскатывать. Процедура
+исключения из запрета «конверсия ценой retention» тоже не зафиксирована нигде:
+в источнике описана только эскалация к CRO после двух дней без движения.
+
+## Зачем это валидатору
+
+На первом живом кейсе эксперимент существовал ради возврата retention — метрики,
+которая для команды монетизации вторична. Это меняет ответ на вопрос «чей это
+слот», а валидатор не смог вообще поставить этот вопрос.

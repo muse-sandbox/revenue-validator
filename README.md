@@ -1,95 +1,92 @@
 # Revenue Validator
 
-Pre-launch validator for revenue experiments at Ultimate Guitar. It reviews an experiment card before the team spends one of its limited experiment slots and returns a recommendation: launch, revise, or deprioritize.
+Предзапусковый валидатор денежных экспериментов Ultimate Guitar. Он разбирает карточку эксперимента до того, как команда потратит один из ограниченных экспериментальных слотов, и возвращает рекомендацию: launch, revise или deprioritize.
 
-> **Internal repository.** Contains real revenue figures, conversion rates, experiment outcomes and links to internal Confluence. Do not mirror, fork outside the organization, or paste contents into external services.
+> **Внутренний репозиторий.** Содержит реальные цифры выручки, конверсии, исходы экспериментов и ссылки на внутренний Confluence. Не зеркалировать, не форкать за пределы организации, не вставлять содержимое во внешние сервисы.
 
-**Plan and progress live in Linear:**
+**План и прогресс живут в Linear:**
 [AI Revenue Decision Loop — валидатор денежных гипотез](https://linear.app/asteroids-infra/project/ai-revenue-decision-loop-validator-denezhnyh-gipotez-231007a9bbcd)
 
-## Start here
+## С чего начать
 
-| If you want to | Read |
+| Если нужно | Читать |
 |---|---|
-| know where the project stands right now | `docs/CURRENT.md` |
-| understand who does what, and what a package is | `docs/ARCHITECTURE.md` |
-| see what is planned and in progress | the Linear project linked above |
-| understand the rules an agent must follow | `CLAUDE.md` |
-| run the validator on an experiment | `.claude/skills/validator-run/` |
-| run an evaluation without breaking it | `.claude/skills/holdout-discipline/` |
-| know how this team actually works | `context/rules/` |
-| see a worked example | `packages/history/run-live-official-tabs-v1.4/` |
+| понять, где проект прямо сейчас | `docs/CURRENT.md` |
+| разобраться, кто что делает и что такое пакет | `docs/ARCHITECTURE.md` |
+| увидеть, что запланировано и в работе | проект в Linear по ссылке выше |
+| понять правила, которым обязан следовать агент | `CLAUDE.md` |
+| запустить валидатор на эксперименте | `.claude/skills/validator-run/` |
+| провести оценку и не сломать её | `.claude/skills/holdout-discipline/` |
+| узнать, как эта команда работает на самом деле | `context/rules/` |
+| посмотреть разобранный пример | прогоны лежат в рабочей папке (`VALIDATOR_WORK_DIR`, по умолчанию `revenue-validator-work` рядом с репозиторием) |
 
-## ⚠️ Sealed outcomes
+## ⚠️ Запечатанные исходы
 
-Three directories hold the actual results of held-out experiments and must never reach a model:
+Фактические результаты отложенных экспериментов **в этом репозитории отсутствуют** —
+они живут в рабочей папке (`VALIDATOR_WORK_DIR`, по умолчанию `revenue-validator-work` рядом с репозиторием) вместе с корпусом и прогонами.
 
-- `packages/current/corpus-revenue-v1/ground-truth-sealed/`
-- `packages/history/corpus-interstitials/ground-truth-sealed/`
-- `packages/history/input-validator-v0-unblind/ground-truth/`
+Правило прежнее: не читать, не цитировать и не передавать ни в одну модель ничего
+из `ground-truth-*`. Каждое слепое сравнение держится на том, что валидатор не
+видел исходов до того, как зафиксировал рекомендацию. Слепые версии тех же кейсов
+(`holdout-blind/`) безопасны как вход.
 
-Every blind comparison in this repository depends on the validator not seeing them before committing to a recommendation. Blind versions of the same cases, safe as input, are in `holdout-blind/` inside those packages.
+## Устройство
 
-## Layout
+Репозиторий держит валидатор и то, на чём он принимает решение. Всё, что мы
+произвели по дороге, лежит в рабочей папке (`VALIDATOR_WORK_DIR`, по умолчанию `revenue-validator-work` рядом с репозиторием).
 
 ```text
-CLAUDE.md              rules for any agent working here
+CLAUDE.md              правила для любого агента, работающего здесь
 context/
-  rules/               how this team decides, what it owns, what the company optimizes for
-.claude/skills/        procedures: running the validator, keeping evaluations honest
-docs/                  runbook and version pointer
+  rules/               как эта команда решает, на что оптимизирует компания
+.claude/skills/        процедуры: запуск валидатора, честность оценок
+docs/                  раннбук и указатель текущей версии
 packages/
-  current/             the validator in use, its corpus, its policy
-  history/             older versions, and every run and evaluation
-worktree-recovered/    files that existed only inside isolated task worktrees
+  version-…            запускаемый замороженный валидатор
+  policy-…             замороженные правила работы с доказательствами
 ```
+
+**В рабочей папке:** прогоны (`run-`), оценки (`eval-`), прошлые версии,
+корпус с отложенными кейсами и запечатанными исходами, разборы.
 
 ### packages/
 
-Current validator: see `docs/CURRENT.md` — it is the single place that names the
-current version. As of 2026-08-08 that is **v1.4**, in `packages/current/`.
+Текущая версия названа в `docs/CURRENT.md` — это единственное место, где она
+называется.
 
-Two directories, and the name of each package starts with its kind:
+Имя пакета начинается с его типа. Здесь остаются `version-` и `policy-`;
+`corpus-`, `run-`, `eval-`, `input-` живут в рабочей папке.
 
-```text
-packages/
-  current/    the validator in use, its corpus, its policy — 3 packages
-  history/    older versions, and every run and evaluation — 20 packages
-```
+| Префикс | Тип | Где |
+|---|---|---|
+| `version-` | запускаемый замороженный валидатор | здесь |
+| `policy-` | замороженные правила работы с доказательствами | здесь |
+| `corpus-` | кейсы, разбитые для честной оценки | рабочая папка |
+| `run-` | только инференс, без суждения | рабочая папка |
+| `eval-` | суждение по заранее зарегистрированному протоколу | рабочая папка |
+| `input-` | пакет, переданный изолированному агенту | рабочая папка |
 
-| Prefix | Kind |
+Пакеты append-only. Новая версия — это новая директория здесь, а прежняя
+переезжает в рабочую папку; никогда не правка одной из них.
+
+## Состояние проекта
+
+| Часть | Статус |
 |---|---|
-| `version-` | a runnable frozen validator |
-| `corpus-` | cases split for honest evaluation |
-| `run-` | inference only, no judgement |
-| `eval-` | judgement against a pre-registered protocol |
-| `input-` | a bundle handed to an isolated agent |
-| `policy-` | frozen evidence rules |
+| Денежная модель и проверка измеримости | **Работает.** Проверено вслепую на 8 завершённых экспериментах: существенные риски найдены во всех 3 неуспешных кейсах, ни одна успешная идея не отвергнута |
+| Продуктовая оценка по истории экспериментов | **Частично.** Надёжно улучшает дизайн эксперимента; предсказание того, будет ли идея денежной, пока подкреплено слабо |
+| Ранжирование кандидатов между собой | **Не начато.** Нужен бизнесовый порог стоимости слота и одновременное сравнение гипотез |
 
-What `current/` holds and what the corpus is made of: `packages/README.md`.
-What may flow into what: `docs/ARCHITECTURE.md`.
+Не заморожен. Формальный гейт трижды провалился на одном классе дефекта — односторонние обобщения по классам, где свидетельства корпуса разнонаправленны. Продуктовая полезность подтверждалась во всех трёх прогонах, поэтому решено валидировать на живых кейсах, а не продолжать итерации на историческом холдауте.
 
-Packages are append-only. A new version means a new directory in `current/` and
-the previous one moving to `history/` — never an edit to either.
+## Известные пробелы
 
-## Project state
+- **`context/rules/` заполнен наполовину.** Четыре файла помечены TODO. Валидатор получил 2 из 5 на первом живом кейсе ровно из-за этого: он критиковал 39-дневный дизайн, тогда как команда останавливает эксперименты на третий день.
+- **Ревью занимает 30–55 минут** при целевых 10. Формат вывода нужно перестраивать, а не только сокращать.
+- **Карточки аналогов машиночитаемы**, что нужно линтеру и не нужно человеку.
+- **Рекомендации не несут ожидаемого размера эффекта**, поэтому непонятно, какие из них важны.
+- **Пост-раскаточная причинная выручка отсутствует** для каждого эксперимента в корпусе: после раскатки на 100% контрольной группы не остаётся. Любая пост-раскаточная цифра здесь — прогноз, а не измерение.
 
-| Part | Status |
-|---|---|
-| Money model and measurability check | **Works.** Verified blind on 8 completed experiments: material risks found in all 3 unsuccessful cases, no successful idea rejected |
-| Product assessment from experiment history | **Partial.** Reliably improves experiment design; predicting whether an idea will make money is weakly supported so far |
-| Ranking candidates against each other | **Not started.** Needs a business threshold for slot value and simultaneous comparison of hypotheses |
+## Целостность
 
-Not frozen. The formal gate failed three times on one class of defect — one-sided generalizations over classes where the corpus evidence is mixed. Product usefulness was confirmed in all three runs, so the decision was to validate on live cases instead of iterating further on the historical holdout.
-
-## Known gaps
-
-- **`context/rules/` is half empty.** Four files are marked TODO. The validator was rated 2 out of 5 on its first live case because of exactly this: it critiqued a 39-day design while the team stops experiments on day 3.
-- **Review takes 30–55 minutes** against a target of 10. The output format needs restructuring, not only shortening.
-- **Analog cards are machine-readable**, which the linter needs and a human does not.
-- **Recommendations carry no expected effect size**, so it is unclear which of them matter.
-- **Post-rollout causal revenue is missing** for every experiment in the corpus: after a 100% rollout no control group remains. Every post-rollout figure here is a forecast, not a measurement.
-
-## Integrity
-
-Every frozen package carries a manifest with SHA-256 per file. Last full verification: 2026-08-08, **480 entries, 0 mismatches** — run after the rename, the split, and the consolidation of v1.3/v1.4, to prove none of them touched a file.
+Каждый замороженный пакет несёт манифест с SHA-256 по каждому файлу. Последняя полная проверка: 2026-08-08, **480 записей, 0 расхождений** — прогнана после переименования, разбиения и консолидации v1.3/v1.4, чтобы доказать, что ни одна из операций не тронула ни одного файла.

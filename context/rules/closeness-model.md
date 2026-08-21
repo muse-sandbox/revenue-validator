@@ -1,36 +1,36 @@
-# Closeness model
+# Модель близости
 
-How the validator decides whether a past experiment may inform a new one.
-Normative definition lives in `packages/revenue-kb-v1.2/knowledge_base.md` §2.2;
-this file is the human-readable summary.
+Как валидатор решает, вправе ли прошлый эксперимент что-то говорить о новом.
+Нормативное определение живёт в `packages/revenue-kb-v1.2/knowledge_base.md` §2.2;
+этот файл — человекочитаемая выжимка.
 
-## Axes
+## Оси
 
-Every analog is described on ten axes: flow stage, segment, trigger and
-eligibility, surface, mechanism, offer, target behavior, metric, money chain,
-guardrails. Plus three dedicated fields: segment monetization state, money
-chain link, platform.
+Каждый аналог описан по десяти осям: стадия флоу, сегмент, триггер и право входа,
+поверхность, механика, оффер, целевое поведение, метрика, денежная цепочка,
+гардрейлы. Плюс три выделенных поля: монетизационное состояние сегмента,
+звено денежной цепочки, платформа.
 
-Each axis is `exact`, `adjacent` or `different`.
+Каждая ось — `exact`, `adjacent` или `different`.
 
-## Levels
+## Уровни
 
-| Level | Meaning | What may be used |
+| Уровень | Значение | Что можно использовать |
 |---|---|---|
-| L1 | direct analog | sign and mechanism transfer as a hypothesis |
-| L2 | same shape, different context | warning only, not a prediction |
-| L3 | weak signal | guardrails, measurement and sizing lessons only |
+| L1 | прямой аналог | перенос знака и механики как гипотезы |
+| L2 | та же форма, другой контекст | только предупреждение, не предсказание |
+| L3 | слабый сигнал | только гардрейлы, уроки измерения и сайзинга |
 
-The level is **computed** from axis values, never chosen by the model. A linter
-recomputes it from the answer's own analog card; any mismatch invalidates the
-answer.
+Уровень **вычисляется** из значений осей, а не выбирается моделью. Линтер
+пересчитывает его по карточке аналога из самого ответа; любое расхождение
+обесценивает ответ.
 
-## Hard rules
+## Жёсткие правила
 
-- Effect magnitudes never transfer as predictions. They may appear only as
-  explicitly labelled sizing priors.
-- L3 alone can never justify changing a launch decision.
-- When no L1 or L2 analog exists, the answer must say so rather than promote
-  the nearest weak source.
-- Outcomes from inconclusive or bug-contaminated cases ground measurement
-  lessons only.
+- Величины эффекта никогда не переносятся как предсказания. Они могут появляться
+  только как явно помеченные априорные оценки для сайзинга.
+- Один только L3 никогда не может обосновать изменение решения о запуске.
+- Когда аналога уровня L1 или L2 нет, ответ обязан так и сказать, а не продвигать
+  ближайший слабый источник.
+- Исходы из inconclusive-кейсов и кейсов, загрязнённых багом, обосновывают только
+  уроки измерения.

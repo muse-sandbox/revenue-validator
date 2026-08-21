@@ -1,29 +1,35 @@
-# Domain rules
+# Доменные правила
 
-How this team actually works. The validator reads these files to judge an
-experiment against reality rather than against a textbook design.
+Как эта команда работает на самом деле. Валидатор читает эти файлы, чтобы судить
+эксперимент по реальности, а не по учебниковому дизайну.
 
-| File | Status | Owner |
+| Файл | Статус | Владелец |
 |---|---|---|
-| `decision-criteria.md` | filled | — |
-| `decision-timing.md` | filled | — |
-| `model-vs-fact-calibration.md` | filled | — |
-| `decision-practice.md` | **TODO** | product |
-| `company-priorities.md` | **TODO** | product |
-| `team-ownership.md` | **TODO** | product |
-| `metric-maturity.md` | **TODO** | analytics |
-| `closeness-model.md` | filled | — |
-| `evidence-policy.md` | filled | — |
-| `transfer-classes.md` | filled | — |
+| `decision-model.md` | заполнен | — |
+| `model-vs-fact-calibration.md` | заполнен | — |
+| `company-priorities.md` | заполнен (снимок стр. 828882553 v13, 2026-08-21) | product / CRO |
+| `team-ownership.md` | **TODO** — ждёт ответов продукта и CRO | product |
+| `metric-maturity.md` | частично (качественная часть 2026-08-21; числа за аналитикой) | analytics |
+| `closeness-model.md` | заполнен | — |
+| `evidence-policy.md` | заполнен | — |
+| `transfer-classes.md` | заполнен | — |
 
-A file marked TODO is a known gap, not an oversight. The validator was rated
-2 out of 5 on its first live case precisely because these rules did not exist:
-it critiqued a 39-day design while the team stops experiments on day 3.
+Файл, помеченный TODO, — это известный пробел, а не недосмотр. Валидатор получил
+2 из 5 на первом живом кейсе ровно потому, что этих правил не существовало:
+он критиковал 39-дневный дизайн, тогда как команда останавливает эксперименты
+на третий день.
 
-The three files at the top are backed by measurement rather than by interview:
-all three are derived from the FLOW-650 answer key, twenty backtested
-experiments spanning 2024-07 to 2026-05. Each one separates what the twenty
-show from what the validator should therefore do, and closes with the questions
-that evidence cannot settle. `decision-practice.md` stays TODO because its
-remaining half — who decides, and what is read at the moment of an early stop —
-is not recoverable from the backtest and needs product to answer.
+`decision-model.md` — главный файл темы «как принимается решение». Раньше это были
+три отдельных файла — `decision-timing`, `decision-criteria` и `decision-practice`, —
+и они противоречили друг другу в цифрах; теперь это один документ. Измеренная
+половина выведена из ключа ответов FLOW-650 (двадцать бэктест-экспериментов,
+2024-07 — 2026-05, фактические даты из `ab_experiment_history`, а не из плана).
+Половина, недоступная бэктесту, — что читают в момент ранней остановки и какой
+размер потери её запускает — собрана из продуктового интервью UMN-12837
+(18 и 20 августа 2026) и выгрузки реестра UG-328. Две цифры длительности —
+медиана реестра 7,5 дня и 14,9 у двадцатки — примирены там как одно распределение,
+увиденное маргинально и условно на исход.
+
+Всё ещё без ответа: кто формально решает и как утверждается исключение из правила
+остановки. Оба вопроса просто ни разу не были заданы продукту и закрываются одним
+follow-up; первый по-прежнему принадлежит файлу `team-ownership.md`.

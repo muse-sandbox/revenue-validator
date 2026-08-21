@@ -1,36 +1,37 @@
-# Runbook
+# Раннбук
 
-## Validate one experiment
+## Провалидировать один эксперимент
 
-1. Take the experiment document.
-2. Assemble the prompt: `packages/current/version-revenue-kb-v1.6/validator_prompt_v1_6.md`,
-   substituting the knowledge context and the card.
-3. Run in a clean context, no search tools, no access to the outcome.
-4. Lint the answer.
-5. Save inputs, outputs and a manifest with checksums.
+1. Взять документ эксперимента.
+2. Собрать промпт: `packages/version-revenue-kb-v1.6/validator_prompt_v1_6.md`,
+   подставив контекст знаний и карточку.
+3. Запустить в чистом контексте, без поисковых инструментов, без доступа к исходу.
+4. Прогнать ответ через линтер.
+5. Сохранить входы, выходы и манифест с контрольными суммами — в рабочей папке (`VALIDATOR_WORK_DIR`, по умолчанию `revenue-validator-work` рядом с репозиторием), а не здесь.
 
-Details: `.claude/skills/validator-run/`.
+Детали: `.claude/skills/validator-run/`.
 
-## Compare with and without the knowledge base
+## Сравнить с базой знаний и без неё
 
-Same as above, twice, with a byte-identical prompt. The only difference is
-whether the knowledge context block is filled. Randomize which arm is shown
-first to whoever judges them, and strip markers that reveal the arm.
+То же самое, дважды, побайтово одинаковым промптом. Единственное различие — заполнен
+ли блок контекста знаний. Порядок предъявления плеч тому, кто их судит,
+рандомизировать, а маркеры, выдающие плечо, вырезать.
 
-## Evaluate on held-out cases
+## Оценить на отложенных кейсах
 
-Read `.claude/skills/holdout-discipline/` first. The order — reserve, build,
-blind, infer, then open outcomes — is what makes the result meaningful, and it
-cannot be repaired afterwards.
+Сначала прочитайте `.claude/skills/holdout-discipline/`. Порядок — зарезервировать,
+собрать, ослепить, сделать инференс, и только потом открыть исходы — это и есть то,
+что делает результат осмысленным, и починить его задним числом нельзя.
 
-## Add a new version
+## Добавить новую версию
 
-Never edit a frozen package. Create a new directory, copy forward what does not
-change, record what does, and write a fresh manifest with SHA-256 per file.
-Verify the previous packages still match their own manifests before and after.
+Никогда не правьте замороженный пакет. Создайте новую директорию, перенесите вперёд
+то, что не меняется, зафиксируйте то, что меняется, и напишите свежий манифест
+с SHA-256 по каждому файлу. Проверьте, что прежние пакеты по-прежнему сходятся
+со своими манифестами — до и после.
 
-## Verify integrity
+## Проверить целостность
 
-Each package has a `BUNDLE_MANIFEST.md` or `FREEZE_MANIFEST.md`. Recompute
-SHA-256 for every listed file and compare. A mismatch means a frozen package
-was modified, which invalidates any evaluation that relied on it.
+У каждого пакета есть `BUNDLE_MANIFEST.md` или `FREEZE_MANIFEST.md`. Пересчитайте
+SHA-256 для каждого перечисленного файла и сравните. Расхождение означает, что
+замороженный пакет был изменён, а это обесценивает любую оценку, которая на него опиралась.

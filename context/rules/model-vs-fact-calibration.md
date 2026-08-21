@@ -1,69 +1,71 @@
-# Model vs fact calibration
+# Калибровка модели по факту
 
-How far the planned effect has historically stood from the measured one, and
-what the validator may therefore do with a number taken from a model. Derived
-from the FLOW-650 answer key: twenty backtested experiments, block 3
+Насколько запланированный эффект исторически расходился с измеренным и что
+валидатору из-за этого разрешено делать с числом, взятым из модели. Выведено из
+ключа ответов FLOW-650: двадцать бэктест-экспериментов, блок 3
 `plan_vs_fact_by_metric`.
 
-## Coverage first
+## Сначала покрытие
 
-| Plan↔fact pairs across the twenty | 81 |
+| Пар «план↔факт» по всем двадцати | 81 |
 |---|---|
-| pairs where a fact exists at all | 23 (28%) |
-| pairs comparable numerically (numeric plan **and** fact) | 21 (26%) |
+| пар, где факт вообще существует | 23 (28%) |
+| пар, сравнимых численно (числовой план **и** факт) | 21 (26%) |
 
-Three quarters of what the documents plan was never measured against a fact.
-Any statement about calibration rests on 21 pairs, not on twenty experiments.
+Три четверти того, что документы планируют, никогда не сверялось с фактом.
+Любое утверждение о калибровке опирается на 21 пару, а не на двадцать экспериментов.
 
-## What the 21 comparable pairs show
+## Что показывают 21 сравнимая пара
 
-Of the 21, five state a plan of exactly `0.0` ("no effect expected"). The
-remaining **16 carry a directional prediction**:
+У пяти из 21 план равен ровно `0.0` («эффекта не ожидается»). Остальные
+**16 несут направленное предсказание**:
 
-| | Count |
+| | Кол-во |
 |---|---|
-| direction predicted correctly | **6 of 16** |
-| direction wrong (moved the opposite way) | 10 of 16 |
+| направление предсказано верно | **6 из 16** |
+| направление неверно (сдвинулось в противоположную сторону) | 10 из 16 |
 
-Magnitude, split by what was predicted:
+Величина, в разбивке по тому, что предсказывалось:
 
-- **11 pairs predicted growth. None reached it.** The closest was 7379 Android
-  ARPU at +9.5% against a planned +28% — 34% of the model. The furthest was
-  7379 iOS ARPPU at +1.3% against a planned +120%, overstated ~93×. Five of the
-  eleven (all of 4806) moved *down* while the model predicted +50% to +75%.
-- **4 pairs predicted a decline.** Two fell further than planned (5193 Android
-  ARPU −13.5% vs −6.6%; 7034 ARPU −8.9% vs −5.0%), two rose instead (5193 iOS,
-  7115 ARPU +4.5% vs a planned −5.0%).
-- **5 pairs predicted nothing** (`0.0`) and moved between −7.7% and +7.0%.
+- **11 пар предсказывали рост. Ни одна его не достигла.** Ближе всех — 7379
+  Android ARPU: +9,5% против запланированных +28%, то есть 34% модели. Дальше
+  всех — 7379 iOS ARPPU: +1,3% против запланированных +120%, завышение ~в 93 раза.
+  Пять из одиннадцати (все — 4806) сдвинулись *вниз*, тогда как модель предсказывала
+  от +50% до +75%.
+- **4 пары предсказывали спад.** Две упали сильнее плана (5193 Android ARPU
+  −13,5% против −6,6%; 7034 ARPU −8,9% против −5,0%), две вместо этого выросли
+  (5193 iOS, 7115 ARPU +4,5% против запланированных −5,0%).
+- **5 пар не предсказывали ничего** (`0.0`) и сдвинулись в диапазоне от −7,7% до +7,0%.
 
-## Rules for the validator
+## Правила для валидатора
 
-- **A planned lift is not a prediction and must never be quoted as one.** On
-  this evidence it gets the direction right in fewer than half of the cases
-  that state a direction, and has never once reached a predicted growth figure.
-- **Overstatement is the norm and it is large.** Treat a model's growth number
-  as an upper bound with at least an order of magnitude of slack, and say so
-  explicitly whenever the number is used for sizing.
-- **A model predicting `0.0` does not license "no effect".** Those five pairs
-  still moved several percent in both directions.
-- **Never compute a plan↔fact delta where the fact is missing** — that is 58 of
-  81 pairs. `actual_source: "не рассчитано"` means no comparison exists, not
-  zero.
-- Compare per platform. Where a plan is stated per platform (4806, 7379, 7607)
-  iOS and Android diverged in both size and sign.
-- Units do not travel with the number. `planned_lift_pct` in the answer key
-  holds percentages, percentage points, plain strings and per-variation objects;
-  read the unit from the source text before comparing anything.
+- **Запланированный лифт — не предсказание, и цитировать его как предсказание
+  нельзя.** По этим свидетельствам он угадывает направление меньше чем в половине
+  случаев, где направление заявлено, и ни разу не дотянул до предсказанной цифры роста.
+- **Завышение — норма, и оно велико.** Считайте цифру роста из модели верхней
+  границей с запасом минимум в порядок величины и говорите об этом явно всякий раз,
+  когда число используется для сайзинга.
+- **Модель, предсказывающая `0.0`, не даёт права заявлять «эффекта нет».** Те пять
+  пар всё равно сдвинулись на несколько процентов в обе стороны.
+- **Никогда не считайте дельту «план↔факт» там, где факта нет** — это 58 пар из 81.
+  `actual_source: "не рассчитано"` означает, что сравнения не существует, а не ноль.
+- Сравнивайте по платформам. Там, где план заявлен по платформам (4806, 7379, 7607),
+  iOS и Android разошлись и по величине, и по знаку.
+- Единицы измерения не путешествуют вместе с числом. `planned_lift_pct` в ключе
+  ответов держит проценты, процентные пункты, обычные строки и объекты по вариациям;
+  прежде чем что-то сравнивать, прочитайте единицу в исходном тексте.
 
-## Open questions
+## Открытые вопросы
 
-- Why growth models overstate so consistently — audience dilution, an optimistic
-  baseline, or the model period never matching the run. Not separable here.
-- Whether the six correct-direction cases share anything (all but one are ARPPU
-  or a decline prediction; n is too small to call).
-- No calibration exists for money-per-day forecasts: `plan_vs_fact_money_per_day`
-  carries the string `"см. block2"` as its actual value in every file examined.
+- Почему модели роста завышают так последовательно — размытие аудитории,
+  оптимистичный базовый уровень или то, что период модели никогда не совпадает
+  с прогоном. Здесь это не разделимо.
+- Есть ли что-то общее у шести случаев с верным направлением (все, кроме одного, —
+  ARPPU либо предсказание спада; n слишком мал, чтобы утверждать).
+- Для прогнозов «денег в день» калибровки не существует:
+  `plan_vs_fact_money_per_day` во всех просмотренных файлах несёт строку
+  `"см. block2"` в качестве фактического значения.
 
-See also [`closeness-model.md`](closeness-model.md) — its hard rule that effect
-magnitudes never transfer as predictions is the same rule seen from the analog
-side; this file is the measured backing for it.
+См. также [`closeness-model.md`](closeness-model.md) — его жёсткое правило о том,
+что величины эффекта никогда не переносятся как предсказания, есть то же правило,
+увиденное со стороны аналога; этот файл — его измеренное обоснование.
