@@ -1,7 +1,7 @@
 # Состав базы знаний: разметка выводов по типу пользы
 
-Источники разметки: `packages/history/version-revenue-kb-v1.4/knowledge_base.md` (18 source cards
-T1-01…T3-06) и `packages/history/version-revenue-kb-v1.4/pattern_cards.md` (14 pattern cards
+Источники разметки: `version-revenue-kb-v1.4/knowledge_base.md` (в рабочей папке (`VALIDATOR_WORK_DIR`, по умолчанию `revenue-validator-work` рядом с репозиторием)) (18 source cards
+T1-01…T3-06) и `version-revenue-kb-v1.4/pattern_cards.md` (14 pattern cards
 P-01…P-14). Дата разметки: 2026-08-06. Версия базы: V1.2 (frozen).
 
 ## Короткий вывод
